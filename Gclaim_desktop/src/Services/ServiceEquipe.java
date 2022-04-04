@@ -7,12 +7,12 @@ package Services;
 
 import Entities.Equipe;
 import Tools.MaConnection;
-import entities.*;
+import Entities.*;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-import tools.*;
+import Tools.*;
 
 /**
  *
