@@ -60,7 +60,7 @@ public class ServiceEquipe {
                 System.out.println(ex.getMessage());
             }
             pst1.setInt(1, x);
-            pst1.setInt(2, 104);
+            pst1.setInt(2, p.getUser().getId());
             pst1.executeUpdate();
             System.out.println("ajout done");
         } catch (SQLException ex) {

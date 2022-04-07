@@ -18,10 +18,10 @@ public class mainEquipe {
      ServiceEquipe ps = new ServiceEquipe();
      ServiceUser ps1 = new ServiceUser();
      
-    SimpleUtilisateur p = new SimpleUtilisateur("mariem","10101010","10101010","mariem.bensassi@esprit.tn","mariem bensassi");
-   /* ps1.ajouterPersonne(p); */
-     /*Equipe e= new Equipe("the best","the best","open","soumaya",0,p);
-     ps.AddEquipe(e);*/
+    Utilisateur p = new Utilisateur(104);
+   /*ps1.ajouterPersonne(p); */
+     Equipe e= new Equipe("the best","the best","open","moncef",0,p);
+     ps.AddEquipe(e);
           System.out.println(ps.afficheEquipe());
          // ps.DeleteEquipe(42);
          Equipe p1=new Equipe ("bits and bytes","the best","open");
