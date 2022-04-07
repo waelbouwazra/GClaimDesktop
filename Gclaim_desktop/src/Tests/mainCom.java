@@ -21,7 +21,7 @@ public class mainCom {
         Article c = new Article(9);
         Commentaire p = new Commentaire(c,"test", "foulenaa");
         CommentaireService ps = new CommentaireService();
-        ps.AddCommentairePst(p);
+      //  ps.AddCommentairePst(p);
         System.out.println(ps.ShowCommentaire());
       //  ps.DeleteProduit(24);
        // System.out.println(ps.ShowProduit());

@@ -14,8 +14,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 /**
  *
@@ -45,7 +43,7 @@ public class CatService {
              
               pst.executeUpdate();
           } catch (SQLException ex) {
-              Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
+              System.out.println(ex.getMessage());
           }
 
         
@@ -61,7 +59,8 @@ public class CatService {
               System.out.println("done");
           } catch (SQLException ex) {
               System.out.println("Probléme");
-              Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);}
+                System.out.println(ex.getMessage());
+          }
           }
         
         public void UpdateCategorie(cat c,int cu)

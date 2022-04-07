@@ -17,8 +17,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 
 /**
  *
@@ -47,7 +46,7 @@ public class CommentaireService {
       
               pst.executeUpdate();
           } catch (SQLException ex) {
-              Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
+             System.out.println(ex.getMessage());
           } 
              /* String req1 = "insert into article (commentaire,user) values (?,?)";
               try { 
@@ -73,7 +72,7 @@ public class CommentaireService {
               System.out.println("done");
           } catch (SQLException ex) {
               System.out.println("Probléme");
-              Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);}
+                System.out.println(ex.getMessage());}
           }
         
         public void UpdateCommentaire(Commentaire p,int pu)
@@ -103,7 +102,7 @@ public class CommentaireService {
             ResultSet rs = ste.executeQuery(sql);
              while(rs.next()){
                  Commentaire p = new Commentaire();
-                 Article c =new Article (this.rs.getInt("id"));
+                 Article c =new Article (rs.getInt("id"));
                  p.setArticle_id(c);
                  p.setCommentaire(rs.getString("commentaire"));
                  p.setUser(rs.getString("user"));

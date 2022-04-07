@@ -15,12 +15,12 @@ import Services.ArticleService;
  */
 public class mainArticle {
         public static void main(String[] args) {
-        cat c =new cat(4);
+        cat c =new cat(1);
         Article a = new Article("bhbhb", "blala","imama",c);
         ArticleService ps = new ArticleService();
-        ps.AddArticle(a);
+       // ps.AddArticle(a);
         System.out.println(ps.ShowArticle());
-       ps.UpdateArticle(a,21);
+      // ps.UpdateArticle(a,21);
 
         }
 }
