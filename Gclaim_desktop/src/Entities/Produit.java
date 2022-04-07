@@ -24,6 +24,10 @@ public class Produit {
     public Produit() {
     }
 
+    public Produit(int id_produit) {
+        this.id_produit = id_produit;
+    }
+
     public Produit( String nom_produit, String description, double prix_produit, Date dateAjout_produit, int Qte_produit) {
         
         this.nom_produit = nom_produit;
@@ -58,12 +62,6 @@ public class Produit {
         this.categorie = categorie;
         this.image = image;
     }
-
-    public Produit(int id_produit) {
-        this.id_produit = id_produit;
-    }
-
-  
 
     public int getId_produit() {
         return id_produit;

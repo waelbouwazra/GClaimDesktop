@@ -17,6 +17,19 @@ public class Image {
     public Image() {
     }
 
+    public Image(String url_image) {
+        this.url_image = url_image;
+    }
+
+    public Image(Produit produit, String url_image) {
+        this.produit = produit;
+        this.url_image = url_image;
+    }
+
+    public Image(int id) {
+        this.id = id;
+    }
+
     public Image(int id, Produit produit, String url_image) {
         this.id = id;
         this.produit = produit;

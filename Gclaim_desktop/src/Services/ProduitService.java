@@ -50,21 +50,34 @@ public class ProduitService {
              
               pst.executeUpdate();
           } catch (SQLException ex) {
-              Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
+              System.out.println(ex.getMessage());
           }
+              String query1 = "select MAX(id_produit) id  from produit";
+            Statement ste;
+            int x = 0;
+            try {
+                ste = cnx.createStatement();
+                ResultSet rs = ste.executeQuery(query1);
+                while (rs.next()) {
+                    x = rs.getInt("id");
+                }
+            }
+                catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
             String req1 = "insert into images (produit,url_image) values (?,?)";
               try { 
               
               pst = cnx.prepareStatement(req1);
               
-              pst.setInt(1, i.getProduit().getId_produit());
+              pst.setInt(1, x);
               pst.setString(2, i.getUrl_image());
               
              
               pst.executeUpdate();
           } catch (SQLException ex) {
-              Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
-          }
+              System.out.println(ex.getMessage());
+          } 
         
 
     }
