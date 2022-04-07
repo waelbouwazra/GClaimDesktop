@@ -49,6 +49,12 @@ public class Utilisateur {
         this.isVerfied = isVerfied;
     }
 
+    public Utilisateur(int id) {
+        this.id = id;
+    }
+
+  
+
     public int getId() {
         return id;
     }

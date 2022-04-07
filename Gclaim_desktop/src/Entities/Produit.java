@@ -59,6 +59,12 @@ public class Produit {
         this.image = image;
     }
 
+    public Produit(int id_produit) {
+        this.id_produit = id_produit;
+    }
+
+  
+
     public int getId_produit() {
         return id_produit;
     }
