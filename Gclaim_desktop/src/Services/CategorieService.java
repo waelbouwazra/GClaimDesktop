@@ -61,15 +61,16 @@ public class CategorieService {
               System.out.println("done");
           } catch (SQLException ex) {
               System.out.println("Probléme");
-              Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);}
+                  System.out.println(ex.getMessage());
+            }
           }
         
         public void UpdateCategorie(Categorie c,int cu)
         { String req ="UPDATE produit set nom_categorie=? , type_categorie=? WHERE id_categorie =" +cu+ " ";
         try {
               pst = cnx.prepareStatement(req);             
-              pst.setString(2, c.getNom_categorie());
-              pst.setString(3, c.getType_categorie());
+              pst.setString(1, c.getNom_categorie());
+              pst.setString(2, c.getType_categorie());
               
               pst.executeUpdate();
               System.out.println("categorie modifié");

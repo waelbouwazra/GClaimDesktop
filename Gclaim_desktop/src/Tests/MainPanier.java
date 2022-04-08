@@ -21,22 +21,23 @@ public class MainPanier {
        // Categorie c = new Categorie(7);
        // Produit p = new Produit("test", "foulenaa",10f,10,c);
         CommandeService cs = new CommandeService();
-       // System.out.println(cs.ShowCommande());
+        System.out.println(cs.ShowCommande());
        
-        /*Commande c = new Commande();
-        Utilisateur u = new Utilisateur(1);
+        Commande c = new Commande();
+        Utilisateur u = new Utilisateur(139);
         c.setLivrer(true);
         c.setTotal(260);
         c.setUser(u);
         Produit p = new Produit();
-        p.setId_produit(1);
+        p.setId_produit(5);
         c.setId(1);
         LigneCommande lc= new LigneCommande();
         lc.setCommande(c);
         lc.setProduit(p);
-        lc.setQuantite(10);*/
+        lc.setQuantite(10);
         LigneCommandeService lcs= new LigneCommandeService();
-        //lcs.AddLigneCommande(lc);
+       
+        lcs.AddLigneCommande(lc);
         System.out.println(lcs.ShowLigneCommande());
    
         /*
@@ -44,12 +45,12 @@ public class MainPanier {
      */
         
         
-        //cs.DeleteCommande(9);
+      //  cs.DeleteCommande(16);
         
         /* Update Commande
         
         */
-      // cs.UpdateCommande(c, 10);
+      cs.UpdateCommande(c, 17);
         
    //   MaConx m=MaConx.getInstance();
     }    

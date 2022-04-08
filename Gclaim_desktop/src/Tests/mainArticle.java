@@ -16,11 +16,13 @@ import Services.ArticleService;
 public class mainArticle {
         public static void main(String[] args) {
         cat c =new cat(1);
-        Article a = new Article("bhbhb", "blala","imama",c);
+        Article a = new Article("test", "test","image",c);
         ArticleService ps = new ArticleService();
        // ps.AddArticle(a);
         System.out.println(ps.ShowArticle());
-      // ps.UpdateArticle(a,21);
+         Article a1 = new Article("best", "test","image",c);
+       ps.UpdateArticle(a1,22);
+       ps.DeleteArticle(22);
 
         }
 }

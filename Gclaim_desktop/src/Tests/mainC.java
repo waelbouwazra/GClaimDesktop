@@ -14,11 +14,11 @@ import Services.CategorieService;
  */
 public class mainC {
     public static void main(String[] args) {
-        Categorie c = new Categorie("cat", "cat");
+        Categorie c = new Categorie("cccccccccc", "cat");
         CategorieService ps = new CategorieService();
         ps.AddCategoriePst(c);
         System.out.println(ps.ShowCategorie());
-        
+        ps.UpdateCategorie(c, 7);
    //   MaConx m=MaConx.getInstance();
     }
 }

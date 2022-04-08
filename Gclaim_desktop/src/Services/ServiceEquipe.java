@@ -131,4 +131,48 @@ public class ServiceEquipe {
             System.out.println(ex.getMessage());
         }
     }
+     public void Rejoindreuneequipe(Equipe p,Utilisateur u) {
+
+        String req =  "insert into equipe_utilisateur (equipe_id,utilisateur_id) values (?,?)";
+      
+        try {
+
+            pst1 = cnx.prepareStatement(req);
+            pst1.setInt(1, p.getId());
+            pst1.setInt(2, u.getId());
+            pst1.executeUpdate();
+           
+            System.out.println("rejoindre equipe done");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+      /*public List<String> afficheUtilisateursduneEquipe() {
+        List<String> emails = new ArrayList<>();
+        String query = " SELECT e.email FROM utilisateur e INNER JOIN equipe_utilisateur d ON e.id=d.id WHERE d.id=43";
+        Statement ste;
+        try {
+           
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(query);
+
+            while (rs.next()) {
+
+                Equipe p = new Equipe();
+                p.setId(rs.getInt(1));
+                p.setNomEquipe(rs.getString(2));
+                p.setDescription(rs.getString(3));
+                p.setDateCreation(rs.getDate(4));
+                p.setEtat(rs.getString(5));
+                p.setChef(rs.getString(6));
+                p.setNb(rs.getInt(7));
+                emails.add(p);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return equipes;
+    }*/
 }

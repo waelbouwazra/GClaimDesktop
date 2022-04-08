@@ -36,7 +36,7 @@ public class ProduitService {
     
        public void AddProduitPst(Produit p, Image i) {
          
-              String req = "insert into produit (nom_produit,description,prix_produit,Qte_produit,categorie) values (?,?,?,?,?)";
+              String req = "insert into produit (nom_produit,description,prix_produit,Qte_produit,categorie,nbr_vu) values (?,?,?,?,?,?)";
               try { 
               
               pst = cnx.prepareStatement(req);
@@ -44,10 +44,10 @@ public class ProduitService {
               pst.setString(1, p.getNom_produit());
               pst.setString(2, p.getDescription());
               pst.setDouble(3, p.getPrix_produit());
-             
+           
               pst.setInt(4, p.getQte_produit());
               pst.setInt(5, p.getCategorie().getId_categorie());
-             
+               pst.setInt(6, 0);
               pst.executeUpdate();
           } catch (SQLException ex) {
               System.out.println(ex.getMessage());

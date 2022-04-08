@@ -14,6 +14,9 @@ public class SimpleUtilisateur extends Utilisateur {
 
     public SimpleUtilisateur() {
       
+    }  public SimpleUtilisateur(int id) {
+        super(id);
+      
     }
 
     public SimpleUtilisateur(int id, String username, String password, String verifpassword, String email,String fullname) {

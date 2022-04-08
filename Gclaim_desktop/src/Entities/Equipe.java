@@ -35,7 +35,9 @@ public class Equipe {
 
     public Equipe() {
     }
-
+public Equipe(int id) {
+    this.id = id;
+    }
     public Equipe(int id, String nomEquipe, String Description, Date dateCreation, String Etat, String chef, Utilisateur idUser) {
         this.id = id;
         this.nomEquipe = nomEquipe;
