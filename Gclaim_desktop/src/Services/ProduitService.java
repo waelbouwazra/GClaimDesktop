@@ -130,8 +130,7 @@ public class ProduitService {
                  p.setDateAjout_produit(rs.getDate("date_ajout_produit"));
                  p.setQte_produit(rs.getInt("Qte_produit"));
                  p.setNbr_vu(rs.getInt("nbr_vu"));
-                 Categorie c =new Categorie (this.rs.getInt("id_categorie"));
-                 p.setCategorie(c);
+                 p.setCategorie(new Categorie (rs.getInt("categorie")));
                  produit.add(p);
                  
         }

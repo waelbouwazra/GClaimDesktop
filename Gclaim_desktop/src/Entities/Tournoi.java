@@ -16,15 +16,31 @@ public class Tournoi {
     private String nomtournoi;
     private String description;
     private Date datec;
-    private Date datev;
+    private String datev;
     private String heurev;
+    private String image;
     private Jeu jeu;
 
-    public Tournoi(int id, String nomtournoi, String description, Date datec, Date datev, String heurev, Jeu jeu) {
+    public Tournoi(int id, String nomtournoi, String description, String datev, String heurev, String image, Jeu jeu) {
         this.id = id;
         this.nomtournoi = nomtournoi;
         this.description = description;
-        this.datec = datec;
+        this.datev = datev;
+        this.heurev = heurev;
+        this.image = image;
+        this.jeu = jeu;
+    }
+
+  
+    public Tournoi(Jeu jeu) {
+        this.jeu = jeu;
+    }
+
+    public Tournoi(int id, String nomtournoi, String description,  String datev, String heurev, Jeu jeu) {
+        this.id = id;
+        this.nomtournoi = nomtournoi;
+        this.description = description;
+
         this.datev = datev;
         this.heurev = heurev;
         this.jeu = jeu;
@@ -37,6 +53,13 @@ public class Tournoi {
     }
 
     public Tournoi() {
+    }
+  public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public int getId() {
@@ -71,11 +94,11 @@ public class Tournoi {
         this.datec = datec;
     }
 
-    public Date getDatev() {
+    public String getDatev() {
         return datev;
     }
 
-    public void setDatev(Date datev) {
+    public void setDatev(String datev) {
         this.datev = datev;
     }
 
@@ -97,9 +120,10 @@ public class Tournoi {
 
     @Override
     public String toString() {
-        return "Tournoi{" + "id=" + id + ", nomtournoi=" + nomtournoi + ", description=" + description + ", datec=" + datec + ", datev=" + datev + ", heurev=" + heurev + ", jeu" + jeu + '}';
+        return "Tournoi{" + "id=" + id + ", nomtournoi=" + nomtournoi + ", description=" + description + ", datec=" + datec + ", datev=" + datev + ", heurev=" + heurev + ", image=" + image + ", jeu=" + jeu + '}';
     }
 
+  
 
 
    

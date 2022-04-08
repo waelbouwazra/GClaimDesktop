@@ -17,6 +17,49 @@ public class Jeu {
     private String description;
     private String createur;
     private Date datec;
+    private String image;
+    private Tournoi tournois;
+
+    public Jeu(Tournoi tournois) {
+        this.tournois = tournois;
+    }
+
+    public Jeu(int id) {
+        this.id = id;
+    }
+
+    public Jeu(int id, String nomjeu, String description, String createur, String image) {
+        this.id = id;
+        this.nomjeu = nomjeu;
+        this.description = description;
+        this.createur = createur;
+        this.image = image;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
+    }
+
+    public Jeu(int id, String nomjeu, String description, String createur, Date datec, Tournoi tournois) {
+        this.id = id;
+        this.nomjeu = nomjeu;
+        this.description = description;
+        this.createur = createur;
+        this.datec = datec;
+        this.tournois = tournois;
+    }
+
+    public Tournoi getTournois() {
+        return tournois;
+    }
+
+    public void setTournois(Tournoi tournois) {
+        this.tournois = tournois;
+    }
 
     public Jeu(int id, String nomjeu, String description, String createur) {
         this.id = id;
@@ -78,8 +121,9 @@ public class Jeu {
 
     @Override
     public String toString() {
-        return "Jeu{" + "id=" + id + ", nomjeu=" + nomjeu + ", description=" + description + ", createur=" + createur + ", datec=" + datec + '}';
+        return "Jeu{" + "id=" + id + ", nomjeu=" + nomjeu + ", description=" + description + ", createur=" + createur + ", datec=" + datec + ", image=" + image +  '}';
     }
+
 
 
 

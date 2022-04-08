@@ -8,10 +8,12 @@ package Services;
 import Entities.Jeu;
 import Tools.MaConnection;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -33,14 +35,18 @@ public class ServiceJeu {
     
        public void AddJeuPst(Jeu c) {
          
-              String req = "insert into jeu (nomjeu,description,createur) values (?,?,?)";
+              String req = "insert into jeu (nomjeu,description,createur,date_s,image) values (?,?,?,?,?)";
               try { 
               
               pst = cnx.prepareStatement(req);
               
               pst.setString(1, c.getNomjeu());
               pst.setString(2, c.getDescription());
-              pst.setString(2, c.getCreateur());
+              pst.setString(3, c.getCreateur());
+              pst.setDate(4, Date.valueOf(LocalDate.now()));
+              pst.setString(5, c.getImage());
+
+
 
               
               
@@ -67,12 +73,13 @@ public class ServiceJeu {
           }
         
         public void UpdateJeu(Jeu c,int cu)
-        { String req ="UPDATE jeu set nomjeu=? , description=?,createur=? WHERE id =" +cu+ " ";
+        { String req ="UPDATE jeu set nomjeu=? , description=?,createur=?,image=? WHERE id =" +cu+ " ";
         try {
               pst = cnx.prepareStatement(req);             
-              pst.setString(2, c.getNomjeu());
-              pst.setString(3, c.getDescription());
-              pst.setString(2, c.getCreateur());
+              pst.setString(1, c.getNomjeu());
+              pst.setString(2, c.getDescription());
+              pst.setString(3, c.getCreateur());
+              pst.setString(4, c.getImage());
 
               pst.executeUpdate();
               System.out.println("Jeu modifié");
@@ -95,9 +102,11 @@ public class ServiceJeu {
              while(rs.next()){
                  Jeu c = new Jeu();
                  c.setId(rs.getInt("id"));
-                 c.setNomjeu(rs.getString("nomtournoi"));
+                 c.setNomjeu(rs.getString("nomjeu"));
                  c.setDescription(rs.getString("description"));
                  c.setCreateur(rs.getString("createur"));
+                 c.setDatec(rs.getDate("date_s"));
+                 c.setImage(rs.getString("image"));
                  jeu.add(c);
                  
         }

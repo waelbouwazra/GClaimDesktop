@@ -5,10 +5,11 @@
  */
 package Tests;
 
-import Entities.Categorie;
-import Entities.Image;
-import Entities.Produit;
-import Services.ProduitService;
+import Entities.Jeu;
+import Entities.Tournoi;
+import Services.ServiceTournoi;
+import Services.ServiceJeu;
+
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -17,16 +18,15 @@ import java.util.Date;
  *
  * @author azizk
  */
-public class main {
+public class mainJeu {
     public static void main(String[] args) {
+        Jeu h= new Jeu(1, "nomJeu", "description", "de","waaaaaaaaaws");
        
-        Categorie c = new Categorie(4);
-        Produit p = new Produit("tv", "foulenaa",10f,10,c);
-        ProduitService ps = new ProduitService();
-                //ps.(24);
- Image i = new Image(p,"dd");
-        ps.AddProduitPst(p,i);
-        System.out.println(ps.ShowProduit());
+       // Produit p = new Produit("test", "foulenaa",10f,10,c);
+        ServiceJeu ps = new ServiceJeu();
+        ps.AddJeuPst(h);
+        ps.UpdateJeu(h, 4);
+        System.out.println(ps.ShowJeu());
         
    //   MaConx m=MaConx.getInstance();
     }
