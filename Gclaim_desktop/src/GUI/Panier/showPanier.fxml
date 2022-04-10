@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Panier.ShowPanierController">
+    <stylesheets>
+        <URL value="@showpanier.css" />
+    </stylesheets>
+   <children>
+      <ListView fx:id="txtListPanier" layoutX="155.0" layoutY="79.0" prefHeight="269.0" prefWidth="402.0" />
+      <Label layoutX="236.0" layoutY="25.0" text="Affichage Panier" />
+      <Button fx:id="btnRetour" layoutX="505.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadMenu" text="retour" />
+   </children>
+</AnchorPane>

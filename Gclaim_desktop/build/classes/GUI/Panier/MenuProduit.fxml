@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="767.0" prefWidth="822.0" stylesheets="@styleFXML.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Panier.MenuProduitController">
+    <children>
+        
+      <Label alignment="CENTER" layoutX="191.0" layoutY="75.0" prefHeight="69.0" prefWidth="441.0" text="Menu Réservation et Paiement">
+         <font>
+            <Font name="Corbel" size="31.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnaffr" layoutX="287.0" layoutY="307.0" mnemonicParsing="false" onAction="#showProducts" prefHeight="31.0" prefWidth="250.0" text="Afficher tous les Produits" AnchorPane.leftAnchor="287.0" />
+      <Button fx:id="btnaffp" layoutX="287.0" layoutY="374.0" mnemonicParsing="false" onAction="#btnupp" prefHeight="31.0" prefWidth="250.0" text="Modifier tous les Produits" AnchorPane.leftAnchor="287.0" />
+      <Button fx:id="btnajp" layoutX="287.0" layoutY="248.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="31.0" prefWidth="250.0" text="Ajouter un Produit" AnchorPane.leftAnchor="287.0" />
+   </children>
+</AnchorPane>
