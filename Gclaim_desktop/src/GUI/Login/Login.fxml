@@ -14,9 +14,7 @@
 <AnchorPane prefHeight="768.0" prefWidth="1366.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Login.LoginController">
     <children>
       <ImageView fitHeight="768.0" fitWidth="1366.0" pickOnBounds="true">
-         <image>
-            <Image url="@../../assets/LOGOHAWES2.jpg" />
-         </image>
+        
       </ImageView>
       <Pane opacity="0.58" prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: black;" />
       <Label layoutX="193.0" layoutY="615.0" prefHeight="32.0" prefWidth="340.0" text="Est ce que vous avez un compte ?" textFill="WHITE">
@@ -88,11 +86,12 @@
                   <Font size="20.0" />
                </font>
             </PasswordField>
-            <ImageView fitHeight="196.0" fitWidth="258.0" layoutX="228.0" layoutY="110.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../../../../../PIDEV/Gclaim/src/Entity/Logo.png" />
-               </image>
-            </ImageView>
+            
+             <ImageView fitHeight="110.0" fitWidth="125.0" layoutX="1014.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../../xampp/htdocs/PIDEV/Gclaim/src/Entity/Logo.png" />
+         </image>
+      </ImageView>
          </children>
       </Pane>
     </children>

@@ -96,6 +96,24 @@ public class ServiceEquipe {
         return equipes;
     }
 
+            public List<Integer> getIdEquipe() {
+        List<Integer> equipes = new ArrayList<>();
+        String query = "select * from equipe";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(query);
+
+            while (rs.next()) {
+ equipes.add(rs.getInt(1));
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return equipes;
+    }
     public void DeleteEquipe(int p) {
 
         String req = "DELETE from equipe  WHERE id =" + p + " ";

@@ -127,7 +127,7 @@ public Equipe(int id,Utilisateur User) {
     
  @Override
     public String toString() {
-        return "Equipe{" + "id=" + id + ", nomEquipe=" + nomEquipe + ", description=" + Description + ", dateCreation=" + dateCreation + ", Etat=" + Etat + ", chef=" + chef + '}';
+        return "id=" + id + ", \n \n nomEquipe=" + nomEquipe + ",  \n \n description=" + Description + ",  \n \n dateCreation=" + dateCreation + ",  \n \n Etat=" + Etat + ", \n \n  chef=" + chef + " \n \n ";
     }
 
 }
