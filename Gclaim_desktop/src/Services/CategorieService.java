@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -54,7 +55,7 @@ public class CategorieService {
     
         public void DeleteCategorie(int c){
           try {
-              String req = "DELETE from categorie  WHERE id_produit =" +c+ " ";
+              String req = "DELETE from categorie  WHERE id_categorie =" +c+ " ";
               
               ste = cnx.createStatement();
               ste.executeUpdate(req);
@@ -66,7 +67,7 @@ public class CategorieService {
           }
         
         public void UpdateCategorie(Categorie c,int cu)
-        { String req ="UPDATE produit set nom_categorie=? , type_categorie=? WHERE id_categorie =" +cu+ " ";
+        { String req ="UPDATE categorie set nom_categorie=? , type_categorie=? WHERE id_categorie =" +cu+ " ";
         try {
               pst = cnx.prepareStatement(req);             
               pst.setString(1, c.getNom_categorie());
@@ -106,6 +107,20 @@ public class CategorieService {
         return categorie;
     }
         
+ public void Rechercher( List<Categorie> categorie, String nom_categorie){
+       
+        
+         categorie.stream().filter(cc->cc.getNom_categorie().equals(nom_categorie)).forEach((t) -> {System.out.println(t);
+        });
+    }
 
-
+ public void TriCategorie(List<Categorie> categorie){
+        
+        categorie.stream().sorted((o1, o2)->o1.getNom_categorie().
+                                                                compareTo(o2.getNom_categorie())).
+                                                                collect(Collectors.toList()).forEach(t-> System.out.println(t));
+        
+        
+        
+    }
 }

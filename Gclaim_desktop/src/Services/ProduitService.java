@@ -141,7 +141,42 @@ public class ProduitService {
         return produit;
     }
         
+public List<Produit> Rechercher(String nom_produit)
+    {
 
+       List<Produit> produit = new ArrayList<>();
+        String sql="select * from produit where nom_produit like ?";
+        PreparedStatement ste;
+       
+        try {
+            
+            ste = cnx.prepareStatement(sql);
+           ste.setString(1, nom_produit);
+            ResultSet rs = ste.executeQuery();
+             while(rs.next()){
+                 Produit p = new Produit();
+                 p.setId_produit(rs.getInt("id_produit"));
+                 p.setNom_produit(rs.getString("nom_produit"));
+                 p.setDescription(rs.getString("description"));
+                 p.setPrix_produit(rs.getDouble("prix_produit"));
+                 p.setDateAjout_produit(rs.getDate("date_ajout_produit"));
+                 p.setQte_produit(rs.getInt("Qte_produit"));
+                 p.setNbr_vu(rs.getInt("nbr_vu"));
+                 p.setCategorie(new Categorie (rs.getInt("categorie")));
+                 produit.add(p);
+                 
+        }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return produit;
+    }  
 
-   
+public void filtreprix( List<Produit> produit, double min, double max){
+       
+        
+         produit.stream().filter(pp->pp.getPrix_produit()>min && pp.getPrix_produit()<max).forEach((t) -> {System.out.println(t);
+        });
+    }
 }

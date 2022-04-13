@@ -18,7 +18,9 @@ import java.time.LocalDate;
 import java.time.Month;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import jdk.nashorn.internal.objects.Global;
 
 /**
@@ -31,10 +33,24 @@ public class main {
        Produit p = new Produit("pc", "pc",10f,10,c);
         ProduitService ps = new ProduitService();
         
-       System.out.println(ps.ShowProduit());
+      // System.out.println(ps.ShowProduit());
        Image i=new Image("aaaaa");
         ps.AddProduitPst(p, i);
-       ps.DeleteProduit(15);
+      // ps.DeleteProduit(p.getId_produit());
+      
+      //recherche
+     // List<Produit> listp = new ArrayList<>();
+      //listp = ps.Rechercher("microsoft");
+      //listp.stream().forEach(pp->System.out.println(pp));
+      
+      
+      //filtre
+       List<Produit> listp = new ArrayList<>();
+      listp = ps.ShowProduit();
+      ps.filtreprix(listp, 4, 6);
+      
+      
+      
    //   MaConx m=MaConx.getInstance();
     /* Utilisateur c = new Utilisateur(104);
         Profil p = new Profil("test1" ,"kchouk1",c,"lol1",55);

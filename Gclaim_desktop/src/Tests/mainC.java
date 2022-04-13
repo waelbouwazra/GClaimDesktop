@@ -7,6 +7,8 @@ package Tests;
 
 import Entities.Categorie;
 import Services.CategorieService;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,8 +19,22 @@ public class mainC {
         Categorie c = new Categorie("cccccccccc", "cat");
         CategorieService ps = new CategorieService();
         ps.AddCategoriePst(c);
-        System.out.println(ps.ShowCategorie());
-        ps.UpdateCategorie(c, 7);
+        //System.out.println(ps.ShowCategorie());
+        
+        //recherche
+        //List<Categorie> listc = new ArrayList<>();
+       // listc = ps.ShowCategorie();
+        //ps.Rechercher(listc,"validation");
+        
+        
+        //tri
+        List<Categorie> listc = new ArrayList<>();
+        listc = ps.ShowCategorie();
+        ps.TriCategorie(listc);
+        
+        
+       // ps.UpdateCategorie(c, 7);
+       // ps.DeleteCategorie(c.getId_categorie());
    //   MaConx m=MaConx.getInstance();
     }
 }
