@@ -13,9 +13,9 @@
 
 <AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="766.0" prefWidth="822.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Login.ModifierprofilController">
    <children>
-      <Label fx:id="username" layoutX="479.0" layoutY="95.0" prefHeight="36.0" prefWidth="297.0" text=" username">
+      <Label fx:id="username" layoutX="460.0" layoutY="95.0" prefHeight="36.0" prefWidth="297.0" text=" username">
          <font>
-            <Font size="25.0" />
+            <Font name="System Bold Italic" size="31.0" />
          </font>
       </Label>
       <Line endX="232.0" layoutX="579.0" layoutY="231.0" startX="-100.0" stroke="#c24400" />
@@ -25,22 +25,17 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="336.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../PIDEV/Gclaim/public/img/instagram/insta-1.jpg" />
-         </image>
-      </ImageView>
         
       <TextField fx:id="TelText" layoutX="491.0" layoutY="296.0" onAction="#ProfilRedirect" prefHeight="31.0" prefWidth="313.0" />
       <TextField fx:id="AdresseTxt" layoutX="491.0" layoutY="350.0" prefHeight="31.0" prefWidth="313.0" />
       <TextField fx:id="CinTxt" layoutX="492.0" layoutY="406.0" prefHeight="31.0" prefWidth="313.0" />
       <TextField fx:id="EmailTxt" layoutX="490.0" layoutY="466.0" prefHeight="31.0" prefWidth="313.0" />
-      <Label layoutX="342.0" layoutY="301.0" prefHeight="21.0" prefWidth="83.0" text="username" textFill="#c24400">
+      <Label layoutX="281.0" layoutY="301.0" prefHeight="21.0" prefWidth="83.0" text="username" textFill="#c24400">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="342.0" layoutY="355.0" text="password" textFill="#c24400">
+      <Label layoutX="281.0" layoutY="355.0" text="password" textFill="#c24400">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -50,23 +45,18 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="342.0" layoutY="411.0" prefHeight="22.0" prefWidth="149.0" text="fullname/specialité" textFill="#c24400">
+      <Label layoutX="281.0" layoutY="411.0" prefHeight="22.0" prefWidth="149.0" text="fullname/specialité" textFill="#c24400">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="342.0" layoutY="471.0" text="Email :" textFill="#c24400">
+      <Label layoutX="281.0" layoutY="471.0" text="Email :" textFill="#c24400">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
       <Pane fx:id="ModalPane" layoutX="282.0" layoutY="14.0" prefHeight="766.0" prefWidth="822.0" visible="false">
          <children>
-            <ImageView fitHeight="766.0" fitWidth="822.0" pickOnBounds="true">
-               <image>
-                  <Image url="@../../assets/gradient.png" />
-               </image>
-            </ImageView>
             <Pane layoutX="148.0" layoutY="60.0" prefHeight="250.0" prefWidth="576.0" style="-fx-background-color: white;">
                <children>
                   <PasswordField fx:id="oldpwtxt" layoutX="66.0" layoutY="44.0" promptText="Ancien mot de passe" />
@@ -74,6 +64,16 @@
                   <PasswordField fx:id="newpwTxt2" layoutX="66.0" layoutY="144.0" promptText="Confirmer nouveau mot de passe" />
                   <Button layoutX="538.0" layoutY="9.0" mnemonicParsing="false" onAction="#closeModal" text="X" />
                </children></Pane>
+            <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="285.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../PIDEV/Gclaim/public/img/instagram/insta-1.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="50.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../../../../PIDEV/Gclaim/src/Entity/Logo.png" />
+               </image>
+            </ImageView>
          </children>
       </Pane>
       <Label layoutX="457.0" layoutY="180.0" prefHeight="22.0" prefWidth="118.0" text="Votre Role est">
@@ -81,35 +81,52 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Button fx:id="creerequipe" layoutX="490.0" layoutY="572.0" mnemonicParsing="false" onAction="#ModifierInfromations" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Créer votre équipe">
+      <Button fx:id="creerequipe" layoutX="276.0" layoutY="536.0" mnemonicParsing="false" onAction="#CreerEquipe" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: c24400;" text="Créer votre équipe">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="desactivercompte" layoutX="491.0" layoutY="625.0" mnemonicParsing="false" onAction="#desactivervotrecompte" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Désactiver Votre Compte">
+      <Button fx:id="desactivercompte" layoutX="276.0" layoutY="596.0" mnemonicParsing="false" onAction="#desactivervotrecompte" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: c24400;" text="Désactiver Votre Compte">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="modifierprofile" layoutX="488.0" layoutY="521.0" mnemonicParsing="false" onAction="#ModifierInfromations" onMouseClicked="#initialize" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Modifier votre profile">
+      <Button fx:id="modifierprofile" layoutX="487.0" layoutY="536.0" mnemonicParsing="false" onAction="#ModifierInfromations" onMouseClicked="#initialize" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Modifier votre profile">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label fx:id="username1" layoutX="342.0" layoutY="95.0" prefHeight="36.0" prefWidth="118.0" text="Profile de">
+      <Label fx:id="username1" layoutX="284.0" layoutY="95.0" prefHeight="46.0" prefWidth="176.0" text="Profile de">
          <font>
-            <Font size="25.0" />
+            <Font name="System Bold Italic" size="31.0" />
          </font>
       </Label>
-      <Button fx:id="devenircoach" layoutX="492.0" layoutY="675.0" mnemonicParsing="false" onAction="#DemandededevenirCoach" prefHeight="36.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Devenir COACH">
+      <Button fx:id="devenircoach" layoutX="487.0" layoutY="596.0" mnemonicParsing="false" onAction="#DemandededevenirCoach" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Devenir COACH">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="LOG_OUT" layoutX="840.0" layoutY="162.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: c24400;" text="LOG_OUT">
+      <Button fx:id="LOG_OUT" layoutX="24.0" layoutY="202.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: c24400;" text="LOG_OUT">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
+      <Button fx:id="LOG_OUT1" layoutX="24.0" layoutY="144.0" mnemonicParsing="false" onAction="#accueil" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: c24400;" text="ACCUEIL">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Line endX="-100.0" endY="361.20001220703125" layoutX="530.0" layoutY="262.0" startX="-100.0" stroke="#180d07" />
+      <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="275.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../PIDEV/Gclaim/public/img/instagram/insta-1.jpg" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="40.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../PIDEV/Gclaim/src/Entity/Logo.png" />
+         </image>
+      </ImageView>
+      <Line endX="232.0" layoutX="578.0" layoutY="516.0" startX="-100.0" stroke="#c24400" />
    </children>
 </AnchorPane>

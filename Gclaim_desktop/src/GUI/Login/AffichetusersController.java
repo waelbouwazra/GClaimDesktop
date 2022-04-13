@@ -91,4 +91,5 @@ public class AffichetusersController implements Initializable {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }

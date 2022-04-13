@@ -38,11 +38,11 @@ public class Equipe {
 public Equipe(int id) {
     this.id = id;
     }
-    public Equipe(int id, String nomEquipe, String Description, Date dateCreation, String Etat, String chef, Utilisateur idUser) {
+    public Equipe(int id, String nomEquipe, String Description, String Etat, String chef, Utilisateur idUser) {
         this.id = id;
         this.nomEquipe = nomEquipe;
         this.Description = Description;
-        this.dateCreation = dateCreation;
+   
         this.Etat = Etat;
         this.chef = chef;
         this.User = idUser;

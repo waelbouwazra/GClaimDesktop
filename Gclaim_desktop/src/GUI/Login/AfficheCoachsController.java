@@ -36,9 +36,12 @@ public class AfficheCoachsController implements Initializable {
     private ServiceUser rs = new ServiceUser();
     @FXML
     private ChoiceBox<Integer> comboBoxID;
+    @FXML
     private AnchorPane mainPane;
     @FXML
     private Button btngetback;
+    @FXML
+    private Button addcoach;
     /**
      * Initializes the controller class.
      */
@@ -80,6 +83,21 @@ public class AfficheCoachsController implements Initializable {
         AnchorPane pane;
         try {
             pane = FXMLLoader.load(getClass().getResource("menuuser.fxml"));
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+            btngetback.setTextFill(Color.WHITE);
+            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void addcoach(ActionEvent event) {
+          AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("AjouterCoach.fxml"));
+            
             mainPane.getChildren().setAll(pane);
             //defaultStateButtons();
             btngetback.setTextFill(Color.WHITE);

@@ -98,6 +98,8 @@ public class ModifierprofilController implements Initializable {
     private AnchorPane mainPane;
     @FXML
     private Button LOG_OUT;
+    @FXML
+    private Button LOG_OUT1;
 
     /**
      * Initializes the controller class.
@@ -236,17 +238,7 @@ public class ModifierprofilController implements Initializable {
 
 
     }
-    private void CreerEquipe(Stage primaryStage) {
-      try {
-                    Parent root = FXMLLoader.load(getClass().getResource("Creerequipe.fxml"));
-                    Scene scene = new Scene(root, 1366, 768);
-                    primaryStage.setTitle("GClaim");
-                    primaryStage.setScene(scene);
-                    primaryStage.show();
-                } catch (IOException ex) {
-                    System.out.println(ex.getMessage());
-                }
-    }
+  
 
     @FXML
     private void desactivervotrecompte(ActionEvent event) {
@@ -296,5 +288,27 @@ public class ModifierprofilController implements Initializable {
         }
         
     }
+
+    @FXML
+    private void accueil(ActionEvent event) {
+    }
+
+    @FXML
+    private void CreerEquipe(ActionEvent event) {
+         
+                 AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("Creerequipe.fxml"));
+            
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+            creerequipe.setTextFill(Color.WHITE);
+            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+  
 
 }
