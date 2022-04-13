@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Services.ServiceUser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -56,6 +57,7 @@ public class MenuController implements Initializable {
     private Button gestionTournoiButton;
     @FXML
     private Button gestionArticlesButton;
+     private ServiceUser US;
 
     /**
      * Initializes the controller class.
@@ -105,5 +107,33 @@ public class MenuController implements Initializable {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    @FXML
+     private void showusers(ActionEvent event) {
+        AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("login/menuuser.fxml"));
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+            gestionUserButton.setTextFill(Color.WHITE);
+            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     
+    @FXML
+    private void logout(ActionEvent event) {
+        US.logOut();
+         AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+            logoutButton.setTextFill(Color.WHITE);
+            logoutButton.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
 }

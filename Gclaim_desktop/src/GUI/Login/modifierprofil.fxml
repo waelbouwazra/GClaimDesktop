@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="766.0" prefWidth="822.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Login.ModifierprofilController">
+   <children>
+      <Label fx:id="username" layoutX="479.0" layoutY="95.0" prefHeight="36.0" prefWidth="297.0" text=" username">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Line endX="232.0" layoutX="579.0" layoutY="231.0" startX="-100.0" stroke="#c24400" />
+      <Label fx:id="UserRole" layoutX="602.0" layoutY="176.0" prefHeight="30.0" prefWidth="138.0" text="role" />
+      <Label layoutX="528.0" layoutY="243.0" prefHeight="21.0" prefWidth="66.0" text="à propos">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="336.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../PIDEV/Gclaim/public/img/instagram/insta-1.jpg" />
+         </image>
+      </ImageView>
+        
+      <TextField fx:id="TelText" layoutX="491.0" layoutY="296.0" onAction="#ProfilRedirect" prefHeight="31.0" prefWidth="313.0" />
+      <TextField fx:id="AdresseTxt" layoutX="491.0" layoutY="350.0" prefHeight="31.0" prefWidth="313.0" />
+      <TextField fx:id="CinTxt" layoutX="492.0" layoutY="406.0" prefHeight="31.0" prefWidth="313.0" />
+      <TextField fx:id="EmailTxt" layoutX="490.0" layoutY="466.0" prefHeight="31.0" prefWidth="313.0" />
+      <Label layoutX="342.0" layoutY="301.0" prefHeight="21.0" prefWidth="83.0" text="username" textFill="#c24400">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="342.0" layoutY="355.0" text="password" textFill="#c24400">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="342.0" layoutY="411.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="342.0" layoutY="411.0" prefHeight="22.0" prefWidth="149.0" text="fullname/specialité" textFill="#c24400">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Label layoutX="342.0" layoutY="471.0" text="Email :" textFill="#c24400">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Pane fx:id="ModalPane" layoutX="282.0" layoutY="14.0" prefHeight="766.0" prefWidth="822.0" visible="false">
+         <children>
+            <ImageView fitHeight="766.0" fitWidth="822.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../../assets/gradient.png" />
+               </image>
+            </ImageView>
+            <Pane layoutX="148.0" layoutY="60.0" prefHeight="250.0" prefWidth="576.0" style="-fx-background-color: white;">
+               <children>
+                  <PasswordField fx:id="oldpwtxt" layoutX="66.0" layoutY="44.0" promptText="Ancien mot de passe" />
+                  <PasswordField fx:id="newpwTxt" layoutX="66.0" layoutY="94.0" promptText="Nouveau mot de passe" />
+                  <PasswordField fx:id="newpwTxt2" layoutX="66.0" layoutY="144.0" promptText="Confirmer nouveau mot de passe" />
+                  <Button layoutX="538.0" layoutY="9.0" mnemonicParsing="false" onAction="#closeModal" text="X" />
+               </children></Pane>
+         </children>
+      </Pane>
+      <Label layoutX="457.0" layoutY="180.0" prefHeight="22.0" prefWidth="118.0" text="Votre Role est">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
+      <Button fx:id="creerequipe" layoutX="490.0" layoutY="572.0" mnemonicParsing="false" onAction="#ModifierInfromations" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Créer votre équipe">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="desactivercompte" layoutX="491.0" layoutY="625.0" mnemonicParsing="false" onAction="#desactivervotrecompte" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Désactiver Votre Compte">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="modifierprofile" layoutX="488.0" layoutY="521.0" mnemonicParsing="false" onAction="#ModifierInfromations" onMouseClicked="#initialize" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Modifier votre profile">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Label fx:id="username1" layoutX="342.0" layoutY="95.0" prefHeight="36.0" prefWidth="118.0" text="Profile de">
+         <font>
+            <Font size="25.0" />
+         </font>
+      </Label>
+      <Button fx:id="devenircoach" layoutX="492.0" layoutY="675.0" mnemonicParsing="false" onAction="#DemandededevenirCoach" prefHeight="36.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Devenir COACH">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+      <Button fx:id="LOG_OUT" layoutX="840.0" layoutY="162.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: c24400;" text="LOG_OUT">
+         <font>
+            <Font name="System Bold" size="12.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

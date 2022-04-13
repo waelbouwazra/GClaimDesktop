@@ -45,7 +45,7 @@ public class Coach extends Utilisateur {
     @Override
     public String toString() {
       
-        return "Coach{" +"id=" + id + ", username=" + username + ", password=" + password + ", verifpassword=" + verifpassword + ", email=" + email +  " ,specialite=" + specialite + '}';
+        return "id=" + id + "\n \n username=" + username + "\n \n password=" + password + "\n \n verifpassword=" + verifpassword + "\n \n email=" + email +  "\n \n specialite=" + specialite + "\n \n";
     }
     
 

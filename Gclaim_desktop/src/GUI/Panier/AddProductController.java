@@ -6,6 +6,7 @@
 package GUI.Panier;
 
 import Entities.Categorie;
+import Entities.Image;
 import Entities.Produit;
 import Services.ProduitService;
 import java.io.IOException;
@@ -76,8 +77,9 @@ public class AddProductController implements Initializable {
        p.setNbr_vu(0);
        p.setDateAjout_produit(Date.valueOf(LocalDate.now()));
        Categorie c = new Categorie(1);
+       Image i=new Image();
        p.setCategorie(c);
-       ps.AddProduitPst(p);
+       ps.AddProduitPst(p,i);
     }
 
     @FXML

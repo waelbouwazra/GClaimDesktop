@@ -39,7 +39,7 @@ public class mainuser {
 
         //devenir coachh
         SimpleUtilisateur p = new SimpleUtilisateur(119);
-        ps.desactiveruncompte(p);
+        ps.desactiveruncompte(p.getId());
         //ps.activeruncompte(p);
         System.out.println("les coachs desactiver sont"+ ps.affichecoachdesactiver());
         System.out.println("les coachs activer sont"+ ps.affichecoachsactiver());

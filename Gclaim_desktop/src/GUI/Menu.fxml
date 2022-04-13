@@ -21,13 +21,31 @@
                   <Image url="@../../assets/logohawes.png" />
                </image>
             </ImageView>
-            <Button fx:id="gestionUserButton" layoutX="22.0" layoutY="123.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #5b4ebd; -fx-border-radius: 20px;" text="Gestion des Utilisateurs" textFill="WHITE" />
-            <Button fx:id="gestionCoachButton" layoutX="22.0" layoutY="176.0" mnemonicParsing="false" onAction="#gestionCoach" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Coachs" textFill="#5b4ebd" />
-            <Button fx:id="gestionProduitButton" layoutX="22.0" layoutY="230.0" mnemonicParsing="false" onAction="#showProductsMenu" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Produits" textFill="#5b4ebd" />
-            <Button fx:id="gestionPanierButton" layoutX="22.0" layoutY="284.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Paniers" textFill="#5b4ebd" />
-            <Button fx:id="gestionTournoiButton" layoutX="22.0" layoutY="338.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Tournois" textFill="#5b4ebd" />
-            <Button fx:id="logoutButton" layoutX="25.0" layoutY="696.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #5b4ebd;" text="Logout" textFill="WHITE" />
-            <Button fx:id="gestionArticlesButton" layoutX="22.0" layoutY="394.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Articles" textFill="#5b4ebd" />
+            <Button fx:id="gestionUserButton" layoutX="22.0" layoutY="123.0" mnemonicParsing="false" onAction="#showusers" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #c24400;" text="Gestion des Utilisateurs" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font></Button>
+            <Button fx:id="gestionCoachButton" layoutX="22.0" layoutY="176.0" mnemonicParsing="false" onAction="#gestionCoach" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Coachs" textFill="#0b0b0b">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font></Button>
+            <Button fx:id="gestionProduitButton" layoutX="22.0" layoutY="230.0" mnemonicParsing="false" onAction="#showProductsMenu" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Produits" textFill="#0b0b0b">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font></Button>
+            <Button fx:id="gestionPanierButton" layoutX="22.0" layoutY="284.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Paniers" textFill="#0b0b0b">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font></Button>
+            <Button fx:id="gestionTournoiButton" layoutX="22.0" layoutY="338.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Tournois" textFill="#0b0b0b">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font></Button>
+            <Button fx:id="logoutButton" layoutX="25.0" layoutY="696.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #c24400;" text="Logout" textFill="WHITE" />
+            <Button fx:id="gestionArticlesButton" layoutX="22.0" layoutY="394.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Articles" textFill="#0b0b0b">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font></Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="mainPane" layoutX="263.0" prefHeight="767.0" prefWidth="822.0" style="-fx-background-color: #ffffff;" />
@@ -56,7 +74,6 @@
                   <Button layoutX="99.0" layoutY="127.0" mnemonicParsing="false" text="Confirmer" />
                </children>
             </AnchorPane>
-            <Button layoutX="28.0" layoutY="133.0" mnemonicParsing="false" onAction="#Messagerie" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #5b4ebd;" text="Messagerie" textFill="WHITE" />
             <Button layoutX="157.0" layoutY="98.0" mnemonicParsing="false" onAction="#voirProfileAction" prefHeight="26.0" prefWidth="86.0" text="Voir profil" />
          </children>
       </AnchorPane>
