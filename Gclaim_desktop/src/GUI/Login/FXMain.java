@@ -23,7 +23,7 @@ import javafx.stage.Stage;
 public class FXMain extends Application {
 
     ServiceUser US;
-    RealTimeService realTime;
+    
     @Override
      public void start(Stage primaryStage) {
         try {
@@ -39,7 +39,7 @@ public class FXMain extends Application {
     @Override
     public void stop() throws Exception {
         System.out.println("closed connection");
-        realTime.closeConnection();
+       
     }
     /**
      * @param args the command line arguments

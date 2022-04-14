@@ -21,13 +21,6 @@ public class Statics {
     public static String pwd ="";
     public static String wsURI = "ws://localhost:3000/";
     
-    //Dev database
-    /*public static String url = "jdbc:mysql://localhost:3306/hawes";
-    public static String user = "root";
-    public static String pwd = "";
-    public static String wsURI = "ws://localhost:3000/";*/
     
-    /*Admin = hassenchahine.chouadah@esprit.tn mdp=1234567
-   Client = youssef.marzouk@esprit.tn mdp=123456     */   
     
 }
