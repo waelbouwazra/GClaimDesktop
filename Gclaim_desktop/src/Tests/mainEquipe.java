@@ -32,5 +32,6 @@ public class mainEquipe {
         System.out.println(ps.afficheEquipe());
         ps.DeleteEquipe(42);
 */
+        System.out.println( ps.afficheUtilisateursduneEquipe(43));
     }
 }

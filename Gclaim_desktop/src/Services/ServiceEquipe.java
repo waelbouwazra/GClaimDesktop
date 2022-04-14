@@ -165,9 +165,9 @@ public class ServiceEquipe {
             System.out.println(ex.getMessage());
         }
     }
-      /*public List<String> afficheUtilisateursduneEquipe() {
+      public List<String> afficheUtilisateursduneEquipe(int id) {
         List<String> emails = new ArrayList<>();
-        String query = " SELECT e.email FROM utilisateur e INNER JOIN equipe_utilisateur d ON e.id=d.id WHERE d.id=43";
+        String query = " select u.email from utilisateur u , equipe_utilisateur e WHERE u.id = e.utilisateur_id and e.equipe_id = "+id+"";
         Statement ste;
         try {
            
@@ -176,21 +176,15 @@ public class ServiceEquipe {
 
             while (rs.next()) {
 
-                Equipe p = new Equipe();
-                p.setId(rs.getInt(1));
-                p.setNomEquipe(rs.getString(2));
-                p.setDescription(rs.getString(3));
-                p.setDateCreation(rs.getDate(4));
-                p.setEtat(rs.getString(5));
-                p.setChef(rs.getString(6));
-                p.setNb(rs.getInt(7));
-                emails.add(p);
+               
+                emails.add(rs.getString(1));
 
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
-        return equipes;
-    }*/
+        return emails;
+    }
+     
 }

@@ -109,7 +109,8 @@ public class InscriptionController implements Initializable {
             }
 
         } else {
-            addNotifications("erreur", "veuillez remplir correctement les champs");
+           // addNotifications("erreur", "veuillez remplir correctement les champs");
+            JOptionPane.showMessageDialog(null, "veuillez remplir correctement les champs");
         }
     }
 
