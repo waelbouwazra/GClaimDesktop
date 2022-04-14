@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -179,4 +180,30 @@ public void filtreprix( List<Produit> produit, double min, double max){
          produit.stream().filter(pp->pp.getPrix_produit()>min && pp.getPrix_produit()<max).forEach((t) -> {System.out.println(t);
         });
     }
+
+public void filtrecateg( List<Produit> produit, int categ){
+       
+        
+         produit.stream().filter(pp->pp.getCategorie().getId_categorie()==categ).forEach((t) -> {System.out.println(t);
+        });
+    }
+
+
+public void plusvu( List<Produit> produit){
+       
+         
+         produit.stream()
+        .filter(e -> e.getNbr_vu() != 0).forEach((t) -> {System.out.println(t);});
+      
+        }
+
+    public void nbrprod( List<Produit> produit){
+       
+         int nbr;
+         nbr = (int) produit.stream().count();
+         System.out.println(nbr);
+      
+        }
+
+   
 }

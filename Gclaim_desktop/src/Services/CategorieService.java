@@ -119,8 +119,6 @@ public class CategorieService {
         categorie.stream().sorted((o1, o2)->o1.getNom_categorie().
                                                                 compareTo(o2.getNom_categorie())).
                                                                 collect(Collectors.toList()).forEach(t-> System.out.println(t));
-        
-        
-        
+
     }
 }

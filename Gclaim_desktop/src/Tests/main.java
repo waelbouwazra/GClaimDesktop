@@ -38,18 +38,32 @@ public class main {
         ps.AddProduitPst(p, i);
       // ps.DeleteProduit(p.getId_produit());
       
-      //recherche
-     // List<Produit> listp = new ArrayList<>();
-      //listp = ps.Rechercher("microsoft");
-      //listp.stream().forEach(pp->System.out.println(pp));
+        //-------------------------------------------------------recherche
+        // List<Produit> listp = new ArrayList<>();
+        //listp = ps.Rechercher("microsoft");
+        //listp.stream().forEach(pp->System.out.println(pp));
       
       
-      //filtre
-       List<Produit> listp = new ArrayList<>();
-      listp = ps.ShowProduit();
-      ps.filtreprix(listp, 4, 6);
+        //-------------------------------------------------------filtre par pix
+        //List<Produit> listp = new ArrayList<>();
+        //listp = ps.ShowProduit();
+        // ps.filtreprix(listp, 4, 6);
       
-      
+        //-------------------------------------------------------filtre par categorie
+        //List<Produit> listp = new ArrayList<>();
+        //listp = ps.ShowProduit();
+        // ps.filtrecateg(listp,4 );
+     
+        //-------------------------------------------------------les plus vues
+        //List<Produit> listp = new ArrayList<>();
+        //listp = ps.ShowProduit();
+         //ps.plusvu(listp );
+         
+         
+          //-------------------------------------------------------nombre de produit
+         //List<Produit> listp = new ArrayList<>();
+        //listp = ps.ShowProduit();
+         //ps.nbrprod(listp );
       
    //   MaConx m=MaConx.getInstance();
     /* Utilisateur c = new Utilisateur(104);
