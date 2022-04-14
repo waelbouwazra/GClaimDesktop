@@ -263,12 +263,14 @@ public class ModifierprofilController implements Initializable {
         if(currentUser.getRoles().equals("[\"ROLE_USER\"]"))
         {
        US.demandedevenircoach(currentUser);
-         addNotifications("Demande", "Demande de devenir coach est en cours de traitement");
+        JOptionPane.showMessageDialog(null, "Demande de devenir coach est en cours de traitement");
+         //addNotifications("Demande", "Demande de devenir coach est en cours de traitement");
        
         }
         else if(currentUser.getRoles().equals("[\"ROLE_COACH\"]"))
         { 
-          addNotifications("Erreur", "vous étes déja COACH");
+        //  addNotifications("Erreur", "vous étes déja COACH");
+             JOptionPane.showMessageDialog(null, "vous étes déja COACH");
         }
            
     }
