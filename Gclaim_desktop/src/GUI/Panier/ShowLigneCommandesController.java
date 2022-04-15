@@ -5,8 +5,9 @@
  */
 package GUI.Panier;
 
-import Entities.Produit;
-import Services.ProduitService;
+import Entities.Commande;
+import Entities.LigneCommande;
+import Services.LigneCommandeService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -17,7 +18,6 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Parent;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.layout.AnchorPane;
@@ -28,41 +28,43 @@ import javafx.scene.paint.Color;
  *
  * @author moham
  */
-public class ShowPanierController implements Initializable {
+public class ShowLigneCommandesController implements Initializable {
 
-    @FXML
-    private ListView<Produit> txtListPanier;
-    @FXML
-    private Button btnRetour;
-    ProduitService ps = new ProduitService();
     @FXML
     private AnchorPane mainPane;
-
+    @FXML
+    private Button btngetback;
+    @FXML
+    private ListView<LigneCommande> txtListLigneCommandes;
+    LigneCommandeService ligneCommandeService = new LigneCommandeService();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-                ObservableList<Produit> items =FXCollections.observableArrayList();
-                List<Produit> listProduit = ps.ShowProduit();
-                for(Produit p : listProduit) {
-                    items.add(p);
-                }
-                txtListPanier.setItems(items);
+               ObservableList<LigneCommande> items =FXCollections.observableArrayList();
+        List<LigneCommande> listLigneCommande = ligneCommandeService.ShowLigneCommande();
+        for(LigneCommande c : listLigneCommande) {
+            items.add(c);
+        }
+       
+    txtListLigneCommandes.setItems(items);
+        
     }    
+
 
     @FXML
     private void loadMenu(ActionEvent event) {
-        AnchorPane pane;
+              AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("MenuProduit.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("MenuPanier.fxml"));
             mainPane.getChildren().setAll(pane);
-            //defaultStateButtons();
-            btnRetour.setTextFill(Color.WHITE);
-            btnRetour.setStyle("-fx-background-color :#5b4ebd");
-        } catch (IOException ex) {
-            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+            btngetback.setTextFill(Color.WHITE);
+            } catch (IOException ex) {
+            System.out.println(ex.getMessage());
         }
     }
+    
+    
     
 }

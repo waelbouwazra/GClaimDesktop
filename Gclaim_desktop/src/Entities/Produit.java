@@ -132,6 +132,28 @@ public class Produit {
         return "Produit{" + "id_produit=" + id_produit + ", nom_produit=" + nom_produit + ", description=" + description + ", prix_produit=" + prix_produit + ", dateAjout_produit=" + dateAjout_produit + ", Qte_produit=" + Qte_produit + ", nbr_vu=" + nbr_vu + ", categorie=" + categorie + '}';
     }
 
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) {
+            return true;
+        }
+        if (obj == null) {
+            return false;
+        }
+    
+        final Produit other = (Produit) obj;
+        if (this.id_produit != other.id_produit) {
+            return false;
+        }
+        return true;
+    }
+
     
     
 }

@@ -18,9 +18,11 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -49,7 +51,6 @@ public class CommandeService {
              
               pst.setBoolean(3, c.isLivrer());
               pst.setInt(4, c.getUser().getId());
-             
               pst.executeUpdate();
           } catch (SQLException ex) {
               System.out.println(ex.getMessage());
@@ -70,8 +71,8 @@ public class CommandeService {
               System.out.println("Commande delete failed");}
           }
         
-        public void UpdateCommande(Commande c,int cID)
-        { String req ="UPDATE commande set livrer=? WHERE id =" +cID+ " ";
+        public void UpdateCommande(Commande c)
+        { String req ="UPDATE commande set livrer=? WHERE id =" +c.getId()+ " ";
         try {
               pst = cnx.prepareStatement(req);
               pst.setBoolean(1, !(c.isLivrer()));
@@ -86,12 +87,44 @@ public class CommandeService {
             
         } 
         }
+        public IntSummaryStatistics getStatistics(){
+            List<Commande> l = this.ShowCommande();
+           return l.stream().mapToInt(e->e.getTotal()).summaryStatistics();
+            
+            //return l;
+        }
+            public List<Commande> getLeastCommande(){
+            List<Commande> l = this.triCommande();
+           return l.stream().limit(1).collect(Collectors.toList());
+            //return l;
+        }
+            public List<Commande> getTopCommande(){
+            List<Commande> l = this.ShowCommande();
+             l=l.stream().sorted((o1, o2)->o2.getTotal()-o1.getTotal()).
+             collect(Collectors.toList());
+             l=l.stream().limit(1).collect(Collectors.toList());
+            return l;
+        }
+        public List<Commande> triCommande(){
+             List<Commande> l = this.ShowCommande();
+              l.stream().sorted((o1, o2)->o2.getTotal()-o1.getTotal()).
+             collect(Collectors.toList());
         
-         public List<Commande> ShowCommande(){
-        List<Commande> commandes = new ArrayList<>();
-        String sql="select * from commande";
+            return l;
+        }
+       public List<Commande> rechercherCommande(int Username){
+             List<Commande> l = this.ShowCommande();
+                 
+         //l.stream().filter(cc->cc.getUser().getUsername().equals(Username));
+        l.stream().filter(cc->cc.getUser().getId()==Username);
+        
+            return l;
+        }
+       public Commande getSingleCommande(int id){
+       Commande commande = new Commande();
+        String sql="select * from commande where id="+id;
         Statement ste;
-       
+       ServiceUser serviceUser = new ServiceUser();
         try {
             ste = cnx.createStatement();
             ResultSet rs = ste.executeQuery(sql);
@@ -102,8 +135,36 @@ public class CommandeService {
                  c.setId(rs.getInt("id"));
                  c.setTotal(rs.getInt("total"));
                  c.setLivrer(rs.getBoolean("livrer"));
-                 Utilisateur u=new Utilisateur(rs.getInt("User"));
-                 c.setUser(u);
+                
+                 c.setUser(serviceUser.getuserbyID(rs.getInt("user")));
+                 c.setDate_achat(rs.getDate("date_achat"));
+               
+                 commande=c;
+                 
+        }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return commande;
+    }
+         public List<Commande> ShowCommande(){
+        List<Commande> commandes = new ArrayList<>();
+        String sql="select * from commande";
+        Statement ste;
+       ServiceUser serviceUser = new ServiceUser();
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+             while(rs.next()){
+                 
+                 
+                 Commande c = new Commande();
+                 c.setId(rs.getInt("id"));
+                 c.setTotal(rs.getInt("total"));
+                 c.setLivrer(rs.getBoolean("livrer"));
+                
+                 c.setUser(serviceUser.getuserbyID(rs.getInt("user")));
                  c.setDate_achat(rs.getDate("date_achat"));
                
                  commandes.add(c);
@@ -115,32 +176,21 @@ public class CommandeService {
         
         return commandes;
     }
-          public Commande getSingleCommande(int id){
-        Commande c = new Commande();
-        String sql="select * from commande  WHERE id =" +id;
-        Statement ste;
-       
-        try {
-            ste = cnx.createStatement();
-            ResultSet rs = ste.executeQuery(sql);
-             while(rs.next()){
-                 
-                
-                 c.setId(rs.getInt("id"));
-                 c.setTotal(rs.getInt("total"));
-                 c.setLivrer(rs.getBoolean("livrer"));
-                 Utilisateur u=new Utilisateur(rs.getInt("User"));
-                 c.setUser(u);
-                 c.setDate_achat(rs.getDate("date_achat"));
-               
-               
-                 
+        public int getLastInsertedId(){
+            
+             String query1 = "select MAX(id) id  from commande";
+            Statement ste;
+            int x = 0;
+            try {
+                ste = cnx.createStatement();
+                ResultSet rs = ste.executeQuery(query1);
+                while (rs.next()) {
+                    x = rs.getInt("id");
+                }
+
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+            return x;
         }
-        } catch (Exception ex) {
-            System.out.println(ex.getMessage());
-        }
-        
-        return c;
-    }
-        
 }

@@ -75,7 +75,9 @@ public class Commande {
 
     @Override
     public String toString() {
-        return "Commande{" + "id=" + id + ", total=" + total + ", date_achat=" + date_achat + ", livrer=" + livrer + ", User=" + User + '}';
+        //return "Commande{" + "id=" + id + ", total=" + total + ", date_achat=" + date_achat + ", livrer=" + livrer + ", User=" + User + '}';
+    return "Commande id :" + id + " \t| Total: "+total+ "\t| Username :" + User.getUsername()+ " \t| Status: "+livrer+ "\t| Date :" + date_achat ;
+  
     }
     
 }

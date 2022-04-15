@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="712.0" prefWidth="690.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Panier.showCommandesController">
+    <stylesheets>
+       
+    </stylesheets>
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="7.0" prefHeight="712.0" prefWidth="730.0" styleClass="mainFxmlClass">
+         <stylesheets>
+            
+         </stylesheets>
+         <children>
+            <ListView fx:id="txtListCommandes" layoutX="64.0" layoutY="89.0"  prefHeight="474.0" prefWidth="617.0" />
+            <Button fx:id="btnChangeStatus" layoutX="303.0" layoutY="582.0" mnemonicParsing="false" onAction="#changeStatus" prefHeight="42.0" prefWidth="181.0" style="-fx-background-color: #c24400;" text="Change Status" />
+            <Button fx:id="btngetback" layoutX="64.0" layoutY="582.0" mnemonicParsing="false" onAction="#loadMenu" prefHeight="41.0" prefWidth="164.0" style="-fx-background-color: #c24400;" styleClass="mainFxmlClass" text="RETOUR" />
+            <Label layoutX="181.0" layoutY="14.0" prefHeight="65.0" prefWidth="470.0" text="LISTE DES COMMANDES" textFill="#c24400">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

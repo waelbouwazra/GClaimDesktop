@@ -69,21 +69,9 @@ public class MenuController implements Initializable {
 
 
     private void showProducts(ActionEvent event) {
-        AnchorPane pane;
-        try {
-            pane = FXMLLoader.load(getClass().getResource("Panier/MenuProduit.fxml"));
-            mainPane.getChildren().setAll(pane);
-            //defaultStateButtons();
-            btnDisplayProducts.setTextFill(Color.WHITE);
-            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
-        } catch (IOException ex) {
-            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
     }
 
-    @FXML
-    private void Messagerie(ActionEvent event) {
-    }
 
     @FXML
     private void voirProfileAction(ActionEvent event) {
@@ -121,7 +109,6 @@ public class MenuController implements Initializable {
         }
     }
     
-    @FXML
     private void logout(ActionEvent event) {
         US.logOut();
          AnchorPane pane;
@@ -135,5 +122,17 @@ public class MenuController implements Initializable {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+    }
+
+    @FXML
+    private void showPanierMenu(ActionEvent event) {
+          AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("Panier/MenuPanier.fxml"));
+            mainPane.getChildren().setAll(pane);
+            
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }
