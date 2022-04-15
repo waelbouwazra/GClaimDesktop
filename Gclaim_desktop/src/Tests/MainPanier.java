@@ -50,7 +50,7 @@ public class MainPanier {
         /* Update Commande
         
         */
-      cs.UpdateCommande(c, 17);
+      //cs.UpdateCommande(c, 17);
         
    //   MaConx m=MaConx.getInstance();
     }    
