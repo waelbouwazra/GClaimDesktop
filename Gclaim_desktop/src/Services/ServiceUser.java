@@ -571,7 +571,7 @@ public Utilisateur getuserbyID(int id) {
                     p.setEmail(rs.getString(3));
                     p.setUsername(rs.getString(7));
                     p.setVerifpassword(rs.getString(8));
-                    System.out.println(p);
+                    //System.out.println(p);
                     return p;
  
             }

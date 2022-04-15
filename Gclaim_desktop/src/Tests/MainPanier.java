@@ -11,6 +11,7 @@ import Entities.Produit;
 import Entities.Utilisateur;
 import Services.CommandeService;
 import Services.LigneCommandeService;
+import java.util.IntSummaryStatistics;
 
 /**
  *
@@ -20,7 +21,7 @@ public class MainPanier {
     public static void main(String[] args) {
        // Categorie c = new Categorie(7);
        // Produit p = new Produit("test", "foulenaa",10f,10,c);
-        CommandeService cs = new CommandeService();
+      /*  CommandeService cs = new CommandeService();
         System.out.println(cs.ShowCommande());
        
         Commande c = new Commande();
@@ -53,6 +54,22 @@ public class MainPanier {
       //cs.UpdateCommande(c, 17);
         
    //   MaConx m=MaConx.getInstance();
+    CommandeService cs = new CommandeService();
+   IntSummaryStatistics iss =cs.getStatistics();
+   System.out.println(iss.getMax());
+   System.out.println(iss.getMin());
+   
+   System.out.println(iss.getAverage());
+   
+   System.out.println(iss.getSum());
+  // cs.triCommande();
+   //System.out.println(cs.rechercherCommande(1));
+   
+   System.out.println(cs.getLeastCommande());
+   System.out.println(cs.getTopCommande());
+   //System.out.println(cs.triCommande());
+        //System.out.println(cs.rechercherCommande(1));
+     
     }    
 }
 
