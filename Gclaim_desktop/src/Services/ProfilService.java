@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -34,16 +35,16 @@ public class ProfilService {
     
        public void AddProfil(Profil c) {
          
-              String req = "insert into profil (user_id,description,username,game,numero) values (?,?,?,?,?)";
+              String req = "insert into profil (description,username,game,numero) values (?,?,?,?)";
               try { 
               
               pst = cnx.prepareStatement(req);
               
-             pst.setInt(1, c.getUser().getId());
-              pst.setString(2, c.getDescription());
-               pst.setString(3, c.getUsername());
-              pst.setString(4, c.getGame());
-               pst.setInt(5, c.getNumero());
+            // pst.setInt(1, c.getUser().getId()); // implementer cette methode quand la session marche
+              pst.setString(1, c.getDescription());
+               pst.setString(2, c.getUsername());
+              pst.setString(3, c.getGame());
+               pst.setInt(4, c.getNumero());
               
               
               
@@ -70,12 +71,13 @@ public class ProfilService {
           }
         
         public void UpdateProfil(Profil c,int cu)
-        { String req ="UPDATE profil set description=? , game=? WHERE id =" +cu+ " ";
+        { String req ="UPDATE profil set description=? , game=? ,numero=? WHERE id =" +cu+ " ";
         try {
               pst = cnx.prepareStatement(req);             
-              pst.setString(2, c.getDescription());
-              pst.setString(3, c.getUsername());
-              
+              pst.setString(1, c.getDescription());
+           
+               pst.setString(2, c.getGame());
+                pst.setInt(3, c.getNumero());
               pst.executeUpdate();
               System.out.println("Profil modifié");
             
@@ -111,6 +113,15 @@ public class ProfilService {
         }
         
         return profil;
+    }
+         public void TriProfil(List<Profil> categorie){
+        
+        categorie.stream().sorted((o1, o2)->o1.getUsername().
+                                                                compareTo(o2.getUsername())).
+                                                                collect(Collectors.toList()).forEach(t-> System.out.println(t));
+        
+        
+        
     }
         
 
