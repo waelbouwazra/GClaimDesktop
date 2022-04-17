@@ -8,14 +8,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" prefHeight="508.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Login.CreerequipeController">
+<AnchorPane id="AnchorPane" prefHeight="545.0" prefWidth="1155.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Login.CreerequipeController">
    <children>
-      <AnchorPane id="AnchorPane" fx:id="mainPane" layoutX="10.0" layoutY="10.0" prefHeight="535.0" prefWidth="575.0" styleClass="mainFxmlClass">
+      <AnchorPane id="AnchorPane" fx:id="mainPane" layoutX="4.0" layoutY="5.0" prefHeight="535.0" prefWidth="1002.0" styleClass="mainFxmlClass">
          <stylesheets>
             <URL value="@ajoutercoach.css" />
          </stylesheets>
          <children>
-            <AnchorPane id="AnchorPane" layoutX="-33.0" layoutY="46.0" prefHeight="463.0" prefWidth="582.0" styleClass="mainFxmlClass">
+            <AnchorPane id="AnchorPane" layoutX="314.0" layoutY="24.0" prefHeight="463.0" prefWidth="582.0" styleClass="mainFxmlClass">
                <stylesheets>
                   <URL value="@menuuser.css" />
                </stylesheets>
@@ -23,30 +23,30 @@
                   <TextField fx:id="email" layoutX="378.0" layoutY="194.0" prefHeight="26.0" prefWidth="156.0" promptText="description" />
                   <ChoiceBox fx:id="etat" layoutX="380.0" layoutY="239.0" prefWidth="150.0" />
                   <TextField fx:id="username" layoutX="378.0" layoutY="150.0" prefHeight="27.0" prefWidth="156.0" promptText="nomEquipe" />
+                  <Label id="titreLabel" layoutX="64.0" layoutY="14.0" prefHeight="102.0" prefWidth="454.0" text="Créer votre Equipe" textFill="#c24400">
+                     <font>
+                        <Font name="System Bold Italic" size="46.0" />
+                     </font>
+                  </Label>
+                  <Label id="label" layoutX="74.0" layoutY="143.0" text="Nom Equipe">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label id="label" layoutX="75.0" layoutY="219.0" text="Etat">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label id="label" layoutX="76.0" layoutY="183.0" text="Description">
+                     <font>
+                        <Font name="System Bold Italic" size="18.0" />
+                     </font>
+                  </Label>
+                  <Button id="buttonM" fx:id="btnAjouter" layoutX="323.0" layoutY="351.0" mnemonicParsing="false" onAction="#addcoach" prefHeight="31.0" prefWidth="156.0" style="-fx-background-color: c24400;" text="Créer votre equipe" textFill="WHITE" />
+                  <Button id="buttonM" fx:id="btngetback" layoutX="66.0" layoutY="351.0" mnemonicParsing="false" onAction="#loadMenu" prefHeight="31.0" prefWidth="156.0" style="-fx-background-color: c24400;" text="voir votre Profil" textFill="WHITE" />
                </children>
             </AnchorPane>
-            <Label id="label" layoutX="135.0" layoutY="202.0" text="Nom Equipe">
-               <font>
-                  <Font name="System Bold Italic" size="18.0" />
-               </font>
-            </Label>
-            <Label id="label" layoutX="136.0" layoutY="278.0" text="Etat">
-               <font>
-                  <Font name="System Bold Italic" size="18.0" />
-               </font>
-            </Label>
-            <Label id="label" layoutX="137.0" layoutY="242.0" text="Description">
-               <font>
-                  <Font name="System Bold Italic" size="18.0" />
-               </font>
-            </Label>
-            <Button id="buttonM" fx:id="btnAjouter" layoutX="386.0" layoutY="390.0" mnemonicParsing="false" onAction="#addcoach" prefHeight="31.0" prefWidth="156.0" style="-fx-background-color: c24400;" text="Créer votre equipe" textFill="WHITE" />
-            <Label id="titreLabel" layoutX="118.0" layoutY="38.0" prefHeight="102.0" prefWidth="454.0" text="Créer votre Equipe" textFill="#c24400">
-               <font>
-                  <Font name="System Bold Italic" size="46.0" />
-               </font>
-            </Label>
-            <Button id="buttonM" fx:id="btngetback" layoutX="129.0" layoutY="390.0" mnemonicParsing="false" onAction="#loadMenu" prefHeight="31.0" prefWidth="156.0" style="-fx-background-color: c24400;" text="voir votre Profil" textFill="WHITE" />
             <Label fx:id="nomHebr" layoutX="227.0" layoutY="20.0" />
          </children>
       </AnchorPane>

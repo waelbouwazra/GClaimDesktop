@@ -29,14 +29,8 @@ public class MenuuserController implements Initializable {
     private Button btnuserT;
     @FXML
     private Button btncoachT;
-    @FXML
     private Button btnuserA;
-    @FXML
     private Button btncoachA;
-    @FXML
-    private Button btnuserD;
-    @FXML
-    private Button btncoachD;
     @FXML
     private Button btndemande;
     @FXML
@@ -54,7 +48,7 @@ public class MenuuserController implements Initializable {
     private void showusers(ActionEvent event) {
         AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("affichetusers.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("afficheuser.fxml"));
             mainPane.getChildren().setAll(pane);
             //defaultStateButtons();
             btnuserT.setTextFill(Color.WHITE);
@@ -76,60 +70,7 @@ public class MenuuserController implements Initializable {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    @FXML
-    private void showusersActives(ActionEvent event) {
-        AnchorPane pane;
-        try {
-            pane = FXMLLoader.load(getClass().getResource("affichetusersActive.fxml"));
-            mainPane.getChildren().setAll(pane);
-            //defaultStateButtons();
-            btnuserA.setTextFill(Color.WHITE);
-            btnuserA.setStyle("-fx-background-color :#5b4ebd");
-        } catch (IOException ex) {
-            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    @FXML
-    private void showcoachActives(ActionEvent event) {
-        AnchorPane pane;
-        try {
-            pane = FXMLLoader.load(getClass().getResource("afficheCoachsActive.fxml"));
-            mainPane.getChildren().setAll(pane);
-            //defaultStateButtons();
-            btncoachA.setTextFill(Color.WHITE);
-            btncoachA.setStyle("-fx-background-color :#5b4ebd");
-        } catch (IOException ex) {
-            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void showuserDesactives(ActionEvent event) {
-         AnchorPane pane;
-        try {
-            pane = FXMLLoader.load(getClass().getResource("afficheuserDesactive.fxml"));
-            mainPane.getChildren().setAll(pane);
-            //defaultStateButtons();
-            btncoachA.setTextFill(Color.WHITE);
-            btncoachA.setStyle("-fx-background-color :#5b4ebd");
-        } catch (IOException ex) {
-            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    @FXML
-    private void showcoachDesactives(ActionEvent event) {
-         AnchorPane pane;
-        try {
-            pane = FXMLLoader.load(getClass().getResource("afficheCoachsDesactive.fxml"));
-            mainPane.getChildren().setAll(pane);
-            //defaultStateButtons();
-            btncoachA.setTextFill(Color.WHITE);
-            btncoachA.setStyle("-fx-background-color :#5b4ebd");
-        } catch (IOException ex) {
-            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+   
 
     @FXML
     private void listeddesdemandes(ActionEvent event) {
@@ -138,8 +79,8 @@ public class MenuuserController implements Initializable {
             pane = FXMLLoader.load(getClass().getResource("listedesdemandes.fxml"));
             mainPane.getChildren().setAll(pane);
             //defaultStateButtons();
-            btncoachA.setTextFill(Color.WHITE);
-            btncoachA.setStyle("-fx-background-color :#5b4ebd");
+            btndemande.setTextFill(Color.WHITE);
+            btndemande.setStyle("-fx-background-color :#5b4ebd");
         } catch (IOException ex) {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -152,8 +93,8 @@ public class MenuuserController implements Initializable {
             pane = FXMLLoader.load(getClass().getResource("listedesequipes.fxml"));
             mainPane.getChildren().setAll(pane);
             //defaultStateButtons();
-            btncoachA.setTextFill(Color.WHITE);
-            btncoachA.setStyle("-fx-background-color :#5b4ebd");
+            btnequipe.setTextFill(Color.WHITE);
+            btnequipe.setStyle("-fx-background-color :#5b4ebd");
         } catch (IOException ex) {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }

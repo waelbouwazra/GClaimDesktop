@@ -35,8 +35,6 @@ public class ListedesdemandesController implements Initializable {
     private ListView<Utilisateur> txtlistusers;
     @FXML
     private Button btngetback;
-    @FXML
-    private ChoiceBox<Integer> comboBoxID;
      private ServiceUser rs = new ServiceUser();
     @FXML
     private AnchorPane mainPane;
@@ -55,8 +53,7 @@ public class ListedesdemandesController implements Initializable {
         }
        
     txtlistusers.setItems(items);
-      ObservableList<Integer> langs = FXCollections.observableArrayList(rs.getIdDESDEMANDES());
-        comboBoxID.setItems(langs);
+     
     }    
 
     @FXML
@@ -64,7 +61,7 @@ public class ListedesdemandesController implements Initializable {
     }
     @FXML
     private void deleteuser(ActionEvent event) {
-      rs.accepterdevenircoach(rs.getuserbyID(comboBoxID.getValue()));
+      rs.accepterdevenircoach(txtlistusers.getSelectionModel().getSelectedItem());
       ObservableList<Utilisateur> items =FXCollections.observableArrayList();
         List<Utilisateur> listuser = rs.affichelesdemandededevenircoach();
         for(Utilisateur r : listuser) {
@@ -73,9 +70,7 @@ public class ListedesdemandesController implements Initializable {
         }
        
     txtlistusers.setItems(items);
-    ObservableList<Integer> langs = FXCollections.observableArrayList(rs.getIdDESDEMANDES()
-    );
-        comboBoxID.setItems(langs);
+   
     }
     @FXML
      private void loadMenu(ActionEvent event) {
@@ -94,7 +89,7 @@ public class ListedesdemandesController implements Initializable {
 
     @FXML
     private void refuserlademande(ActionEvent event) {
-        rs.refuserdevenircoach(rs.getuserbyID(comboBoxID.getValue()));
+        rs.refuserdevenircoach(txtlistusers.getSelectionModel().getSelectedItem());
       ObservableList<Utilisateur> items =FXCollections.observableArrayList();
         List<Utilisateur> listuser = rs.affichelesdemandededevenircoach();
         for(Utilisateur r : listuser) {
@@ -103,9 +98,7 @@ public class ListedesdemandesController implements Initializable {
         }
        
     txtlistusers.setItems(items);
-    ObservableList<Integer> langs = FXCollections.observableArrayList(rs.getIdDESDEMANDES()
-    );
-        comboBoxID.setItems(langs);
+   
     }
 }
 

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="712.0" prefWidth="690.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Login.AfficheuserController">
+   <stylesheets>
+      <URL value="@affichetusers.css" />
+   </stylesheets>
+   <children>
+      <AnchorPane id="AnchorPane" layoutX="7.0" prefHeight="712.0" prefWidth="730.0" styleClass="mainFxmlClass">
+         <stylesheets>
+            <URL value="@menuuser.css" />
+         </stylesheets>
+         <children>
+            <ListView fx:id="txtlistusers" layoutX="44.0" layoutY="145.0" onMouseClicked="#prepareUD" prefHeight="474.0" prefWidth="617.0" />
+            <Button layoutX="50.0" layoutY="635.0" mnemonicParsing="false" onAction="#deleteuser" prefHeight="42.0" prefWidth="181.0" style="-fx-background-color: #c24400;" text="SUPPRIMER USER " />
+            <Button fx:id="btngetback" layoutX="638.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadMenu" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: #c24400;" styleClass="mainFxmlClass" text="X" />
+            <Label layoutX="178.0" layoutY="14.0" prefHeight="66.0" prefWidth="296.0" text="LISTE DES UTILISATEURS" textFill="#c24400">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Label>
+            <RadioButton fx:id="coachaactives" layoutX="467.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#coachaactives" text="Les users actives" />
+            <RadioButton fx:id="coachdesactives" layoutX="467.0" layoutY="113.0" mnemonicParsing="false" onMouseClicked="#coachdesactives" text="Les users desactives" />
+            <RadioButton fx:id="tout" layoutX="467.0" layoutY="47.0" mnemonicParsing="false" onMouseClicked="#initialize" prefHeight="18.0" prefWidth="99.0" text="Toutes" />
+            <Pane fx:id="descactivepane" layoutX="302.0" layoutY="630.0" prefHeight="54.0" prefWidth="182.0">
+               <children>
+                  <Button layoutY="10.0" mnemonicParsing="false" onAction="#desactiveruncoach" prefHeight="34.0" prefWidth="161.0" style="-fx-background-color: c24400;" text="Desactiver USER" />
+               </children>
+            </Pane>
+            <Pane layoutX="507.0" layoutY="640.0" prefHeight="54.0" prefWidth="161.0">
+               <children>
+                  <Button fx:id="activepane" layoutX="13.0" mnemonicParsing="false" onAction="#activeuncoach" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: c24400;" text="Activer USER" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

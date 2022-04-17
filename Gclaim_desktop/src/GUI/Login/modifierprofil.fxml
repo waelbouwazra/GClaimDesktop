@@ -11,8 +11,17 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="766.0" prefWidth="822.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Login.ModifierprofilController">
+<AnchorPane id="AnchorPane" fx:id="mainPain" prefHeight="766.0" prefWidth="822.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Login.ModifierprofilController">
    <children>
+      <Pane fx:id="devenircoachPane" layoutX="823.0" layoutY="53.0" prefHeight="90.0" prefWidth="199.0">
+         <children>
+            <Button fx:id="devenircoach" layoutX="40.0" layoutY="18.0" mnemonicParsing="false" onAction="#DemandededevenirCoach" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: c24400;" text="Devenir COACH">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
       <Label fx:id="username" layoutX="460.0" layoutY="95.0" prefHeight="36.0" prefWidth="297.0" text=" username">
          <font>
             <Font name="System Bold Italic" size="31.0" />
@@ -55,7 +64,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Pane fx:id="ModalPane" layoutX="282.0" layoutY="14.0" prefHeight="766.0" prefWidth="822.0" visible="false">
+      <Pane fx:id="ModalPane" layoutX="10.0" layoutY="8.0" prefHeight="772.0" prefWidth="803.0" visible="false">
          <children>
             <Pane layoutX="148.0" layoutY="60.0" prefHeight="250.0" prefWidth="576.0" style="-fx-background-color: white;">
                <children>
@@ -81,6 +90,11 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
+      <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="34.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../PIDEV/Gclaim/public/img/instagram/insta-1.jpg" />
+         </image>
+      </ImageView>
       <Button fx:id="creerequipe" layoutX="276.0" layoutY="536.0" mnemonicParsing="false" onAction="#CreerEquipe" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: c24400;" text="Créer votre équipe">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -101,11 +115,6 @@
             <Font name="System Bold Italic" size="31.0" />
          </font>
       </Label>
-      <Button fx:id="devenircoach" layoutX="487.0" layoutY="596.0" mnemonicParsing="false" onAction="#DemandededevenirCoach" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Devenir COACH">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
       <Button fx:id="LOG_OUT" layoutX="24.0" layoutY="202.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: c24400;" text="LOG_OUT">
          <font>
             <Font name="System Bold" size="12.0" />
@@ -117,16 +126,11 @@
          </font>
       </Button>
       <Line endX="-100.0" endY="361.20001220703125" layoutX="530.0" layoutY="262.0" startX="-100.0" stroke="#180d07" />
-      <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="275.0" layoutY="177.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../PIDEV/Gclaim/public/img/instagram/insta-1.jpg" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="40.0" layoutY="21.0" pickOnBounds="true" preserveRatio="true">
+      <Line endX="232.0" layoutX="578.0" layoutY="516.0" startX="-100.0" stroke="#c24400" />
+      <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="275.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../PIDEV/Gclaim/src/Entity/Logo.png" />
          </image>
       </ImageView>
-      <Line endX="232.0" layoutX="578.0" layoutY="516.0" startX="-100.0" stroke="#c24400" />
    </children>
 </AnchorPane>

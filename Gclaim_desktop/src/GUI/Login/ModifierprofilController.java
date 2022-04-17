@@ -6,6 +6,7 @@
 package GUI.Login;
 
 import Entities.*;
+import static GUI.FXMain.mainStage;
 import Services.*;
 import static Services.ServiceUser.currentUser;
 
@@ -20,6 +21,7 @@ import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.Objects;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -66,8 +68,7 @@ public class ModifierprofilController implements Initializable {
     private TextField EmailTxt;
     private PasswordField MdpTxt;
 
-  
-
+    static AnchorPane staticContent;
     private String imgName;
     private Path imgPath;
     private ServiceUser US;
@@ -94,12 +95,15 @@ public class ModifierprofilController implements Initializable {
     private Label username1;
     @FXML
     private Button devenircoach;
-    @FXML
     private AnchorPane mainPane;
     @FXML
     private Button LOG_OUT;
     @FXML
     private Button LOG_OUT1;
+    @FXML
+    private AnchorPane mainPain;
+    @FXML
+    private Pane devenircoachPane;
 
     /**
      * Initializes the controller class.
@@ -115,17 +119,12 @@ public class ModifierprofilController implements Initializable {
         TelText.setText(currentUser.getUsername());
         AdresseTxt.setText(currentUser.getPassword());
         username.setText(currentUser.getUsername());
-         EmailTxt.setText(currentUser.getEmail());
-        if(currentUser.getRoles().equals("[\"ROLE_USER\"]"))
-        {
-        UserRole.setText("simpleUtilisateur");
+        EmailTxt.setText(currentUser.getEmail());
+        if (currentUser.getRoles().equals("[\"ROLE_USER\"]")) {
+            UserRole.setText("simpleUtilisateur");
+        } else if (currentUser.getRoles().equals("[\"ROLE_COACH\"]")) {
+            UserRole.setText("Coach");
         }
-        else if(currentUser.getRoles().equals("[\"ROLE_COACH\"]"))
-        { 
-        UserRole.setText("Coach");
-        }
-           
-   
 
         ModalPane.setVisible(false);
 
@@ -134,17 +133,16 @@ public class ModifierprofilController implements Initializable {
     @FXML
     private void ModifierInfromations(ActionEvent event) {
         if (!TelText.getText().isEmpty() && !AdresseTxt.getText().isEmpty() && !CinTxt.getText().isEmpty() && !EmailTxt.getText().isEmpty()) {
-            if (US.currentUser.getRoles().equals("[\"ROLE_USER\"]"))
-            {
-            SimpleUtilisateur newUser = new SimpleUtilisateur();
-            newUser.setId(US.currentUser.getId());
-            newUser.setUsername(US.currentUser.getUsername());
-            newUser.setEmail(US.currentUser.getEmail());
-            newUser.setVerifpassword(AdresseTxt.getText());
-            newUser.setPassword(AdresseTxt.getText());
-            newUser.setFullname(CinTxt.getText());
-       
-                US.UpdatePersonne(newUser,newUser.getId());
+            if (US.currentUser.getRoles().equals("[\"ROLE_USER\"]")) {
+                SimpleUtilisateur newUser = new SimpleUtilisateur();
+                newUser.setId(US.currentUser.getId());
+                newUser.setUsername(US.currentUser.getUsername());
+                newUser.setEmail(US.currentUser.getEmail());
+                newUser.setVerifpassword(AdresseTxt.getText());
+                newUser.setPassword(AdresseTxt.getText());
+                newUser.setFullname(CinTxt.getText());
+
+                US.UpdatePersonne(newUser, newUser.getId());
                 US.updateCurrentUser(newUser);
                 localStorage.deleteStorage();
                 try {
@@ -152,18 +150,17 @@ public class ModifierprofilController implements Initializable {
                 } catch (IOException ex) {
                     System.out.println("error write to storage");
                 }
-            
-            }
-            else if (US.currentUser.getRoles().equals("[\"ROLE_COACH\"]"))
-            { Coach newUser = new Coach();
-            newUser.setId(US.currentUser.getId());
-            newUser.setUsername(US.currentUser.getUsername());
-            newUser.setEmail(US.currentUser.getEmail());
-            newUser.setVerifpassword(AdresseTxt.getText());
-            newUser.setPassword(AdresseTxt.getText());
-            newUser.setSpecialite(CinTxt.getText());
-       
-                US.UpdatePersonne(newUser,newUser.getId());
+
+            } else if (US.currentUser.getRoles().equals("[\"ROLE_COACH\"]")) {
+                Coach newUser = new Coach();
+                newUser.setId(US.currentUser.getId());
+                newUser.setUsername(US.currentUser.getUsername());
+                newUser.setEmail(US.currentUser.getEmail());
+                newUser.setVerifpassword(AdresseTxt.getText());
+                newUser.setPassword(AdresseTxt.getText());
+                newUser.setSpecialite(CinTxt.getText());
+
+                US.UpdatePersonne(newUser, newUser.getId());
                 US.updateCurrentUser(newUser);
                 localStorage.deleteStorage();
                 try {
@@ -171,9 +168,9 @@ public class ModifierprofilController implements Initializable {
                 } catch (IOException ex) {
                     System.out.println("error write to storage");
                 }
-            
+
             }
-            
+
         } else {
             System.out.println("remplir les champs");
         }
@@ -183,9 +180,6 @@ public class ModifierprofilController implements Initializable {
     private void ProfilRedirect(ActionEvent event) {
     }
 
-   
-
-    
     @FXML
     private void closeModal(ActionEvent event) {
         ModalPane.setVisible(false);
@@ -213,7 +207,7 @@ public class ModifierprofilController implements Initializable {
 
     @FXML
     private void initialize(MouseEvent event) {
-         US = new ServiceUser();
+        US = new ServiceUser();
         try {
             localStorage = new LocalStorage();
         } catch (IOException ex) {
@@ -222,29 +216,26 @@ public class ModifierprofilController implements Initializable {
         TelText.setText(currentUser.getUsername());
         AdresseTxt.setText(currentUser.getPassword());
         username.setText(currentUser.getUsername());
-         EmailTxt.setText(currentUser.getEmail());
-        if(currentUser.getRoles().equals("[\"ROLE_USER\"]"))
-        {
-        UserRole.setText("simpleUtilisateur");
+        EmailTxt.setText(currentUser.getEmail());
+        if (currentUser.getRoles().equals("[\"ROLE_USER\"]")) {
+            UserRole.setText("simpleUtilisateur");
+            devenircoachPane.setVisible(true);
+
+        } else if (currentUser.getRoles().equals("[\"ROLE_COACH\"]")) {
+             devenircoachPane.setVisible(false);
+            UserRole.setText("Coach");
         }
-        else if(currentUser.getRoles().equals("[\"ROLE_COACH\"]"))
-        { 
-        UserRole.setText("Coach");
-        }
-           
-   
 
         ModalPane.setVisible(false);
-
+      
 
     }
-  
 
     @FXML
     private void desactivervotrecompte(ActionEvent event) {
-           US.desactiveruncompte(currentUser.getId());
-           US.logOut();
-           AnchorPane pane;
+        US.desactiveruncompte(currentUser.getId());
+        US.logOut();
+        AnchorPane pane;
         try {
             pane = FXMLLoader.load(getClass().getResource("Login.fxml"));
             mainPane.getChildren().setAll(pane);
@@ -254,55 +245,44 @@ public class ModifierprofilController implements Initializable {
         } catch (IOException ex) {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
-                  
-           
+
     }
 
     @FXML
     private void DemandededevenirCoach(ActionEvent event) {
-        if(currentUser.getRoles().equals("[\"ROLE_USER\"]"))
-        {
-       US.demandedevenircoach(currentUser);
-        JOptionPane.showMessageDialog(null, "Demande de devenir coach est en cours de traitement");
-         //addNotifications("Demande", "Demande de devenir coach est en cours de traitement");
-       
-        }
-        else if(currentUser.getRoles().equals("[\"ROLE_COACH\"]"))
-        { 
-        //  addNotifications("Erreur", "vous étes déja COACH");
-             JOptionPane.showMessageDialog(null, "vous étes déja COACH");
-        }
-           
+        
+            US.demandedevenircoach(currentUser);
+            JOptionPane.showMessageDialog(null, "Demande de devenir coach est en cours de traitement");
+            //addNotifications("Demande", "Demande de devenir coach est en cours de traitement");
+
+      
+
     }
 
     @FXML
     private void logout(ActionEvent event) {
         US.logOut();
-         AnchorPane pane;
+        AnchorPane pane;
         try {
             pane = FXMLLoader.load(getClass().getResource("Login.fxml"));
-            mainPane.getChildren().setAll(pane);
+            mainPain.getChildren().setAll(pane);
             //defaultStateButtons();
             LOG_OUT.setTextFill(Color.WHITE);
             LOG_OUT.setStyle("-fx-background-color :#5b4ebd");
         } catch (IOException ex) {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }
 
-    @FXML
-    private void accueil(ActionEvent event) {
     }
 
     @FXML
     private void CreerEquipe(ActionEvent event) {
-         
-                 AnchorPane pane;
+
+        AnchorPane pane;
         try {
             pane = FXMLLoader.load(getClass().getResource("Creerequipe.fxml"));
-            
-            mainPane.getChildren().setAll(pane);
+
+            mainPain.getChildren().setAll(pane);
             //defaultStateButtons();
             creerequipe.setTextFill(Color.WHITE);
             //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
@@ -311,6 +291,19 @@ public class ModifierprofilController implements Initializable {
         }
     }
 
-  
+    @FXML
+    private void accueil(ActionEvent event) {
+        
+       AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("../MenuFront.fxml"));
+            mainPain.getChildren().setAll(pane);
+            //defaultStateButtons();
+            LOG_OUT1.setTextFill(Color.WHITE);
+            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
+    }
 }

@@ -18,7 +18,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.input.MouseEvent;
@@ -31,14 +30,12 @@ import javafx.scene.paint.Color;
  *
  * @author souma
  */
-public class AfficheCoachsController implements Initializable {
+public class AfficheuserController implements Initializable {
 
-   @FXML
-    private ListView<Utilisateur> txtlistusers;
-    private ServiceUser rs = new ServiceUser();
-    private ChoiceBox<Integer> comboBoxID;
     @FXML
     private AnchorPane mainPane;
+    @FXML
+    private ListView<Utilisateur> txtlistusers;
     @FXML
     private Button btngetback;
     @FXML
@@ -47,41 +44,41 @@ public class AfficheCoachsController implements Initializable {
     private RadioButton coachdesactives;
     @FXML
     private RadioButton tout;
-    @FXML
-    private Button addcoach;
+     private ServiceUser rs = new ServiceUser();
     @FXML
     private Pane descactivepane;
     @FXML
     private Button activepane;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        coachdesactives.setSelected(false);
+             coachdesactives.setSelected(false);
              tout.setSelected(true);
                  coachaactives.setSelected(false);
                    activepane.setVisible(false);
                 descactivepane.setVisible(false);
         ObservableList<Utilisateur> items =FXCollections.observableArrayList();
-        List<Utilisateur> listuser = rs.afficheSimpleCoach();
+        List<Utilisateur> listuser = rs.afficheSimpleUser();
         for(Utilisateur r : listuser) {
             String ch = r.toString();
             items.add(r);
         }
        
     txtlistusers.setItems(items);
-  
     }    
 
     @FXML
     private void prepareUD(MouseEvent event) {
     }
+
     @FXML
     private void deleteuser(ActionEvent event) {
-      rs.DeleteUser(txtlistusers.getSelectionModel().getSelectedItem().getId());
-      ObservableList<Utilisateur> items =FXCollections.observableArrayList();
-        List<Utilisateur> listuser = rs.afficheSimpleCoach();
+        rs.DeleteUser(txtlistusers.getSelectionModel().getSelectedItem().getId());
+         ObservableList<Utilisateur> items =FXCollections.observableArrayList();
+        List<Utilisateur> listuser = rs.afficheSimpleUser();
         for(Utilisateur r : listuser) {
             String ch = r.toString();
             items.add(r);
@@ -89,9 +86,10 @@ public class AfficheCoachsController implements Initializable {
        
     txtlistusers.setItems(items);
     }
+
     @FXML
-     private void loadMenu(ActionEvent event) {
-        
+    private void loadMenu(ActionEvent event) {
+          
         AnchorPane pane;
         try {
             pane = FXMLLoader.load(getClass().getResource("menuuser.fxml"));
@@ -104,29 +102,16 @@ public class AfficheCoachsController implements Initializable {
         }
     }
 
-    @FXML
-    private void addcoach(ActionEvent event) {
-          AnchorPane pane;
-        try {
-            pane = FXMLLoader.load(getClass().getResource("AjouterCoach.fxml"));
-            
-            mainPane.getChildren().setAll(pane);
-            //defaultStateButtons();
-            btngetback.setTextFill(Color.WHITE);
-            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
-        } catch (IOException ex) {
-            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
+  
 
     @FXML
-    private void coachaactives(ActionEvent event) {
+    private void coachaactives(MouseEvent event) {
         coachdesactives.setSelected(false);
              tout.setSelected(false);
              descactivepane.setVisible(true);
            activepane.setVisible(false);
-         ObservableList<Utilisateur> items =FXCollections.observableArrayList();
-        List<Utilisateur> listuser = rs.affichecoachsactiver();
+          ObservableList<Utilisateur> items =FXCollections.observableArrayList();
+        List<Utilisateur> listuser = rs.affichesimpleutilisateursactiver();
         for(Utilisateur r : listuser) {
             String ch = r.toString();
             items.add(r);
@@ -136,14 +121,13 @@ public class AfficheCoachsController implements Initializable {
     }
 
     @FXML
-    private void coachdesactives(ActionEvent event) {
-         tout.setSelected(false);
+    private void coachdesactives(MouseEvent event) {
+           tout.setSelected(false);
          activepane.setVisible(true);
            coachaactives.setSelected(false);
             descactivepane.setVisible(false);
-              
         ObservableList<Utilisateur> items =FXCollections.observableArrayList();
-        List<Utilisateur> listuser = rs.affichecoachdesactiver();
+        List<Utilisateur> listuser = rs.affichesimpleutilisateursdesactiver();
         for(Utilisateur r : listuser) {
             String ch = r.toString();
             items.add(r);
@@ -153,14 +137,14 @@ public class AfficheCoachsController implements Initializable {
     }
 
     @FXML
-    private void initialize(ActionEvent event) {
-              coachdesactives.setSelected(false);
+    private void initialize(MouseEvent event) {
+           coachdesactives.setSelected(false);
              tout.setSelected(true);
                  coachaactives.setSelected(false);
                    activepane.setVisible(false);
                 descactivepane.setVisible(false);
-          ObservableList<Utilisateur> items =FXCollections.observableArrayList();
-        List<Utilisateur> listuser = rs.afficheSimpleCoach();
+         ObservableList<Utilisateur> items =FXCollections.observableArrayList();
+        List<Utilisateur> listuser = rs.afficheSimpleUser();
         for(Utilisateur r : listuser) {
             String ch = r.toString();
             items.add(r);
@@ -171,14 +155,14 @@ public class AfficheCoachsController implements Initializable {
 
     @FXML
     private void desactiveruncoach(ActionEvent event) {
-         tout.setSelected(false);
+          tout.setSelected(false);
          activepane.setVisible(true);
            coachaactives.setSelected(false);
             descactivepane.setVisible(false);
               coachdesactives.setSelected(true);
         rs.desactiveruncompte(txtlistusers.getSelectionModel().getSelectedItem().getId());
          ObservableList<Utilisateur> items =FXCollections.observableArrayList();
-        List<Utilisateur> listuser = rs.affichecoachdesactiver();
+        List<Utilisateur> listuser = rs.affichesimpleutilisateursdesactiver();
         for(Utilisateur r : listuser) {
             String ch = r.toString();
             items.add(r);
@@ -189,14 +173,14 @@ public class AfficheCoachsController implements Initializable {
 
     @FXML
     private void activeuncoach(ActionEvent event) {
-         coachdesactives.setSelected(false);
+        coachdesactives.setSelected(false);
+        coachaactives.setSelected(true);
              tout.setSelected(false);
              descactivepane.setVisible(true);
            activepane.setVisible(false);
-             coachaactives.setSelected(true);
           rs.activeruncompte(txtlistusers.getSelectionModel().getSelectedItem().getId());
          ObservableList<Utilisateur> items =FXCollections.observableArrayList();
-        List<Utilisateur> listuser = rs.affichecoachsactiver();
+        List<Utilisateur> listuser = rs.affichesimpleutilisateursactiver();
         for(Utilisateur r : listuser) {
             String ch = r.toString();
             items.add(r);
@@ -204,4 +188,5 @@ public class AfficheCoachsController implements Initializable {
        
     txtlistusers.setItems(items);
     }
+    
 }

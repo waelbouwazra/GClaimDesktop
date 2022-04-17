@@ -37,8 +37,7 @@ public class ListedesequipesController implements Initializable {
     private ListView<Equipe> txtlistusers;
     @FXML
     private Button btngetback;
-    @FXML
-    private ChoiceBox<Integer> comboBoxID;
+   
     @FXML
     private AnchorPane mainPane;
      private ServiceEquipe rs = new ServiceEquipe();
@@ -57,8 +56,7 @@ public class ListedesequipesController implements Initializable {
         }
        
     txtlistusers.setItems(items);
-      ObservableList<Integer> langs = FXCollections.observableArrayList(rs.getIdEquipe());
-        comboBoxID.setItems(langs);
+    
     }    
 
     @FXML
@@ -82,7 +80,7 @@ public class ListedesequipesController implements Initializable {
 
     @FXML
     private void deleteequipe(ActionEvent event) {
-        rs.DeleteEquipe(comboBoxID.getValue());
+        rs.DeleteEquipe(txtlistusers.getSelectionModel().getSelectedItem().getId());
       ObservableList<Equipe> items =FXCollections.observableArrayList();
         List<Equipe> listuser = rs.afficheEquipe();
         for(Equipe r : listuser) {
@@ -91,9 +89,7 @@ public class ListedesequipesController implements Initializable {
         }
        
     txtlistusers.setItems(items);
-    ObservableList<Integer> langs = FXCollections.observableArrayList(rs.getIdEquipe()
-    );
-        comboBoxID.setItems(langs);
+    
     }
 
     

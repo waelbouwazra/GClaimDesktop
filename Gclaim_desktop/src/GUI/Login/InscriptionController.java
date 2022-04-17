@@ -89,10 +89,10 @@ public class InscriptionController implements Initializable {
 
     @FXML
     private void SignUpAction(ActionEvent event) {
-       
+        System.out.println(emailtxt.getText().matches("(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)*\\@(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)+" ));
         if (nomtxt.getText().isEmpty() == false
                 && prenomtxt.getText().isEmpty() == false
-                && emailtxt.getText().isEmpty() == false && mdptxt.getText().isEmpty() == false
+                && emailtxt.getText().isEmpty() == false && emailtxt.getText().matches("(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)*\\@(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)+" )&& mdptxt.getText().isEmpty() == false
                 && confirmationpassword.getText().isEmpty() == false && mdptxt.getText().equals(confirmationpassword.getText())) {
             SimpleUtilisateur u = new SimpleUtilisateur(0,nomtxt.getText(),mdptxt.getText(),confirmationpassword.getText(), emailtxt.getText(),prenomtxt.getText());
             if (US.getUtilisateurByEmail(emailtxt.getText()) == true) {
@@ -103,8 +103,17 @@ public class InscriptionController implements Initializable {
                 System.out.println("utilisateur existe deja (cin)");
             } else {
                 int resultat = US.ajouterPersonne(u);
+                 
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
 
-                System.out.println("ajout");
+        try {
+
+            Parent root = loader.load();
+
+            quitBtn.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
                 
             }
 
@@ -132,24 +141,13 @@ public class InscriptionController implements Initializable {
         notificationBuilder.showInformation();
     }
 
-    @FXML
-    private void LoginRedirect(MouseEvent event) {
-        {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
-
-        try {
-
-            Parent root = loader.load();
-
-            quitBtn.getScene().setRoot(root);
-        } catch (IOException ex) {
-            System.out.println(ex.getMessage());
-        }
-    }
-    }
-
+    
     @FXML
     private void confirmCode(ActionEvent event) {
+    }
+
+    @FXML
+    private void LoginRedirect(MouseEvent event) {
     }
 
   

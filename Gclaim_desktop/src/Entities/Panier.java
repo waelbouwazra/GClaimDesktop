@@ -25,8 +25,8 @@ public  final class Panier {
                       p2.setNom_produit("PC");
                       p2.setPrix_produit(500);*/
                      ProduitService ps = new ProduitService();
-                     p1=ps.getProduitByID(1);
-                      p2=ps.getProduitByID(2);
+                     p1=ps.getProduitByID(4);
+                      p2=ps.getProduitByID(5);
                 panier.putIfAbsent(p1,9);
                panier.putIfAbsent(p2, 12);
      }

@@ -60,7 +60,7 @@ public class AjouterCoachController implements Initializable {
     private void addcoach(ActionEvent event) {
           if (username.getText().isEmpty() == false
                 && email.getText().isEmpty() == false
-                && mdp.getText().isEmpty() == false && specialite.getText().isEmpty() == false
+                && mdp.getText().isEmpty() == false && specialite.getText().isEmpty() == false  && email.getText().matches("(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)*\\@(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)+" )
                 && mdp.getText().equals(mdp1.getText())) {
             Coach u = new Coach(0,username.getText(),mdp.getText(), mdp1.getText(),email.getText(),specialite.getText());
          

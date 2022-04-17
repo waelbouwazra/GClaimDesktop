@@ -126,6 +126,7 @@ public class LoginController implements Initializable {
                 } 
                 else if (currentUser.getRoles().equals("[\"ROLE_COACH\"]") && currentUser.isIsVerfied()) {
                     System.out.println(currentUser.isIsVerfied());
+                    
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("modifierprofil.fxml"));
 
                     try {

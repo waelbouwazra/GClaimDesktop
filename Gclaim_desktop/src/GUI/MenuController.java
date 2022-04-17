@@ -64,7 +64,7 @@ public class MenuController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        // TODO
+         US = new ServiceUser();
     }    
 
 
@@ -109,11 +109,14 @@ public class MenuController implements Initializable {
         }
     }
     
+   @FXML
     private void logout(ActionEvent event) {
         US.logOut();
-         AnchorPane pane;
+        AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            mainPane.getChildren().clear();
+            pane = FXMLLoader.load(getClass().getResource("../GUI/login/Login.fxml"));
+          
             mainPane.getChildren().setAll(pane);
             //defaultStateButtons();
             logoutButton.setTextFill(Color.WHITE);
@@ -121,9 +124,8 @@ public class MenuController implements Initializable {
         } catch (IOException ex) {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }
 
+    }
     @FXML
     private void showPanierMenu(ActionEvent event) {
           AnchorPane pane;

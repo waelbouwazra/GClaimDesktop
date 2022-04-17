@@ -7,18 +7,21 @@ package GUI.Login;
 
 import Entities.*;
 import Services.*;
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javax.swing.JOptionPane;
 
 /**
@@ -73,6 +76,17 @@ public class CreerequipeController implements Initializable {
 
     @FXML
     private void loadMenu(ActionEvent event) {
+        
+        AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("modifierprofil.fxml"));
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+            btngetback.setTextFill(Color.WHITE);
+            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
 }

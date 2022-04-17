@@ -21,6 +21,9 @@ import java.util.ArrayList;
 import java.util.List;
 import Tools.*;
 import java.io.IOException;
+import java.math.BigInteger;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -44,13 +47,13 @@ public class ServiceUser {
             String query = "insert into utilisateur(password,email,type,fullname,specialite,username,verifpassword,is_verified,roles,role) values(?,?,?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement ste = ct.prepareStatement(query);
-                ste.setString(1, p.getPassword());
+                ste.setString(1,  mdpconvert(p.getPassword()));
                 ste.setString(2, p.getEmail());
                 ste.setString(3, "simpleutilisateur");
                 ste.setString(4, ((SimpleUtilisateur) p).getFullname());
                 ste.setString(5, "NULL");
                 ste.setString(6, p.getUsername());
-                ste.setString(7, p.getVerifpassword());
+                ste.setString(7, mdpconvert(p.getVerifpassword()));
                 ste.setInt(8, 1);
                 ste.setString(9, "[\"ROLE_USER\"]");
                 ste.setInt(10, 0);
@@ -65,13 +68,13 @@ public class ServiceUser {
             String query = "insert into utilisateur(password,email,type,fullname,specialite,username,verifpassword,is_verified,roles,role) values(?,?,?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement ste = ct.prepareStatement(query);
-                ste.setString(1, p.getPassword());
+                ste.setString(1, mdpconvert(p.getPassword()));
                 ste.setString(2, p.getEmail());
                 ste.setString(3, "coach");
                 ste.setString(4, "NULL");
                 ste.setString(5, ((Coach) p).getSpecialite());
                 ste.setString(6, p.getUsername());
-                ste.setString(7, p.getVerifpassword());
+                ste.setString(7, mdpconvert(p.getVerifpassword()));
                 ste.setInt(8, 1);
                 ste.setString(9, "[\"ROLE_COACH\"]");
                 ste.setInt(10, 0);
@@ -84,7 +87,18 @@ public class ServiceUser {
         }
         return resultat;
     }
+ public String mdpconvert(String p) {
+        try {
+            MessageDigest md = MessageDigest.getInstance("MD5");
+            byte[] messageDigest = md.digest(p.getBytes());
+            BigInteger pwd = new BigInteger(1, messageDigest);
+            String hashpwd = pwd.toString(16);
+            return hashpwd;
 
+        } catch (NoSuchAlgorithmException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
     public List<Utilisateur> afficheSimpleUser() {
         List<Utilisateur> personnes = new ArrayList<>();
         String query = "select * from utilisateur";
@@ -200,13 +214,13 @@ if (rs.getString(4).equals("coach")) {
             String query = "UPDATE utilisateur set password=?,email=?,type=?,fullname=?,specialite=?,username=?,verifpassword=?,is_verified=?,roles=?,role=? WHERE id =" + pu + "";
             try {
                 PreparedStatement ste = ct.prepareStatement(query);
-                ste.setString(1, p.getPassword());
+                ste.setString(1, mdpconvert(p.getPassword()));
                 ste.setString(2, p.getEmail());
                 ste.setString(3, "simpleutilisateur");
                 ste.setString(4, ((SimpleUtilisateur) p).getFullname());
                 ste.setString(5, "NULL");
                 ste.setString(6, p.getUsername());
-                ste.setString(7, p.getVerifpassword());
+                ste.setString(7, mdpconvert(p.getVerifpassword()));
                 ste.setInt(8, 1);
                 ste.setString(9, "[\"ROLE_USER\"]");
                 ste.setInt(10, 0);
@@ -220,13 +234,13 @@ if (rs.getString(4).equals("coach")) {
             String query = "UPDATE utilisateur set password=?,email=?,type=?,fullname=?,specialite=?,username=?,verifpassword=?,is_verified=?,roles=?,role=? WHERE id =" + pu + "";
             try {
                 PreparedStatement ste = ct.prepareStatement(query);
-                ste.setString(1, p.getPassword());
+                ste.setString(1, mdpconvert(p.getPassword()));
                 ste.setString(2, p.getEmail());
                 ste.setString(3, "coach");
                 ste.setString(4, "NULL");
                 ste.setString(5, ((Coach) p).getSpecialite());
                 ste.setString(6, p.getUsername());
-                ste.setString(7, p.getVerifpassword());
+                ste.setString(7, mdpconvert(p.getVerifpassword()));
                 ste.setInt(8, 1);
                 ste.setString(9, "[\"ROLE_COACH\"]");
                 ste.setInt(10, 0);
@@ -239,6 +253,7 @@ if (rs.getString(4).equals("coach")) {
 
                 System.out.println(ex.getMessage());
             }
+            updateCurrentUser(p);
         }
 
     }
@@ -259,13 +274,13 @@ if (rs.getString(4).equals("coach")) {
         String query = "insert into utilisateur(password,email,type,fullname,specialite,username,verifpassword,is_verified,roles,role) values(?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste1 = ct.prepareStatement(query);
-            ste1.setString(1, p.getPassword());
+            ste1.setString(1, mdpconvert(p.getPassword()));
             ste1.setString(2, p.getEmail());
             ste1.setString(3, "coach");
             ste1.setString(4, "NULL");
             ste1.setString(5, "rien");
             ste1.setString(6, p.getUsername());
-            ste1.setString(7, p.getVerifpassword());
+            ste1.setString(7, mdpconvert(p.getVerifpassword()));
             ste1.setInt(8, 1);
             ste1.setString(9, "[\"ROLE_COACH\"]");
             ste1.setInt(10, 0);
@@ -657,8 +672,8 @@ public Utilisateur getuserbyID(int id) {
             ste.setString(1, email);
             ResultSet rs = ste.executeQuery();
             if (rs.next()) {
-                String pwd = rs.getString("password");
-                if (motdepasse.equals(pwd)) {
+               String pwd = rs.getString("password");
+                if (mdpconvert(motdepasse).equals(pwd))  {
                     result = "success";
 
                     Utilisateur user = new Utilisateur();

@@ -18,8 +18,8 @@
             <URL value="@menuuser.css" />
          </stylesheets>
          <children>
-            <PasswordField fx:id="mdp" layoutX="379.0" layoutY="280.0" prefHeight="26.0" prefWidth="172.0" promptText="Mot de passe" />
-            <PasswordField fx:id="mdp1" layoutX="379.0" layoutY="324.0" prefHeight="26.0" prefWidth="172.0" promptText="Retapez votre mot de passe" />
+            <PasswordField fx:id="mdp" layoutX="379.0" layoutY="280.0" prefHeight="26.0" prefWidth="156.0" promptText="Mot de passe" />
+            <PasswordField fx:id="mdp1" layoutX="379.0" layoutY="324.0" prefHeight="26.0" prefWidth="156.0" promptText="Retapez votre mot de passe" />
             <TextField fx:id="specialite" layoutX="379.0" layoutY="236.0" prefHeight="26.0" prefWidth="156.0" promptText="specialite" />
             <TextField fx:id="email" layoutX="378.0" layoutY="194.0" prefHeight="26.0" prefWidth="156.0" promptText="email" />
          </children>
