@@ -186,5 +186,24 @@ public class ServiceEquipe {
 
         return emails;
     }
-     
+     public boolean userexisteinEquipe(int id,String email) {
+        boolean exist = true;
+
+        try {
+         String query = " select u.email from utilisateur u , equipe_utilisateur e WHERE email=? and u.id = e.utilisateur_id and e.equipe_id = "+id+"";
+       
+            PreparedStatement ste = cnx.prepareStatement(query);
+            ste.setString(1, email);
+
+            ResultSet rs = ste.executeQuery();//resultat requete sql
+            if (rs.first()) {
+                exist = false;
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return exist;
+
+    }
 }

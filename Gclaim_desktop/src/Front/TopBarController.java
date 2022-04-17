@@ -91,5 +91,6 @@ public class TopBarController implements Initializable {
 
     @FXML
     private void article(ActionEvent event) {
+        
     }
 }

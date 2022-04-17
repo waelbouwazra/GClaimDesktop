@@ -52,7 +52,7 @@ public class CreerequipeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<String> langs = FXCollections.observableArrayList("Open", "Close");
+        ObservableList<String> langs = FXCollections.observableArrayList("open", "close");
         etat.setItems(langs);
         US = new ServiceEquipe();
     }
