@@ -29,6 +29,11 @@ public class Profil {
         this.user = user;
     }
 
+    public Profil(String Username, String game) {
+        this.Username = Username;
+        this.game = game;
+    }
+
     public Profil(int id, String Description, String Username, String game, int numero) {
         this.id = id;
         this.Description = Description;
@@ -38,7 +43,7 @@ public class Profil {
         this.numero = numero;
     }
 
-    public Profil(String Description, String Username, String game, int numero) {
+    public Profil(String Username,String Description,  String game, int numero) {
         this.Description = Description;
         this.Username = Username;
         this.game = game;
