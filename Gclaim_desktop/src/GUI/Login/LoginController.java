@@ -95,8 +95,8 @@ public class LoginController implements Initializable {
         String email = txtmail.getText();
         String pwd = txtpassword.getText();
         if (email.isEmpty() || pwd.isEmpty()) {
-           // addNotifications("erreur", "Les champs sont vides ou incorrects");
-           JOptionPane.showMessageDialog(null, "Les champs sont vides ou incorrects");
+            addNotifications("erreur", "Les champs sont vides ou incorrects");
+           //JOptionPane.showMessageDialog(null, "Les champs sont vides ou incorrects");
         } else {
             ServiceUser us = new ServiceUser();
 
@@ -137,12 +137,12 @@ public class LoginController implements Initializable {
                     }
                 } 
                 else {
-                    // addNotifications("erreur", "L'UTILISATEUR EST INVALIDE");
-                    JOptionPane.showMessageDialog(null, "L'UTILISATEUR EST INVALIDE");
+                     addNotifications("erreur", "L'UTILISATEUR EST INVALIDE");
+                   // JOptionPane.showMessageDialog(null, "L'UTILISATEUR EST INVALIDE");
                 }
             } else {
-               // addNotifications("erreur", "Mot de passe ou email invalide");
-                JOptionPane.showMessageDialog(null, "Mot de passe ou email invalide");
+               addNotifications("erreur", "Mot de passe ou email invalide");
+                //JOptionPane.showMessageDialog(null, "Mot de passe ou email invalide");
             }
 
         }

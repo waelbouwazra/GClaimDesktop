@@ -35,7 +35,7 @@
          </font>
       </Label>
         
-      <TextField fx:id="TelText" layoutX="491.0" layoutY="296.0" onAction="#ProfilRedirect" prefHeight="31.0" prefWidth="313.0" />
+            <TextField fx:id="TelText" layoutX="491.0" layoutY="296.0" onAction="#ProfilRedirect" prefHeight="31.0" prefWidth="313.0" />
       <TextField fx:id="AdresseTxt" layoutX="491.0" layoutY="350.0" prefHeight="31.0" prefWidth="313.0" />
       <TextField fx:id="CinTxt" layoutX="492.0" layoutY="406.0" prefHeight="31.0" prefWidth="313.0" />
       <TextField fx:id="EmailTxt" layoutX="490.0" layoutY="466.0" prefHeight="31.0" prefWidth="313.0" />
@@ -72,7 +72,8 @@
                   <PasswordField fx:id="newpwTxt" layoutX="66.0" layoutY="94.0" promptText="Nouveau mot de passe" />
                   <PasswordField fx:id="newpwTxt2" layoutX="66.0" layoutY="144.0" promptText="Confirmer nouveau mot de passe" />
                   <Button layoutX="538.0" layoutY="9.0" mnemonicParsing="false" onAction="#closeModal" text="X" />
-               </children></Pane>
+               </children>
+            </Pane>
             <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="285.0" layoutY="187.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../../../../PIDEV/Gclaim/public/img/instagram/insta-1.jpg" />
@@ -90,7 +91,7 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="34.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="284.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../PIDEV/Gclaim/public/img/instagram/insta-1.jpg" />
          </image>
@@ -120,17 +121,21 @@
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="LOG_OUT1" layoutX="24.0" layoutY="144.0" mnemonicParsing="false" onAction="#accueil" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: c24400;" text="ACCUEIL">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
       <Line endX="-100.0" endY="361.20001220703125" layoutX="530.0" layoutY="262.0" startX="-100.0" stroke="#180d07" />
       <Line endX="232.0" layoutX="578.0" layoutY="516.0" startX="-100.0" stroke="#c24400" />
-      <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="275.0" layoutY="165.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="40.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../PIDEV/Gclaim/src/Entity/Logo.png" />
          </image>
       </ImageView>
+      <Pane fx:id="supppane" layoutX="-14.0" layoutY="121.0" prefHeight="90.0" prefWidth="200.0">
+         <children>
+            <Button fx:id="LOG_OUT1" layoutX="39.0" layoutY="27.0" mnemonicParsing="false" onAction="#accueil" onMouseClicked="#supp" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: c24400;" text="ACCUEIL">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
    </children>
 </AnchorPane>

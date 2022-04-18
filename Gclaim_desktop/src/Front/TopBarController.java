@@ -1,6 +1,7 @@
 package Front;
 
 import GUI.MenuFrontController;
+import Services.ServiceUser;
 import Tools.Animations;
 import Tools.Constants;
 
@@ -17,6 +18,7 @@ import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.layout.Pane;
 
 public class TopBarController implements Initializable {
 
@@ -35,7 +37,7 @@ public class TopBarController implements Initializable {
     private Button profile;
     @FXML
     private Button article;
-
+   private ServiceUser US=new ServiceUser();
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -55,7 +57,8 @@ public class TopBarController implements Initializable {
         btnRdvs.setTextFill(Color.WHITE);
                 profile.setTextFill(Color.WHITE);
                  article.setTextFill(Color.WHITE);
-
+                 System.out.println(US.currentUser);
+               
 
     }
 
@@ -79,7 +82,7 @@ public class TopBarController implements Initializable {
         goToLink(Constants.FXML_DISPLAY_PROFILE);
 
         profile.setTextFill(COLOR_BLUE);
-        Animations.animateButton(btnRdvs, COLOR_GRAY, Color.WHITE, COLOR_BLUE, 0, false);
+        Animations.animateButton(profile, COLOR_GRAY, Color.WHITE, COLOR_BLUE, 0, false);
     }
     private void goToLink(String link) {
         for (Button lien : liens) {

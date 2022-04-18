@@ -27,6 +27,8 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.Pane;
 
 public class ShowAllController implements Initializable {
@@ -36,10 +38,12 @@ public class ShowAllController implements Initializable {
     @FXML
     public Text topText;
     public Button addButton;
-    @FXML
     public VBox mainVBox;
     ServiceEquipe rs=new ServiceEquipe();
     private ServiceUser US;
+    @FXML
+    private AnchorPane mainPain;
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          US = new ServiceUser();
@@ -72,6 +76,8 @@ public class ShowAllController implements Initializable {
             ((Text) innerContainer.lookup("#sdpIdText")).setText("Etat : " + abo.getEtat());
             ((Text) innerContainer.lookup("#dureeText")).setText("membre de l'équipe : " + rs.afficheUtilisateursduneEquipe(abo.getId()));
             ((Text) innerContainer.lookup("#etatText")).setText("Chef : " + abo.getChef());
+            ((Text) innerContainer.lookup("#datetext")).setText("Date de création : " + abo.getDateCreation());
+            
             if(US.currentUser.getUsername().equals(abo.getChef()))
             {((Pane) innerContainer.lookup("#modifierequipe")).setVisible(true);
             ((Button) innerContainer.lookup("#editButton")).setOnAction((event) -> modifierAbo(abo));
@@ -89,7 +95,8 @@ public class ShowAllController implements Initializable {
     }
     private void modifierAbo(Equipe abo) {
         currentAbo = abo;
-        //MainWindowController.getInstance().loadInterface(Constants.FXML_MANAGE_ABO);
+       // rs.updateEquipe(abo);
+        MainWindowController.getInstance().loadInterface(Constants.FXML_UPDATE_EQUIPE);
     }
 
     private void supprimerAbo(Equipe abo) {
@@ -103,9 +110,11 @@ public class ShowAllController implements Initializable {
 
         if (action.get() == ButtonType.OK) {
            rs.Rejoindreuneequipe(abo,US.currentUser);
-                MenuFrontController.getInstance().loadInterface(Constants.FXML_DISPLAY_ALL_ABO);
+                MainWindowController.getInstance().loadInterface(Constants.FXML_DISPLAY_ALL_ABO);
             
             }
         }
+
+    
     }
 

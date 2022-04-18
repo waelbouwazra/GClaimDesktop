@@ -6,6 +6,7 @@
 package GUI.Login;
 
 import Entities.*;
+import Front.MainWindowController;
 import static GUI.FXMain.mainStage;
 import Services.*;
 import static Services.ServiceUser.currentUser;
@@ -104,6 +105,8 @@ public class ModifierprofilController implements Initializable {
     private AnchorPane mainPain;
     @FXML
     private Pane devenircoachPane;
+    @FXML
+    private Pane supppane;
 
     /**
      * Initializes the controller class.
@@ -176,7 +179,7 @@ public class ModifierprofilController implements Initializable {
             }
 
         } else {
-            System.out.println("remplir les champs");
+            addNotifications("erreur", "Remplir les champs correctement");
         }
     }
 
@@ -273,7 +276,6 @@ public class ModifierprofilController implements Initializable {
 
     @FXML
     private void accueil(ActionEvent event) {
-        
        AnchorPane pane;
         try {
             pane = FXMLLoader.load(getClass().getResource("../MenuFront.fxml"));
@@ -289,5 +291,10 @@ public class ModifierprofilController implements Initializable {
 
     @FXML
     private void initialize(MouseEvent event) {
+    }
+
+    @FXML
+    private void supp(MouseEvent event) {
+        supppane.setVisible(false);
     }
 }

@@ -6,7 +6,9 @@
 package GUI.Login;
 
 import Entities.*;
+import Front.MainWindowController;
 import Services.*;
+import Tools.Constants;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -67,6 +69,7 @@ public class CreerequipeController implements Initializable {
 
             System.out.println("ajout");
             JOptionPane.showMessageDialog(null, "AJOUT Equipe  DONE");
+              MainWindowController.getInstance().loadInterface(Constants.FXML_DISPLAY_ALL_ABO);
 
         } else {
             JOptionPane.showMessageDialog(null, "erreur !!! remplir Correctement les champs");

@@ -24,8 +24,10 @@ import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+
 
 /**
  *
@@ -699,8 +701,7 @@ public Utilisateur getuserbyID(int id) {
             }
 
         } catch (SQLException ex) {
-            Logger.getLogger(ServiceUser.class.getName()).log(Level.SEVERE, null, ex);
-        }
+            System.out.println(ex.getMessage());       }
         return result;
 
     }
@@ -747,5 +748,18 @@ public Utilisateur getuserbyID(int id) {
         CurrentCoach.setEmail("");
         CurrentCoach.setPassword("");*/
         return true;
+    }
+     public String nbrprod( List<Utilisateur> u){
+       
+         int nbr;
+         nbr = (int) u.stream().count();
+         String s=Integer.toString(nbr);
+         return  s;
+      
+        }
+     public Set<Utilisateur> tri( List<Utilisateur> u){
+       
+        Set<Utilisateur> ensEmp2 = u.stream().collect(Collectors.toCollection(()->new TreeSet<Utilisateur>((e1,e2)->e1.getUsername().compareTo(e2.getUsername()))));
+        return ensEmp2;
     }
 }

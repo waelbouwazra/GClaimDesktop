@@ -11,5 +11,6 @@ public class Constants {
 
     public static final String FXML_MAIN_WINDOW = "../Front/MainWindow.fxml";
     public static final String FXML_TOP_BAR = "../Front/TopBar.fxml";
+     public static final String FXML_UPDATE_EQUIPE = "../GUI/login/modifierEquipe.fxml"; 
     public static final String FXML_HOME = FXML_DISPLAY_ALL_ABO;
 }

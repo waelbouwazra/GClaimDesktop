@@ -130,9 +130,9 @@ public class ServiceEquipe {
         }
     }
 
-    public void updateEquipe(Equipe p,int id) {
+    public void updateEquipe(Equipe p) {
 
-        String req = "UPDATE equipe set nom_equipe=?,description=?,etat=? WHERE id =" +id+ "";
+        String req = "UPDATE equipe set nom_equipe=?,description=?,etat=? WHERE id =" +p.getId()+ "";
       
         try {
 
@@ -152,14 +152,17 @@ public class ServiceEquipe {
      public void Rejoindreuneequipe(Equipe p,Utilisateur u) {
 
         String req =  "insert into equipe_utilisateur (equipe_id,utilisateur_id) values (?,?)";
-      
+      String req1 = "UPDATE equipe set nb=? WHERE id =" +p.getId()+ "";
         try {
 
             pst1 = cnx.prepareStatement(req);
             pst1.setInt(1, p.getId());
             pst1.setInt(2, u.getId());
             pst1.executeUpdate();
+           pst = cnx.prepareStatement(req1);
+            pst.setInt(1, p.getNb()+1);
            
+            pst.executeUpdate();
             System.out.println("rejoindre equipe done");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());

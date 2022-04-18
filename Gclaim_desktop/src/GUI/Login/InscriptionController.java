@@ -96,10 +96,10 @@ public class InscriptionController implements Initializable {
                 && confirmationpassword.getText().isEmpty() == false && mdptxt.getText().equals(confirmationpassword.getText())) {
             SimpleUtilisateur u = new SimpleUtilisateur(0,nomtxt.getText(),mdptxt.getText(),confirmationpassword.getText(), emailtxt.getText(),prenomtxt.getText());
             if (US.getUtilisateurByEmail(emailtxt.getText()) == true) {
-                JOptionPane.showMessageDialog(null, "Un compte lié à cette adresse est déjà crée");
+               addNotifications("erreur", "Un compte lié à cette adresse est déjà crée");
                 System.out.println("utilisateur existe deja (email)");
             } else if (US.getUtilisateurByCin(nomtxt.getText()) == true) {
-                JOptionPane.showMessageDialog(null, "Un compte lié à cet nom est déjà crée");
+                addNotifications("erreur", "Un compte lié à cet nom est déjà crée");
                 System.out.println("utilisateur existe deja (cin)");
             } else {
                 int resultat = US.ajouterPersonne(u);
@@ -118,9 +118,8 @@ public class InscriptionController implements Initializable {
             }
 
         } else {
-           // addNotifications("erreur", "veuillez remplir correctement les champs");
-            JOptionPane.showMessageDialog(null, "veuillez remplir correctement les champs");
-        }
+           addNotifications("erreur", "veuillez remplir correctement les champs");
+                    }
     }
 
     
