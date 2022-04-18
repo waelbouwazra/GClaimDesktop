@@ -125,7 +125,7 @@ public class ModifierprofilController implements Initializable {
         AdresseTxt.setText(currentUser.getPassword());
         username.setText(currentUser.getUsername());
         EmailTxt.setText(currentUser.getEmail());
-        if (currentUser.getRoles().equals("[\"ROLE_USER\"]")&& currentUser.isRole() == true) {
+        if (currentUser.getRoles().equals("[\"ROLE_USER\"]")&& currentUser.isRole() == false) {
             UserRole.setText("simpleUtilisateur");
             devenircoachPane.setVisible(true);
         } else if (currentUser.getRoles().equals("[\"ROLE_COACH\"]")) {

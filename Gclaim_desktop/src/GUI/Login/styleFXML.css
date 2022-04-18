@@ -1,0 +1,153 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : Mar 3, 2022, 6:43:54 PM
+    Author     : Houssem
+*/
+#label .text{
+    -fx-font: 20px Calibri;
+    -fx-font-style: oblique;
+    /*-fx-text-fill: black;*/
+    -fx-fill: black;	
+    /* Change Color outlines */
+    -fx-stroke: white;
+    /* Change width outlines */
+    -fx-stroke-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 18, 0.8, 0.0, 0.0);
+}
+
+#titreLabel .text{
+    -fx-font: 40px Calibri;
+    -fx-font-style: oblique;
+    /*-fx-text-fill: black;*/
+    -fx-fill: navy;	
+    /* Change Color outlines */
+    -fx-stroke: white;
+    /* Change width outlines */
+    -fx-stroke-width: 2;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 18, 0.8, 0.0, 0.0);
+}
+
+#AnchorPane{
+    -fx-background-image: url("image.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: 100% 100%;  
+}
+
+.list-cell:filled:selected:focused, .list-cell:filled:selected {
+    -fx-background-color: linear-gradient(#328BDB 0%, #207BCF 25%, #1973C9 75%, #0A65BF 100%);
+    -fx-text-fill: white;
+}
+.label{
+    -fx-text-fill: white;
+    -fx-font: 15px Tahoma;
+}
+.list-cell:even { /* <=== changed to even */
+    -fx-background-color: white;
+}
+
+.list-cell:filled:hover {
+    -fx-background-color: #0093ff;
+    -fx-text-fill: white;
+}
+
+#buttonM{
+    -fx-font: 15px fantasy;
+    -fx-background-color: #4B6EAF;
+    -fx-border-radius: 3;
+    -fx-text-fill: white;
+    -fx-border-width:1;
+    -fx-border-color: white;
+    /**-fx-border-*/
+}
+
+#buttonM:hover{
+    -fx-font: 15px fantasy;
+    -fx-background-color: #5b4ebd;
+    -fx-border-radius: 3;
+    -fx-text-fill: white;
+    -fx-border-width:2;
+    -fx-border-color: #0093ff;
+    /**-fx-border-*/
+}
+
+#buttonM:pressed{
+    -fx-font: 15px fantasy;
+    -fx-background-color: #5b4ebd;
+    -fx-border-radius: 3;
+    -fx-text-fill: white;
+    -fx-border-width:1;
+    -fx-border-color: firebrick;
+    /**-fx-border-*/
+}
+.label{
+    -fx-font: 30px Arial;
+    -fx-text-fill: black;
+}
+.button {
+    -fx-text-fill: white;
+    -fx-font-family: "Arial Narrow";
+    -fx-font-weight: bold;
+    -fx-background-color: linear-gradient(#5b4ebd, #2A5058);
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
+}
+.button:hover {
+    -fx-background-color: linear-gradient(#2A5058, #5b4ebd);
+}
+.radio-button .radio {
+    -fx-border-width: 1px;
+    -fx-border-color: black;
+    -fx-background-color: white;
+    -fx-border-radius: 15px;
+    -fx-padding: 3px;
+}
+.radio-button .text{
+    -fx-font: 20px Arial;
+    -fx-fill: black;
+}
+.radio-button .radio:selected {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:armed {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:determinate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button -radio:indeterminate {
+    -fx-background-color: white;
+    -fx-background-image: null;
+}
+.radio-button .dot {
+    -fx-background-radius: 15px;
+    -fx-padding: 8px;
+}
+* {
+	-fx-primary-color: #007acc;
+	-fx-secondary-color: #4B6EAF;
+	-fx-grey-color: #b9b9b9;
+	-fx-focus-color: -fx-secondary-color;
+}
+.text-field {
+	-fx-accent: -fx-primary-color;
+	-fx-background-color: -fx-grey-color, white;
+	-fx-background-insets: 0, 0 0 1 0;
+	-fx-background-radius: 0;
+}
+.text-field:focused {
+	-fx-background-color: -fx-primary-color, white;
+}
+/* Background color of the whole context menu*/
+.choice-box .context-menu { -fx-background-color: navy; }
+/* Focused item background color in the list*/
+.choice-box .menu-item:focused { -fx-background-color: cyan; }
+/* Text color of non-focused items in the list*/
+.choice-box .menu-item > .label { -fx-text-fill: white; }
+/* Text color of focused item in the list*/
+.choice-box .menu-item:focused > .label { -fx-text-fill: black; }

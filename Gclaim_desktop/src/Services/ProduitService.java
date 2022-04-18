@@ -224,5 +224,32 @@ public void plusvu( List<Produit> produit){
 
         return produit;
     }
-   
+   public Produit getProduitByID(int id){
+        Produit produit = new Produit();
+        String sql="select * from produit where id_produit ="+id+"";
+        Statement ste;
+       
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+             while(rs.next()){
+                 Produit p = new Produit();
+                 p.setId_produit(rs.getInt("id_produit"));
+                 p.setNom_produit(rs.getString("nom_produit"));
+                 p.setDescription(rs.getString("description"));
+                 p.setPrix_produit(rs.getDouble("prix_produit"));
+                 p.setDateAjout_produit(rs.getDate("date_ajout_produit"));
+                 p.setQte_produit(rs.getInt("Qte_produit"));
+                 p.setNbr_vu(rs.getInt("nbr_vu"));
+                 p.setCategorie(new Categorie (rs.getInt("categorie")));
+               produit=p;
+              
+        }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return produit;
+    } 
+ 
 }

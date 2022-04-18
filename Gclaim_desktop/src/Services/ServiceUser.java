@@ -276,13 +276,13 @@ if (rs.getString(4).equals("coach")) {
         String query = "insert into utilisateur(password,email,type,fullname,specialite,username,verifpassword,is_verified,roles,role) values(?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste1 = ct.prepareStatement(query);
-            ste1.setString(1, mdpconvert(p.getPassword()));
+            ste1.setString(1,p.getPassword());
             ste1.setString(2, p.getEmail());
             ste1.setString(3, "coach");
             ste1.setString(4, "NULL");
             ste1.setString(5, "rien");
             ste1.setString(6, p.getUsername());
-            ste1.setString(7, mdpconvert(p.getVerifpassword()));
+            ste1.setString(7, p.getVerifpassword());
             ste1.setInt(8, 1);
             ste1.setString(9, "[\"ROLE_COACH\"]");
             ste1.setInt(10, 0);

@@ -2,6 +2,13 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Entities/Panier.java</file>
+            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Services/CategorieService.java</file>
+            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Front/TopBar.fxml</file>
+            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Produit/AddProductController.java</file>
+            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Services/ProduitService.java</file>
+            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Entities/Produit.java</file>
+        </group>
     </open-files>
 </project-private>

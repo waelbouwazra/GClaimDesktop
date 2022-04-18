@@ -16,7 +16,7 @@
       <ImageView fitHeight="768.0" fitWidth="1366.0" pickOnBounds="true">
         
       </ImageView>
-      <Pane layoutY="-5.0" opacity="0.58" prefHeight="780.0" prefWidth="1366.0" style="-fx-background-color: black;" />
+      <Pane layoutY="-34.0" opacity="0.58" prefHeight="799.0" prefWidth="1366.0" style="-fx-background-color: black;" />
       <Label layoutX="193.0" layoutY="615.0" prefHeight="32.0" prefWidth="340.0" text="Est ce que vous avez un compte ?" textFill="WHITE">
          <font>
             <Font size="22.0" />
