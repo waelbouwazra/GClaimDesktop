@@ -209,4 +209,41 @@ public class ServiceEquipe {
         return exist;
 
     }
+     public List<Equipe> chercheequipe(Object o) {
+            String query="";
+            String ch="";
+            int i=0;
+            List<Equipe> e = new ArrayList<>();
+            if(o.getClass()==ch.getClass()){
+                ch=(String) o;
+                query="SELECT * FROM `equipe` WHERE `nom_equipe` LIKE '%" + ch + "%' OR `description` LIKE '%" + ch + "%' OR `etat` LIKE '%" + ch + "%' OR `chef` LIKE '%" + ch + "%'";
+            }
+            if(o instanceof Integer){
+                i=(Integer) o;
+                query="SELECT * FROM `equipe` WHERE `nb` = " + i + " OR " + " `date_creation` LIKE '%" + i + "%' ";
+            }
+            try {
+                //System.out.println(query);
+                PreparedStatement ste = cnx.prepareStatement(query);
+                ResultSet rs= ste.executeQuery();
+                while(rs.next()){
+                   
+                  
+                Equipe p = new Equipe();
+                p.setId(rs.getInt(1));
+                p.setNomEquipe(rs.getString(2));
+                p.setDescription(rs.getString(3));
+                p.setDateCreation(rs.getDate(4));
+                p.setEtat(rs.getString(5));
+                p.setChef(rs.getString(6));
+                p.setNb(rs.getInt(7));
+                    e.add(p);
+                 
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            return e;   
+        }
 }

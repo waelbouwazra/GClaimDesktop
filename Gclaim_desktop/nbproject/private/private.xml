@@ -5,10 +5,12 @@
         <group>
             <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Entities/Panier.java</file>
             <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Services/CategorieService.java</file>
-            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Front/TopBar.fxml</file>
             <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Produit/AddProductController.java</file>
+            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Services/ServiceUser.java</file>
+            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Login/LoginController.java</file>
             <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Services/ProduitService.java</file>
             <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Entities/Produit.java</file>
+            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Login/ModifierprofilController.java</file>
         </group>
     </open-files>
 </project-private>

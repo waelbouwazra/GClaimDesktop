@@ -37,9 +37,9 @@
                <font>
                   <Font name="System Bold Italic" size="18.0" />
                </font></Button>
-            <RadioButton fx:id="coachdesactives" layoutX="467.0" layoutY="113.0" mnemonicParsing="false" onAction="#coachdesactives" text="Les coachs desactives" />
-            <RadioButton fx:id="tout" layoutX="467.0" layoutY="47.0" mnemonicParsing="false" onAction="#initialize" prefHeight="18.0" prefWidth="87.0" text="Toutes" />
-            <RadioButton fx:id="coachaactives" layoutX="466.0" layoutY="82.0" mnemonicParsing="false" onAction="#coachaactives" text="Les coachs actives" />
+            <RadioButton fx:id="coachdesactives" layoutX="508.0" layoutY="113.0" mnemonicParsing="false" onAction="#coachdesactives" text="Les coachs desactives" />
+            <RadioButton fx:id="tout" layoutX="508.0" layoutY="47.0" mnemonicParsing="false" onAction="#initialize" prefHeight="18.0" prefWidth="87.0" text="Toutes" />
+            <RadioButton fx:id="coachaactives" layoutX="507.0" layoutY="82.0" mnemonicParsing="false" onAction="#coachaactives" text="Les coachs actives" />
             <Pane layoutX="510.0" layoutY="642.0" prefHeight="34.0" prefWidth="146.0">
                <children>
                   <Button fx:id="activepane" mnemonicParsing="false" onAction="#activeuncoach" prefHeight="34.0" prefWidth="122.0" style="-fx-background-color: c24400;" text="Activer Coach" />
@@ -48,6 +48,7 @@
             <Label layoutX="45.0" layoutY="81.0" prefHeight="18.0" prefWidth="144.0" text="Nombre des coachs" />
             <TextField fx:id="nbruser" editable="false" layoutX="181.0" layoutY="77.0" prefHeight="26.0" prefWidth="58.0" />
             <Button layoutX="45.0" layoutY="109.0" mnemonicParsing="false" onAction="#triee" style="-fx-background-color: A9A9A9;" text="Trié les coachs" />
+            <TextField fx:id="rechrche" layoutX="177.0" layoutY="112.0" onKeyReleased="#chercherUser" prefHeight="26.0" prefWidth="296.0" promptText="Recherche" />
          </children>
       </AnchorPane>
    </children>

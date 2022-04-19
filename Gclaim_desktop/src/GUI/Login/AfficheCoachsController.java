@@ -23,6 +23,7 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -57,6 +58,8 @@ public class AfficheCoachsController implements Initializable {
     private Button activepane;
     @FXML
     private TextField nbruser;
+    @FXML
+    private TextField rechrche;
     /**
      * Initializes the controller class.
      */
@@ -215,6 +218,17 @@ public class AfficheCoachsController implements Initializable {
         List<Utilisateur> listuser = rs.afficheSimpleCoach();
        Set<Utilisateur> liste= rs.tri(listuser);
        for(Utilisateur r : liste) {
+            String ch = r.toString();
+            items.add(r);
+        }
+        txtlistusers.setItems(items);
+    }
+
+    @FXML
+    private void chercherUser(KeyEvent event) {
+         ObservableList<Utilisateur> items =FXCollections.observableArrayList();
+        List<Utilisateur> listuser = rs.chercheCpoch(rechrche.getText());
+       for(Utilisateur r : listuser) {
             String ch = r.toString();
             items.add(r);
         }

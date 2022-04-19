@@ -86,7 +86,7 @@ public class MenuController implements Initializable {
     private void showProductsMenu(ActionEvent event) {
           AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("Panier/MenuProduit.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("Produit/MenuProduit.fxml"));
             mainPane.getChildren().setAll(pane);
             //defaultStateButtons();
             btnDisplayProducts.setTextFill(Color.WHITE);

@@ -22,6 +22,12 @@
             <PasswordField fx:id="mdp1" layoutX="379.0" layoutY="324.0" prefHeight="26.0" prefWidth="156.0" promptText="Retapez votre mot de passe" />
             <TextField fx:id="specialite" layoutX="379.0" layoutY="236.0" prefHeight="26.0" prefWidth="156.0" promptText="specialite" />
             <TextField fx:id="email" layoutX="378.0" layoutY="194.0" prefHeight="26.0" prefWidth="156.0" promptText="email" />
+            <Button id="buttonM" fx:id="btngetback" layoutX="573.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadMenu" prefHeight="31.0" prefWidth="22.0" style="-fx-background-color: A9A9A9;" text="X" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Button id="buttonM" fx:id="btnAjouter" layoutX="107.0" layoutY="386.0" mnemonicParsing="false" onAction="#addcoach" prefHeight="31.0" prefWidth="431.0" style="-fx-background-color: c24400;" text="ajouter" textFill="WHITE" />
          </children>
       </AnchorPane>
       <Label id="label" layoutX="135.0" layoutY="202.0" text="username">
@@ -40,13 +46,11 @@
          </font>
       </Label>
       <TextField fx:id="username" layoutX="404.0" layoutY="196.0" prefHeight="27.0" prefWidth="156.0" promptText="username" />
-      <Button id="buttonM" fx:id="btnAjouter" layoutX="375.0" layoutY="450.0" mnemonicParsing="false" onAction="#addcoach" prefHeight="31.0" prefWidth="156.0" style="-fx-background-color: c24400;" text="ajouter" textFill="WHITE" />
       <Label id="titreLabel" layoutX="118.0" layoutY="38.0" prefHeight="102.0" prefWidth="454.0" text="ajouter un Coach" textFill="#c24400">
          <font>
             <Font name="System Bold Italic" size="46.0" />
          </font>
       </Label>
-      <Button id="buttonM" fx:id="btngetback" layoutX="118.0" layoutY="450.0" mnemonicParsing="false" onAction="#loadMenu" prefHeight="31.0" prefWidth="156.0" style="-fx-background-color: c24400;" text="Retour" textFill="WHITE" />
       <Label fx:id="nomHebr" layoutX="227.0" layoutY="20.0" />
       <Label id="label" layoutX="136.0" layoutY="325.0" text="mot de passe">
          <font>

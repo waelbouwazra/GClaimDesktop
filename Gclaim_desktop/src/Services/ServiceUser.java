@@ -762,4 +762,74 @@ public Utilisateur getuserbyID(int id) {
         Set<Utilisateur> ensEmp2 = u.stream().collect(Collectors.toCollection(()->new TreeSet<Utilisateur>((e1,e2)->e1.getUsername().compareTo(e2.getUsername()))));
         return ensEmp2;
     }
+     
+     
+     public List<Utilisateur> chercheUtilisateur(Object o) {
+            String query="";
+            String ch="";
+            int i=0;
+            List<Utilisateur> user = new ArrayList<>();
+            if(o.getClass()==ch.getClass()){
+                ch=(String) o;
+                query="SELECT * FROM `utilisateur` WHERE `username` LIKE '%" + ch + "%' OR `email` LIKE '%" + ch + "%' OR `fullname` LIKE '%" + ch + "%' OR `specialite` LIKE '%" + ch + "%'";
+            }
+            
+            try {
+                //System.out.println(query);
+                PreparedStatement ste = ct.prepareStatement(query);
+                ResultSet rs= ste.executeQuery();
+                while(rs.next()){
+                    if (rs.getString(4).equals("simpleutilisateur")) {
+                    SimpleUtilisateur p = new SimpleUtilisateur();
+                    p.setId(rs.getInt(1));
+                    p.setPassword(rs.getString(2));
+                    p.setEmail(rs.getString(3));
+                    p.setFullname(rs.getString(5));
+                    p.setUsername(rs.getString(7));
+                    p.setVerifpassword(rs.getString(8));
+                    user.add(p);
+                    }
+                   
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            return user;   
+        }
+
+public List<Utilisateur> chercheCpoch(Object o) {
+            String query="";
+            String ch="";
+            int i=0;
+            List<Utilisateur> user = new ArrayList<>();
+            if(o.getClass()==ch.getClass()){
+                ch=(String) o;
+                query="SELECT * FROM `utilisateur` WHERE `username` LIKE '%" + ch + "%' OR `email` LIKE '%" + ch + "%' OR `fullname` LIKE '%" + ch + "%' OR `specialite` LIKE '%" + ch + "%'";
+            }
+            
+            try {
+                //System.out.println(query);
+                PreparedStatement ste = ct.prepareStatement(query);
+                ResultSet rs= ste.executeQuery();
+                while(rs.next()){
+                   
+                    if (rs.getString(4).equals("coach")) {
+                    Coach p = new Coach();
+                    p.setId(rs.getInt(1));
+                    p.setPassword(rs.getString(2));
+                    p.setEmail(rs.getString(3));
+                    p.setSpecialite(rs.getString(6));
+                    p.setUsername(rs.getString(7));
+                    p.setVerifpassword(rs.getString(8));
+                    user.add(p);
+                }
+                   
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            return user;   
+        }
 }

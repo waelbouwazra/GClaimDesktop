@@ -39,7 +39,7 @@ public class mainuser {
 
         //devenir coachh
         SimpleUtilisateur p = new SimpleUtilisateur(119);
-        ps.desactiveruncompte(p.getId());
+       /* ps.desactiveruncompte(p.getId());
         //ps.activeruncompte(p);
         System.out.println("les coachs desactiver sont"+ ps.affichecoachdesactiver());
         System.out.println("les coachs activer sont"+ ps.affichecoachsactiver());
@@ -50,6 +50,8 @@ public class mainuser {
        // ps.refuserdevenircoach(p);
        ps.accepterdevenircoach(p);
          System.out.println("liste des demande de devenir coach "+ps.affichelesdemandededevenircoach());
+        
          */
+        System.out.println(ps.chercheUtilisateur("lol"));
     }
 }
