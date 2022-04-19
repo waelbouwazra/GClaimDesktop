@@ -113,8 +113,9 @@ public class MenuController implements Initializable {
     private void logout(ActionEvent event) {
         US.logOut();
         AnchorPane pane;
+        mainPane.getChildren().clear();
         try {
-            mainPane.getChildren().clear();
+            
             pane = FXMLLoader.load(getClass().getResource("../GUI/login/Login.fxml"));
           
             mainPane.getChildren().setAll(pane);

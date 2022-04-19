@@ -832,4 +832,22 @@ public List<Utilisateur> chercheCpoch(Object o) {
 
             return user;   
         }
+ public void ChangePasswordWithEmail(String email, String newPassword) {//autoincrement
+        String sql = "UPDATE utilisateur SET password = ? ,verifpassword=? WHERE email = ?";
+        try {
+            PreparedStatement ste = ct.prepareStatement(sql);
+            String hash = this.mdpconvert(newPassword);
+            System.out.println(hash);
+            ste.setString(1, hash);
+            ste.setString(2, hash);
+            ste.setString(3, email);
+
+            ste.executeUpdate();
+            System.out.println("mot de passe modifié avec succées");
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
 }

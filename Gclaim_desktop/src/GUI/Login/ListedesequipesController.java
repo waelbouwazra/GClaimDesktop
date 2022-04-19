@@ -117,6 +117,18 @@ public class ListedesequipesController implements Initializable {
         txtlistusers.setItems(items);
     }
 
+    @FXML
+    private void triee(ActionEvent event) {
+         ObservableList<Equipe> items =FXCollections.observableArrayList();
+        List<Equipe> listuser = rs.afficheEquipe();
+       Set<Equipe> liste= rs.tripardate(listuser);
+       for(Equipe r : liste) {
+            String ch = r.toString();
+            items.add(r);
+        }
+        txtlistusers.setItems(items);
+    }
+
     
 
     

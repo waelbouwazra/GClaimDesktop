@@ -13,6 +13,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import Tools.*;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -246,4 +249,9 @@ public class ServiceEquipe {
 
             return e;   
         }
+     public Set<Equipe> tripardate( List<Equipe> u){
+       
+        Set<Equipe> ensEmp2 = u.stream().collect(Collectors.toCollection(()->new TreeSet<Equipe>((e1,e2)->e1.getDateCreation().compareTo(e2.getDateCreation()))));
+        return ensEmp2;
+    }
 }

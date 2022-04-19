@@ -21,6 +21,7 @@
             <Font name="System Bold" size="24.0" />
          </font>
       </Label>
-      <TextField fx:id="rechrche" layoutX="200.0" layoutY="95.0" onKeyReleased="#chercherUser" prefHeight="26.0" prefWidth="390.0" promptText="Recherche" />
+      <TextField fx:id="rechrche" layoutX="200.0" layoutY="87.0" onKeyReleased="#chercherUser" prefHeight="26.0" prefWidth="390.0" promptText="Recherche" />
+      <Button layoutX="78.0" layoutY="87.0" mnemonicParsing="false" onAction="#triee" style="-fx-background-color: A9A9A9;" text="Trié Par Date" />
    </children>
 </AnchorPane>

@@ -53,5 +53,6 @@ public class mainuser {
         
          */
         System.out.println(ps.chercheUtilisateur("lol"));
+        ps.ChangePasswordWithEmail("soumaya.bensassi@esprit.tn", "12121212");
     }
 }
