@@ -45,14 +45,7 @@ public class showCommandesController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<Commande> items =FXCollections.observableArrayList();
-        List<Commande> listCommande = commandeService.ShowCommande();
-        for(Commande c : listCommande) {
-            items.add(c);
-        }
-       
-    txtListCommandes.setItems(items);
-        
+        afficheCommande();
     }    
 
 
@@ -61,6 +54,9 @@ public class showCommandesController implements Initializable {
     private void changeStatus(ActionEvent event) {
         Commande c = txtListCommandes.getSelectionModel().getSelectedItem();
         commandeService.UpdateCommande(c);
+        ObservableList<Commande> n =FXCollections.observableArrayList();
+        txtListCommandes.setItems(n );
+           afficheCommande();
     }
 
     @FXML
@@ -74,5 +70,14 @@ public class showCommandesController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
-    
+    private void afficheCommande(){
+             ObservableList<Commande> items =FXCollections.observableArrayList();
+        List<Commande> listCommande = commandeService.ShowCommande();
+        for(Commande c : listCommande) {
+            items.add(c);
+        }
+       
+    txtListCommandes.setItems(items);
+        
+    }
 }
