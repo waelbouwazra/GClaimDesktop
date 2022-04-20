@@ -109,20 +109,7 @@ private void supprimerAbo(PanierModel abo) {
     }
     
     private void afficherPanier(){
-       /*  ObservableList<PanierModel> items =FXCollections.observableArrayList();
-          items.clear();
-       for (Produit i : panier.getPanier().keySet()) {
-                    //System.out.println(i.getNom_produit() + i.getPrix_produit() +  + );
-                    PanierModel pm = new PanierModel();
-                  pm.setId_produit(i.getId_produit());
-                  pm.setNom_produit(i.getNom_produit());
-                  pm.setPrix_produit(i.getPrix_produit());
-                    pm.setQuantite(panier.getPanier().get(i));
-                    
-                    items.add(pm); System.out.println(items);
-                }
-                txtListCommandes.setItems(items);
-    }*/
+      
        ObservableList<PanierModel> items =FXCollections.observableArrayList();
          for (Produit i : panier.getPanier().keySet()) {
                     //System.out.println(i.getNom_produit() + i.getPrix_produit() +  + );

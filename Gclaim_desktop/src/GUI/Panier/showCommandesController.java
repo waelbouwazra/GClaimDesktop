@@ -40,6 +40,9 @@ public class showCommandesController implements Initializable {
     @FXML
     private ListView<Commande> txtListCommandes;
     CommandeService commandeService = new CommandeService();
+    @FXML
+    private Button Details;
+      public static Commande comm;
     /**
      * Initializes the controller class.
      */
@@ -79,5 +82,19 @@ public class showCommandesController implements Initializable {
        
     txtListCommandes.setItems(items);
         
+    }
+
+    @FXML
+    private void details(ActionEvent event) {
+               AnchorPane pane;
+              
+        try {
+           comm=txtListCommandes.getSelectionModel().getSelectedItem();
+            pane = FXMLLoader.load(getClass().getResource("AfficheCommandeLigneCommande.fxml"));
+            mainPane.getChildren().setAll(pane);
+            btngetback.setTextFill(Color.WHITE);
+            } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
     }
 }

@@ -98,5 +98,18 @@ public class MenuPanierController implements Initializable {
         }
     }
 
+    private void affLigneCom(ActionEvent event) {
+               AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("AfficheCommandeLigneCommande.fxml"));
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+            btnCommande.setTextFill(Color.WHITE);
+            btnCommande.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());    
+        }
+    }
+
     
 }

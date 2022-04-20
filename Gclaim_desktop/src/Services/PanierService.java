@@ -19,15 +19,21 @@ public class PanierService {
     private Panier panier = new Panier().getInstance();
 
     public HashMap<Produit, Integer> addProductQuantity(Produit l) {
-
-        panier.getPanier().replace(l, panier.getPanier().get(l), panier.getPanier().get(l) + 1);
+        ProduitService ps = new ProduitService();
+        Produit p =ps.getProduitByID(l.getId_produit());
+        if (panier.getPanier().get(l)<p.getQte_produit()){
+          panier.getPanier().replace(l, panier.getPanier().get(l), panier.getPanier().get(l) + 1);   
+        }
+       
 
         return panier.getPanier();
     }
 
     public HashMap<Produit, Integer> MinusProductQuantity(Produit l) {
-
-        panier.getPanier().replace(l, panier.getPanier().get(l), panier.getPanier().get(l) - 1);
+        if (panier.getPanier().get(l)>1){
+            panier.getPanier().replace(l, panier.getPanier().get(l), panier.getPanier().get(l) - 1);  
+        }
+      
         return panier.getPanier();
     }
 
