@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entities.Equipe;
 import Entities.Profil;
 import Entities.Rdv;
 import Tools.MaConnection;
@@ -19,6 +20,9 @@ import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -169,5 +173,47 @@ public class RdvService {
 
         return rdv;
     }
+    public List<Rdv> chercheequipe(Object o) {
+            String query="";
+            String ch="";
+            int i=0;
+            ServiceUser serviceUser = new ServiceUser();
+       ProfilService ProfilService = new ProfilService();
+            List<Rdv> e = new ArrayList<>();
+            if(o.getClass()==ch.getClass()){
+                ch=(String) o;
+                query="SELECT * FROM `rdv` WHERE `username` LIKE '%" + ch + "%' OR `coachname` LIKE '%" + ch + "%' ";
+            }
+            if(o instanceof Integer){
+                i=(Integer) o;
+                query="SELECT * FROM `rdv` WHERE  `date` LIKE '%" + i + "%' ";
+            }
+            try {
+                //System.out.println(query);
+                PreparedStatement ste = cnx.prepareStatement(query);
+                ResultSet rs= ste.executeQuery();
+                while(rs.next()){
+                   
+                  
+                Rdv p = new Rdv();
+                p.setId(rs.getInt(1));
+                p.setUser(serviceUser.getuserbyID(rs.getInt("user_id")));
+                 p.setCoach(ProfilService.getuserbyID(rs.getInt("coach_id")));
+                 p.setDate(rs.getDate("date").toLocalDate());
+                e.add(p);
+                 
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            return e;   
+        }
+     public Set<Rdv> tripardate( List<Rdv> u){
+       
+        Set<Rdv> ensEmp2 = u.stream().collect(Collectors.toCollection(()->new TreeSet<Rdv>((e1,e2)->e1.getDate().compareTo(e2.getDate()))));
+        return ensEmp2;
+    }
+
 
 }

@@ -240,7 +240,7 @@ public class ServiceEquipe {
                 p.setEtat(rs.getString(5));
                 p.setChef(rs.getString(6));
                 p.setNb(rs.getInt(7));
-                    e.add(p);
+                e.add(p);
                  
                 }
             } catch (SQLException ex) {

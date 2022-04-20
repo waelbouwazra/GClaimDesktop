@@ -5,6 +5,7 @@
  */
 package GUI.Profil;
 
+import Entities.Equipe;
 import Entities.Rdv;
 import GUI.Login.*;
 import Entities.Utilisateur;
@@ -15,6 +16,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.Set;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -81,7 +83,9 @@ public class listrdvController implements Initializable {
 
     @FXML
     private void deleteuser(ActionEvent event) {
+        System.out.println(txtlistusers.getSelectionModel().getSelectedItem().getId());
         rs.DeleteProfil(txtlistusers.getSelectionModel().getSelectedItem().getId());
+        
          ObservableList<Rdv> items =FXCollections.observableArrayList();
         List<Rdv> listuser = rs.ShowRdv();
         for(Rdv r : listuser) {
@@ -157,10 +161,33 @@ public class listrdvController implements Initializable {
 
     @FXML
     private void triee(ActionEvent event) {
+         ObservableList<Rdv> items =FXCollections.observableArrayList();
+        List<Rdv> listuser = rs.ShowRdv();
+       Set<Rdv> liste= rs.tripardate(listuser);
+       for(Rdv r : liste) {
+            String ch = r.toString();
+            items.add(r);
+        }
+        txtlistusers.setItems(items);
     }
 
     @FXML
     private void chercherUser(KeyEvent event) {
+          
+      List<Rdv> listuser;
+        String tchoix=rechrche.getText();
+        try{
+            int nchoix = Integer.parseInt(tchoix);
+            listuser = rs.chercheequipe(nchoix);
+        } catch (NumberFormatException e) {
+            listuser = rs.chercheequipe(tchoix);
+        }
+          ObservableList<Rdv> items =FXCollections.observableArrayList();
+       for(Rdv r : listuser) {
+            String ch = r.toString();
+            items.add(r);
+        }
+        txtlistusers.setItems(items);
     }
 
 }
