@@ -9,7 +9,6 @@ import Entities.Panier;
 import Entities.PanierModel;
 import Entities.Produit;
 import Services.PanierService;
-import Services.ProduitService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -47,13 +46,15 @@ public class ShowCartController implements Initializable {
     private Button btnDeleteCart;
 PanierService ps = new PanierService();
 Panier panier = new Panier().getInstance();
+public static PanierModel currentAbo;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
               ObservableList<PanierModel> items =FXCollections.observableArrayList();
-                items.clear();
+              
        for (Produit i : panier.getPanier().keySet()) {
                     //System.out.println(i.getNom_produit() + i.getPrix_produit() +  + );
                     PanierModel pm = new PanierModel();
@@ -67,6 +68,10 @@ Panier panier = new Panier().getInstance();
                 txtListCommandes.setItems(items);
                
     
+            
+       // List<PanierModel> listAbo = rs.afficheEquipe();
+       // Collections.reverse(listAbo);
+      
     }
 
 
@@ -110,7 +115,9 @@ Panier panier = new Panier().getInstance();
         this.afficherPanier();
     }
     private void afficherPanier(){
-         ObservableList<PanierModel> items =FXCollections.observableArrayList();
+        ObservableList<PanierModel> n =FXCollections.observableArrayList();
+        txtListCommandes.setItems(n);
+        ObservableList<PanierModel> items =FXCollections.observableArrayList();
           items.clear();
        for (Produit i : panier.getPanier().keySet()) {
                     //System.out.println(i.getNom_produit() + i.getPrix_produit() +  + );
@@ -124,4 +131,5 @@ Panier panier = new Panier().getInstance();
                 }
                 txtListCommandes.setItems(items);
     }
+ 
 }

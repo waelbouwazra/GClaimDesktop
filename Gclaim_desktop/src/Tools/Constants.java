@@ -6,7 +6,7 @@ public class Constants {
     public static final String FXML_DISPLAY_ALL_ABO = "../GUI/login/ShowAll.fxml";
     public static final String FXML_MODEL_ABO = "../login/Model.fxml";
     public static final String FXML_DISPLAY_PROFILE = "../GUI/login/modifierprofil.fxml";
-
+public static final String FXML_MODEL_PANIER = "../panier/ModelPanier.fxml";
     public static final String FXML_DISPLAY_LOHOUT= "../GUI/login/Login.fxml";
 
     public static final String FXML_MAIN_WINDOW = "../Front/MainWindow.fxml";
