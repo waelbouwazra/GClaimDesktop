@@ -51,11 +51,9 @@ ProfilService rs=new ProfilService();
     @FXML
     private Button btnSubmit;
     @FXML
-    private Button listh;
-    @FXML
     private TextField description;
     @FXML
-    private Button btnSubmit1;
+    private Text topText;
     /**
      * Initializes the controller class.
      */
@@ -97,12 +95,5 @@ ProfilService rs=new ProfilService();
     }
 
 
-    @FXML
-    private void GotoHotelList(ActionEvent event) {
-    }
-
-    @FXML
-    private void handleRetour(ActionEvent event) {
-    }
     
 }

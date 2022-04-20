@@ -75,7 +75,7 @@
                               </Pane>
                               <Pane fx:id="reserverrdv" prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <Button fx:id="btnrdv" layoutX="14.0" layoutY="49.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="163.0" text="Réserver un rendez-vous" />
+                                    <Button fx:id="btnrdv" layoutX="14.0" layoutY="49.0" mnemonicParsing="false" prefHeight="39.0" prefWidth="163.0" style="-fx-background-color: c24400;" text="Réserver un rendez-vous" />
                                  </children>
                               </Pane>
                            </children>

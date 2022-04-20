@@ -18,7 +18,7 @@
             <Image url="@../src_image/hero-5.jpg" />
          </image>
       </ImageView>
-      <Pane fx:id="devenircoachPane" layoutX="579.0" layoutY="578.0" prefHeight="90.0" prefWidth="358.0">
+      <Pane fx:id="devenircoachPane" layoutX="577.0" layoutY="580.0" prefHeight="46.0" prefWidth="358.0">
          <children>
             <Button fx:id="devenircoach" layoutX="27.0" layoutY="14.0" mnemonicParsing="false" onAction="#DemandededevenirCoach" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Devenir COACH">
                <font>
@@ -133,14 +133,16 @@
             <Image url="@../src_image/Logo.png" />
          </image>
       </ImageView>
-
-      <Pane fx:id="supppane" layoutX="-14.0" layoutY="121.0" prefHeight="90.0" prefWidth="200.0" />
-
-            <Button fx:id="ProfilCoach" layoutX="513.0" layoutY="677.0" mnemonicParsing="false" onAction="#ProfilCoach" onMouseClicked="#initialize" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Crrér mon Profil de Coach">
-         <font>
-            <Font name="System Bold" size="12.0" />
-         </font>
-      </Button>
+      <Pane fx:id="creercoach" layoutX="577.0" layoutY="580.0" prefHeight="64.0" prefWidth="413.0">
+         <children>
+      
+                  <Button fx:id="ProfilCoach" layoutX="24.0" layoutY="15.0" mnemonicParsing="false" onAction="#ProfilCoach" onMouseClicked="#initialize" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Crrér mon Profil de Coach">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </Pane>
 
    </children>
 </AnchorPane>

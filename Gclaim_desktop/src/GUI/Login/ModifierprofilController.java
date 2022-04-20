@@ -108,6 +108,8 @@ public class ModifierprofilController implements Initializable {
     private Button ProfilCoach;
 
     private Pane supppane;
+    @FXML
+    private Pane creercoach;
 
     /**
      * Initializes the controller class.
@@ -129,9 +131,11 @@ public class ModifierprofilController implements Initializable {
         if (currentUser.getRoles().equals("[\"ROLE_USER\"]")&& currentUser.isRole() == false) {
             UserRole.setText("simpleUtilisateur");
             devenircoachPane.setVisible(true);
+            creercoach.setVisible(false);
         } else if (currentUser.getRoles().equals("[\"ROLE_COACH\"]")) {
             UserRole.setText("Coach");
             devenircoachPane.setVisible(false);
+            creercoach.setVisible(true);
         }
 
         ModalPane.setVisible(false);

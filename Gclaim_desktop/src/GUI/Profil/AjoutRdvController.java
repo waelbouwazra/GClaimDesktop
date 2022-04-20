@@ -26,6 +26,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.DatePicker;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -44,9 +45,9 @@ RdvService rs=new RdvService();
     @FXML
     private Button btnSubmit;
     @FXML
-    private Button btnSubmit1;
-    @FXML
     private DatePicker dateP;
+    @FXML
+    private Text topText;
 
     /**
      * Initializes the controller class.
@@ -60,9 +61,6 @@ RdvService rs=new RdvService();
     }    
 
 
-    @FXML
-    private void handleRetour(ActionEvent event) {
-    }
  @FXML
     private void addRdv(ActionEvent event) {
         
