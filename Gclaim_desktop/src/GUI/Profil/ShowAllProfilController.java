@@ -102,7 +102,9 @@ MainWindowController.getInstance().loadInterface(Constants.FXML_UPDATE_PROFIL);
     }
 
     private void supprimerAbo(Profil abo) {
-        currentAbo = null;
+        currentAbo = abo;
+System.out.println(currentAbo);
+System.out.println("id: "+abo.getId());
 
         rs.DeleteProfil(abo.getId());
                     Alert alert = new Alert(Alert.AlertType.INFORMATION);

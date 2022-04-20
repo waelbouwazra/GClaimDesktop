@@ -57,10 +57,41 @@ public class ProfilService {
         
 
     }
-    
+    public Profil getuserbyID(int id) {
+         String sql = "SELECT * FROM profil where id=" + id + "";
+                ServiceUser serviceUser = new ServiceUser();
+
+          Profil p =new Profil();
+         Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+
+            while (rs.first()) {
+                    p.setId(rs.getInt(1));
+                    p.setDescription(rs.getString("description"));
+                    p.setUsername(rs.getString("username"));
+                 p.setUser(serviceUser.getuserbyID(rs.getInt("user_id")));
+                    p.setGame(rs.getString("game"));
+                    p.setNumero(rs.getInt("numero"));
+                    //System.out.println(p);
+                    return p;
+ /* id;
+    private String Description;
+    private String Username;
+    private Utilisateur user;
+    private String game;
+    private int numero;*/
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println(p);
+        return p;
+}
         public void DeleteProfil(int c){
           try {
-              String req = "DELETE from profil  WHERE id =" +c+ " ";
+              String req = "DELETE from profil  WHERE id ="+c+" ";
               
               ste = cnx.createStatement();
               ste.executeUpdate(req);

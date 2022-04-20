@@ -51,9 +51,11 @@ ProfilService rs=new ProfilService();
     @FXML
     private Button btnSubmit;
     @FXML
+    private Button listh;
+    @FXML
     private TextField description;
     @FXML
-    private Text topText;
+    private Button btnSubmit1;
     /**
      * Initializes the controller class.
      */
@@ -74,7 +76,7 @@ ProfilService rs=new ProfilService();
 
     @FXML
     private void Modifier_votre_Equipe(ActionEvent event) {
-        if (!description.getText().isEmpty() && !game.getText().isEmpty() && !numero.getText().isEmpty())
+        if (!description.getText().isEmpty() || !game.getText().isEmpty() || !numero.getText().isEmpty())
         {
             Profil e=new Profil(currentAbo.getId(),username.getText(),description.getText(),game.getText(),Integer.parseInt(numero.getText()),US.currentUser);
            
@@ -88,12 +90,25 @@ ProfilService rs=new ProfilService();
 
     @FXML
     private void control(KeyEvent event) {
+        
+        event.consume();
     }
 
     @FXML
     private void key(KeyEvent event) {
+          if (event.getCharacter().matches("[^\\e\t\r\\d+$]")) 
+       
+       
+       event.consume();
     }
 
 
+    @FXML
+    private void GotoHotelList(ActionEvent event) {
+    }
+
+    @FXML
+    private void handleRetour(ActionEvent event) {
+    }
     
 }

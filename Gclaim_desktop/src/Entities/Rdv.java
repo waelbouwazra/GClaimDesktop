@@ -76,11 +76,10 @@ public class Rdv {
 
     @Override
     public String toString() {
-        return "Rdv{" + "id=" + id + ", coach=" + coach + ", user=" + user + ", date=" + date + '}';
+    return "Rdv : coach name: "+coach.getUsername()+ "\t| Client Name :" +user.getUsername() + "\t| date of booking=" + date + '}';
     }
     
     
-   
     
     
 }
