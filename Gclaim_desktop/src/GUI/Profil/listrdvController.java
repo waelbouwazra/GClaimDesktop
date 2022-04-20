@@ -24,6 +24,8 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
+import javafx.scene.control.TextField;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Pane;
@@ -49,9 +51,10 @@ public class listrdvController implements Initializable {
     @FXML
     private RadioButton tout;
      private RdvService rs = new RdvService();
+  
+   
     @FXML
-    private Pane descactivepane;
-    private Button activepane;
+    private TextField rechrche;
 
     /**
      * Initializes the controller class.
@@ -61,8 +64,7 @@ public class listrdvController implements Initializable {
              coachdesactives.setSelected(false);
              tout.setSelected(true);
                  coachaactives.setSelected(false);
-                   activepane.setVisible(false);
-                descactivepane.setVisible(false);
+                   
         ObservableList<Rdv> items =FXCollections.observableArrayList();
         List<Rdv> listuser = rs.ShowRdv();
         for(Rdv r : listuser) {
@@ -111,8 +113,7 @@ public class listrdvController implements Initializable {
     private void coachaactives(MouseEvent event) {
         coachdesactives.setSelected(false);
              tout.setSelected(false);
-             descactivepane.setVisible(true);
-           activepane.setVisible(false);
+             
           ObservableList<Rdv> items =FXCollections.observableArrayList();
         List<Rdv> listuser = rs.ShowRdvVerified();
         for(Rdv r : listuser) {
@@ -127,8 +128,7 @@ public class listrdvController implements Initializable {
     private void coachdesactives(MouseEvent event) {
            coachdesactives.setSelected(false);
              tout.setSelected(false);
-             descactivepane.setVisible(true);
-           activepane.setVisible(false);
+             
           ObservableList<Rdv> items =FXCollections.observableArrayList();
         List<Rdv> listuser = rs.ShowRdvNotVerified();
         for(Rdv r : listuser) {
@@ -144,8 +144,7 @@ public class listrdvController implements Initializable {
            coachdesactives.setSelected(false);
              tout.setSelected(true);
                  coachaactives.setSelected(false);
-                   activepane.setVisible(false);
-                descactivepane.setVisible(false);
+                 
          ObservableList<Rdv> items =FXCollections.observableArrayList();
         List<Rdv> listuser = rs.ShowRdv();
         for(Rdv r : listuser) {
@@ -154,6 +153,14 @@ public class listrdvController implements Initializable {
         }
        
     txtlistusers.setItems(items);
+    }
+
+    @FXML
+    private void triee(ActionEvent event) {
+    }
+
+    @FXML
+    private void chercherUser(KeyEvent event) {
     }
 
 }

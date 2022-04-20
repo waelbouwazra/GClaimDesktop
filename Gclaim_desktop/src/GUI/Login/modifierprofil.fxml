@@ -136,7 +136,7 @@
 
       <Pane fx:id="supppane" layoutX="-14.0" layoutY="121.0" prefHeight="90.0" prefWidth="200.0" />
 
-            <Button fx:id="ProfilCoach" layoutX="514.0" layoutY="655.0" mnemonicParsing="false" onAction="#ProfilCoach" onMouseClicked="#initialize" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Afficher mon Profil de Coach">
+            <Button fx:id="ProfilCoach" layoutX="513.0" layoutY="677.0" mnemonicParsing="false" onAction="#ProfilCoach" onMouseClicked="#initialize" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Crrér mon Profil de Coach">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
