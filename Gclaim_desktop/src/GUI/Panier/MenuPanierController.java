@@ -31,6 +31,8 @@ public class MenuPanierController implements Initializable {
     private Button btnCommande;
     @FXML
     private Button btnLigneCommande;
+    @FXML
+    private Button btnPanierFront;
 
     /**
      * Initializes the controller class.
@@ -44,7 +46,7 @@ public class MenuPanierController implements Initializable {
     private void showPanier(ActionEvent event) {
              AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("showCart.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("ShowPanier.fxml"));
             mainPane.getChildren().setAll(pane);
             //defaultStateButtons();
             btnLigneCommande.setTextFill(Color.WHITE);
@@ -77,6 +79,33 @@ public class MenuPanierController implements Initializable {
             //defaultStateButtons();
             btnLigneCommande.setTextFill(Color.WHITE);
             btnLigneCommande.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());    
+        }
+    }
+
+    @FXML
+    private void affPanier(ActionEvent event) {
+           AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("showCart.fxml"));
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+            btnLigneCommande.setTextFill(Color.WHITE);
+            btnLigneCommande.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());    
+        }
+    }
+
+    private void affLigneCom(ActionEvent event) {
+               AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("AfficheCommandeLigneCommande.fxml"));
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+            btnCommande.setTextFill(Color.WHITE);
+            btnCommande.setStyle("-fx-background-color :#5b4ebd");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());    
         }

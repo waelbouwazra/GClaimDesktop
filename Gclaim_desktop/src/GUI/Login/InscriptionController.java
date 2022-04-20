@@ -59,15 +59,7 @@ public class InscriptionController implements Initializable {
     private Button Confirmerinscription;
     private ServiceUser US;
    
-    @FXML
-    private Label codeTxt;
     int generatedCode;
-    @FXML
-    private AnchorPane anchorHide;
-    @FXML
-    private Button confirmerCodebtn;
-    @FXML
-    private TextField codeActivation;
     @FXML
     private TextArea messageCode;
     @FXML
@@ -96,10 +88,10 @@ public class InscriptionController implements Initializable {
                 && confirmationpassword.getText().isEmpty() == false && mdptxt.getText().equals(confirmationpassword.getText())) {
             SimpleUtilisateur u = new SimpleUtilisateur(0,nomtxt.getText(),mdptxt.getText(),confirmationpassword.getText(), emailtxt.getText(),prenomtxt.getText());
             if (US.getUtilisateurByEmail(emailtxt.getText()) == true) {
-                JOptionPane.showMessageDialog(null, "Un compte lié à cette adresse est déjà crée");
+               addNotifications("erreur", "Un compte lié à cette adresse est déjà crée");
                 System.out.println("utilisateur existe deja (email)");
             } else if (US.getUtilisateurByCin(nomtxt.getText()) == true) {
-                JOptionPane.showMessageDialog(null, "Un compte lié à cet nom est déjà crée");
+                addNotifications("erreur", "Un compte lié à cet nom est déjà crée");
                 System.out.println("utilisateur existe deja (cin)");
             } else {
                 int resultat = US.ajouterPersonne(u);
@@ -118,9 +110,8 @@ public class InscriptionController implements Initializable {
             }
 
         } else {
-           // addNotifications("erreur", "veuillez remplir correctement les champs");
-            JOptionPane.showMessageDialog(null, "veuillez remplir correctement les champs");
-        }
+           addNotifications("erreur", "veuillez remplir correctement les champs");
+                    }
     }
 
     
@@ -142,13 +133,20 @@ public class InscriptionController implements Initializable {
     }
 
     
-    @FXML
-    private void confirmCode(ActionEvent event) {
-    }
 
     @FXML
-    private void LoginRedirect(MouseEvent event) {
-    }
+    private void LoginRedirect(MouseEvent event){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
 
+        try {
+
+            Parent root = loader.load();
+
+            quitBtn.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+   
   
 }

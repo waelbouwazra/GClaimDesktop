@@ -16,7 +16,7 @@
             
          </stylesheets>
          <children>
-            <ListView fx:id="txtListCommandes" layoutX="64.0" layoutY="89.0" prefHeight="474.0" prefWidth="617.0" />
+            <ListView fx:id="txtListCommandes" layoutX="64.0" layoutY="89.0" prefHeight="462.0" prefWidth="617.0" />
             <Button fx:id="btnConfirmCart" layoutX="492.0" layoutY="582.0" mnemonicParsing="false" onAction="#confirmCart" prefHeight="42.0" prefWidth="181.0" style="-fx-background-color: #c24400;" text="Confirm Cart" />
             <Button fx:id="btngetback" layoutX="64.0" layoutY="582.0" mnemonicParsing="false" onAction="#loadMenu" prefHeight="41.0" prefWidth="164.0" style="-fx-background-color: #c24400;" styleClass="mainFxmlClass" text="RETOUR" />
             <Label layoutX="181.0" layoutY="14.0" prefHeight="65.0" prefWidth="470.0" text="Panier" textFill="#c24400">

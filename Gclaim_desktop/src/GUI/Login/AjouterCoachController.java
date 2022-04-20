@@ -75,6 +75,16 @@ public class AjouterCoachController implements Initializable {
 
                 System.out.println("ajout");
                  JOptionPane.showMessageDialog(null, "AJOUT DONE");
+                 AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("afficheCoachs.fxml"));
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+            btngetback.setTextFill(Color.WHITE);
+            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
                 
             }
 

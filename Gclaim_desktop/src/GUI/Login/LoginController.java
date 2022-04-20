@@ -53,7 +53,7 @@ public class LoginController implements Initializable {
     @FXML
     private Label mdpoublie;
     private Label erreur;
-
+private SendEmail sendEmail;
     
     @FXML
     private TextField emailverif;
@@ -99,8 +99,8 @@ public class LoginController implements Initializable {
         String email = txtmail.getText();
         String pwd = txtpassword.getText();
         if (email.isEmpty() || pwd.isEmpty()) {
-           // addNotifications("erreur", "Les champs sont vides ou incorrects");
-           JOptionPane.showMessageDialog(null, "Les champs sont vides ou incorrects");
+            addNotifications("erreur", "Les champs sont vides ou incorrects");
+           //JOptionPane.showMessageDialog(null, "Les champs sont vides ou incorrects");
         } else {
             ServiceUser us = new ServiceUser();
 
@@ -119,7 +119,7 @@ public class LoginController implements Initializable {
                     }
 
                 } else if (currentUser.getRoles().equals("[\"ROLE_USER\"]") && currentUser.isIsVerfied()) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("modifierprofil.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../MenuFront.fxml"));
 
                     try {
                         Parent root = loader.load();
@@ -131,7 +131,7 @@ public class LoginController implements Initializable {
                 else if (currentUser.getRoles().equals("[\"ROLE_COACH\"]") && currentUser.isIsVerfied()) {
                     System.out.println(currentUser.isIsVerfied());
                     
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("modifierprofil.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../MenuFront.fxml"));
 
                     try {
                         Parent root = loader.load();
@@ -141,12 +141,12 @@ public class LoginController implements Initializable {
                     }
                 } 
                 else {
-                    // addNotifications("erreur", "L'UTILISATEUR EST INVALIDE");
-                    JOptionPane.showMessageDialog(null, "L'UTILISATEUR EST INVALIDE");
+                     addNotifications("erreur", "L'UTILISATEUR EST INVALIDE");
+                   // JOptionPane.showMessageDialog(null, "L'UTILISATEUR EST INVALIDE");
                 }
             } else {
-               // addNotifications("erreur", "Mot de passe ou email invalide");
-                JOptionPane.showMessageDialog(null, "Mot de passe ou email invalide");
+               addNotifications("erreur", "Mot de passe ou email invalide");
+                //JOptionPane.showMessageDialog(null, "Mot de passe ou email invalide");
             }
 
         }
@@ -178,50 +178,11 @@ public class LoginController implements Initializable {
         forgetPasswordPane.setVisible(true);
     }
 
-   /* @FXML
-    private void sendForgetPasswordCode(ActionEvent event) {
-        boolean exist = US.getUtilisateurByEmail(emailverif.getText());
-        if (exist) {
-            try {
-                int min = 10000;
-                int max = 99999;
-
-                generatedCode = (int) Math.floor(Math.random() * (max - min + 1) + min);
-                sendEmail = new SendEmail("hawes.voyage@gmail.com", "Hassen1998", emailverif.getText(), "Mot de passe oublié", "<h3> Voici un CODE pour modifier votre mot de passe : " + generatedCode + "\n </h3>");
-                forgetPasswordPane.setVisible(false);
-                VerifyCodePane.setVisible(true);
-            } catch (Exception ex) {
-                System.out.println(ex.getMessage());
-            }
-        } else {
-            addNotifications("erreur", "utlisateur n'exsite pas");
-        }
-
-    }
+   /*
+    
 
     @FXML
-    private void VerifyCode(ActionEvent event) {
-        if (Integer.toString(generatedCode).equals(codeInput.getText())) {
-            System.out.println("code correct");
-
-            VerifyCodePane.setVisible(false);
-            ChangePasswordPane.setVisible(true);
-        } else {
-            addNotifications("erreur", "code incorrect");
-        }
-    }
-
-    @FXML
-    private void ChangePassword(ActionEvent event) {
-        if (oldPassword.getText().equals(newPassword.getText())) {
-            US.ChangePasswordWithEmail(emailverif.getText(), newPassword.getText());
-            ChangePasswordPane.setVisible(false);
-            addNotifications("erreur", "Mot de passe modifier avec succées");
-        } else {
-            addNotifications("erreur", "les mots de passes ne sont pas identiques");
-        }
-
-    }
+    private void ChangePassword(ActionEvent event) 
 */
     private void addNotifications(String title, String content) {
 
@@ -242,6 +203,46 @@ public class LoginController implements Initializable {
 
     @FXML
     private void VerifyCode(ActionEvent event) {
+        if (Integer.toString(generatedCode).equals(codeInput.getText())) {
+            System.out.println("code correct");
+
+            VerifyCodePane.setVisible(false);
+            ChangePasswordPane.setVisible(true);
+        } else {
+            addNotifications("erreur", "code incorrect");
+        }
+    }
+
+    @FXML
+    private void sendForgetPasswordCode(ActionEvent event) {
+        boolean exist = US.getUtilisateurByEmail(emailverif.getText());
+        if (exist) {
+            try {
+                int min = 10000;
+                int max = 99999;
+
+                generatedCode = (int) Math.floor(Math.random() * (max - min + 1) + min);
+                sendEmail = new SendEmail("gclaimpidev@gmail.com", "Gclaim2022", emailverif.getText(), "Mot de passe oublié", "<h3> Voici un CODE pour modifier votre mot de passe : " + generatedCode + "\n </h3>");
+                forgetPasswordPane.setVisible(false);
+                VerifyCodePane.setVisible(true);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        } else {
+            addNotifications("erreur", "utlisateur n'exsite pas");
+        }
+    }
+
+    @FXML
+    private void ChangePassword(ActionEvent event) {
+        if (oldPassword.getText().equals(newPassword.getText())) {
+            US.ChangePasswordWithEmail(emailverif.getText(), newPassword.getText());
+            ChangePasswordPane.setVisible(false);
+            addNotifications("erreur", "Mot de passe modifier avec succées");
+        } else {
+            addNotifications("erreur", "les mots de passes ne sont pas identiques");
+        }
+
     }
 
 

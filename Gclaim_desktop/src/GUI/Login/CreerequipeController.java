@@ -6,7 +6,9 @@
 package GUI.Login;
 
 import Entities.*;
+import Front.MainWindowController;
 import Services.*;
+import Tools.Constants;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -52,7 +54,7 @@ public class CreerequipeController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        ObservableList<String> langs = FXCollections.observableArrayList("Open", "Close");
+        ObservableList<String> langs = FXCollections.observableArrayList("open", "close");
         etat.setItems(langs);
         US = new ServiceEquipe();
     }
@@ -67,6 +69,7 @@ public class CreerequipeController implements Initializable {
 
             System.out.println("ajout");
             JOptionPane.showMessageDialog(null, "AJOUT Equipe  DONE");
+              MainWindowController.getInstance().loadInterface(Constants.FXML_DISPLAY_ALL_ABO);
 
         } else {
             JOptionPane.showMessageDialog(null, "erreur !!! remplir Correctement les champs");

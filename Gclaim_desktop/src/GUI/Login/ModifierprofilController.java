@@ -6,6 +6,7 @@
 package GUI.Login;
 
 import Entities.*;
+import Front.MainWindowController;
 import static GUI.FXMain.mainStage;
 import Services.*;
 import static Services.ServiceUser.currentUser;
@@ -98,7 +99,6 @@ public class ModifierprofilController implements Initializable {
     private AnchorPane mainPane;
     @FXML
     private Button LOG_OUT;
-    @FXML
     private Button LOG_OUT1;
     @FXML
     private AnchorPane mainPain;
@@ -107,12 +107,16 @@ public class ModifierprofilController implements Initializable {
     @FXML
     private Button ProfilCoach;
 
+    private Pane supppane;
+
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         US = new ServiceUser();
+        devenircoachPane.setVisible(false);
+                
         try {
             localStorage = new LocalStorage();
         } catch (IOException ex) {
@@ -122,10 +126,12 @@ public class ModifierprofilController implements Initializable {
         AdresseTxt.setText(currentUser.getPassword());
         username.setText(currentUser.getUsername());
         EmailTxt.setText(currentUser.getEmail());
-        if (currentUser.getRoles().equals("[\"ROLE_USER\"]")) {
+        if (currentUser.getRoles().equals("[\"ROLE_USER\"]")&& currentUser.isRole() == false) {
             UserRole.setText("simpleUtilisateur");
+            devenircoachPane.setVisible(true);
         } else if (currentUser.getRoles().equals("[\"ROLE_COACH\"]")) {
             UserRole.setText("Coach");
+            devenircoachPane.setVisible(false);
         }
 
         ModalPane.setVisible(false);
@@ -174,7 +180,7 @@ public class ModifierprofilController implements Initializable {
             }
 
         } else {
-            System.out.println("remplir les champs");
+            addNotifications("erreur", "Remplir les champs correctement");
         }
     }
 
@@ -207,31 +213,7 @@ public class ModifierprofilController implements Initializable {
         notificationBuilder.showInformation();
     }
 
-    @FXML
-    private void initialize(MouseEvent event) {
-        US = new ServiceUser();
-        try {
-            localStorage = new LocalStorage();
-        } catch (IOException ex) {
-            System.out.println("error init localstorage");
-        }
-        TelText.setText(currentUser.getUsername());
-        AdresseTxt.setText(currentUser.getPassword());
-        username.setText(currentUser.getUsername());
-        EmailTxt.setText(currentUser.getEmail());
-        if (currentUser.getRoles().equals("[\"ROLE_USER\"]")) {
-            UserRole.setText("simpleUtilisateur");
-            devenircoachPane.setVisible(true);
-
-        } else if (currentUser.getRoles().equals("[\"ROLE_COACH\"]")) {
-             devenircoachPane.setVisible(false);
-            UserRole.setText("Coach");
-        }
-
-        ModalPane.setVisible(false);
-      
-
-    }
+   
 
     @FXML
     private void desactivervotrecompte(ActionEvent event) {
@@ -293,20 +275,14 @@ public class ModifierprofilController implements Initializable {
         }
     }
 
-    @FXML
-    private void accueil(ActionEvent event) {
-        
-       AnchorPane pane;
-        try {
-            pane = FXMLLoader.load(getClass().getResource("../MenuFront.fxml"));
-            mainPain.getChildren().setAll(pane);
-            //defaultStateButtons();
-            LOG_OUT1.setTextFill(Color.WHITE);
-            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
-        } catch (IOException ex) {
-            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+   
 
+    @FXML
+    private void initialize(MouseEvent event) {
+    }
+
+    private void supp(MouseEvent event) {
+        supppane.setVisible(false);
     }
 
     @FXML

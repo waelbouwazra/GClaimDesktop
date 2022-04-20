@@ -11,41 +11,34 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 
-<AnchorPane id="AnchorPane" prefHeight="768.0" prefWidth="1366.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Login.InscriptionController">
+<AnchorPane id="AnchorPane" prefHeight="724.0" prefWidth="1353.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Login.InscriptionController">
     <stylesheets>
         <URL value="@inscription.css" />
     </stylesheets>
    <children>
-      <TextField fx:id="nomtxt" layoutX="844.0" layoutY="259.0" prefHeight="39.0" prefWidth="450.0" promptText="username" />
-      <TextField fx:id="prenomtxt" layoutX="844.0" layoutY="486.0" prefHeight="39.0" prefWidth="450.0" promptText="fullname" />
-      <TextField fx:id="emailtxt" layoutX="844.0" layoutY="321.0" prefHeight="39.0" prefWidth="450.0" promptText="Adresse mail" />
-      <PasswordField fx:id="mdptxt" layoutX="844.0" layoutY="378.0" prefHeight="39.0" prefWidth="450.0" promptText="Mot de passe" />
-      <PasswordField fx:id="confirmationpassword" layoutX="844.0" layoutY="432.0" prefHeight="39.0" prefWidth="450.0" promptText="Retapez votre mot de passe" />
-      <Button fx:id="Confirmerinscription" layoutX="962.0" layoutY="547.0" mnemonicParsing="false" onAction="#SignUpAction" prefHeight="48.0" prefWidth="247.0" style="-fx-background-color: c24400;" text="S'inscrire" />
+      <ImageView fitHeight="778.0" fitWidth="771.0" layoutX="-13.0" pickOnBounds="true">
+         <image>
+            <Image url="@../src_image/hero-3.jpg" />
+         </image>
+      </ImageView>
+      <TextField fx:id="nomtxt" layoutX="792.0" layoutY="259.0" prefHeight="39.0" prefWidth="450.0" promptText="username" />
+      <TextField fx:id="prenomtxt" layoutX="792.0" layoutY="486.0" prefHeight="39.0" prefWidth="450.0" promptText="fullname" />
+      <TextField fx:id="emailtxt" layoutX="792.0" layoutY="321.0" prefHeight="39.0" prefWidth="450.0" promptText="Adresse mail" />
+      <PasswordField fx:id="mdptxt" layoutX="792.0" layoutY="378.0" prefHeight="39.0" prefWidth="450.0" promptText="Mot de passe" />
+      <PasswordField fx:id="confirmationpassword" layoutX="792.0" layoutY="432.0" prefHeight="39.0" prefWidth="450.0" promptText="Retapez votre mot de passe" />
+      <Button fx:id="Confirmerinscription" layoutX="910.0" layoutY="547.0" mnemonicParsing="false" onAction="#SignUpAction" prefHeight="48.0" prefWidth="247.0" style="-fx-background-color: c24400;" text="S'inscrire" />
       <Label layoutX="844.0" layoutY="347.0" prefHeight="39.0" prefWidth="150.0" />
-      <AnchorPane fx:id="anchorHide" layoutX="926.0" layoutY="587.0" prefHeight="175.0" prefWidth="397.0" visible="false">
-         <children>
-            <Label fx:id="codeTxt" layoutX="17.0" layoutY="53.0" prefHeight="21.0" prefWidth="70.0" text="Code" visible="false" />
-            <TextField fx:id="codeActivation" layoutX="14.0" layoutY="85.0" visible="false" />
-            <Button fx:id="confirmerCodebtn" layoutX="122.0" layoutY="125.0" mnemonicParsing="false" onAction="#confirmCode" text="Confirmer" visible="false" />
-         </children>
-      </AnchorPane>
       <Pane fx:id="voiturePane" layoutX="1041.0" layoutY="384.0">
          <children>
             <Label layoutY="5.0" />
          </children>
       </Pane>
       <TextArea fx:id="messageCode" layoutX="897.0" layoutY="499.0" prefHeight="109.0" prefWidth="433.0" text="Hawes Voyage a le plaisir de confirmer la création&#10;de votre compte,&#10;un code que vous devez entrer si-dessous a été&#10;envoyé sur votre boite mail." visible="false" />
-      <ImageView fitHeight="110.0" fitWidth="125.0" layoutX="1014.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="110.0" fitWidth="125.0" layoutX="962.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../xampp/htdocs/PIDEV/Gclaim/src/Entity/Logo.png" />
          </image>
       </ImageView>
       <Button fx:id="quitBtn" layoutX="1321.0" layoutY="12.0" mnemonicParsing="false" onMouseClicked="#LoginRedirect" prefHeight="31.0" prefWidth="32.0" text="X" />
-      <ImageView fitHeight="574.0" fitWidth="1045.0" layoutX="-231.0" layoutY="131.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../../../../../../../../xampp/htdocs/PIDEV/Gclaim/public/img/hero/hero-1.jpg" />
-         </image>
-      </ImageView>
    </children>
 </AnchorPane>

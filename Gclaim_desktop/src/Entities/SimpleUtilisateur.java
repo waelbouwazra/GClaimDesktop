@@ -43,7 +43,7 @@ public class SimpleUtilisateur extends Utilisateur {
 
     @Override
     public String toString() {
-        return "id=" + id + "\n \n username=" + username + "\n \n password=" + password + "\n \n verifpassword=" + verifpassword + "\n \n email=" + email +  " \n \n fullname= " + fullname + "\n \n";
+        return "username=" + username + "\n \n password=" + password + "\n \n verifpassword=" + verifpassword + "\n \n email=" + email +  " \n \n fullname= " + fullname + "\n \n";
     }
 
 

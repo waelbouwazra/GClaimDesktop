@@ -7,6 +7,7 @@ import GUI.MenuFrontController;
 import Services.ServiceEquipe;
 import Services.ServiceUser;
 import Tools.Constants;
+import com.sun.glass.ui.Cursor;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -26,6 +27,9 @@ import javafx.scene.text.Text;
 import java.io.IOException;
 import java.net.URL;
 import java.util.*;
+import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.Pane;
 
 public class ShowAllController implements Initializable {
 
@@ -34,10 +38,12 @@ public class ShowAllController implements Initializable {
     @FXML
     public Text topText;
     public Button addButton;
-    @FXML
     public VBox mainVBox;
     ServiceEquipe rs=new ServiceEquipe();
     private ServiceUser US;
+    @FXML
+    private AnchorPane mainPain;
+   
     @Override
     public void initialize(URL url, ResourceBundle rb) {
          US = new ServiceUser();
@@ -57,22 +63,30 @@ public class ShowAllController implements Initializable {
         }
     }
 
-    public Parent makeAboModel(
-            Equipe abo
-    ) {
+    public Parent makeAboModel(Equipe abo) {
         Parent parent = null;
         try {
             parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Constants.FXML_MODEL_ABO)));
 
             HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
+            ((Pane) innerContainer.lookup("#modifierequipe")).setVisible(false);
+            ((Pane) innerContainer.lookup("#rejoindreequipe")).setVisible(false);
             ((Text) innerContainer.lookup("#createdAtText")).setText("NOM Equipe : " + abo.getNomEquipe());
             ((Text) innerContainer.lookup("#userIdText")).setText("Description : " + abo.getDescription());
             ((Text) innerContainer.lookup("#sdpIdText")).setText("Etat : " + abo.getEtat());
             ((Text) innerContainer.lookup("#dureeText")).setText("membre de l'équipe : " + rs.afficheUtilisateursduneEquipe(abo.getId()));
             ((Text) innerContainer.lookup("#etatText")).setText("Chef : " + abo.getChef());
+            ((Text) innerContainer.lookup("#datetext")).setText("Date de création : " + abo.getDateCreation());
+            
+            if(US.currentUser.getUsername().equals(abo.getChef()))
+            {((Pane) innerContainer.lookup("#modifierequipe")).setVisible(true);
             ((Button) innerContainer.lookup("#editButton")).setOnAction((event) -> modifierAbo(abo));
-
-            ((Button) innerContainer.lookup("#deleteButton")).setOnAction((event) -> supprimerAbo(abo));
+            }
+            if(abo.getEtat().equals("open")&& rs.userexisteinEquipe(abo.getId(), US.currentUser.getEmail()))
+            {((Pane) innerContainer.lookup("#rejoindreequipe")).setVisible(true);
+           ((Button) innerContainer.lookup("#deleteButton")).setOnAction((event) -> supprimerAbo(abo));
+            }
+            
 
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
@@ -81,7 +95,8 @@ public class ShowAllController implements Initializable {
     }
     private void modifierAbo(Equipe abo) {
         currentAbo = abo;
-        //MainWindowController.getInstance().loadInterface(Constants.FXML_MANAGE_ABO);
+       // rs.updateEquipe(abo);
+        MainWindowController.getInstance().loadInterface(Constants.FXML_UPDATE_EQUIPE);
     }
 
     private void supprimerAbo(Equipe abo) {
@@ -95,9 +110,11 @@ public class ShowAllController implements Initializable {
 
         if (action.get() == ButtonType.OK) {
            rs.Rejoindreuneequipe(abo,US.currentUser);
-                MenuFrontController.getInstance().loadInterface(Constants.FXML_DISPLAY_ALL_ABO);
+                MainWindowController.getInstance().loadInterface(Constants.FXML_DISPLAY_ALL_ABO);
             
             }
         }
+
+    
     }
 

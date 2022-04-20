@@ -67,13 +67,15 @@ public class LigneCommandeService {
                   Produit prod = new Produit();
                  LigneCommande lc = new LigneCommande();
                  lc.setId(rs.getInt("id"));
-                    prod.setId_produit(rs.getInt("produit"));
+                    //prod.setId_produit(rs.getInt("produit"));
+                    prod= ps.getProduitByID(rs.getInt("produit"));
                lc.setProduit(prod);
-              
+             
                  c=cs.getSingleCommande(rs.getInt("commande"));
+                  lc.setCommande(c);
                  lc.setQuantite(rs.getInt("quantite"));
              
-                 lc.setCommande(c);
+                
                  
                  LigneCommandes.add(lc);
                  
@@ -84,6 +86,42 @@ public class LigneCommandeService {
         
         return LigneCommandes;
     }
+        public List<LigneCommande> getLigneCommandeByCommandeID(int id){
+        List<LigneCommande> LigneCommandes = new ArrayList<>();
+        String sql="select * from ligne_commande where commande="+id;
+        Statement ste;
+       
+        try {
+                 ProduitService ps = new ProduitService();
+                 CommandeService cs = new CommandeService();
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+             while(rs.next()){
+
+                  Commande c = new Commande();
+                  Produit prod = new Produit();
+                 LigneCommande lc = new LigneCommande();
+                 lc.setId(rs.getInt("id"));
+                    //prod.setId_produit(rs.getInt("produit"));
+                    prod= ps.getProduitByID(rs.getInt("produit"));
+               lc.setProduit(prod);
+             
+                 c=cs.getSingleCommande(rs.getInt("commande"));
+                  lc.setCommande(c);
+                 lc.setQuantite(rs.getInt("quantite"));
+             
+                
+                 
+                 LigneCommandes.add(lc);
+                 
+        }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return LigneCommandes;
+    }
+        
         
     
 }

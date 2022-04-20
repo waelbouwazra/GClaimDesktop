@@ -121,4 +121,22 @@ public class CategorieService {
                                                                 collect(Collectors.toList()).forEach(t-> System.out.println(t));
 
     }
+ public List<Integer> getIdcategorie() {
+        List<Integer> categorie = new ArrayList<>();
+        String query = "select * from categorie";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(query);
+
+            while (rs.next()) {
+        categorie.add(rs.getInt(1));
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return categorie;
+    }
 }

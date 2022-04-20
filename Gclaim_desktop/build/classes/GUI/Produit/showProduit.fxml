@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Produit.ShowProduitController">
+    <stylesheets>
+        <URL value="@showpanier.css" />
+    </stylesheets>
+   <children>
+      <ListView fx:id="txtListProd" layoutX="11.0" layoutY="43.0" prefHeight="302.0" prefWidth="577.0" />
+      <Label layoutX="205.0" layoutY="14.0" text="Affichage Panier">
+         <font>
+            <Font name="Arial Bold" size="24.0" />
+         </font></Label>
+      <Button fx:id="btnRetour" layoutX="505.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadMenu" text="retour" />
+      <Button fx:id="btnsupp" layoutX="40.0" layoutY="361.0" mnemonicParsing="false" onAction="#DeleteProduct" text="supprimer" />
+      <ChoiceBox fx:id="suppchoicebox" layoutX="130.0" layoutY="361.0" prefWidth="150.0" />
+    
+   </children>
+</AnchorPane>

@@ -13,6 +13,9 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import Tools.*;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -130,9 +133,9 @@ public class ServiceEquipe {
         }
     }
 
-    public void updateEquipe(Equipe p,int id) {
+    public void updateEquipe(Equipe p) {
 
-        String req = "UPDATE equipe set nom_equipe=?,description=?,etat=? WHERE id =" +id+ "";
+        String req = "UPDATE equipe set nom_equipe=?,description=?,etat=? WHERE id =" +p.getId()+ "";
       
         try {
 
@@ -152,14 +155,17 @@ public class ServiceEquipe {
      public void Rejoindreuneequipe(Equipe p,Utilisateur u) {
 
         String req =  "insert into equipe_utilisateur (equipe_id,utilisateur_id) values (?,?)";
-      
+      String req1 = "UPDATE equipe set nb=? WHERE id =" +p.getId()+ "";
         try {
 
             pst1 = cnx.prepareStatement(req);
             pst1.setInt(1, p.getId());
             pst1.setInt(2, u.getId());
             pst1.executeUpdate();
+           pst = cnx.prepareStatement(req1);
+            pst.setInt(1, p.getNb()+1);
            
+            pst.executeUpdate();
             System.out.println("rejoindre equipe done");
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
@@ -186,5 +192,66 @@ public class ServiceEquipe {
 
         return emails;
     }
-     
+     public boolean userexisteinEquipe(int id,String email) {
+        boolean exist = true;
+
+        try {
+         String query = " select u.email from utilisateur u , equipe_utilisateur e WHERE email=? and u.id = e.utilisateur_id and e.equipe_id = "+id+"";
+       
+            PreparedStatement ste = cnx.prepareStatement(query);
+            ste.setString(1, email);
+
+            ResultSet rs = ste.executeQuery();//resultat requete sql
+            if (rs.first()) {
+                exist = false;
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return exist;
+
+    }
+     public List<Equipe> chercheequipe(Object o) {
+            String query="";
+            String ch="";
+            int i=0;
+            List<Equipe> e = new ArrayList<>();
+            if(o.getClass()==ch.getClass()){
+                ch=(String) o;
+                query="SELECT * FROM `equipe` WHERE `nom_equipe` LIKE '%" + ch + "%' OR `description` LIKE '%" + ch + "%' OR `etat` LIKE '%" + ch + "%' OR `chef` LIKE '%" + ch + "%'";
+            }
+            if(o instanceof Integer){
+                i=(Integer) o;
+                query="SELECT * FROM `equipe` WHERE `nb` = " + i + " OR " + " `date_creation` LIKE '%" + i + "%' ";
+            }
+            try {
+                //System.out.println(query);
+                PreparedStatement ste = cnx.prepareStatement(query);
+                ResultSet rs= ste.executeQuery();
+                while(rs.next()){
+                   
+                  
+                Equipe p = new Equipe();
+                p.setId(rs.getInt(1));
+                p.setNomEquipe(rs.getString(2));
+                p.setDescription(rs.getString(3));
+                p.setDateCreation(rs.getDate(4));
+                p.setEtat(rs.getString(5));
+                p.setChef(rs.getString(6));
+                p.setNb(rs.getInt(7));
+                    e.add(p);
+                 
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            return e;   
+        }
+     public Set<Equipe> tripardate( List<Equipe> u){
+       
+        Set<Equipe> ensEmp2 = u.stream().collect(Collectors.toCollection(()->new TreeSet<Equipe>((e1,e2)->e1.getDateCreation().compareTo(e2.getDateCreation()))));
+        return ensEmp2;
+    }
 }

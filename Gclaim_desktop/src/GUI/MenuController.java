@@ -95,7 +95,7 @@ public class MenuController implements Initializable {
     private void showProductsMenu(ActionEvent event) {
           AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("Panier/MenuProduit.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("Produit/MenuProduit.fxml"));
             mainPane.getChildren().setAll(pane);
             //defaultStateButtons();
             btnDisplayProducts.setTextFill(Color.WHITE);
@@ -122,8 +122,9 @@ public class MenuController implements Initializable {
     private void logout(ActionEvent event) {
         US.logOut();
         AnchorPane pane;
+        mainPane.getChildren().clear();
         try {
-            mainPane.getChildren().clear();
+            
             pane = FXMLLoader.load(getClass().getResource("../GUI/login/Login.fxml"));
           
             mainPane.getChildren().setAll(pane);

@@ -47,6 +47,14 @@ public Equipe(int id) {
         this.chef = chef;
         this.User = idUser;
     }
+      public Equipe(int id, String nomEquipe, String Description, String Etat) {
+        this.id = id;
+        this.nomEquipe = nomEquipe;
+        this.Description = Description;
+   
+        this.Etat = Etat;
+        
+    }
  public Equipe(String nomEquipe, String Description,String Etat) {
          
         this.nomEquipe = nomEquipe;
@@ -127,7 +135,7 @@ public Equipe(int id,Utilisateur User) {
     
  @Override
     public String toString() {
-        return "id=" + id + ", \n \n nomEquipe=" + nomEquipe + ",  \n \n description=" + Description + ",  \n \n dateCreation=" + dateCreation + ",  \n \n Etat=" + Etat + ", \n \n  chef=" + chef + " \n \n ";
+        return "nomEquipe=" + nomEquipe + ",  \n \n description=" + Description + ",  \n \n dateCreation=" + dateCreation + ",  \n \n Etat=" + Etat + ", \n \n  chef=" + chef + ", \n \n nombre des utilisateurs=" + nb + " \n \n ";
     }
 
 }
