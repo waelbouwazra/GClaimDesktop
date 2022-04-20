@@ -12,7 +12,7 @@
    <children>
       <HBox layoutY="15.0" prefHeight="33.0" prefWidth="577.0" spacing="15.0" style="-fx-background-color: 24599;" stylesheets="@../../utils/MainStyle.css" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="15.0">
          <children>
-            <Text fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-blend-mode: ffffff;" text="  G-Claim" wrappingWidth="142.79998803138733">
+            <Text fill="WHITE" onMouseClicked="#acceuil" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-blend-mode: ffffff;" text="  G-Claim" wrappingWidth="142.79998803138733">
                <font>
                   <Font name="System Bold" size="26.0" />
                </font>

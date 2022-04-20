@@ -59,15 +59,7 @@ public class InscriptionController implements Initializable {
     private Button Confirmerinscription;
     private ServiceUser US;
    
-    @FXML
-    private Label codeTxt;
     int generatedCode;
-    @FXML
-    private AnchorPane anchorHide;
-    @FXML
-    private Button confirmerCodebtn;
-    @FXML
-    private TextField codeActivation;
     @FXML
     private TextArea messageCode;
     @FXML
@@ -141,13 +133,20 @@ public class InscriptionController implements Initializable {
     }
 
     
-    @FXML
-    private void confirmCode(ActionEvent event) {
-    }
 
     @FXML
-    private void LoginRedirect(MouseEvent event) {
-    }
+    private void LoginRedirect(MouseEvent event){
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Login.fxml"));
 
+        try {
+
+            Parent root = loader.load();
+
+            quitBtn.getScene().setRoot(root);
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+   
   
 }

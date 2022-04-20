@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="704.0" prefWidth="1399.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="748.0" fitWidth="1514.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@src_image/a0f1dbb6dd37e095abf082ddb16c236b.jpeg" />
+         </image>
+      </ImageView>
+      <TextField editable="false" layoutX="115.0" layoutY="372.0" prefHeight="26.0" prefWidth="62.0" promptText="ACCUEIL" style="-fx-background-color: c24400;" text="ACCUEIL">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </TextField>
+      <Label layoutX="124.0" layoutY="416.0" prefHeight="59.0" prefWidth="518.0" text="GCLAIM EST ST BIEN ÉVIDEMMENT LES MOBA  " textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <Label layoutX="124.0" layoutY="475.0" text="COMME DOTA ET STR SONT LES INCONTOURNABLES" textFill="WHITE">
+         <font>
+            <Font size="22.0" />
+         </font>
+      </Label>
+      <TextField editable="false" layoutX="924.0" layoutY="271.0" prefHeight="26.0" prefWidth="281.0" promptText="TREDING POSTS" style="-fx-background-color: c24400;" text="A propos de Nous">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </TextField>
+      <Label layoutX="934.0" layoutY="298.0" prefHeight="26.0" prefWidth="380.0" text="G-Claim est Bien évidemment les MOBA comme" textFill="WHITE" />
+      <Label layoutX="934.0" layoutY="314.0" prefHeight="26.0" prefWidth="405.0" text="DOTA et STR sont les incontournables du esport" textFill="WHITE" />
+      <Label layoutX="935.0" layoutY="333.0" prefHeight="26.0" prefWidth="380.0" text="car ce sont les jeux qui rassemblent la plus grosse" textFill="WHITE" />
+      <Label layoutX="937.0" layoutY="352.0" prefHeight="26.0" prefWidth="352.0" text="communauté de joueurs. Vous ne serez donc pas" textFill="WHITE" />
+      <Label layoutX="935.0" layoutY="370.0" prefHeight="26.0" prefWidth="336.0" text="surpris de pourvoir parier sur des matches de" textFill="WHITE" />
+      <Label layoutX="936.0" layoutY="389.0" prefHeight="26.0" prefWidth="365.0" text="League of Legends, Dota 2 et Starcraft. Ce trio est" textFill="WHITE" />
+      <Label layoutX="936.0" layoutY="408.0" prefHeight="26.0" prefWidth="352.0" text="proposé par les meilleurs bookmakers du monde." textFill="WHITE" />
+   </children>
+</AnchorPane>

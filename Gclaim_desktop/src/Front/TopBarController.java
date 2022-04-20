@@ -18,6 +18,8 @@ import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 
 public class TopBarController implements Initializable {
@@ -57,8 +59,7 @@ public class TopBarController implements Initializable {
         btnRdvs.setTextFill(Color.WHITE);
                 profile.setTextFill(Color.WHITE);
                  article.setTextFill(Color.WHITE);
-                 System.out.println(US.currentUser);
-               
+              
 
     }
 
@@ -67,7 +68,7 @@ public class TopBarController implements Initializable {
         goToLink(Constants.FXML_DISPLAY_ALL_ABO);
 
         btnAbos.setTextFill(COLOR_BLUE);
-        Animations.animateButton(btnAbos, COLOR_GRAY, Color.WHITE, COLOR_BLUE, 0, false);
+      
     }
 
     @FXML
@@ -75,19 +76,19 @@ public class TopBarController implements Initializable {
         //goToLink(Constants.FXML_DISPLAY_ALL_RDV);
 
         btnRdvs.setTextFill(COLOR_BLUE);
-        Animations.animateButton(btnRdvs, COLOR_GRAY, Color.WHITE, COLOR_BLUE, 0, false);
+        
     }
 @FXML
     private void profile(ActionEvent event) {
         goToLink(Constants.FXML_DISPLAY_PROFILE);
 
         profile.setTextFill(COLOR_BLUE);
-        Animations.animateButton(profile, COLOR_GRAY, Color.WHITE, COLOR_BLUE, 0, false);
+        
     }
     private void goToLink(String link) {
         for (Button lien : liens) {
             lien.setTextFill(COLOR_DARK);
-            Animations.animateButton(lien, COLOR_GRAY, COLOR_DARK, COLOR_BLUE, 0, false);
+           
         }
         MainWindowController.getInstance().loadInterface(link);
     }
@@ -95,5 +96,12 @@ public class TopBarController implements Initializable {
     @FXML
     private void article(ActionEvent event) {
         
+    }
+
+  
+
+    @FXML
+    private void acceuil(MouseEvent event) {
+         goToLink(Constants.FXML_HOME);
     }
 }

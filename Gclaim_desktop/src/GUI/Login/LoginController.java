@@ -115,7 +115,7 @@ private SendEmail sendEmail;
                     }
 
                 } else if (currentUser.getRoles().equals("[\"ROLE_USER\"]") && currentUser.isIsVerfied()) {
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("modifierprofil.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../MenuFront.fxml"));
 
                     try {
                         Parent root = loader.load();
@@ -127,7 +127,7 @@ private SendEmail sendEmail;
                 else if (currentUser.getRoles().equals("[\"ROLE_COACH\"]") && currentUser.isIsVerfied()) {
                     System.out.println(currentUser.isIsVerfied());
                     
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("modifierprofil.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../MenuFront.fxml"));
 
                     try {
                         Parent root = loader.load();

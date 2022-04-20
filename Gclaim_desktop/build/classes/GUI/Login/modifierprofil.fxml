@@ -13,38 +13,43 @@
 
 <AnchorPane id="AnchorPane" fx:id="mainPain" prefHeight="780.0" prefWidth="973.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Login.ModifierprofilController">
    <children>
-      <Pane fx:id="devenircoachPane" layoutX="461.0" layoutY="578.0" prefHeight="90.0" prefWidth="358.0">
+      <ImageView fitHeight="841.0" fitWidth="1561.0" layoutX="-26.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../src_image/hero-5.jpg" />
+         </image>
+      </ImageView>
+      <Pane fx:id="devenircoachPane" layoutX="579.0" layoutY="578.0" prefHeight="90.0" prefWidth="358.0">
          <children>
-            <Button fx:id="devenircoach" layoutX="29.0" layoutY="14.0" mnemonicParsing="false" onAction="#DemandededevenirCoach" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Devenir COACH">
+            <Button fx:id="devenircoach" layoutX="27.0" layoutY="14.0" mnemonicParsing="false" onAction="#DemandededevenirCoach" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Devenir COACH">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
          </children>
       </Pane>
-      <Label fx:id="username" layoutX="460.0" layoutY="95.0" prefHeight="36.0" prefWidth="297.0" text=" username">
+      <Label fx:id="username" layoutX="563.0" layoutY="95.0" prefHeight="36.0" prefWidth="297.0" text=" username" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="31.0" />
          </font>
       </Label>
-      <Line endX="232.0" layoutX="579.0" layoutY="231.0" startX="-100.0" stroke="#c24400" />
-      <Label fx:id="UserRole" layoutX="602.0" layoutY="176.0" prefHeight="30.0" prefWidth="138.0" text="role" />
-      <Label layoutX="528.0" layoutY="243.0" prefHeight="21.0" prefWidth="66.0" text="à propos">
+      <Line endX="232.0" layoutX="699.0" layoutY="231.0" startX="-100.0" stroke="#c24400" />
+      <Label fx:id="UserRole" layoutX="722.0" layoutY="176.0" prefHeight="30.0" prefWidth="138.0" text="role" textFill="WHITE" />
+      <Label layoutX="648.0" layoutY="243.0" prefHeight="21.0" prefWidth="66.0" text="à propos" textFill="#d1cdcd">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
         
-            <TextField fx:id="TelText" layoutX="491.0" layoutY="296.0" onAction="#ProfilRedirect" prefHeight="31.0" prefWidth="313.0" />
-      <TextField fx:id="AdresseTxt" layoutX="491.0" layoutY="350.0" prefHeight="31.0" prefWidth="313.0" />
-      <TextField fx:id="CinTxt" layoutX="492.0" layoutY="406.0" prefHeight="31.0" prefWidth="313.0" />
-      <TextField fx:id="EmailTxt" layoutX="490.0" layoutY="466.0" prefHeight="31.0" prefWidth="313.0" />
-      <Label layoutX="281.0" layoutY="301.0" prefHeight="21.0" prefWidth="83.0" text="username" textFill="#c24400">
+            <TextField fx:id="TelText" layoutX="610.0" layoutY="296.0" onAction="#ProfilRedirect" prefHeight="31.0" prefWidth="313.0" />
+      <TextField fx:id="AdresseTxt" layoutX="610.0" layoutY="350.0" prefHeight="31.0" prefWidth="313.0" />
+      <TextField fx:id="CinTxt" layoutX="611.0" layoutY="406.0" prefHeight="31.0" prefWidth="313.0" />
+      <TextField fx:id="EmailTxt" layoutX="609.0" layoutY="466.0" prefHeight="31.0" prefWidth="313.0" />
+      <Label layoutX="404.0" layoutY="301.0" prefHeight="21.0" prefWidth="83.0" text="username" textFill="#c24400">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="281.0" layoutY="355.0" text="password" textFill="#c24400">
+      <Label layoutX="404.0" layoutY="355.0" text="password" textFill="#c24400">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -54,12 +59,12 @@
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="281.0" layoutY="411.0" prefHeight="22.0" prefWidth="149.0" text="fullname/specialité" textFill="#c24400">
+      <Label layoutX="404.0" layoutY="411.0" prefHeight="22.0" prefWidth="149.0" text="fullname/specialité" textFill="#c24400">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <Label layoutX="281.0" layoutY="471.0" text="Email :" textFill="#c24400">
+      <Label layoutX="404.0" layoutY="471.0" text="Email :" textFill="#c24400">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
@@ -86,56 +91,48 @@
             </ImageView>
          </children>
       </Pane>
-      <Label layoutX="457.0" layoutY="180.0" prefHeight="22.0" prefWidth="118.0" text="Votre Role est">
+      <Label layoutX="577.0" layoutY="180.0" prefHeight="22.0" prefWidth="118.0" text="Votre Role est" textFill="WHITE">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Label>
-      <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="284.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="407.0" layoutY="166.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../PIDEV/Gclaim/public/img/instagram/insta-1.jpg" />
+            <Image url="@../src_image/insta-1.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="creerequipe" layoutX="276.0" layoutY="536.0" mnemonicParsing="false" onAction="#CreerEquipe" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: c24400;" text="Créer votre équipe">
+      <Button fx:id="creerequipe" layoutX="399.0" layoutY="536.0" mnemonicParsing="false" onAction="#CreerEquipe" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: c24400;" text="Créer votre équipe">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="desactivercompte" layoutX="276.0" layoutY="596.0" mnemonicParsing="false" onAction="#desactivervotrecompte" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: c24400;" text="Désactiver Votre Compte">
+      <Button fx:id="desactivercompte" layoutX="399.0" layoutY="596.0" mnemonicParsing="false" onAction="#desactivervotrecompte" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: c24400;" text="Désactiver Votre Compte">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="modifierprofile" layoutX="487.0" layoutY="536.0" mnemonicParsing="false" onAction="#ModifierInfromations" onMouseClicked="#initialize" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Modifier votre profile">
+      <Button fx:id="modifierprofile" layoutX="606.0" layoutY="536.0" mnemonicParsing="false" onAction="#ModifierInfromations" onMouseClicked="#initialize" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Modifier votre profile">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Label fx:id="username1" layoutX="284.0" layoutY="95.0" prefHeight="46.0" prefWidth="176.0" text="Profile de">
+      <Label fx:id="username1" layoutX="387.0" layoutY="95.0" prefHeight="46.0" prefWidth="176.0" text="Profile de" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="31.0" />
          </font>
       </Label>
-      <Button fx:id="LOG_OUT" layoutX="24.0" layoutY="202.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: c24400;" text="LOG_OUT">
+      <Button fx:id="LOG_OUT" layoutX="24.0" layoutY="145.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: c24400;" text="LOG_OUT">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Line endX="-100.0" endY="361.20001220703125" layoutX="530.0" layoutY="262.0" startX="-100.0" stroke="#180d07" />
-      <Line endX="232.0" layoutX="578.0" layoutY="516.0" startX="-100.0" stroke="#c24400" />
+      <Line endX="-100.0" endY="361.20001220703125" layoutX="653.0" layoutY="262.0" startX="-100.0" stroke="#180d07" />
+      <Line endX="232.0" layoutX="697.0" layoutY="516.0" startX="-100.0" stroke="#c24400" />
       <ImageView fitHeight="144.0" fitWidth="106.0" layoutX="40.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../../../../../PIDEV/Gclaim/src/Entity/Logo.png" />
+            <Image url="@../src_image/Logo.png" />
          </image>
       </ImageView>
-      <Pane fx:id="supppane" layoutX="-14.0" layoutY="121.0" prefHeight="90.0" prefWidth="200.0">
-         <children>
-            <Button fx:id="LOG_OUT1" layoutX="39.0" layoutY="27.0" mnemonicParsing="false" onAction="#accueil" onMouseClicked="#supp" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: c24400;" text="ACCUEIL">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Button>
-         </children>
-      </Pane>
+      <Pane fx:id="supppane" layoutX="-14.0" layoutY="121.0" prefHeight="90.0" prefWidth="200.0" />
    </children>
 </AnchorPane>

@@ -99,7 +99,6 @@ public class ModifierprofilController implements Initializable {
     private AnchorPane mainPane;
     @FXML
     private Button LOG_OUT;
-    @FXML
     private Button LOG_OUT1;
     @FXML
     private AnchorPane mainPain;
@@ -274,26 +273,12 @@ public class ModifierprofilController implements Initializable {
         }
     }
 
-    @FXML
-    private void accueil(ActionEvent event) {
-       AnchorPane pane;
-        try {
-            pane = FXMLLoader.load(getClass().getResource("../MenuFront.fxml"));
-            mainPain.getChildren().setAll(pane);
-            //defaultStateButtons();
-            LOG_OUT1.setTextFill(Color.WHITE);
-            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
-        } catch (IOException ex) {
-            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-    }
+   
 
     @FXML
     private void initialize(MouseEvent event) {
     }
 
-    @FXML
     private void supp(MouseEvent event) {
         supppane.setVisible(false);
     }
