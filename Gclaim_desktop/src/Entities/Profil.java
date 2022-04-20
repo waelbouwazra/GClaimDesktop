@@ -34,6 +34,15 @@ public class Profil {
         this.game = game;
     }
 
+    public Profil(int id, String Username,String Description,   String game, int numero,Utilisateur user) {
+        this.id = id;
+        this.Description = Description;
+        this.Username = Username;
+        this.user = user;
+        this.game = game;
+        this.numero = numero;
+    }
+
     public Profil(int id, String Description, String Username, String game, int numero) {
         this.id = id;
         this.Description = Description;

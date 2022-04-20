@@ -9,13 +9,18 @@ import Entities.Produit;
 import Services.ProfilService;
 import Entities.Profil;
 import Entities.Utilisateur;
+import Front.TopBarController;
 import Services.ProduitService;
+import Services.ServiceUser;
+import Tools.Animations;
+import Tools.Constants;
 import Tools.MaConnection;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -33,6 +38,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 /**
@@ -44,6 +50,7 @@ public class AjouterProfilController implements Initializable {
 PreparedStatement pst= null;
 ResultSet rs= null;
    MaConnection con = new MaConnection();
+    private TextField txtmail;
     @FXML
     private TextField username;
     @FXML
@@ -61,6 +68,7 @@ ResultSet rs= null;
     private AnchorPane mainPane;
     @FXML
     private Button btnSubmit1;
+    private ServiceUser US;
 
      /**
      * Initializes the controller class.
@@ -68,8 +76,10 @@ ResultSet rs= null;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO 
+        US = new ServiceUser();
         
- username.setText("");
+
+ username.setText(US.currentUser.getUsername());
   game.setText("");
    numero.setText("");
     description.setText("");
@@ -84,26 +94,6 @@ ResultSet rs= null;
     @FXML
      private void addProfil(ActionEvent event) {
      
-       /*  
-       try {
-                String query ="select user_id from profil where username = ?";
-         
-           
-       
-                pst = con.MaConnection().prepareStatement(query);
-                pst.setString(1,username.getText());
-                rs = pst.executeQuery();
-                while(rs.next())
-                {
-                     p.setUser(rs.getUt);
-                    
-                    
-                }
-                pst.close();
-                rs.close();
-            } catch (SQLException ex) {
-                // Logger.getLogger(AfficherProfilController.class.getName()).log(Level.SEVERE, null, ex);
-            }*/
        
         
  if (numero.getText().equals("") || description.getText().equals("") || username.getText().equals("") || game.getText().equals("") ) {
@@ -117,15 +107,32 @@ ResultSet rs= null;
      //Else Part
        ProfilService ps = new ProfilService();
        Profil p = new Profil();
-       Utilisateur c = new Utilisateur(104);
-       p.setUser(c);
+       
+       p.setUser(US.currentUser);
        
        p.setDescription( description.getText());
        p.setNumero(Integer.parseInt(numero.getText()));
        p.setUsername(username.getText());
        p.setGame(game.getText());
- 
-         Alert alert = new Alert(Alert.AlertType.INFORMATION);
+    
+       try {
+                String query ="select * from profil where username = ?";
+         
+           
+       
+                pst = con.MaConnection().prepareStatement(query);
+                pst.setString(1,US.currentUser.getUsername());
+                rs = pst.executeQuery();
+
+               if (rs.next()==true){ 
+                    
+                   
+                    Alert alert = new Alert(Alert.AlertType.WARNING, "Votre profil existe deja", ButtonType.OK);            
+     alert.showAndWait();
+                    
+               }else{
+                    
+                         Alert alert = new Alert(Alert.AlertType.INFORMATION);
 		alert.setTitle("Verification");
 		alert.setHeaderText("Results:");
 		alert.setContentText("Profil ajouter avec succes");
@@ -134,15 +141,27 @@ ResultSet rs= null;
       
   
        
-      ps.AddProfil(p);
+      ps.AddProfil(p); }
+                     
+                
+                pst.close();
+                rs.close();
+            } catch (SQLException ex) {
+                // Logger.getLogger(AfficherProfilController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
+       
+       
  }
     }
 
     @FXML
     private void handleRetour(ActionEvent event) {
-        Parent root = null;
+      
+          
+         Parent root = null;
         try {
-            root = FXMLLoader.load(getClass().getResource("AfficherProfil.fxml"));
+            root = FXMLLoader.load(getClass().getResource("ShowAllProfil.fxml"));
         } catch (IOException ex) {
             Logger.getLogger(AfficherProfilController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -159,5 +178,13 @@ ResultSet rs= null;
        
        event.consume();
     }*/
+    }
+
+    @FXML
+    private void control(KeyEvent event) {
+        event.consume();
+        Alert alert = new Alert(Alert.AlertType.WARNING, "Can't modify username", ButtonType.OK);            
+     alert.showAndWait();
+        
     }
 }

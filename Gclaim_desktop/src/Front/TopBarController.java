@@ -68,8 +68,8 @@ public class TopBarController implements Initializable {
     }
 
     @FXML
-    private void afficherRdvs(ActionEvent event) {
-        //goToLink(Constants.FXML_DISPLAY_ALL_RDV);
+    public void afficherRdvs(ActionEvent event) {
+        goToLink(Constants.FXML_DISPLAY_PROFIL);
 
         btnRdvs.setTextFill(COLOR_BLUE);
         Animations.animateButton(btnRdvs, COLOR_GRAY, Color.WHITE, COLOR_BLUE, 0, false);

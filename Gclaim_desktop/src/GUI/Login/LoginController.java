@@ -87,6 +87,10 @@ public class LoginController implements Initializable {
         VerifyCodePane.setVisible(false);
         ChangePasswordPane.setVisible(false);
         US = new ServiceUser();
+        
+        // juste pour yussef
+         txtmail.setText("yuss@esprit.tn");
+                     txtpassword.setText("azerazer");
     }
 
     @FXML

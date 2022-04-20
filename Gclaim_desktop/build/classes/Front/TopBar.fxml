@@ -28,7 +28,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnRdvs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#afficherRdvs" prefHeight="30.0" prefWidth="108.0" style="-fx-background-color: c24400;" text="Rdvs" textFill="WHITE">
+            <Button fx:id="btnRdvs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#afficherRdvs" prefHeight="30.0" prefWidth="108.0" style="-fx-background-color: c24400;" text="Les coachs" textFill="WHITE">
                <HBox.margin>
                   <Insets />
                </HBox.margin>

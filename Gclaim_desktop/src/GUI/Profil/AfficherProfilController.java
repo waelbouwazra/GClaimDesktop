@@ -156,7 +156,7 @@ private void handleDeleteProfil() {
                 {
                              
 
-               profilService.DeleteProfil(rs.getInt("id"));
+              // profilService.DeleteProfil(rs.getInt("id"));
                }
                 pst.close();
                 rs.close();
@@ -202,7 +202,7 @@ private void handleDeleteProfil() {
       
         Profil h1= new Profil(username1, description1, game1, numero1);
         //System.out.println(h1.toString());
-        hs.UpdateProfil(h1, x);
+      //  hs.UpdateProfil(h1, x);
         
        // items.addAll(profilService.ShowProfil());
       

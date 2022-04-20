@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="400.0" prefWidth="914.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Profil.AjouterProfilController">
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="400.0" prefWidth="914.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Profil.ModifierProfilController">
     <stylesheets>
         <URL value="@ajouterprofil.css" />
     </stylesheets>
@@ -43,7 +43,7 @@
             <Font name="Algerian" size="18.0" />
          </font>
       </TextField>
-      <Button fx:id="btnSubmit" layoutX="626.0" layoutY="144.0" mnemonicParsing="false" onAction="#addProfil" prefHeight="30.0" prefWidth="146.0" style="-fx-background-color: green;" text="Ajouter Profil" textFill="#4b2f66b5">
+      <Button fx:id="btnSubmit" layoutX="626.0" layoutY="144.0" mnemonicParsing="false" onAction="#Modifier_votre_Equipe" prefHeight="30.0" prefWidth="146.0" style="-fx-background-color: green;" text="Ajouter Profil" textFill="#4b2f66b5">
          <font>
             <Font size="18.0" />
          </font>

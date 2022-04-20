@@ -5,7 +5,9 @@
  */
 package Entities;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.sql.Date;
+import javafx.scene.control.DatePicker;
 
 /**
  *
@@ -15,12 +17,12 @@ public class Rdv {
      private int id;
     private Profil coach;
     private Utilisateur user;
-    private Date date;
+    private LocalDate date;
 
     public Rdv() {
     }
 
-    public Rdv(int id, Profil coach, Utilisateur user, Date date) {
+    public Rdv(int id, Profil coach, Utilisateur user, LocalDate date) {
         this.id = id;
         this.coach = coach;
         this.user = user;
@@ -32,7 +34,7 @@ public class Rdv {
         this.user = user;
     }
 
-    public Rdv(Profil coach, Utilisateur user, Date date) {
+    public Rdv(Profil coach, Utilisateur user, LocalDate date) {
         this.coach = coach;
         this.user = user;
         this.date = date;
@@ -64,11 +66,11 @@ public class Rdv {
         this.user = user;
     }
 
-    public Date getDate() {
+    public LocalDate getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDate date) {
         this.date = date;
     }
 

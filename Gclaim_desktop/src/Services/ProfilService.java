@@ -35,12 +35,12 @@ public class ProfilService {
     
        public void AddProfil(Profil c) {
          
-              String req = "insert into profil (description,username,game,numero) values (?,?,?,?)";
+              String req = "insert into profil (description,username,game,numero,user_id) values (?,?,?,?,?)";
               try { 
               
               pst = cnx.prepareStatement(req);
               
-            // pst.setInt(1, c.getUser().getId()); // implementer cette methode quand la session marche
+             pst.setInt(5, c.getUser().getId()); // implementer cette methode quand la session marche
               pst.setString(1, c.getDescription());
                pst.setString(2, c.getUsername());
               pst.setString(3, c.getGame());
@@ -70,8 +70,8 @@ public class ProfilService {
               Logger.getLogger(ProfilService.class.getName()).log(Level.SEVERE, null, ex);}
           }
         
-        public void UpdateProfil(Profil c,int cu)
-        { String req ="UPDATE profil set description=? , game=? ,numero=? WHERE id =" +cu+ " ";
+        public void UpdateProfil(Profil c)
+        {   String req = "UPDATE profil set description=?,game=?,numero=? WHERE id =" +c.getId()+ "";
         try {
               pst = cnx.prepareStatement(req);             
               pst.setString(1, c.getDescription());

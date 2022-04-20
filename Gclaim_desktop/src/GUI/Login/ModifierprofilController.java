@@ -104,6 +104,8 @@ public class ModifierprofilController implements Initializable {
     private AnchorPane mainPain;
     @FXML
     private Pane devenircoachPane;
+    @FXML
+    private Button ProfilCoach;
 
     /**
      * Initializes the controller class.
@@ -305,5 +307,19 @@ public class ModifierprofilController implements Initializable {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
 
+    }
+
+    @FXML
+    private void ProfilCoach(ActionEvent event) {
+         AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("../Profil/AjouterProfil.fxml"));
+            mainPain.getChildren().setAll(pane);
+            //defaultStateButtons();
+            LOG_OUT1.setTextFill(Color.WHITE);
+            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

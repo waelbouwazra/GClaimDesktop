@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -36,7 +37,7 @@ public class RdvService {
 
     public void AddRdv(Rdv c) {
 
-        String req = "insert into rdv (coach_id,user_id,date,is_verified,coachname,username) values (?,?,?,?,?,?)";
+        String req = "insert into rdv (coach_id,user_id,is_verified,coachname,username,date) values (?,?,?,?,?,?)";
 
         try {
            
@@ -45,11 +46,13 @@ public class RdvService {
           
             pst.setInt(1, c.getCoach().getId());
             pst.setInt(2, c.getUser().getId());
-            System.out.println(c.getDate().getYear());
-            pst.setDate(3, new java.sql.Date(c.getDate().getYear()));
-            pst.setInt(4, 0);
-            pst.setString(5, c.getCoach().getUsername());
-            pst.setString(6, c.getUser().getUsername());
+            
+           // System.out.println(c.getDate().getYear());
+          // Date date = Date.from(c.getDate().atStartOfDay(ZoneId.systemDefault()).toInstant());
+            pst.setDate(6, Date.valueOf(c.getDate()));
+            pst.setInt(3, 0);
+            pst.setString(4, c.getCoach().getUsername());
+            pst.setString(5, c.getUser().getUsername());
             pst.executeUpdate();
             System.out.println("ajout rdv done");
         } catch (SQLException ex) {
@@ -91,6 +94,54 @@ public class RdvService {
     public List<Rdv> ShowRdv() {
         List<Rdv> rdv = new ArrayList<>();
         String sql = "select * from rdv";
+        Statement ste;
+
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                Rdv c = new Rdv();
+                Profil a = new Profil(rs.getInt("coach_id"));
+                c.setCoach(a);
+                Utilisateur e = new Utilisateur(rs.getInt("user_id"));
+                c.setUser(e);
+
+                rdv.add(c);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return rdv;
+    }
+    public List<Rdv> ShowRdvVerified() {
+        List<Rdv> rdv = new ArrayList<>();
+        String sql = "select * from rdv r where r.is_verified=1";
+        Statement ste;
+
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+            while (rs.next()) {
+                Rdv c = new Rdv();
+                Profil a = new Profil(rs.getInt("coach_id"));
+                c.setCoach(a);
+                Utilisateur e = new Utilisateur(rs.getInt("user_id"));
+                c.setUser(e);
+
+                rdv.add(c);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return rdv;
+    }
+    public List<Rdv> ShowRdvNotVerified() {
+        List<Rdv> rdv = new ArrayList<>();
+        String sql = "select * from rdv r where r.is_verified=0";
         Statement ste;
 
         try {
