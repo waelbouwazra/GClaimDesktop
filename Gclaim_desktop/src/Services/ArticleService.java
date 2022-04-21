@@ -17,6 +17,9 @@ import java.sql.Statement;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 
 /**
@@ -117,5 +120,101 @@ public class ArticleService {
 
         return article;
     }
+public int getIdArticle(String tit , String desc){
+      String req = "SELECT * FROM `article` WHERE titre=? and description=?";
+Article a =new Article();
+        try {
+            pst = cnx.prepareStatement(req);
+            pst.setString(1, tit);
+            pst.setString(2, desc);
 
+            ResultSet as = pst.executeQuery();
+            if (as.next()) {
+             return as.getInt(1);
+         
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return -1;
+    
 }
+public Set<Article> tri( List<Article> u){
+       
+        Set<Article> ensEmp2 = u.stream().collect(Collectors.toCollection(()->new TreeSet<Article>((e1,e2)->e1.getTitre().compareTo(e2.getTitre()))));
+        return ensEmp2;
+    }
+public void filtrecateg( List<Article> produit, int cat){
+       
+        
+         produit.stream().filter(pp->pp.getCat_id().getId()==cat).forEach((t) -> {System.out.println(t);
+        });
+    }
+public void trinbrvu( List<Article> produit){
+       
+         
+         produit.stream()
+        .filter(e -> e.getNbr_vu() != 0).forEach((t) -> {System.out.println(t);});
+      
+        }
+/** public List<Article> affichecoachdesactiver() {
+        List<Utilisateur> personnes = new ArrayList<>();
+        String query = "select * from utilisateur u where u.is_verified=0";
+        Statement ste;
+        try {
+            ste = ct.createStatement();
+            ResultSet rs = ste.executeQuery(query);
+
+            while (rs.next()) {
+
+                if (rs.getString(4).equals("coach")) {
+                    Coach p = new Coach();
+                    p.setId(rs.getInt(1));
+                    p.setPassword(rs.getString(2));
+                    p.setEmail(rs.getString(3));
+                    p.setSpecialite(rs.getString(6));
+                    p.setUsername(rs.getString(7));
+                    p.setVerifpassword(rs.getString(8));
+                    personnes.add(p);
+
+                }
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return personnes;
+    }*/
+public List<Article> ShowArticleFront() {
+        List<Article> article = new ArrayList<>();
+        String sql = "select * from article";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+           
+            while (rs.next()) {
+                Article p = new Article();
+                p.setId(rs.getInt(1));
+                p.setTitre(rs.getString(2));
+                p.setDescription(rs.getString(3));
+                p.setImage(rs.getString(4));
+                p.setCreate_at(rs.getDate(5));
+                
+                cat c = new cat(rs.getInt(6));
+               
+                p.setCat_id(c);
+                p.setNbr_vu(rs.getInt(7));
+                  
+                article.add(p);
+
+            }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return article;
+    }
+}
+

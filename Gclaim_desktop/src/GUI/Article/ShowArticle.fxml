@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="489.0" prefWidth="769.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Article.ShowArticleController">
+    <stylesheets>
+        <URL value="@showarticle.css" />
+    </stylesheets>
+   <children>
+      <ListView fx:id="txtListArticle" layoutX="18.0" layoutY="109.0" onMouseClicked="#articleSelect" prefHeight="300.0" prefWidth="355.0" />
+      <Button fx:id="btnRetour" layoutX="18.0" layoutY="429.0" mnemonicParsing="false" onAction="#loadMenu" style="-fx-background-color: #c24400;" text="Retour" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font></Button>
+      <Label layoutX="23.0" layoutY="20.0" prefHeight="20.0" prefWidth="314.0" text="Affichage de tous les articles :">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Label>
+      <Label layoutX="384.0" layoutY="109.0" text="categorie">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="384.0" layoutY="141.0" text="Titre">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="384.0" layoutY="177.0" text="Description">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <Label layoutX="384.0" layoutY="209.0" text="image">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font></Label>
+      <TextField fx:id="txtModifTitre" layoutX="498.0" layoutY="137.0" />
+      <TextField fx:id="txtModifDesc" layoutX="498.0" layoutY="173.0" />
+      <TextField fx:id="txtModifImage" layoutX="498.0" layoutY="205.0" />
+      <ChoiceBox fx:id="txtModifCat" layoutX="497.0" layoutY="105.0" prefWidth="150.0" />
+      <Button fx:id="btnSupp" layoutX="577.0" layoutY="256.0" mnemonicParsing="false" onAction="#deleteArticle" style="-fx-background-color: #c24400;" text="supprimer" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font></Button>
+      <Button fx:id="btnModif" layoutX="498.0" layoutY="256.0" mnemonicParsing="false" onAction="#updateArticle" style="-fx-background-color: #c24400;" text="modifier" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font></Button>
+      <TextField fx:id="inputRech" layoutX="170.0" layoutY="72.0" />
+      <Label layoutX="33.0" layoutY="76.0" text="RECHERCHE">
+         <font>
+            <Font name="System Bold Italic" size="13.0" />
+         </font>
+      </Label>
+      <Button layoutX="394.0" layoutY="72.0" mnemonicParsing="false" onAction="#triee" style="-fx-background-color: #c24400;" text="TRIER les article par nom" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="12.0" />
+         </font>
+      </Button>
+      <RadioButton layoutX="392.0" layoutY="330.0" mnemonicParsing="false" text="voir Tout" />
+      <RadioButton layoutX="392.0" layoutY="363.0" mnemonicParsing="false" text="jeux" />
+      <RadioButton layoutX="393.0" layoutY="391.0" mnemonicParsing="false" text="news" />
+      <Label layoutX="396.0" layoutY="292.0" text="Filtrer par categorie">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font>
+      </Label>
+      <RadioButton layoutX="392.0" layoutY="420.0" mnemonicParsing="false" text="test" />
+   </children>
+</AnchorPane>

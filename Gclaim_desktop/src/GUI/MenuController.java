@@ -60,6 +60,8 @@ public class MenuController implements Initializable {
      private ServiceUser US;
     @FXML
     private Button gestionCoachButton1;
+    @FXML
+    private Button gestionCateg;
 
     /**
      * Initializes the controller class.
@@ -151,4 +153,35 @@ public class MenuController implements Initializable {
             
         }
     }
-}
+
+    @FXML
+    private void ShowArticleMenu(ActionEvent event) {
+           AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("Article/ArticleMenu.fxml"));
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+//            btnDisplayProducts.setTextFill(Color.WHITE);
+            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                 
+    }
+
+    @FXML
+    private void showCatArticle(ActionEvent event) {
+         AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("Article/AddCat.fxml"));
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+//            btnDisplayProducts.setTextFill(Color.WHITE);
+            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        }
+    }
+    }
+

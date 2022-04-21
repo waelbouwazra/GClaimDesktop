@@ -24,4 +24,8 @@ public static final String FXML_DISPLAY_PRODUIT = "../GUI/Produit/ShowAllProd.fx
     public static final String FXML_TOP_BAR = "../Front/TopBar.fxml";
      public static final String FXML_UPDATE_EQUIPE = "../GUI/login/modifierEquipe.fxml"; 
     public static final String FXML_HOME = FXML_DISPLAY_ACCEUIL;
+      public static final String FXML_MODEL_A = "../GUI/Article/ShowArticleFront.fxml"; 
+  public static final String FXML_MODEL= "../GUI/Article/ModelA.fxml"; 
+
+    public static final String FXML_ADD_COM = "../GUI/Article/Commentaire.fxml"; 
 }

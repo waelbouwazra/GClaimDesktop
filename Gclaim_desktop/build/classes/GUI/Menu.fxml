@@ -43,11 +43,16 @@
                   <Font name="System Bold Italic" size="12.0" />
                </font></Button>
             <Button fx:id="logoutButton" layoutX="25.0" layoutY="696.0" mnemonicParsing="false" onAction="#logout" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #c24400;" text="Logout" textFill="WHITE" />
-            <Button fx:id="gestionArticlesButton" layoutX="24.0" layoutY="451.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Articles" textFill="#0b0b0b">
+            <Button fx:id="gestionArticlesButton" layoutX="24.0" layoutY="451.0" mnemonicParsing="false" onAction="#ShowArticleMenu" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Articles" textFill="#0b0b0b">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Button>
             <Button fx:id="gestionCoachButton1" layoutX="22.0" layoutY="499.0" mnemonicParsing="false" onAction="#showCategorieMenu" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Categories de Produit" textFill="#0b0b0b">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="gestionCateg" layoutX="25.0" layoutY="547.0" mnemonicParsing="false" onAction="#showCatArticle" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des categories des articles" textFill="#0b0b0b">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Article.ArticleMenuController">
+    <stylesheets>
+        <URL value="@articlemenu.css" />
+    </stylesheets>
+   <children>
+      <Label layoutX="181.0" layoutY="66.0" text="Menu Article">
+         <font>
+            <Font name="System Bold Italic" size="40.0" />
+         </font>
+      </Label>
+      <Button fx:id="btnaffA" layoutX="247.0" layoutY="175.0" mnemonicParsing="false" onAction="#showArticle" style="-fx-background-color: #c24400;" text="afficher articles" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Button>
+      <Button fx:id="btnadd" layoutX="247.0" layoutY="243.0" mnemonicParsing="false" onAction="#addArticle" style="-fx-background-color: #c24400;" text="ajouter article" textFill="WHITE">
+         <font>
+            <Font name="System Bold Italic" size="14.0" />
+         </font></Button>
+   </children>
+</AnchorPane>

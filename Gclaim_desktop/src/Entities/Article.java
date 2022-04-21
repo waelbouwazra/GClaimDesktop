@@ -27,6 +27,13 @@ public class Article {
     public Article(int id) {
         this.id = id;
     }
+
+    public Article(int id, String titre, String description, String image) {
+        this.id = id;
+        this.titre = titre;
+        this.description = description;
+        this.image = image;
+    }
     
 
     public Article(String titre, String description, String image, Date create_at, int nbr_vu) {
@@ -56,6 +63,15 @@ public class Article {
         this.commentaire = commentaire;
     }
 
+    public Article(int id, String titre, String description, String image, cat cat_id) {
+        this.id = id;
+        this.titre = titre;
+        this.description = description;
+        this.image = image;
+        this.cat_id = cat_id;
+    }
+
+   
     public Commentaire getCommentaire() {
         return commentaire;
     }
@@ -122,7 +138,7 @@ public class Article {
 
     @Override
     public String toString() {
-        return "Article{" + "id=" + id + ", titre=" + titre + ", description=" + description + ", image=" + image + ", create_at=" + create_at + ", cat_id=" + cat_id + ", nbr_vu=" + nbr_vu + '}';
+        return "Article :" + " \t| titre=" + titre + " \t| , description=" + description + " \t| ,image=" + image + " \t| ,create_at=" + create_at + " \t|, cat_id=" + cat_id + " \t|,  nbr_vu=" + nbr_vu + '}';
     }
 
   

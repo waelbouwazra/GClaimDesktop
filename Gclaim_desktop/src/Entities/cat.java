@@ -17,6 +17,12 @@ public class cat {
     public cat() {
     }
 
+    public cat(int id, String nom, String couleur) {
+        this.id = id;
+        this.nom = nom;
+        this.couleur = couleur;
+    }
+
     public cat(String nom, String couleur) {
         this.nom = nom;
         this.couleur = couleur;

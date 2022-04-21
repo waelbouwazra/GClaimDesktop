@@ -96,11 +96,12 @@ public class TopBarController implements Initializable {
 
     @FXML
     private void article(ActionEvent event) {
-        
+          goToLink(Constants.FXML_MODEL_A);
+
+        btnAbos.setTextFill(COLOR_BLUE);
+        Animations.animateButton(article, COLOR_GRAY, Color.WHITE, COLOR_BLUE, 0, false); 
     }
-
-  
-
+   
     @FXML
     private void acceuil(MouseEvent event) {
          goToLink(Constants.FXML_HOME);
