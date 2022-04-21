@@ -10,6 +10,7 @@ import Services.ServiceUser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -18,7 +19,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
@@ -87,6 +90,13 @@ public class AfficheuserController implements Initializable {
 
     @FXML
     private void deleteuser(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmer votre demande");
+        alert.setHeaderText(null);
+        alert.setContentText("Etes vous sûr de supprimer user ?");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
         rs.DeleteUser(txtlistusers.getSelectionModel().getSelectedItem().getId());
          ObservableList<Utilisateur> items =FXCollections.observableArrayList();
         List<Utilisateur> listuser = rs.afficheSimpleUser();
@@ -96,7 +106,7 @@ public class AfficheuserController implements Initializable {
         }
        
     txtlistusers.setItems(items);
-    }
+    }}
 
     @FXML
     private void loadMenu(ActionEvent event) {
@@ -133,6 +143,7 @@ public class AfficheuserController implements Initializable {
 
     @FXML
     private void coachdesactives(MouseEvent event) {
+      
            tout.setSelected(false);
          activepane.setVisible(true);
            coachaactives.setSelected(false);
@@ -167,6 +178,13 @@ public class AfficheuserController implements Initializable {
 
     @FXML
     private void desactiveruncoach(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmer votre demande");
+        alert.setHeaderText(null);
+        alert.setContentText("Etes vous sûr de Desactiver un user?");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
           tout.setSelected(false);
          activepane.setVisible(true);
            coachaactives.setSelected(false);
@@ -181,10 +199,17 @@ public class AfficheuserController implements Initializable {
         }
        
     txtlistusers.setItems(items);
-    }
+    }}
 
     @FXML
     private void activeuncoach(ActionEvent event) {
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmer votre demande");
+        alert.setHeaderText(null);
+        alert.setContentText("Etes vous sûr d'activer user ?");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
         coachdesactives.setSelected(false);
         coachaactives.setSelected(true);
              tout.setSelected(false);
@@ -199,7 +224,7 @@ public class AfficheuserController implements Initializable {
         }
        
     txtlistusers.setItems(items);
-    }
+    }}
 
     @FXML
     private void triee(ActionEvent event) {
