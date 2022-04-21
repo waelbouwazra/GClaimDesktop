@@ -35,8 +35,7 @@ public class TopBarController implements Initializable {
     private Button btnRdvs;
     @FXML
     private AnchorPane mainComponent;
-    @FXML
-    private Button profile;
+   
     @FXML
     private Button article;
    private ServiceUser US=new ServiceUser();
@@ -47,7 +46,7 @@ public class TopBarController implements Initializable {
 
         liens = new Button[]{
                 btnAbos,
-                btnRdvs,profile,article,
+                btnRdvs,article,panier
         };
 
         mainComponent.setBackground(new Background(new BackgroundFill(COLOR_BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -55,13 +54,15 @@ public class TopBarController implements Initializable {
         for (Button lien : liens) {
             lien.setTextFill(COLOR_DARK);
             lien.setBackground(new Background(new BackgroundFill(COLOR_BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
-            Animations.animateButton(lien, COLOR_GRAY, Color.WHITE, COLOR_BLUE, 0, false);
+                        Animations.animateButton(lien, COLOR_GRAY, Color.WHITE, COLOR_BLUE, 0, false);
+
+          
         }
         btnAbos.setTextFill(Color.WHITE);
         btnRdvs.setTextFill(Color.WHITE);
-                profile.setTextFill(Color.WHITE);
+               
                  article.setTextFill(Color.WHITE);
-              
+              panier.setTextFill(Color.WHITE);
 
     }
 
@@ -80,13 +81,8 @@ public class TopBarController implements Initializable {
         btnRdvs.setTextFill(COLOR_BLUE);
         
     }
-@FXML
-    private void profile(ActionEvent event) {
-        goToLink(Constants.FXML_DISPLAY_PROFILE);
-
-        profile.setTextFill(COLOR_BLUE);
-        
-    }
+   
+   
     private void goToLink(String link) {
         for (Button lien : liens) {
             lien.setTextFill(COLOR_DARK);
@@ -112,5 +108,10 @@ public class TopBarController implements Initializable {
          goToLink(Constants.FXML_DISPLAY_PANIER);
 
         panier.setTextFill(COLOR_BLUE);
+    }
+
+    @FXML
+    private void profile(MouseEvent event) {
+         goToLink(Constants.FXML_DISPLAY_PROFILE);
     }
 }

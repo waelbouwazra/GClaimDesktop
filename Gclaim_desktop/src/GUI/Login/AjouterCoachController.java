@@ -60,11 +60,18 @@ public class AjouterCoachController implements Initializable {
     private void addcoach(ActionEvent event) {
           if (username.getText().isEmpty() == false
                 && email.getText().isEmpty() == false
-                && mdp.getText().isEmpty() == false && specialite.getText().isEmpty() == false  && email.getText().matches("(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)*\\@(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)+" )
-                && mdp.getText().equals(mdp1.getText())) {
+                && mdp.getText().isEmpty() == false && specialite.getText().isEmpty() == false ) {
             Coach u = new Coach(0,username.getText(),mdp.getText(), mdp1.getText(),email.getText(),specialite.getText());
-         
-            if (US.getUtilisateurByEmail(email.getText()) == true) {
+            
+         if(email.getText().matches("(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)*\\@(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)+" )==false)
+         {
+           JOptionPane.showMessageDialog(null, "erreur !!! remplir Correctement le champs EMAIL,EMAIL incorrect");
+         }
+         else if (mdp.getText().equals(mdp1.getText()) == false) {
+                JOptionPane.showMessageDialog(null, "mot de passe incompatible");
+                
+            }
+         else if (US.getUtilisateurByEmail(email.getText()) == true) {
                 JOptionPane.showMessageDialog(null, "Un compte lié à cette adresse est déjà crée");
                 System.out.println("utilisateur existe deja (email)");
             } else if (US.getUtilisateurByCin(username.getText()) == true) {
@@ -89,7 +96,7 @@ public class AjouterCoachController implements Initializable {
             }
 
         } else {
-           JOptionPane.showMessageDialog(null, "erreur !!! remplir Correctement les champs");
+           JOptionPane.showMessageDialog(null, "erreur !!! remplir  les champs");
         }
     }
 

@@ -213,7 +213,21 @@ public class AfficheuserController implements Initializable {
         txtlistusers.setItems(items);
     }
 
+   
+
     @FXML
+    private void recherchhhe(ActionEvent event) {
+        ObservableList<Utilisateur> items =FXCollections.observableArrayList();
+         List<Utilisateur> listuser2 = rs.afficheSimpleUser();
+         
+        Set<Utilisateur> listuser = rs.Rechercher(listuser2,rechrche.getText());
+       for(Utilisateur r : listuser) {
+            String ch = r.toString();
+            items.add(r);
+        }
+        txtlistusers.setItems(items);
+    }
+@FXML
     private void chercherUser(KeyEvent event) {
         ObservableList<Utilisateur> items =FXCollections.observableArrayList();
         List<Utilisateur> listuser = rs.chercheUtilisateur(rechrche.getText());

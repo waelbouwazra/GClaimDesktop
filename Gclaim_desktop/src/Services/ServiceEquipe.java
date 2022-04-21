@@ -254,4 +254,38 @@ public class ServiceEquipe {
         Set<Equipe> ensEmp2 = u.stream().collect(Collectors.toCollection(()->new TreeSet<Equipe>((e1,e2)->e1.getDateCreation().compareTo(e2.getDateCreation()))));
         return ensEmp2;
     }
+     public boolean getEquipeByNOM(String NOM) {
+
+        boolean exist = false;
+        try {
+            String sql = "SELECT * FROM equipe where nom_equipe=?";
+            PreparedStatement ste = cnx.prepareStatement(sql);
+            ste.setString(1, NOM);
+            ResultSet rs = ste.executeQuery();//resultat requete sql
+            if (rs.first()) {
+                exist = true;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return exist;
+
+    }
+      public boolean getEquipeByDESC(String NOM) {
+
+        boolean exist = false;
+        try {
+            String sql = "SELECT * FROM equipe where description=?";
+            PreparedStatement ste = cnx.prepareStatement(sql);
+            ste.setString(1, NOM);
+            ResultSet rs = ste.executeQuery();//resultat requete sql
+            if (rs.first()) {
+                exist = true;
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return exist;
+
+    }
 }

@@ -28,23 +28,22 @@
                         <Font name="System Bold Italic" size="46.0" />
                      </font>
                   </Label>
-                  <Label id="label" layoutX="74.0" layoutY="143.0" text="Nom Equipe">
+                  <Label id="label" layoutX="77.0" layoutY="150.0" text="Nom Equipe">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <Label id="label" layoutX="75.0" layoutY="219.0" text="Etat">
+                  <Label id="label" layoutX="91.0" layoutY="238.0" text="Etat">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
-                  <Label id="label" layoutX="76.0" layoutY="183.0" text="Description">
+                  <Label id="label" layoutX="77.0" layoutY="193.0" text="Description">
                      <font>
                         <Font name="System Bold Italic" size="18.0" />
                      </font>
                   </Label>
                   <Button id="buttonM" fx:id="btnAjouter" layoutX="323.0" layoutY="351.0" mnemonicParsing="false" onAction="#addcoach" prefHeight="31.0" prefWidth="156.0" style="-fx-background-color: c24400;" text="Créer votre equipe" textFill="WHITE" />
-                  <Button id="buttonM" fx:id="btngetback" layoutX="66.0" layoutY="351.0" mnemonicParsing="false" onAction="#loadMenu" prefHeight="31.0" prefWidth="156.0" style="-fx-background-color: c24400;" text="voir votre Profil" textFill="WHITE" />
                </children>
             </AnchorPane>
             <Label fx:id="nomHebr" layoutX="227.0" layoutY="20.0" />

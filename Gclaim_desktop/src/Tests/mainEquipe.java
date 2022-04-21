@@ -25,6 +25,6 @@ public class mainEquipe {
        // Equipe p1 = new Equipe(43,"bits and bytes", "the best", "close");
        // ps.updateEquipe(p1);
         //System.out.println(ps.afficheEquipe());
-        System.out.println(ps.chercheequipe("soumaya"));
+        System.out.println(ps.getEquipeByDESC("the best"));
     }
 }

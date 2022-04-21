@@ -850,4 +850,11 @@ public List<Utilisateur> chercheCpoch(Object o) {
         }
 
     }
+ public Set<Utilisateur> Rechercher( List<Utilisateur> destination, String username){
+       
+        Set<Utilisateur> u=destination.stream().filter(cc->cc.getUsername().equals(username)).collect(Collectors.toCollection(()->new TreeSet<Utilisateur>((e1,e2)->e1.getUsername().compareTo(e2.getUsername()))));
+        
+         return u;
+    }
+
 }
