@@ -60,7 +60,8 @@ public class LigneCommande {
     @Override
     public String toString() {
        // return "LigneCommande{" + "id=" + id + ", quantite=" + quantite + ", Produit=" + Produit + ", Commande=" + Commande + '}';
-    return "Commande id :" + id + " \t| Quantite: "+quantite+ "\t| Produit :" + Produit.getNom_produit();
+   // return "Commande id :" + id + " \t| Quantite: "+quantite+ "\t| Produit :" + Produit.getNom_produit();
+     return "Quantite: "+quantite+ "\t| Produit :" + Produit.getNom_produit();
   
     }
     

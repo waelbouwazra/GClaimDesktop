@@ -30,6 +30,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -59,17 +61,12 @@ public class ShowPanierController implements Initializable {
     }    
     private void modifierAbo(PanierModel abo) {
         currentAbo = abo;
-       // rs.updateEquipe(abo);
-        //MainWindowController.getInstance().loadInterface(Constants.FXML_UPDATE_EQUIPE);
-
         ps.addProductQuantity(abo);
         mainVBox.getChildren().clear();
         this.afficherPanier();
     }
 private void supprimerAbo(PanierModel abo) {
         currentAbo = abo;
-       // rs.updateEquipe(abo);
-        //MainWindowController.getInstance().loadInterface(Constants.FXML_UPDATE_EQUIPE);
         ps.MinusProductQuantity(abo);
          mainVBox.getChildren().clear();
         this.afficherPanier();
@@ -109,7 +106,7 @@ private void supprimerAbo(PanierModel abo) {
     }
     
     private void afficherPanier(){
-      
+       mainVBox.getChildren().clear();
        ObservableList<PanierModel> items =FXCollections.observableArrayList();
          for (Produit i : panier.getPanier().keySet()) {
                     //System.out.println(i.getNom_produit() + i.getPrix_produit() +  + );
@@ -133,7 +130,7 @@ private void supprimerAbo(PanierModel abo) {
             StackPane stackPane = new StackPane();
             stackPane.setAlignment(Pos.CENTER);
             stackPane.setPrefHeight(200);
-            stackPane.getChildren().add(new Text("Aucune donnée"));
+            stackPane.getChildren().add(new Text("Panier Vide"));
             mainVBox.getChildren().add(stackPane);
         }
 }
@@ -141,12 +138,31 @@ private void supprimerAbo(PanierModel abo) {
     @FXML
     private void confirmCart(ActionEvent event) {
         ps.ConfirmCart();
+        ps.CancelCart();
         this.afficherPanier();
+        addNotifications("Succes", "Panier Valider");
+              
     }
 
     @FXML
     private void deleteCart(ActionEvent event) {
          ps.CancelCart();
          this.afficherPanier();
+         addNotifications("Deleted", "Panier Vider");
+    }
+        private void addNotifications(String title, String content) {
+
+        if (null != content) {
+            if (content.length() > 50) {
+                content = content.substring(0, 49) + "......";
+            }
+        }
+        Notifications notificationBuilder = Notifications.create()
+                .title(title)
+                .text(content)
+                .hideAfter(Duration.seconds(360))
+                .position(Pos.BOTTOM_RIGHT);
+
+        notificationBuilder.showInformation();
     }
 }

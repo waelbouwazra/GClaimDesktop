@@ -52,7 +52,7 @@ public class PanierService {
         CommandeService commandeService = new CommandeService();
         LigneCommandeService ligneCommandeService = new LigneCommandeService();
         Commande c = new Commande();
-        Utilisateur u = new Utilisateur(111);
+        Utilisateur u = new Utilisateur(5);
         int somme = 0;
         int commandeID;
         for (Produit i : panier.getPanier().keySet()) {

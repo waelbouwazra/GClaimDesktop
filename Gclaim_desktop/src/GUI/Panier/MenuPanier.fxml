@@ -10,7 +10,7 @@
    <children>
       <AnchorPane id="AnchorPane" fx:id="mainPane" layoutX="10.0" layoutY="10.0" prefHeight="767.0" prefWidth="822.0">
          <children>
-            <Label alignment="CENTER" layoutX="199.0" layoutY="80.0" prefHeight="69.0" prefWidth="441.0" text="MENU DES UTILISATEURS">
+            <Label alignment="CENTER" layoutX="199.0" layoutY="80.0" prefHeight="69.0" prefWidth="441.0" text="MENU Panier">
                <font>
                   <Font name="Corbel Bold Italic" size="31.0" />
                </font>
