@@ -57,6 +57,8 @@ public class listrdvController implements Initializable {
    
     @FXML
     private TextField rechrche;
+    @FXML
+    private Pane descactivepane;
 
     /**
      * Initializes the controller class.
@@ -81,20 +83,6 @@ public class listrdvController implements Initializable {
     private void prepareUD(MouseEvent event) {
     }
 
-    @FXML
-    private void deleteuser(ActionEvent event) {
-        System.out.println(txtlistusers.getSelectionModel().getSelectedItem().getId());
-        rs.DeleteProfil(txtlistusers.getSelectionModel().getSelectedItem().getId());
-        
-         ObservableList<Rdv> items =FXCollections.observableArrayList();
-        List<Rdv> listuser = rs.ShowRdv();
-        for(Rdv r : listuser) {
-            String ch = r.toString();
-            items.add(r);
-        }
-       
-    txtlistusers.setItems(items);
-    }
 
     @FXML
     private void loadMenu(ActionEvent event) {
@@ -190,4 +178,18 @@ public class listrdvController implements Initializable {
         txtlistusers.setItems(items);
     }
 
+    @FXML
+    private void deleteuser(ActionEvent event) {
+       System.out.println(txtlistusers.getSelectionModel().getSelectedItem().getId());
+        rs.DeleteProfil(txtlistusers.getSelectionModel().getSelectedItem().getId());
+        
+         ObservableList<Rdv> items =FXCollections.observableArrayList();
+        List<Rdv> listuser = rs.ShowRdv();
+        for(Rdv r : listuser) {
+            String ch = r.toString();
+            items.add(r);
+        }
+       
+    txtlistusers.setItems(items); 
+    }
 }

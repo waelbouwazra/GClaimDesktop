@@ -109,6 +109,7 @@ public class RdvService {
             ResultSet rs = ste.executeQuery(sql);
              while(rs.next()){
                  Rdv p = new Rdv();
+                 p.setId(rs.getInt("id"));
                  p.setUser(serviceUser.getuserbyID(rs.getInt("user_id")));
                  p.setCoach(ProfilService.getuserbyID(rs.getInt("coach_id")));
                  p.setDate(rs.getDate("date").toLocalDate());

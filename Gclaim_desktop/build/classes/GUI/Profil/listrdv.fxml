@@ -28,8 +28,8 @@
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <RadioButton fx:id="coachaactives" layoutX="525.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#coachaactives" text="Les users actives" />
-            <RadioButton fx:id="coachdesactives" layoutX="525.0" layoutY="113.0" mnemonicParsing="false" onMouseClicked="#coachdesactives" text="Les users desactives" />
+            <RadioButton fx:id="coachaactives" layoutX="525.0" layoutY="80.0" mnemonicParsing="false" onMouseClicked="#coachaactives" text="Les rdv confirmé" />
+            <RadioButton fx:id="coachdesactives" layoutX="525.0" layoutY="113.0" mnemonicParsing="false" onMouseClicked="#coachdesactives" text="Les rdv non confirmés" />
             <RadioButton fx:id="tout" layoutX="525.0" layoutY="47.0" mnemonicParsing="false" onMouseClicked="#initialize" prefHeight="18.0" prefWidth="99.0" text="Toutes" />
             <Pane fx:id="descactivepane" layoutX="302.0" layoutY="630.0" prefHeight="54.0" prefWidth="182.0" />
             <Pane layoutX="507.0" layoutY="640.0" prefHeight="54.0" prefWidth="161.0" />
