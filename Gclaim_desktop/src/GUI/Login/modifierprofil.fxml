@@ -101,17 +101,17 @@
             <Image url="@../src_image/insta-1.jpg" />
          </image>
       </ImageView>
-      <Button fx:id="creerequipe" layoutX="399.0" layoutY="536.0" mnemonicParsing="false" onAction="#CreerEquipe" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: c24400;" text="Créer votre équipe">
+      <Button fx:id="creerequipe" layoutX="399.0" layoutY="536.0" mnemonicParsing="false" onAction="#CreerEquipe" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: c24400;" text="Créer votre équipe" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="desactivercompte" layoutX="399.0" layoutY="596.0" mnemonicParsing="false" onAction="#desactivervotrecompte" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: c24400;" text="Désactiver Votre Compte">
+      <Button fx:id="desactivercompte" layoutX="399.0" layoutY="596.0" mnemonicParsing="false" onAction="#desactivervotrecompte" prefHeight="31.0" prefWidth="132.0" style="-fx-background-color: c24400;" text="Désactiver Votre Compte" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
       </Button>
-      <Button fx:id="modifierprofile" layoutX="606.0" layoutY="536.0" mnemonicParsing="false" onAction="#ModifierInfromations" onMouseClicked="#initialize" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Modifier votre profile">
+      <Button fx:id="modifierprofile" layoutX="606.0" layoutY="536.0" mnemonicParsing="false" onAction="#ModifierInfromations" onMouseClicked="#initialize" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Modifier votre profile" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -121,7 +121,7 @@
             <Font name="System Bold Italic" size="31.0" />
          </font>
       </Label>
-      <Button fx:id="LOG_OUT" layoutX="24.0" layoutY="145.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: c24400;" text="LOG_OUT">
+      <Button fx:id="LOG_OUT" layoutX="24.0" layoutY="145.0" mnemonicParsing="false" onAction="#logout" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: c24400;" text="LOG_OUT" textFill="WHITE">
          <font>
             <Font name="System Bold" size="12.0" />
          </font>
@@ -136,7 +136,7 @@
       <Pane fx:id="creercoach" layoutX="577.0" layoutY="580.0" prefHeight="64.0" prefWidth="413.0">
          <children>
       
-                  <Button fx:id="ProfilCoach" layoutX="24.0" layoutY="15.0" mnemonicParsing="false" onAction="#ProfilCoach" onMouseClicked="#initialize" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Crrér mon Profil de Coach">
+                  <Button fx:id="ProfilCoach" layoutX="24.0" layoutY="15.0" mnemonicParsing="false" onAction="#ProfilCoach" onMouseClicked="#initialize" prefHeight="31.0" prefWidth="314.0" style="-fx-background-color: c24400;" text="Crrér mon Profil de Coach" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

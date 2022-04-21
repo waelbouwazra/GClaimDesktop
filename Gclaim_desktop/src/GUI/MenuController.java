@@ -82,8 +82,17 @@ public class MenuController implements Initializable {
         try {
             pane = FXMLLoader.load(getClass().getResource("Profil/listrdv.fxml"));
             mainPane.getChildren().setAll(pane);
-            //defaultStateButtons();
-            gestionUserButton.setTextFill(Color.WHITE);
+              gestionPanierButton.setTextFill(Color.BLACK);
+        
+            gestionCoachButton.setTextFill(Color.WHITE);
+
+              gestionCateg.setTextFill(Color.BLACK);
+              gestionTournoiButton.setTextFill(Color.BLACK);
+              gestionArticlesButton.setTextFill(Color.BLACK);
+              
+              gestionCoachButton1.setTextFill(Color.BLACK);
+              gestionProduitButton.setTextFill(Color.BLACK);
+            gestionUserButton.setTextFill(Color.BLACK);
             //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
         } catch (IOException ex) {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
@@ -96,9 +105,15 @@ public class MenuController implements Initializable {
         try {
             pane = FXMLLoader.load(getClass().getResource("Produit/MenuProduit.fxml"));
             mainPane.getChildren().setAll(pane);
-            //defaultStateButtons();
-//            btnDisplayProducts.setTextFill(Color.WHITE);
-            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+             gestionPanierButton.setTextFill(Color.BLACK);
+              gestionUserButton.setTextFill(Color.BLACK);
+           
+              gestionCateg.setTextFill(Color.BLACK);
+              gestionTournoiButton.setTextFill(Color.BLACK);
+              gestionArticlesButton.setTextFill(Color.BLACK);
+              gestionCoachButton.setTextFill(Color.BLACK);
+              gestionCoachButton1.setTextFill(Color.BLACK);
+              gestionProduitButton.setTextFill(Color.WHITE);
         } catch (IOException ex) {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -110,7 +125,14 @@ public class MenuController implements Initializable {
             pane = FXMLLoader.load(getClass().getResource("login/menuuser.fxml"));
             mainPane.getChildren().setAll(pane);
             //defaultStateButtons();
-            gestionUserButton.setTextFill(Color.WHITE);
+             gestionPanierButton.setTextFill(Color.BLACK);
+              gestionUserButton.setTextFill(Color.WHITE);
+              gestionCateg.setTextFill(Color.BLACK);
+              gestionTournoiButton.setTextFill(Color.BLACK);
+              gestionArticlesButton.setTextFill(Color.BLACK);
+              gestionCoachButton.setTextFill(Color.BLACK);
+              gestionCoachButton1.setTextFill(Color.BLACK);
+              gestionProduitButton.setTextFill(Color.BLACK);
             //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
         } catch (IOException ex) {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
@@ -135,7 +157,15 @@ public class MenuController implements Initializable {
         try {
             pane = FXMLLoader.load(getClass().getResource("Panier/MenuPanier.fxml"));
             mainPane.getChildren().setAll(pane);
-            
+              gestionPanierButton.setTextFill(Color.WHITE);
+              gestionUserButton.setTextFill(Color.BLACK);
+              gestionArticlesButton.setTextFill(Color.BLACK);
+              gestionCateg.setTextFill(Color.BLACK);
+              gestionTournoiButton.setTextFill(Color.BLACK);
+       
+              gestionCoachButton.setTextFill(Color.BLACK);
+               gestionProduitButton.setTextFill(Color.BLACK);
+              gestionCoachButton1.setTextFill(Color.BLACK);
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
@@ -148,6 +178,15 @@ public class MenuController implements Initializable {
         try {
             pane = FXMLLoader.load(getClass().getResource("Produit/MenuCategorie.fxml"));
             mainPane.getChildren().setAll(pane);
+            gestionPanierButton.setTextFill(Color.BLACK);
+              gestionUserButton.setTextFill(Color.BLACK);
+           
+              gestionCateg.setTextFill(Color.BLACK);
+              gestionTournoiButton.setTextFill(Color.BLACK);
+              gestionArticlesButton.setTextFill(Color.BLACK);
+              gestionCoachButton.setTextFill(Color.BLACK);
+              gestionCoachButton1.setTextFill(Color.WHITE);
+              gestionProduitButton.setTextFill(Color.BLACK);
             
         } catch (IOException ex) {
             
@@ -160,9 +199,15 @@ public class MenuController implements Initializable {
         try {
             pane = FXMLLoader.load(getClass().getResource("Article/ArticleMenu.fxml"));
             mainPane.getChildren().setAll(pane);
-            //defaultStateButtons();
-//            btnDisplayProducts.setTextFill(Color.WHITE);
-            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+            gestionPanierButton.setTextFill(Color.BLACK);
+              gestionUserButton.setTextFill(Color.BLACK);
+           
+              gestionCateg.setTextFill(Color.BLACK);
+              gestionTournoiButton.setTextFill(Color.BLACK);
+              gestionArticlesButton.setTextFill(Color.WHITE);
+              gestionCoachButton.setTextFill(Color.BLACK);
+              gestionCoachButton1.setTextFill(Color.BLACK);
+              gestionProduitButton.setTextFill(Color.BLACK);
         } catch (IOException ex) {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -175,9 +220,15 @@ public class MenuController implements Initializable {
         try {
             pane = FXMLLoader.load(getClass().getResource("Article/AddCat.fxml"));
             mainPane.getChildren().setAll(pane);
-            //defaultStateButtons();
-//            btnDisplayProducts.setTextFill(Color.WHITE);
-            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+           gestionPanierButton.setTextFill(Color.BLACK);
+              gestionUserButton.setTextFill(Color.BLACK);
+           
+              gestionCateg.setTextFill(Color.WHITE);
+              gestionTournoiButton.setTextFill(Color.BLACK);
+              gestionArticlesButton.setTextFill(Color.BLACK);
+              gestionCoachButton.setTextFill(Color.BLACK);
+              gestionCoachButton1.setTextFill(Color.BLACK);
+              gestionProduitButton.setTextFill(Color.BLACK);
         } catch (IOException ex) {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex.getMessage());

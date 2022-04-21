@@ -21,38 +21,38 @@
                   <Image url="@src_image/Logo.png" />
                </image>
             </ImageView>
-            <Button fx:id="gestionUserButton" layoutX="24.0" layoutY="180.0" mnemonicParsing="false" onAction="#showusers" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #c24400;" text="Gestion des Utilisateurs" textFill="WHITE">
+            <Button fx:id="gestionUserButton" layoutX="24.0" layoutY="180.0" mnemonicParsing="false" onAction="#showusers" opacity="0.99" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #c24400;" text="Gestion des Utilisateurs" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button fx:id="gestionCoachButton" layoutX="24.0" layoutY="239.0" mnemonicParsing="false" onAction="#gestionCoach" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Rdvs" textFill="#0b0b0b">
+            <Button fx:id="gestionCoachButton" layoutX="24.0" layoutY="233.0" mnemonicParsing="false" onAction="#gestionCoach" opacity="0.99" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: c24400;" text="Gestion des Rdvs" textFill="#0b0b0b">
 
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Button>
-            <Button fx:id="gestionProduitButton" layoutX="24.0" layoutY="289.0" mnemonicParsing="false" onAction="#showProductsMenu" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Produits" textFill="#0b0b0b">
+            <Button fx:id="gestionProduitButton" layoutX="24.0" layoutY="286.0" mnemonicParsing="false" onAction="#showProductsMenu" opacity="0.99" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: c24400;" text="Gestion des Produits" textFill="#0b0b0b">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Button>
-            <Button fx:id="gestionPanierButton" layoutX="24.0" layoutY="341.0" mnemonicParsing="false" onAction="#showPanierMenu" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Paniers" textFill="#0b0b0b">
+            <Button fx:id="gestionPanierButton" layoutX="24.0" layoutY="339.0" mnemonicParsing="false" onAction="#showPanierMenu" opacity="0.99" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: c24400;" text="Gestion des Paniers" textFill="#0b0b0b">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Button>
-            <Button fx:id="gestionTournoiButton" layoutX="24.0" layoutY="395.0" mnemonicParsing="false" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Tournois" textFill="#0b0b0b">
+            <Button fx:id="gestionTournoiButton" layoutX="24.0" layoutY="392.0" mnemonicParsing="false" opacity="0.99" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: c24400;" text="Gestion des Tournois" textFill="#0b0b0b">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Button>
             <Button fx:id="logoutButton" layoutX="25.0" layoutY="696.0" mnemonicParsing="false" onAction="#logout" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #c24400;" text="Logout" textFill="WHITE" />
-            <Button fx:id="gestionArticlesButton" layoutX="24.0" layoutY="451.0" mnemonicParsing="false" onAction="#ShowArticleMenu" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Articles" textFill="#0b0b0b">
+            <Button fx:id="gestionArticlesButton" layoutX="25.0" layoutY="445.0" mnemonicParsing="false" onAction="#ShowArticleMenu" opacity="0.99" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: c24400;" text="Gestion des Articles" textFill="#0b0b0b">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Button>
-            <Button fx:id="gestionCoachButton1" layoutX="22.0" layoutY="499.0" mnemonicParsing="false" onAction="#showCategorieMenu" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Categories de Produit" textFill="#0b0b0b">
+            <Button fx:id="gestionCoachButton1" layoutX="26.0" layoutY="498.0" mnemonicParsing="false" onAction="#showCategorieMenu" opacity="0.99" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: c24400;" text="Gestion des Categories de Produit" textFill="#0b0b0b">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="gestionCateg" layoutX="25.0" layoutY="547.0" mnemonicParsing="false" onAction="#showCatArticle" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des categories des articles" textFill="#0b0b0b">
+            <Button fx:id="gestionCateg" layoutX="26.0" layoutY="551.0" mnemonicParsing="false" onAction="#showCatArticle" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: c24400;" text="Gestion des categories des articles" textFill="#0b0b0b">
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font>
