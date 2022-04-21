@@ -6,6 +6,7 @@
 package GUI.Produit;
 
 import Entities.Equipe;
+import Entities.Panier;
 import Entities.Utilisateur;
 import Entities.Produit;
 import Front.MainWindowController;
@@ -16,6 +17,7 @@ import Tools.Constants;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -51,6 +53,8 @@ public class ShowAllProdController implements Initializable {
     private VBox mainVBox;
     ProduitService ps=new ProduitService();
     private ServiceUser US;
+    Panier pan = new Panier().getInstance();
+    private static HashMap< Produit,Integer> panier = new HashMap< Produit,Integer>();
     /**
      * Initializes the controller class.
      */
@@ -90,6 +94,8 @@ public Parent makeProdModel( Produit abo )  {
              ((Button) innerContainer.lookup("#editButton")).setOnAction((event) -> modifierProd(abo));
              ((Button) innerContainer.lookup("#deleteButton")).setOnAction((event) -> supprimerProd(abo));
              
+             ((Button) innerContainer.lookup("#btnajoutpanier")).setOnAction((event) -> addToCartProd(abo));
+             
               
            
             
@@ -103,6 +109,12 @@ public Parent makeProdModel( Produit abo )  {
         currentProd = abo;
        // rs.updateEquipe(abo);
         MainWindowController.getInstance().loadInterface(Constants.FXML_UPDATE_PRODUIT);
+    }
+    private void addToCartProd(Produit abo) {
+        currentProd = abo;
+       // rs.updateEquipe(abo);
+        //MainWindowController.getInstance().loadInterface(Constants.FXML_UPDATE_PRODUIT);
+        pan.getInstance().getPanier().putIfAbsent(abo,1);
     }
 
     private void supprimerProd(Produit abo) {
