@@ -5,22 +5,35 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Produit.ShowProduitController">
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="582.0" prefWidth="849.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Produit.ShowProduitController">
     <stylesheets>
         <URL value="@showpanier.css" />
     </stylesheets>
    <children>
-      <ListView fx:id="txtListProd" layoutX="11.0" layoutY="43.0" prefHeight="302.0" prefWidth="577.0" />
-      <Label layoutX="205.0" layoutY="14.0" text="Affichage Panier">
+      <ListView fx:id="txtListProd" layoutX="14.0" layoutY="104.0" onMouseClicked="#ProduitSelect" prefHeight="302.0" prefWidth="548.0" />
+      <Label layoutX="365.0" layoutY="14.0" text="Affichage Produit">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font></Label>
-      <Button fx:id="btnRetour" layoutX="505.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadMenu" text="retour" />
-      <Button fx:id="btnsupp" layoutX="40.0" layoutY="361.0" mnemonicParsing="false" onAction="#DeleteProduct" text="supprimer" />
-      <ChoiceBox fx:id="suppchoicebox" layoutX="130.0" layoutY="361.0" prefWidth="150.0" />
+      <Button fx:id="btnRetour" layoutX="761.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadMenu" text="retour" />
+      <Button fx:id="btnsupp" layoutX="611.0" layoutY="291.0" mnemonicParsing="false" onAction="#DeleteProduct" text="supprimer" />
+      <TextField fx:id="nomp" layoutX="633.0" layoutY="58.0" />
+      <TextField fx:id="descp" layoutX="633.0" layoutY="100.0" />
+      <TextField fx:id="prixp" layoutX="633.0" layoutY="144.0" />
+      <TextField fx:id="qtep" layoutX="633.0" layoutY="193.0" />
+      <Button fx:id="btnmodif" layoutX="722.0" layoutY="291.0" mnemonicParsing="false" onAction="#updateProduit" text="modifier" />
+      <Label layoutX="566.0" layoutY="62.0" text="nom" />
+      <Label layoutX="566.0" layoutY="104.0" text="desc" />
+      <Label layoutX="566.0" layoutY="148.0" text="prix" />
+      <Label layoutX="566.0" layoutY="197.0" text="quantité" />
+      <ChoiceBox fx:id="EtatBox" layoutX="632.0" layoutY="243.0" prefWidth="150.0" />
+      <Button fx:id="btnplusvu" layoutX="38.0" layoutY="71.0" mnemonicParsing="false" text="plus vu" />
+      <Text fx:id="nbr" layoutX="444.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="95.73675537109375" />
     
    </children>
 </AnchorPane>

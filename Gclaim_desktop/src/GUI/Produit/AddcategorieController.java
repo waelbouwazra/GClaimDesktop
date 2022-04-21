@@ -17,10 +17,14 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -28,7 +32,6 @@ import javafx.scene.paint.Color;
  * @author azizk
  */
 public class AddcategorieController implements Initializable {
-    @FXML
  private CategorieService cs = new CategorieService();
     @FXML
     private AnchorPane mainPain;
@@ -41,8 +44,12 @@ public class AddcategorieController implements Initializable {
     @FXML
     private Button btnretour;
     
-    @FXML
 private AnchorPane mainPane;
+    @FXML
+    private Text alerteajout;
+    @FXML
+    private Text alerteajout1;
+    
     /**
      * Initializes the controller class.
      */
@@ -58,21 +65,31 @@ private AnchorPane mainPane;
 @FXML
 private void addCateg(ActionEvent event) {
         
-       
+       Boolean verif = true;
        CategorieService cs = new CategorieService();
        Categorie c = new Categorie();
        c.setNom_categorie( nomc.getText());
       
        c.setType_categorie(typec.getText());
+      if (nomc.getText().equals("")) {
+            alerteajout.setText("Remplir le champs !!");
+            verif = false;
+        }else if (typec.getText().equals("")) {
+            alerteajout1.setText("Remplir le champs !!");
+            verif = false;
+        }
       
+      else {
+          
+          cs.AddCategoriePst(c);
+          alerteajout1.setText("Ajout avec succes!");
+          alerteajout.setText("");
+      }
        
        
-    
-    
-     
        
-       cs.AddCategoriePst(c);
-    }    
+    }
+
     
 @FXML
     private void loadMenu(ActionEvent event) {

@@ -14,9 +14,12 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import java.util.TreeSet;
 
 /**
  *
@@ -74,6 +77,7 @@ public class CategorieService {
               pst.setString(2, c.getType_categorie());
               
               pst.executeUpdate();
+              System.out.println(c);
               System.out.println("categorie modifié");
             
         } catch (SQLException ex) {
@@ -107,18 +111,24 @@ public class CategorieService {
         return categorie;
     }
         
- public void Rechercher( List<Categorie> categorie, String nom_categorie){
+ public List<Categorie> Rechercher( List<Categorie> categorie, String nom_categorie){
        
+        return
+         categorie.stream().filter(cc->cc.getNom_categorie().equals(nom_categorie)).collect(Collectors.toList());
         
-         categorie.stream().filter(cc->cc.getNom_categorie().equals(nom_categorie)).forEach((t) -> {System.out.println(t);
-        });
+         
     }
 
- public void TriCategorie(List<Categorie> categorie){
-        
-        categorie.stream().sorted((o1, o2)->o1.getNom_categorie().
-                                                                compareTo(o2.getNom_categorie())).
-                                                                collect(Collectors.toList()).forEach(t-> System.out.println(t));
+ public Set<Categorie> TriCategorie(List<Categorie> categorie){
+         Set<Categorie> trica = categorie.stream().collect(Collectors.toCollection(()->new TreeSet<Categorie>((e1,e2)->e1.getNom_categorie().compareTo(e2.getNom_categorie()))));
+         
+         
+      // Set<Categorie> trica categorie.stream().collect(Collectors.toCollection()) -> new TreeSet<Categorie>((o1,o2)->o1.getNom_categorie().compareTo(o2.getNom_categorie()));
+               
+             //  sorted((o1, o2)->o1.getNom_categorie().
+                                                            //    compareTo(o2.getNom_categorie())).
+                                                            //    collect(Collectors.toList());
+       return trica;
 
     }
  public List<Integer> getIdcategorie() {
@@ -139,4 +149,25 @@ public class CategorieService {
 
         return categorie;
     }
+ 
+ public int getIdCateg(String nom , String type){
+      String req = "SELECT * FROM categorie WHERE nom_categorie=? and type_categorie=? ";
+Categorie a =new Categorie();
+        try {
+            pst = cnx.prepareStatement(req);
+            pst.setString(1, nom);
+            pst.setString(2, type);
+
+            ResultSet as = pst.executeQuery();
+            if (as.next()) {
+             return as.getInt(1);
+         
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return -1;
+    
+}
 }

@@ -31,6 +31,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Text;
 
 /**
  * FXML Controller class
@@ -70,6 +71,14 @@ public class AddProductController implements Initializable {
     String url_image;
     @FXML
     private Button btnImage;
+    @FXML
+    private Text alertnom;
+    @FXML
+    private Text alertdesc;
+    @FXML
+    private Text alertprix;
+    @FXML
+    private Text alertqte;
     /**
      * Initializes the controller class.
      */
@@ -92,7 +101,7 @@ public class AddProductController implements Initializable {
 
     @FXML
     private void addProduct(ActionEvent event) {
-        
+       Boolean verif = true;
        ProduitService ps = new ProduitService();
        Produit p = new Produit();
        p.setDescription( txtdesc.getText());
@@ -103,21 +112,30 @@ public class AddProductController implements Initializable {
        p.setDateAjout_produit(Date.valueOf(LocalDate.now()));
        Categorie c = new Categorie(comboBoxID.getValue());
        p.setCategorie(c);
-         Image i=new Image();
-         //i.setUrl_image(url_image);
-         
-         
-         
-         p.setImage(i);
-        
-       
-       
-    
-    ObservableList<Integer> langs = FXCollections.observableArrayList(cs.getIdcategorie() );
+           Image i = new Image(url_image);
+            p.setImage(i);
+           
+       if (txtnom.getText().equals("")) {
+            alertnom.setText("Remplir le champs !!");
+            verif = false;
+        } else if (txtdesc.getText().equals("")) {
+            alertdesc.setText("Remplir le champs !!");
+            verif = false;
+        }
+      
+      else {
+          
+         ObservableList<Integer> langs = FXCollections.observableArrayList(cs.getIdcategorie() );
         comboBoxID.setItems(langs);
      
        
-       ps.AddProduitPst(p,i);
+       ps.AddProduitPst(p, i);
+          //alerteajout1.setText("Ajout avec succes!");
+          alertnom.setText("");
+          alertdesc.setText("");
+          alertprix.setText("");
+          alertqte.setText("Ajout avec succes!");
+      }
     }
 
     @FXML

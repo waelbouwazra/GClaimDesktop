@@ -135,7 +135,7 @@ public class ProduitService {
                  p.setNbr_vu(rs.getInt("nbr_vu"));
                  p.setCategorie(new Categorie (rs.getInt("categorie")));
                  produit.add(p);
-                 
+                
         }
         } catch (Exception ex) {
             System.out.println(ex.getMessage());
@@ -206,6 +206,8 @@ public void plusvu( List<Produit> produit){
          System.out.println(nbr);
       
         }
+    
+    
         public List<Integer> getIdproduit() {
         List<Integer> produit = new ArrayList<>();
         String query = "select * from produit";
@@ -224,7 +226,8 @@ public void plusvu( List<Produit> produit){
 
         return produit;
     }
-   public Produit getProduitByID(int id){
+        
+         public Produit getProduitByID(int id){
         Produit produit = new Produit();
         String sql="select * from produit where id_produit ="+id+"";
         Statement ste;
@@ -251,5 +254,29 @@ public void plusvu( List<Produit> produit){
         
         return produit;
     } 
- 
+         
+         public int getIdPro(String nom , String description, Double prix, int qte){
+      String req = "SELECT * FROM produit WHERE nom_produit=? and description=? and prix_produit=? and Qte_produit=? ";
+Produit a =new Produit();
+        try {
+            pst = cnx.prepareStatement(req);
+            pst.setString(1, nom);
+            pst.setString(2, description);
+            pst.setDouble(3, prix);
+            pst.setInt(4, qte);
+            
+
+            ResultSet as = pst.executeQuery();
+            if (as.next()) {
+             return as.getInt(1);
+         
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return -1;
+    
+}
+   
 }

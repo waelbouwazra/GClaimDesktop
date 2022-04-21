@@ -85,14 +85,7 @@ public class MenuProduitController implements Initializable {
         btnajp.setTextFill(Color.web("#5b4ebd"));
         btnajp.setStyle("-fx-background-color :#ffffff");
 
-        btnrect.setTextFill(Color.web("#5b4ebd"));
-        btnrect.setStyle("-fx-background-color :#ffffff");
-
-        btnstat.setTextFill(Color.web("#5b4ebd"));
-        btnstat.setStyle("-fx-background-color :#ffffff");
-
-        btntrtr.setTextFill(Color.web("#5b4ebd"));
-        btntrtr.setStyle("-fx-background-color :#ffffff");
+       
 
     }
 
