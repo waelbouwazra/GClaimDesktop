@@ -114,21 +114,15 @@ public class MenuController implements Initializable {
     }
     
    @FXML
-    private void logout(ActionEvent event) {
+    private void logout(ActionEvent event) throws IOException {
         US.logOut();
-        AnchorPane pane;
-        mainPane.getChildren().clear();
-        try {
-            
-            pane = FXMLLoader.load(getClass().getResource("../GUI/login/Login.fxml"));
-          
-            mainPane.getChildren().setAll(pane);
-            //defaultStateButtons();
-            logoutButton.setTextFill(Color.WHITE);
-            logoutButton.setStyle("-fx-background-color :#5b4ebd");
-        } catch (IOException ex) {
-            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("../GUI/login/Login.fxml"));
+            Parent root = loader.load();
+           
+            logoutButton.getScene().setRoot(root);
+       
+      
 
     }
     @FXML
