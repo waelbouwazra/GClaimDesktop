@@ -107,7 +107,7 @@ public class CommandeService {
         }
         public List<Commande> triCommande(){
              List<Commande> l = this.ShowCommande();
-              l.stream().sorted((o1, o2)->o2.getTotal()-o1.getTotal()).
+              l=l.stream().sorted((o1, o2)->o2.getTotal()-o1.getTotal()).
              collect(Collectors.toList());
         
             return l;

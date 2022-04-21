@@ -43,6 +43,8 @@ public class showCommandesController implements Initializable {
     @FXML
     private Button Details;
       public static Commande comm;
+    @FXML
+    private Button tri;
     /**
      * Initializes the controller class.
      */
@@ -96,5 +98,19 @@ public class showCommandesController implements Initializable {
             } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+    }
+
+    @FXML
+    private void triAction(ActionEvent event) {
+          ObservableList<Commande> items =FXCollections.observableArrayList();
+          
+        List<Commande> listCommande = commandeService.triCommande();
+        System.out.println(items);
+        for(Commande c : listCommande) {
+            items.add(c);
+        }
+       
+    txtListCommandes.setItems(items);
+        
     }
 }

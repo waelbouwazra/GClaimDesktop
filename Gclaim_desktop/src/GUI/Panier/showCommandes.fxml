@@ -16,7 +16,7 @@
             
          </stylesheets>
          <children>
-            <ListView fx:id="txtListCommandes" layoutX="64.0" layoutY="89.0" prefHeight="474.0" prefWidth="617.0" />
+            <ListView fx:id="txtListCommandes" layoutX="64.0" layoutY="143.0" prefHeight="420.0" prefWidth="617.0" />
             <Button fx:id="btnChangeStatus" layoutX="303.0" layoutY="582.0" mnemonicParsing="false" onAction="#changeStatus" prefHeight="42.0" prefWidth="181.0" style="-fx-background-color: #c24400;" text="Change Status" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="14.0" />
@@ -34,6 +34,11 @@
                <font>
                   <Font name="System Bold" size="14.0" />
                </font></Button>
+            <Button fx:id="tri" layoutX="64.0" layoutY="88.0" mnemonicParsing="false" onAction="#triAction" prefHeight="25.0" prefWidth="84.0" style="-fx-background-color: #c24400;" text="Tri" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
    </children>
