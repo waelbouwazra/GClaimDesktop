@@ -36,7 +36,7 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Button fx:id="confirmCart" layoutX="327.0" layoutY="507.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#confirmCart" prefHeight="27.0" prefWidth="153.0" style="-fx-background-color: c24400;" styleClass="light-button" text="Confirm Cart" />
-      <Button fx:id="deleteCart" layoutX="510.0" layoutY="503.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteCart" prefHeight="27.0" prefWidth="153.0" style="-fx-background-color: c24400;" styleClass="light-button" text="Delete Cart" />
+      <Button fx:id="confirmCart" layoutX="327.0" layoutY="507.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#confirmCart" prefHeight="27.0" prefWidth="153.0" style="-fx-background-color: c24400;" styleClass="light-button" text="Confirm Cart" textFill="WHITE" />
+      <Button fx:id="deleteCart" layoutX="510.0" layoutY="503.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#deleteCart" prefHeight="27.0" prefWidth="153.0" style="-fx-background-color: c24400;" styleClass="light-button" text="Delete Cart" textFill="WHITE" />
    </children>
 </AnchorPane>

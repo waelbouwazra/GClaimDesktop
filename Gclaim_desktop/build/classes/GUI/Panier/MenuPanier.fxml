@@ -10,15 +10,31 @@
    <children>
       <AnchorPane id="AnchorPane" fx:id="mainPane" layoutX="10.0" layoutY="10.0" prefHeight="767.0" prefWidth="822.0">
          <children>
-            <Label alignment="CENTER" layoutX="199.0" layoutY="80.0" prefHeight="69.0" prefWidth="441.0" text="MENU Panier">
+            <Label alignment="CENTER" layoutX="199.0" layoutY="80.0" prefHeight="69.0" prefWidth="441.0" text="MENU PANIER">
                <font>
                   <Font name="Corbel Bold Italic" size="31.0" />
                </font>
             </Label>
-            <Button fx:id="btnPanier" layoutX="261.0" layoutY="171.0" mnemonicParsing="false" onAction="#showPanier" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #c24400;" text="Panier Back" AnchorPane.leftAnchor="261.0" />
-            <Button fx:id="btnCommande" layoutX="261.0" layoutY="234.0" mnemonicParsing="false" onAction="#showcommande" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #c24400;" text="Afficher Les Commandes" />
-            <Button fx:id="btnLigneCommande" layoutX="261.0" layoutY="297.0" mnemonicParsing="false" onAction="#showLignesCommandes" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #c24400;" text="Afficher Lignes Commandes" />
-            <Button fx:id="btnPanierFront" layoutX="261.0" layoutY="358.0" mnemonicParsing="false" onAction="#affPanier" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #c24400;" text="Panier Front" />
+            <Button fx:id="btnPanier" layoutX="261.0" layoutY="171.0" mnemonicParsing="false" onAction="#showPanier" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #c24400;" text="Panier Front" textFill="WHITE" AnchorPane.leftAnchor="261.0">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Button fx:id="btnCommande" layoutX="261.0" layoutY="234.0" mnemonicParsing="false" onAction="#showcommande" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #c24400;" text="Afficher Les Commandes" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Button fx:id="btnLigneCommande" layoutX="261.0" layoutY="297.0" mnemonicParsing="false" onAction="#showLignesCommandes" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #c24400;" text="Afficher Lignes Commandes" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Button fx:id="btnPanierFront" layoutX="261.0" layoutY="358.0" mnemonicParsing="false" onAction="#affPanier" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #c24400;" text="Panier Back" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Button fx:id="btnStat" layoutX="261.0" layoutY="424.0" mnemonicParsing="false" onAction="#affStat" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #c24400;" text="Statistique" textAlignment="CENTER" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
          </children>
       </AnchorPane>
    </children>

@@ -17,14 +17,23 @@
          </stylesheets>
          <children>
             <ListView fx:id="txtListCommandes" layoutX="64.0" layoutY="89.0" prefHeight="474.0" prefWidth="617.0" />
-            <Button fx:id="btnChangeStatus" layoutX="303.0" layoutY="582.0" mnemonicParsing="false" onAction="#changeStatus" prefHeight="42.0" prefWidth="181.0" style="-fx-background-color: #c24400;" text="Change Status" />
-            <Button fx:id="btngetback" layoutX="64.0" layoutY="582.0" mnemonicParsing="false" onAction="#loadMenu" prefHeight="41.0" prefWidth="164.0" style="-fx-background-color: #c24400;" styleClass="mainFxmlClass" text="RETOUR" />
+            <Button fx:id="btnChangeStatus" layoutX="303.0" layoutY="582.0" mnemonicParsing="false" onAction="#changeStatus" prefHeight="42.0" prefWidth="181.0" style="-fx-background-color: #c24400;" text="Change Status" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
+            <Button fx:id="btngetback" layoutX="64.0" layoutY="582.0" mnemonicParsing="false" onAction="#loadMenu" prefHeight="41.0" prefWidth="164.0" style="-fx-background-color: #c24400;" styleClass="mainFxmlClass" text="RETOUR" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
             <Label layoutX="181.0" layoutY="14.0" prefHeight="65.0" prefWidth="470.0" text="LISTE DES COMMANDES" textFill="#c24400">
                <font>
                   <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <Button fx:id="Details" layoutX="500.0" layoutY="582.0" mnemonicParsing="false" onAction="#details" prefHeight="42.0" prefWidth="181.0" style="-fx-background-color: #c24400;" text="Details" />
+            <Button fx:id="Details" layoutX="500.0" layoutY="582.0" mnemonicParsing="false" onAction="#details" prefHeight="42.0" prefWidth="181.0" style="-fx-background-color: #c24400;" text="Details" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="14.0" />
+               </font></Button>
          </children>
       </AnchorPane>
    </children>

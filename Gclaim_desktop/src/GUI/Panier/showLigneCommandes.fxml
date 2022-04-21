@@ -17,7 +17,10 @@
          </stylesheets>
          <children>
             <ListView fx:id="txtListLigneCommandes" layoutX="64.0" layoutY="89.0" prefHeight="474.0" prefWidth="617.0" />
-            <Button fx:id="btngetback" layoutX="64.0" layoutY="582.0" mnemonicParsing="false" onAction="#loadMenu" prefHeight="41.0" prefWidth="164.0" style="-fx-background-color: #c24400;" styleClass="mainFxmlClass" text="RETOUR" />
+            <Button fx:id="btngetback" layoutX="64.0" layoutY="582.0" mnemonicParsing="false" onAction="#loadMenu" prefHeight="41.0" prefWidth="164.0" style="-fx-background-color: #c24400;" styleClass="mainFxmlClass" text="RETOUR" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="14.0" />
+               </font></Button>
             <Label layoutX="181.0" layoutY="14.0" prefHeight="65.0" prefWidth="470.0" text="LISTE DES LIGNES COMMANDES" textFill="#c24400">
                <font>
                   <Font name="System Bold" size="24.0" />

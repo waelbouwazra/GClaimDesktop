@@ -33,6 +33,8 @@ public class MenuPanierController implements Initializable {
     private Button btnLigneCommande;
     @FXML
     private Button btnPanierFront;
+    @FXML
+    private Button btnStat;
 
     /**
      * Initializes the controller class.
@@ -106,6 +108,20 @@ public class MenuPanierController implements Initializable {
             //defaultStateButtons();
             btnCommande.setTextFill(Color.WHITE);
             btnCommande.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());    
+        }
+    }
+
+    @FXML
+    private void affStat(ActionEvent event) {
+                       AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("Statistique.fxml"));
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+            btnStat.setTextFill(Color.WHITE);
+            btnStat.setStyle("-fx-background-color :#5b4ebd");
         } catch (IOException ex) {
             System.out.println(ex.getMessage());    
         }
