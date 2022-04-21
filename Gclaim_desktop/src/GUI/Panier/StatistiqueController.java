@@ -16,11 +16,17 @@ import java.util.ArrayList;
 import java.util.IntSummaryStatistics;
 import java.util.List;
 import java.util.ResourceBundle;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.chart.PieChart;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -72,6 +78,8 @@ public class StatistiqueController implements Initializable {
     private Text nomProduit1111;
     @FXML
     private Text txtNb;
+    @FXML
+    private PieChart pieChart;
 
     /**
      * Initializes the controller class.
@@ -103,11 +111,32 @@ public class StatistiqueController implements Initializable {
         ProduitService ps = new ProduitService();
         LigneCommandeService lcs = new LigneCommandeService();
         List<Produit> lProduit = new ArrayList<>();
+        ObservableList<PieChart.Data> pieChartData =FXCollections.observableArrayList();
+        PieChart pie = new PieChart();
         lProduit=ps.ShowProduit();
         for (Produit p :lProduit){
-            System.out.println(p.getNom_produit()+"quantite="+lcs.getSommeQuantite(p.getId_produit()));
             
+            System.out.println(p.getNom_produit()+"quantite="+lcs.getSommeQuantite(p.getId_produit()));
+            PieChart.Data slice = new PieChart.Data(p.getNom_produit(), lcs.getSommeQuantite(p.getId_produit()));
+            pieChartData.add(slice);
         }
+
+       pieChart.setData(pieChartData);
+       final Label caption = new Label("");
+        caption.setTextFill(Color.WHITE);
+        caption.setStyle("-fx-font: 12 arial;");
+      for (final PieChart.Data data : pieChart.getData()) {
+            data.getNode().addEventHandler(MouseEvent.MOUSE_PRESSED, new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent e) {
+                    caption.setTranslateX(e.getSceneX());
+                    caption.setTranslateY(e.getSceneY());
+
+                    caption.setText(String.valueOf(data.getPieValue()));
+                }
+            });
+        }
+      // pieChart.setLegendSide(Side.LEFT);
     }    
 
     @FXML

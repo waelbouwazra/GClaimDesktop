@@ -6,6 +6,7 @@
 package Services;
 
 import Entities.*;
+import static Services.ServiceUser.currentUser;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.HashMap;
@@ -52,7 +53,7 @@ public class PanierService {
         CommandeService commandeService = new CommandeService();
         LigneCommandeService ligneCommandeService = new LigneCommandeService();
         Commande c = new Commande();
-        Utilisateur u = new Utilisateur(5);
+        Utilisateur u = currentUser;
         int somme = 0;
         int commandeID;
         for (Produit i : panier.getPanier().keySet()) {
