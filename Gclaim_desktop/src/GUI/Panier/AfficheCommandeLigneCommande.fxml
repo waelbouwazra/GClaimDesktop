@@ -11,7 +11,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="mainPane" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="800.0" prefHeight="548.0" prefWidth="832.0" style="-fx-background-color: #EEEEEE;" stylesheets="@../../Tools/MainStyle.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Panier.AfficheCommandeLigneCommandeController">
+<AnchorPane id="AnchorPane" fx:id="mainPane" maxHeight="1.7976931348623157E308" minHeight="-Infinity" minWidth="738.0" prefHeight="676.0" prefWidth="738.0" style="-fx-background-color: #EEEEEE;" stylesheets="@../../Tools/MainStyle.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Panier.AfficheCommandeLigneCommandeController">
    <children>
       <AnchorPane style="-fx-background-color: #D0BE25;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -87,6 +87,6 @@
             </AnchorPane>
          </content>
       </ScrollPane>
-      <Button fx:id="retour" layoutX="314.0" layoutY="507.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#retourAction" prefHeight="27.0" prefWidth="153.0" style="-fx-background-color: c24400;" styleClass="light-button" text="Retour" />
+      <Button fx:id="retour" layoutX="316.0" layoutY="636.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#retourAction" prefHeight="27.0" prefWidth="153.0" style="-fx-background-color: c24400;" styleClass="light-button" text="Retour" />
       </children>
 </AnchorPane>

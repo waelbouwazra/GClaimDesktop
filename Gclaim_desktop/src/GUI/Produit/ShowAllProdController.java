@@ -114,7 +114,19 @@ public Parent makeProdModel( Produit abo )  {
         currentProd = abo;
        // rs.updateEquipe(abo);
         //MainWindowController.getInstance().loadInterface(Constants.FXML_UPDATE_PRODUIT);
-        pan.getInstance().getPanier().putIfAbsent(abo,1);
+        
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmer votre demande");
+        alert.setHeaderText(null);
+        alert.setContentText("Etes vous sûr de vouloir ajouter ce produit au panier ?");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+           pan.getInstance().getPanier().putIfAbsent(abo,1);
+                MainWindowController.getInstance().loadInterface(Constants.FXML_DISPLAY_PRODUIT);
+            
+            }
+        
     }
 
     private void supprimerProd(Produit abo) {
