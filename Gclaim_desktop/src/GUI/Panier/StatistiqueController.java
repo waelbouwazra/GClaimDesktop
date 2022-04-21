@@ -6,7 +6,10 @@
 package GUI.Panier;
 
 import Entities.Commande;
+import Entities.Produit;
 import Services.CommandeService;
+import Services.LigneCommandeService;
+import Services.ProduitService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -97,6 +100,14 @@ public class StatistiqueController implements Initializable {
         txtMoy.setText(iss.getAverage()+"");
         txtCA.setText(iss.getSum()+"");
         txtNb.setText(iss.getCount()+"");
+        ProduitService ps = new ProduitService();
+        LigneCommandeService lcs = new LigneCommandeService();
+        List<Produit> lProduit = new ArrayList<>();
+        lProduit=ps.ShowProduit();
+        for (Produit p :lProduit){
+            System.out.println(p.getNom_produit()+"quantite="+lcs.getSommeQuantite(p.getId_produit()));
+            
+        }
     }    
 
     @FXML

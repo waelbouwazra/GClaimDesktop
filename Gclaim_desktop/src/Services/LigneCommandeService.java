@@ -121,7 +121,28 @@ public class LigneCommandeService {
         
         return LigneCommandes;
     }
+        public int getSommeQuantite(int idProduit){
+        List<LigneCommande> LigneCommandes = new ArrayList<>();
+        String sql="select SUM(quantite) sum from ligne_commande where produit="+idProduit;
+        Statement ste;
+       int x=0;
+        try {
+                 ProduitService ps = new ProduitService();
+                 CommandeService cs = new CommandeService();
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+             while(rs.next()){
+
+                x =rs.getInt("sum");
+                 
+                 
+        }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
         
+        return x;
+    }
         
     
 }
