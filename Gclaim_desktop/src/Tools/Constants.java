@@ -10,7 +10,9 @@ public class Constants {
     public static final String FXML_DISPLAY_PROFILE = "../GUI/login/modifierprofil.fxml";
     public static final String FXML_DISPLAY_PROFIL = "../GUI/Profil/ShowAllProfil.fxml";
     public static final String FXML_DISPLAY_PANIER = "../GUI/Panier/ShowPanier.fxml";
-
+public static final String FXML_DISPLAY_PRODUIT = "../GUI/Produit/ShowAllProd.fxml";
+    public static final String FXML_MODEL_PROD = "../Produit/Modelp.fxml";
+    public static final String FXML_UPDATE_PRODUIT = "../GUI/Produit/modifierProduit.fxml"; 
 
     public static final String FXML_MODEL_PANIER = "../panier/ModelPanier.fxml";
     public static final String FXML_MODEL_LIGNECOMMANDE = "../panier/ModelLigneCommande.fxml";

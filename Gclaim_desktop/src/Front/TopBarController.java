@@ -41,12 +41,14 @@ public class TopBarController implements Initializable {
    private ServiceUser US=new ServiceUser();
     @FXML
     private Button panier;
+    @FXML
+    private Button produit;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
         liens = new Button[]{
                 btnAbos,
-                btnRdvs,article,panier
+                btnRdvs,article,panier,produit
         };
 
         mainComponent.setBackground(new Background(new BackgroundFill(COLOR_BLUE, CornerRadii.EMPTY, Insets.EMPTY)));
@@ -63,6 +65,7 @@ public class TopBarController implements Initializable {
                
                  article.setTextFill(Color.WHITE);
               panier.setTextFill(Color.WHITE);
+              produit.setTextFill(Color.WHITE);
 
     }
 
@@ -113,5 +116,12 @@ public class TopBarController implements Initializable {
     @FXML
     private void profile(MouseEvent event) {
          goToLink(Constants.FXML_DISPLAY_PROFILE);
+    }
+
+    @FXML
+    private void produit(ActionEvent event) {
+         goToLink(Constants.FXML_DISPLAY_PRODUIT);
+
+        panier.setTextFill(COLOR_BLUE);
     }
 }

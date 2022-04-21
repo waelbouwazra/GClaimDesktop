@@ -13,8 +13,8 @@
             <Font name="Corbel" size="31.0" />
          </font>
       </Label>
-      <Button fx:id="btnaffr" layoutX="287.0" layoutY="307.0" mnemonicParsing="false" onAction="#showProducts" prefHeight="31.0" prefWidth="250.0" text="Afficher tous les Produits" AnchorPane.leftAnchor="287.0" />
-      <Button fx:id="btnaffp" layoutX="287.0" layoutY="374.0" mnemonicParsing="false" onAction="#btnupp" prefHeight="31.0" prefWidth="250.0" text="Modifier tous les Produits" AnchorPane.leftAnchor="287.0" />
-      <Button fx:id="btnajp" layoutX="287.0" layoutY="248.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="31.0" prefWidth="250.0" text="Ajouter un Produit" AnchorPane.leftAnchor="287.0" />
+      <Button fx:id="btnaffr" layoutX="287.0" layoutY="307.0" mnemonicParsing="false" onAction="#showProducts" prefHeight="31.0" prefWidth="250.0" style="-fx-background-color: c24400;" text="Afficher tous les Produits" AnchorPane.leftAnchor="287.0" />
+      <Button fx:id="btnaffp" layoutX="287.0" layoutY="374.0" mnemonicParsing="false" onAction="#btnupp" prefHeight="31.0" prefWidth="250.0" style="-fx-background-color: c24400;" text="Modifier tous les Produits" AnchorPane.leftAnchor="287.0" />
+      <Button fx:id="btnajp" layoutX="287.0" layoutY="248.0" mnemonicParsing="false" onAction="#addProduct" prefHeight="31.0" prefWidth="250.0" style="-fx-background-color: c24400;" text="Ajouter un Produit" AnchorPane.leftAnchor="287.0" />
    </children>
 </AnchorPane>

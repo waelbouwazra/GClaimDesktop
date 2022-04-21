@@ -47,6 +47,11 @@
                <font>
                   <Font name="System Bold Italic" size="12.0" />
                </font></Button>
+            <Button fx:id="gestionCoachButton1" layoutX="22.0" layoutY="499.0" mnemonicParsing="false" onAction="#showCategorieMenu" prefHeight="48.0" prefWidth="216.0" style="-fx-background-color: #ffffff;" text="Gestion des Categories de Produit" textFill="#0b0b0b">
+               <font>
+                  <Font name="System Bold Italic" size="12.0" />
+               </font>
+            </Button>
          </children>
       </AnchorPane>
       <AnchorPane fx:id="mainPane" layoutX="263.0" prefHeight="767.0" prefWidth="822.0" style="-fx-background-color: #ffffff;" />

@@ -94,7 +94,7 @@ public class ProduitService {
               System.out.println("done");
           } catch (SQLException ex) {
               System.out.println("Probléme");
-              Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);}
+              System.out.println(ex.getMessage());}
           }
         
         public void UpdateProduit(Produit p,int pu)

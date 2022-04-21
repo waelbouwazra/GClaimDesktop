@@ -88,6 +88,13 @@ ResultSet rs= null;
         c = listviewcateg.getSelectionModel().getSelectedItem();
         cs.DeleteCategorie(c.getId_categorie());
         
+         ObservableList<Categorie> items =FXCollections.observableArrayList();
+                List<Categorie> listCateg = cs.ShowCategorie();
+                for(Categorie p : listCateg) {
+                    items.add(p);
+                }
+                listviewcateg.setItems(items);
+
      
     }
 

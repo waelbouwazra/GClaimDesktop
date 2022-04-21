@@ -5,22 +5,35 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="400.0" prefWidth="600.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Produit.ShowProduitController">
+<AnchorPane id="AnchorPane" fx:id="mainPane" prefHeight="582.0" prefWidth="849.0" styleClass="mainFxmlClass" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Produit.ShowProduitController">
     <stylesheets>
         <URL value="@showpanier.css" />
     </stylesheets>
    <children>
-      <ListView fx:id="txtListProd" layoutX="11.0" layoutY="43.0" prefHeight="302.0" prefWidth="577.0" />
-      <Label layoutX="205.0" layoutY="14.0" text="Affichage Panier">
+      <ListView fx:id="txtListProd" layoutX="14.0" layoutY="104.0" onMouseClicked="#ProduitSelect" prefHeight="302.0" prefWidth="810.0" />
+      <Label layoutX="365.0" layoutY="14.0" text="Affichage Produit">
          <font>
             <Font name="Arial Bold" size="24.0" />
          </font></Label>
-      <Button fx:id="btnRetour" layoutX="505.0" layoutY="361.0" mnemonicParsing="false" onAction="#loadMenu" text="retour" />
-      <Button fx:id="btnsupp" layoutX="40.0" layoutY="361.0" mnemonicParsing="false" onAction="#DeleteProduct" text="supprimer" />
-      <ChoiceBox fx:id="suppchoicebox" layoutX="130.0" layoutY="361.0" prefWidth="150.0" />
+      <Button fx:id="btnRetour" layoutX="787.0" layoutY="28.0" mnemonicParsing="false" onAction="#loadMenu" text="X" />
+      <Button fx:id="btnsupp" layoutX="566.0" layoutY="492.0" mnemonicParsing="false" onAction="#DeleteProduct" style="-fx-background-color: c24400;" text="supprimer" />
+      <TextField fx:id="nomp" layoutX="105.0" layoutY="444.0" />
+      <TextField fx:id="descp" layoutX="105.0" layoutY="486.0" />
+      <TextField fx:id="prixp" layoutX="364.0" layoutY="444.0" />
+      <TextField fx:id="qtep" layoutX="364.0" layoutY="493.0" />
+      <Button fx:id="btnmodif" layoutX="677.0" layoutY="492.0" mnemonicParsing="false" onAction="#updateProduit" style="-fx-background-color: c24400;" text="modifier" />
+      <Label layoutX="38.0" layoutY="448.0" text="nom" />
+      <Label layoutX="38.0" layoutY="490.0" text="desc" />
+      <Label layoutX="297.0" layoutY="448.0" text="prix" />
+      <Label layoutX="297.0" layoutY="497.0" text="quantité" />
+      <ChoiceBox fx:id="EtatBox" layoutX="587.0" layoutY="444.0" prefWidth="150.0" />
+      <Button fx:id="btnplusvu" layoutX="38.0" layoutY="71.0" mnemonicParsing="false" style="-fx-background-color: c24400;" text="plus vu" />
+      <Text fx:id="nbr" layoutX="444.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="95.73675537109375" />
     
    </children>
 </AnchorPane>

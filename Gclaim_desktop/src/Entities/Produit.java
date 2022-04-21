@@ -162,6 +162,15 @@ public class Produit {
         this.image = image;
     }
 
+    public Produit(int id_produit, String nom_produit, String description, double prix_produit, int Qte_produit, Categorie categorie) {
+        this.id_produit = id_produit;
+        this.nom_produit = nom_produit;
+        this.description = description;
+        this.prix_produit = prix_produit;
+        this.Qte_produit = Qte_produit;
+        this.categorie = categorie;
+    }
+
     
     
 }

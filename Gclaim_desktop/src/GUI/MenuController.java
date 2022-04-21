@@ -58,6 +58,8 @@ public class MenuController implements Initializable {
     @FXML
     private Button gestionArticlesButton;
      private ServiceUser US;
+    @FXML
+    private Button gestionCoachButton1;
 
     /**
      * Initializes the controller class.
@@ -134,6 +136,19 @@ public class MenuController implements Initializable {
             
         } catch (IOException ex) {
             System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void showCategorieMenu(ActionEvent event) {
+        
+             AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("Produit/MenuCategorie.fxml"));
+            mainPane.getChildren().setAll(pane);
+            
+        } catch (IOException ex) {
+            
         }
     }
 }

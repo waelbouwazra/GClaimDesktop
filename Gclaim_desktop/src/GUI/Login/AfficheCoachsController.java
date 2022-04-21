@@ -7,10 +7,13 @@ package GUI.Login;
 
 import Entities.Coach;
 import Entities.Utilisateur;
+import Front.MainWindowController;
 import Services.ServiceUser;
+import Tools.Constants;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -20,7 +23,9 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
@@ -116,8 +121,15 @@ public class AfficheCoachsController implements Initializable {
 
     @FXML
     private void deleteuser(ActionEvent event) {
-        rs.DeleteUser(txtlistusers.getSelectionModel().getSelectedItem().getId());
-        ObservableList<Utilisateur> items = FXCollections.observableArrayList();
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmer votre demande");
+        alert.setHeaderText(null);
+        alert.setContentText("Voulez-vous vraiment supprimer coach");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+         rs.DeleteUser(txtlistusers.getSelectionModel().getSelectedItem().getId());
+             ObservableList<Utilisateur> items = FXCollections.observableArrayList();
         List<Utilisateur> listuser = rs.afficheSimpleCoach();
         for (Utilisateur r : listuser) {
             String ch = r.toString();
@@ -125,6 +137,10 @@ public class AfficheCoachsController implements Initializable {
         }
 
         txtlistusers.setItems(items);
+            
+            }
+        
+       
     }
 
     @FXML
@@ -268,15 +284,25 @@ public class AfficheCoachsController implements Initializable {
 
     @FXML
     private void modifiercozch(ActionEvent event) {
+ Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmer votre demande");
+        alert.setHeaderText(null);
+        alert.setContentText("Etes vous sûr de modifier coach ?");
+        Optional<ButtonType> action = alert.showAndWait();
 
-        listecoach.setVisible(false);
+        if (action.get() == ButtonType.OK) {
+           listecoach.setVisible(false);
         modifcoach.setVisible(true);
+        
         username.setText(txtlistusers.getSelectionModel().getSelectedItem().getUsername());
         email.setText(txtlistusers.getSelectionModel().getSelectedItem().getEmail());
         Coach c = (Coach) txtlistusers.getSelectionModel().getSelectedItem();
         specialite.setText(c.getSpecialite());
         mdp.setText(txtlistusers.getSelectionModel().getSelectedItem().getPassword());
         mdp1.setText(txtlistusers.getSelectionModel().getSelectedItem().getVerifpassword());
+            
+            }
+        
 
     }
 

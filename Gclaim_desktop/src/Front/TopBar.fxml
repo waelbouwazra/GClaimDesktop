@@ -30,7 +30,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="btnRdvs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#afficherRdvs" prefHeight="30.0" prefWidth="108.0" style="-fx-background-color: c24400;" text="Les coachs" textFill="WHITE">
+            <Button fx:id="btnRdvs" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#afficherRdvs" prefHeight="30.0" prefWidth="108.0" style="-fx-background-color: c24400;" text="Coachs" textFill="WHITE">
                <HBox.margin>
                   <Insets />
                </HBox.margin>
@@ -41,7 +41,15 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="article" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#article" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: c24400;" text="article" textFill="WHITE">
+            <Button fx:id="article" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#article" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: c24400;" text="Article" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="produit" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#produit" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: c24400;" text="Produit" textFill="WHITE">
                <font>
                   <Font name="Segoe UI Bold" size="15.0" />
                </font>

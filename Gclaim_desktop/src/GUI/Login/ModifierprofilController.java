@@ -248,13 +248,18 @@ public class ModifierprofilController implements Initializable {
     }
 
     @FXML
-    private void logout(ActionEvent event) throws IOException {
-       US.logOut();
-        FXMLLoader loader = new FXMLLoader(getClass()
-                    .getResource("../GUI/login/Login.fxml"));
-            Parent root = loader.load();
-           
-            creerequipe.getScene().setRoot(root);
+    private void logout(ActionEvent event) {
+        US.logOut();
+        AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("Login.fxml"));
+            mainPain.getChildren().setAll(pane);
+            //defaultStateButtons();
+            LOG_OUT.setTextFill(Color.WHITE);
+            LOG_OUT.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
     }
 

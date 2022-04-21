@@ -5,21 +5,27 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="454.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Produit.ShowCategorieController">
+<AnchorPane fx:id="mainPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="630.0" prefWidth="703.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Produit.ShowCategorieController">
    <children>
-      <Button fx:id="btnretour" layoutX="632.0" layoutY="414.0" mnemonicParsing="false" text="Retour" />
-      <TextField fx:id="nomc" layoutX="513.0" layoutY="94.0" />
-      <TextField fx:id="nomt" layoutX="513.0" layoutY="149.0" />
-      <ListView fx:id="listviewcateg" layoutX="34.0" layoutY="142.0" onMouseClicked="#CategorieSelect" prefHeight="274.0" prefWidth="414.0" />
-      <Button fx:id="btnsupp" layoutX="477.0" layoutY="208.0" mnemonicParsing="false" onAction="#DeleteCateg" text="Supprimer" />
-      <Button fx:id="btnmodif" layoutX="602.0" layoutY="208.0" mnemonicParsing="false" onAction="#updateCategorie" text="modifier" />
-      <Label layoutX="463.0" layoutY="98.0" text="nom" />
-      <Label layoutX="463.0" layoutY="153.0" text="type" />
+      <Button fx:id="btnretour" layoutX="651.0" layoutY="26.0" mnemonicParsing="false" style="-fx-background-color: c24400;" text="X" />
+      <TextField fx:id="nomc" layoutX="167.0" layoutY="444.0" />
+      <TextField fx:id="nomt" layoutX="167.0" layoutY="499.0" />
+      <ListView fx:id="listviewcateg" layoutX="34.0" layoutY="142.0" onMouseClicked="#CategorieSelect" prefHeight="274.0" prefWidth="646.0" />
+      <Button fx:id="btnsupp" layoutX="131.0" layoutY="558.0" mnemonicParsing="false" onAction="#DeleteCateg" style="-fx-background-color: c24400;" text="Supprimer" />
+      <Button fx:id="btnmodif" layoutX="256.0" layoutY="558.0" mnemonicParsing="false" onAction="#updateCategorie" style="-fx-background-color: c24400;" text="modifier" />
+      <Label layoutX="117.0" layoutY="448.0" text="nom" />
+      <Label layoutX="117.0" layoutY="503.0" text="type" />
       <Text fx:id="alerteajout" fill="RED" layoutX="463.0" layoutY="139.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="220.00008544921866" />
       <Text fx:id="alerteajout1" fill="RED" layoutX="463.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="220.00008544921866" />
       <TextField fx:id="recherche" layoutX="117.0" layoutY="106.0" onKeyReleased="#chercherCateg" prefHeight="26.0" prefWidth="220.0" promptText="Recherche" />
-      <Button fx:id="tricateg" layoutX="41.0" layoutY="103.0" mnemonicParsing="false" onAction="#tric" onMouseClicked="#tric" text="tri" />
+      <Button fx:id="tricateg" layoutX="41.0" layoutY="103.0" mnemonicParsing="false" onAction="#tric" onMouseClicked="#tric" style="-fx-background-color: c24400;" text="tri" />
+      <Label layoutX="174.0" layoutY="43.0" text="LISTE DES CATEGORIES">
+         <font>
+            <Font name="System Bold Italic" size="37.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
