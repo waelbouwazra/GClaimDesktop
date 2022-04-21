@@ -65,6 +65,14 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Button fx:id="tournoi" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#Tournoi" prefHeight="30.0" prefWidth="82.0" style="-fx-background-color: c24400;" text="Tournoi" textFill="WHITE">
+               <font>
+                  <Font name="Segoe UI Bold" size="15.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
             <ImageView fitHeight="51.0" fitWidth="59.0" onMouseClicked="#profile" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../GUI/src_image/about.png" />

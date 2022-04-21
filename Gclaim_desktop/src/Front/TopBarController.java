@@ -43,6 +43,8 @@ public class TopBarController implements Initializable {
     private Button panier;
     @FXML
     private Button produit;
+    @FXML
+    private Button tournoi;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -124,5 +126,9 @@ public class TopBarController implements Initializable {
          goToLink(Constants.FXML_DISPLAY_PRODUIT);
 
         panier.setTextFill(COLOR_BLUE);
+    }
+
+    @FXML
+    private void Tournoi(ActionEvent event) {
     }
 }
