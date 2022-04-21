@@ -40,6 +40,8 @@ public class TopBarController implements Initializable {
     @FXML
     private Button article;
    private ServiceUser US=new ServiceUser();
+    @FXML
+    private Button panier;
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
@@ -103,5 +105,12 @@ public class TopBarController implements Initializable {
     @FXML
     private void acceuil(MouseEvent event) {
          goToLink(Constants.FXML_HOME);
+    }
+
+    @FXML
+    private void panier(ActionEvent event) {
+         goToLink(Constants.FXML_DISPLAY_PANIER);
+
+        panier.setTextFill(COLOR_BLUE);
     }
 }

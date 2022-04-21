@@ -33,24 +33,24 @@
                   <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                </HBox.margin>
                <children>
-                  <Text fx:id="Total" text="Total" wrappingWidth="190">
+                  <Text fx:id="Total" fill="#c24400" text="Total" wrappingWidth="190">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Text>
-                  <Text fx:id="DateAchat" text="DateAchat" wrappingWidth="458.8000030517578">
+                  <Text fx:id="DateAchat" fill="#c24400" text="DateAchat" wrappingWidth="458.8000030517578">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Text>
-                  <Text fx:id="Status" text="Status" wrappingWidth="190">
+                  <Text fx:id="Status" fill="#c24400" text="Status" wrappingWidth="190">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Text>
-                  <Text fx:id="userName" text="User Name" wrappingWidth="456.40003967285156">
+                  <Text fx:id="userName" fill="#c24400" text="User Name" wrappingWidth="456.40003967285156">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="15.0" />
                      </font>
                   </Text>
                </children>

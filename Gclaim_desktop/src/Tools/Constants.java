@@ -9,6 +9,7 @@ public class Constants {
       public static final String FXML_MODEL_PRO = "../Profil/Model.fxml";
     public static final String FXML_DISPLAY_PROFILE = "../GUI/login/modifierprofil.fxml";
     public static final String FXML_DISPLAY_PROFIL = "../GUI/Profil/ShowAllProfil.fxml";
+    public static final String FXML_DISPLAY_PANIER = "../GUI/Panier/ShowPanier.fxml";
 
 
     public static final String FXML_MODEL_PANIER = "../panier/ModelPanier.fxml";

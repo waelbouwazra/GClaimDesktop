@@ -77,10 +77,10 @@ public class AfficheCommandeLigneCommandeController implements Initializable {
         // TODO
         afficherLigneCommande();
 
-        Total.setText(""+ comm.getTotal());
-        DateAchat.setText(""+comm.getDate_achat());
-        userName.setText(""+comm.getUser().getUsername());
-        Status.setText(""+comm.isLivrer());
+        Total.setText("Total :"+ comm.getTotal());
+        DateAchat.setText("Date Achat :"+comm.getDate_achat());
+        userName.setText("Username :"+comm.getUser().getUsername());
+        Status.setText("Status :"+comm.isLivrer());
         
     }    
      
@@ -134,7 +134,7 @@ public class AfficheCommandeLigneCommandeController implements Initializable {
           CommandeService cs = new CommandeService();
           cs.UpdateCommande(comm);
           Commande c=cs.getSingleCommande(comm.getId());
-          Status.setText(""+c.isLivrer());
+          Status.setText("Status :"+c.isLivrer());
     }
 
     @FXML
