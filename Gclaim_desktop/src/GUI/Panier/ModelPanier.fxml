@@ -72,6 +72,11 @@
                                  </font></Button>
                            </children>
                         </Pane>
+                        <Button fx:id="deleteProduitFromCart" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" prefHeight="39.0" prefWidth="30.0" style="-fx-background-color: c24400;" styleClass="light-button" text="Delete" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="14.0" />
+                           </font>
+                        </Button>
                      </children>
                   </VBox>
                </children>

@@ -8,12 +8,15 @@ package GUI.Panier;
 import Entities.Panier;
 import Entities.PanierModel;
 import Entities.Produit;
+import Front.MainWindowController;
 import static GUI.Panier.ShowCartController.currentAbo;
+import static GUI.Produit.ShowAllProdController.currentProd;
 import Services.PanierService;
 import Tools.Constants;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -23,7 +26,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -52,6 +57,7 @@ public class ShowPanierController implements Initializable {
     private Button confirmCart;
     @FXML
     private Button deleteCart;
+      Panier pan = new Panier().getInstance();
     /**
      * Initializes the controller class.
      */
@@ -70,6 +76,23 @@ private void supprimerAbo(PanierModel abo) {
         ps.MinusProductQuantity(abo);
          mainVBox.getChildren().clear();
         this.afficherPanier();
+    }
+private void supprimerFromCart(PanierModel abo) {
+        currentProd = abo;
+       // rs.updateEquipe(abo);
+        //MainWindowController.getInstance().loadInterface(Constants.FXML_UPDATE_PRODUIT);
+        
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmer pour supprimer le produit du panier");
+        alert.setHeaderText(null);
+        alert.setContentText("Etes vous sûr de vouloir supprimer le produit du panier?");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+           pan.getInstance().getPanier().remove(abo);
+                MainWindowController.getInstance().loadInterface(Constants.FXML_DISPLAY_PANIER);
+            
+            }
     }
   public Parent makeAboModel(PanierModel pm) {
         Parent parent = null;
@@ -95,6 +118,7 @@ private void supprimerAbo(PanierModel abo) {
             
             ((Pane) innerContainer.lookup("#minusBtn")).setVisible(true);
            ((Button) innerContainer.lookup("#deleteButton")).setOnAction((event) -> supprimerAbo(pm));
+            ((Button) innerContainer.lookup("#deleteProduitFromCart")).setOnAction((event) -> supprimerFromCart(pm));
             
               
 
