@@ -23,6 +23,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -118,12 +119,25 @@ public class AddProductController implements Initializable {
        if (txtnom.getText().equals("")) {
             alertnom.setText("Remplir le champs !!");
             verif = false;
-        } else if (txtdesc.getText().equals("")) {
+        }
+       if (txtdesc.getText().equals("")) {
             alertdesc.setText("Remplir le champs !!");
             verif = false;
         }
+              List<Produit> listuser = ps.ShowProduit();
+        for(Produit r : listuser) {
+            String ch = r.toString();
+            if((r.getNom_produit().equals(txtnom.getText()))&&(r.getDescription().equals(txtdesc.getText())))
+            {
+                verif=false;
+                Alert alertt = new Alert(Alert.AlertType.ERROR);
+            alertt.setTitle("Ce produit existe deja");
+            alertt.setContentText("Veuiller changer l'un des Champs !");
+            alertt.show(); 
+            }
+        }
       
-      else {
+      if(verif==true) {
           
          ObservableList<Integer> langs = FXCollections.observableArrayList(cs.getIdcategorie() );
         comboBoxID.setItems(langs);

@@ -6,6 +6,7 @@
 package GUI.Produit;
 
 import Entities.Categorie;
+import Entities.Produit;
 import Services.CategorieService;
 import java.io.IOException;
 import java.net.URL;
@@ -18,6 +19,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
@@ -74,12 +76,23 @@ private void addCateg(ActionEvent event) {
       if (nomc.getText().equals("")) {
             alerteajout.setText("Remplir le champs !!");
             verif = false;
-        }else if (typec.getText().equals("")) {
+        } if (typec.getText().equals("")) {
             alerteajout1.setText("Remplir le champs !!");
             verif = false;
         }
-      
-      else {
+          List<Categorie> listuser = cs.ShowCategorie();
+        for(Categorie r : listuser) {
+            String ch = r.toString();
+            if((r.getNom_categorie().equals(nomc.getText()))&&(r.getType_categorie().equals(typec.getText())))
+            {
+                verif=false;
+                Alert alertt = new Alert(Alert.AlertType.ERROR);
+            alertt.setTitle("Cette categorie existe deja");
+            alertt.setContentText("Veuiller changer l'un des Champs !");
+            alertt.show(); 
+            }
+        }
+      if(verif==true) {
           
           cs.AddCategoriePst(c);
           alerteajout1.setText("Ajout avec succes!");

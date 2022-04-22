@@ -9,6 +9,7 @@ import Entities.Jeu;
 import Services.ServiceJeu;
 import java.io.IOException;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -98,6 +99,19 @@ public class CreerJeuController implements Initializable {
             alerc.setText("Remplir ce champs !!");
             verif = false;
         } 
+            List<Jeu> listuser = rs.ShowJeu();
+        for(Jeu r : listuser) {
+            String ch = r.toString();
+            if((r.getNomjeu().equals(txtNOM.getText()))&&(r.getDescription().equals(txtDescription.getText()))&&(r.getCreateur().equals(txtCreateur.getText())))
+            {
+                verif=false;
+                Alert alertt = new Alert(Alert.AlertType.ERROR);
+            alertt.setTitle("Ce jeu existe deja");
+            alertt.setContentText("Veuiller changer l'un des Champs !");
+            alertt.show(); 
+            }
+        }
+       
         if (verif == true) {
         if (!txtNOM.getText().isEmpty() && !txtDescription.getText().isEmpty() && !txtCreateur.getText().isEmpty())
         {
