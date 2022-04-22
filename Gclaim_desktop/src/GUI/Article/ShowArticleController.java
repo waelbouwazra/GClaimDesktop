@@ -16,6 +16,7 @@ import static java.nio.file.Files.list;
 import static java.rmi.Naming.list;
 import static java.util.Collections.list;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.function.Predicate;
@@ -28,13 +29,16 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -120,20 +124,57 @@ public class ShowArticleController implements Initializable {
 
     @FXML
     private void deleteArticle(ActionEvent event) {
-          ArticleService ps = new ArticleService();
+        
+        Article T =new Article();
+         T = txtListArticle.getSelectionModel().getSelectedItem();
+        if (T == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Alerte");
+            alert.setHeaderText("Alerte");
+            alert.setContentText("veuillez selectionner un article  ");
+            alert.show();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation ");
+            alert.setHeaderText(null);
+            alert.setContentText("vous êtes sûr de supprimer Cet article ?");
+            Optional<ButtonType> action = alert.showAndWait();
+
+            if (action.get() == ButtonType.OK) {
+        ArticleService ps = new ArticleService();
           ps.DeleteArticle(id_article);
-            ObservableList<Article> items =FXCollections.observableArrayList();
+                JOptionPane.showMessageDialog(null, "Article supprimé");
+                  ObservableList<Article> items =FXCollections.observableArrayList();
                 List<Article> listProduit = ps.ShowArticle();
                 for(Article p : listProduit) {
                     items.add(p);
                 }
                 txtListArticle.setItems(items);
+            }
+
+        }
+          
 
     }
 
     @FXML
     private void updateArticle(ActionEvent event) {
-            
+             Article T =new Article();
+         T = txtListArticle.getSelectionModel().getSelectedItem();
+        if (T == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Alerte");
+            alert.setHeaderText("Alerte");
+            alert.setContentText("veuillez selectionner un article  ");
+            alert.show();
+        }else {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Confirmation ");
+            alert.setHeaderText(null);
+            alert.setContentText("vous êtes sûr de modifier Cet article ?");
+            Optional<ButtonType> action = alert.showAndWait();
+
+            if (action.get() == ButtonType.OK) {
         ArticleService ps = new ArticleService();
         CatService cs=new CatService();
           String titre= txtModifTitre.getText();
@@ -156,10 +197,10 @@ public class ShowArticleController implements Initializable {
 
       
             
-         
+            }
    
   
-    }
+        }}
 
     @FXML
     private void articleSelect(MouseEvent event) {

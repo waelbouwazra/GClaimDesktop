@@ -216,5 +216,23 @@ public List<Article> ShowArticleFront() {
 
         return article;
     }
+public int Recherche(String tit ){
+      String req = "SELECT * FROM `article` WHERE titre=? ";
+Article a =new Article();
+        try {
+            pst = cnx.prepareStatement(req);
+            pst.setString(1, tit);
+            ResultSet as = pst.executeQuery();
+            if (as.next()) {
+             return as.getInt(1);
+         
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return -1;
+    
+}
 }
 

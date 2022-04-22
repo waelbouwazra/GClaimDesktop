@@ -142,5 +142,23 @@ public class CatService {
         return -1;
     
     }
+    public int Recherche(String tit ){
+      String req = "SELECT * FROM `cat` WHERE nom=? ";
+cat a =new cat();
+        try {
+            pst = cnx.prepareStatement(req);
+            pst.setString(1, tit);
+            ResultSet as = pst.executeQuery();
+            if (as.next()) {
+             return as.getInt(1);
+         
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return -1;
+    
+}
 
 }

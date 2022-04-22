@@ -85,6 +85,8 @@ public class ShowArticleFrontController implements Initializable {
             
          //((Pane) innerContainer.lookup("#ajouCommentaire")).setVisible(true);
         ((Button) innerContainer.lookup("#ajouterCom")).setOnAction((event) -> ajoutComAbo(abo));
+        ((Button) innerContainer.lookup("#btnAfficheCom")).setOnAction((event) -> AfficheCom(abo));
+
          //   ((Button) innerContainer.lookup("#ajouterCom")).setOnAction((event) ->ajouterComAbo());
             
        
@@ -99,6 +101,11 @@ public class ShowArticleFrontController implements Initializable {
         currentAbo = abo;
        // rs.updateEquipe(abo);
         MainWindowController.getInstance().loadInterface(Constants.FXML_ADD_COM);
+    }
+         private void AfficheCom(Article abo) {
+        currentAbo = abo;
+       // rs.updateEquipe(abo);
+        MainWindowController.getInstance().loadInterface("ShowCommentaireController.fxml");
     }
     
 }

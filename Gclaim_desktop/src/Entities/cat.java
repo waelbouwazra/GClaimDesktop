@@ -54,8 +54,10 @@ public class cat {
 
     @Override
     public String toString() {
-        return "cat{" + "id=" + id + ", nom=" + nom + ", couleur=" + couleur + '}';
+        return "cat :" + " \t| nom=" + nom + ",  \t| couleur=" + couleur +"" ;
     }
+
+    
 
     public cat(int id) {
         this.id = id;
