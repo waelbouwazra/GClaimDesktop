@@ -13,6 +13,7 @@ import Tools.Constants;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -121,6 +122,18 @@ public class CreerTournoiController implements Initializable {
             if (txtHeure.getText().equals("")) {
             alertH.setText("Remplir le champs !!");
             verif = false;
+        }
+               List<Tournoi> listuser = rs.ShowTournoi();
+        for(Tournoi r : listuser) {
+            String ch = r.toString();
+            if((r.getNomtournoi().equals(txtNOM.getText()))&&(r.getDescription().equals(txtDescription.getText()))&&(r.getDatev().equals(dateE.getValue().toString()))&&(r.getHeurev().equals(txtHeure.getText())))
+            {
+                verif=false;
+                Alert alertt = new Alert(Alert.AlertType.ERROR);
+            alertt.setTitle("Ce Tournoi existe deja");
+            alertt.setContentText("Veuiller changer l'un des Champs !");
+            alertt.show(); 
+            }
         }
         if (verif == true) {
       if (!txtNOM.getText().isEmpty() && !txtDescription.getText().isEmpty() && !EtatBox.getValue().isEmpty())
