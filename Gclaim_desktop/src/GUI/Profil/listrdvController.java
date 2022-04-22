@@ -9,12 +9,14 @@ import Entities.Equipe;
 import Entities.Rdv;
 import GUI.Login.*;
 import Entities.Utilisateur;
+import static GUI.Tournoi.ListejeuxController.currentAbo;
 import Services.ProfilService;
 import Services.RdvService;
 import Services.ServiceUser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -23,7 +25,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TextField;
@@ -180,8 +184,25 @@ public class listrdvController implements Initializable {
 
     @FXML
     private void deleteuser(ActionEvent event) {
-       System.out.println(txtlistusers.getSelectionModel().getSelectedItem().getId());
-        rs.DeleteProfil(txtlistusers.getSelectionModel().getSelectedItem().getId());
+        
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmer votre demande");
+        alert.setHeaderText(null);
+        alert.setContentText("Etes vous sûr de vouloir supprimer ce rendez-vous ?");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+            if(txtlistusers.getSelectionModel().getSelectedItem()!=null){                      
+            System.out.println(txtlistusers.getSelectionModel().getSelectedItem().getId());
+             rs.DeleteProfil(txtlistusers.getSelectionModel().getSelectedItem().getId());            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
+        }
+       
         
          ObservableList<Rdv> items =FXCollections.observableArrayList();
         List<Rdv> listuser = rs.ShowRdv();

@@ -234,5 +234,19 @@ public class MenuController implements Initializable {
             System.out.println(ex.getMessage());
         }
     }
+
+    @FXML
+    private void showtournois(ActionEvent event) {
+             AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("Tournoi/MenuTournoi.fxml"));
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+           // btnDisplayProducts.setTextFill(Color.WHITE);
+            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     }
 

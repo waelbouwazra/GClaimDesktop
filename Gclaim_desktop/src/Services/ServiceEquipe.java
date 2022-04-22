@@ -288,4 +288,51 @@ public class ServiceEquipe {
         return exist;
 
     }
+           public List<Integer> afficheEquipeUt(int id) {
+        List<Integer> nom = new ArrayList<>();
+        String query = " select * from equipe u , equipe_utilisateur e WHERE u.id = e.equipe_id and e.utilisateur_id = "+id+"";
+        Statement ste;
+        try {
+           
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(query);
+
+            while (rs.next()) {
+
+               
+                nom.add(rs.getInt(1));
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return nom;
+    }
+         public List<Equipe> Equipdispo() {
+        List<Equipe> equipes = new ArrayList<>();
+        String query = "select * from equipe where etat = 'Open' and nb<5";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(query);
+
+            while (rs.next()) {
+
+                Equipe p = new Equipe();
+                p.setId(rs.getInt(1));
+                p.setNomEquipe(rs.getString(2));
+                p.setDescription(rs.getString(3));
+                p.setDateCreation(rs.getDate(4));
+                p.setEtat(rs.getString(5));
+                p.setChef(rs.getString(6));
+                p.setNb(rs.getInt(7));
+                equipes.add(p);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return equipes;
+    }
 }

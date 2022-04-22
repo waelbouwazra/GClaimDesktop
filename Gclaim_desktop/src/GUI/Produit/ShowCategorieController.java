@@ -22,7 +22,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TableColumn;
@@ -85,8 +87,26 @@ ResultSet rs= null;
     @FXML
     private void DeleteCateg(ActionEvent event) {
         Categorie c = new Categorie();
+         
+        ;
+          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmer votre demande");
+        alert.setHeaderText(null);
+        alert.setContentText("Etes vous sûr de vouloir supprimer cette Categorie ?");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+            if(listviewcateg.getSelectionModel().getSelectedItem()!=null){                      
         c = listviewcateg.getSelectionModel().getSelectedItem();
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
         cs.DeleteCategorie(c.getId_categorie());
+        }
         
          ObservableList<Categorie> items =FXCollections.observableArrayList();
                 List<Categorie> listCateg = cs.ShowCategorie();
@@ -117,10 +137,19 @@ ResultSet rs= null;
             verif = false;
         } else {
             Categorie a =new Categorie(id_categ,nom_categorie,type_categorie);
-          
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmer votre demande");
+        alert.setHeaderText(null);
+        alert.setContentText("Etes vous sûr de vouloir modifier cette Categorie ?");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+            
        cs.UpdateCategorie(a, id_categ);
-            alerteajout1.setText("modification avec succes!");
+        alerteajout1.setText("modification avec succes!");
           alerteajout.setText("");
+        }
+            
       }
        
          System.out.println("id="+id_categ);
@@ -139,13 +168,21 @@ ResultSet rs= null;
     }
     @FXML
     private void CategorieSelect(MouseEvent event) {
-        
-          nomc.setText(listviewcateg.getSelectionModel().getSelectedItem().getNom_categorie());  
+        if(listviewcateg.getSelectionModel().getSelectedItem()!=null){                      
+        nomc.setText(listviewcateg.getSelectionModel().getSelectedItem().getNom_categorie());  
           
             nomt.setText(listviewcateg.getSelectionModel().getSelectedItem().getType_categorie());
            
 
           id_categ=cs.getIdCateg(listviewcateg.getSelectionModel().getSelectedItem().getNom_categorie(), listviewcateg.getSelectionModel().getSelectedItem().getType_categorie());
+         
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
          
         
     }

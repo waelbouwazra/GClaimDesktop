@@ -13,12 +13,15 @@ public class Constants {
 public static final String FXML_DISPLAY_PRODUIT = "../GUI/Produit/ShowAllProd.fxml";
     public static final String FXML_MODEL_PROD = "../Produit/Modelp.fxml";
     public static final String FXML_UPDATE_PRODUIT = "../GUI/Produit/modifierProduit.fxml"; 
+     public static final String FXML_DISPLAY_ALL_TOUR = "../GUI/Tournoi/ShowAllTournoi.fxml";
+    public static final String FXML_DISPLAY_ALL_TOURR = "../GUI/Tournoi/Listetournois.fxml";
 
     public static final String FXML_MODEL_PANIER = "../panier/ModelPanier.fxml";
     public static final String FXML_MODEL_LIGNECOMMANDE = "../panier/ModelLigneCommande.fxml";
     public static final String FXML_DISPLAY_LOHOUT= "../GUI/login/Login.fxml";
      public static final String FXML_UPDATE_PROFIL = "../GUI/Profil/modifierProfil.fxml"; 
      public static final String FXML_RDV_COACH = "../GUI/Profil/AjoutRdv.fxml"; 
+         public static final String FXML_MODEL_TOUR = "../Tournoi/Model.fxml";
 
     public static final String FXML_MAIN_WINDOW = "../Front/MainWindow.fxml";
     public static final String FXML_TOP_BAR = "../Front/TopBar.fxml";
@@ -26,6 +29,9 @@ public static final String FXML_DISPLAY_PRODUIT = "../GUI/Produit/ShowAllProd.fx
     public static final String FXML_HOME = FXML_DISPLAY_ACCEUIL;
       public static final String FXML_MODEL_A = "../GUI/Article/ShowArticleFront.fxml"; 
   public static final String FXML_MODEL= "../GUI/Article/ModelA.fxml"; 
+      public static final String FXML_DISPLAY_TOURNOI = "../GUI/Tournoi/ShowAllTournoi.fxml";
+    public static final String FXML_UPDATE_TOURNOI = "../GUI/Tournoi/modifierTournoi.fxml"; 
+
 
     public static final String FXML_ADD_COM = "../GUI/Article/Commentaire.fxml"; 
 }

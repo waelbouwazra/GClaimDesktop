@@ -8,6 +8,7 @@ package GUI.Login;
 import Entities.Coach;
 import Entities.Utilisateur;
 import Front.MainWindowController;
+import static GUI.Tournoi.ListejeuxController.currentAbo;
 import Services.ServiceUser;
 import Tools.Constants;
 import java.io.IOException;
@@ -128,7 +129,15 @@ public class AfficheCoachsController implements Initializable {
         Optional<ButtonType> action = alert.showAndWait();
 
         if (action.get() == ButtonType.OK) {
+            if(txtlistusers.getSelectionModel().getSelectedItem()!=null){                      
          rs.DeleteUser(txtlistusers.getSelectionModel().getSelectedItem().getId());
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
              ObservableList<Utilisateur> items = FXCollections.observableArrayList();
         List<Utilisateur> listuser = rs.afficheSimpleCoach();
         for (Utilisateur r : listuser) {
@@ -230,7 +239,15 @@ public class AfficheCoachsController implements Initializable {
         coachaactives.setSelected(false);
         descactivepane.setVisible(false);
         coachdesactives.setSelected(true);
-        rs.desactiveruncompte(txtlistusers.getSelectionModel().getSelectedItem().getId());
+            if(txtlistusers.getSelectionModel().getSelectedItem()!=null){                      
+            rs.desactiveruncompte(txtlistusers.getSelectionModel().getSelectedItem().getId());
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
         ObservableList<Utilisateur> items = FXCollections.observableArrayList();
         List<Utilisateur> listuser = rs.affichecoachdesactiver();
         for (Utilisateur r : listuser) {
@@ -248,7 +265,15 @@ public class AfficheCoachsController implements Initializable {
         descactivepane.setVisible(true);
         activepane.setVisible(false);
         coachaactives.setSelected(true);
+         if(txtlistusers.getSelectionModel().getSelectedItem()!=null){                      
         rs.activeruncompte(txtlistusers.getSelectionModel().getSelectedItem().getId());
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
         ObservableList<Utilisateur> items = FXCollections.observableArrayList();
         List<Utilisateur> listuser = rs.affichecoachsactiver();
         for (Utilisateur r : listuser) {
@@ -291,15 +316,24 @@ public class AfficheCoachsController implements Initializable {
         Optional<ButtonType> action = alert.showAndWait();
 
         if (action.get() == ButtonType.OK) {
-           listecoach.setVisible(false);
-        modifcoach.setVisible(true);
+             if(txtlistusers.getSelectionModel().getSelectedItem()!=null){  
+                 listecoach.setVisible(false);
+            modifcoach.setVisible(true);
+            username.setText(txtlistusers.getSelectionModel().getSelectedItem().getUsername());
+            email.setText(txtlistusers.getSelectionModel().getSelectedItem().getEmail());
+            Coach c = (Coach) txtlistusers.getSelectionModel().getSelectedItem();
+            specialite.setText(c.getSpecialite());
+            mdp.setText(txtlistusers.getSelectionModel().getSelectedItem().getPassword());
+            mdp1.setText(txtlistusers.getSelectionModel().getSelectedItem().getVerifpassword());            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
+           
         
-        username.setText(txtlistusers.getSelectionModel().getSelectedItem().getUsername());
-        email.setText(txtlistusers.getSelectionModel().getSelectedItem().getEmail());
-        Coach c = (Coach) txtlistusers.getSelectionModel().getSelectedItem();
-        specialite.setText(c.getSpecialite());
-        mdp.setText(txtlistusers.getSelectionModel().getSelectedItem().getPassword());
-        mdp1.setText(txtlistusers.getSelectionModel().getSelectedItem().getVerifpassword());
+        
             
             }
         
@@ -312,10 +346,19 @@ public class AfficheCoachsController implements Initializable {
                 && email.getText().isEmpty() == false
                 && mdp.getText().isEmpty() == false && specialite.getText().isEmpty() == false && email.getText().matches("(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)*\\@(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)+")
                 && mdp.getText().equals(mdp1.getText())) {
-            Coach u = new Coach(txtlistusers.getSelectionModel().getSelectedItem().getId(), username.getText(), mdp.getText(), mdp1.getText(), email.getText(), specialite.getText());
+            if(txtlistusers.getSelectionModel().getSelectedItem()!=null){  
+                Coach u = new Coach(txtlistusers.getSelectionModel().getSelectedItem().getId(), username.getText(), mdp.getText(), mdp1.getText(), email.getText(), specialite.getText());
 
             
                 US.UpdatePersonne(u,u.getId());
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
+            
 
                 System.out.println("ajout");
                 JOptionPane.showMessageDialog(null, "update DONE");

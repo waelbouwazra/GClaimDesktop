@@ -11,6 +11,7 @@ import Services.CommandeService;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -18,7 +19,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
@@ -57,8 +60,26 @@ public class showCommandesController implements Initializable {
 
     @FXML
     private void changeStatus(ActionEvent event) {
-        Commande c = txtListCommandes.getSelectionModel().getSelectedItem();
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                Commande c = new Commande();
+
+        alert.setTitle("Confirmer votre demande");
+        alert.setHeaderText(null);
+        alert.setContentText("Etes vous sûr de vouloir changer le status ?");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+         if(txtListCommandes.getSelectionModel().getSelectedItem()!=null){                      
+         c = txtListCommandes.getSelectionModel().getSelectedItem();
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
         commandeService.UpdateCommande(c);
+        }
         ObservableList<Commande> n =FXCollections.observableArrayList();
         txtListCommandes.setItems(n );
            afficheCommande();
@@ -89,15 +110,26 @@ public class showCommandesController implements Initializable {
     @FXML
     private void details(ActionEvent event) {
                AnchorPane pane;
-              
-        try {
+               if(txtListCommandes.getSelectionModel().getSelectedItem()!=null){                      
            comm=txtListCommandes.getSelectionModel().getSelectedItem();
+           try {
+           
+         
             pane = FXMLLoader.load(getClass().getResource("AfficheCommandeLigneCommande.fxml"));
             mainPane.getChildren().setAll(pane);
             btngetback.setTextFill(Color.WHITE);
             } catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
+              
+        
     }
 
     @FXML

@@ -5,6 +5,7 @@
  */
 package GUI.Login;
 
+import Entities.Coach;
 import Entities.Utilisateur;
 import Services.ServiceUser;
 import java.io.IOException;
@@ -97,7 +98,15 @@ public class AfficheuserController implements Initializable {
         Optional<ButtonType> action = alert.showAndWait();
 
         if (action.get() == ButtonType.OK) {
-        rs.DeleteUser(txtlistusers.getSelectionModel().getSelectedItem().getId());
+            if(txtlistusers.getSelectionModel().getSelectedItem()!=null){  
+             rs.DeleteUser(txtlistusers.getSelectionModel().getSelectedItem().getId());
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
          ObservableList<Utilisateur> items =FXCollections.observableArrayList();
         List<Utilisateur> listuser = rs.afficheSimpleUser();
         for(Utilisateur r : listuser) {
@@ -185,12 +194,21 @@ public class AfficheuserController implements Initializable {
         Optional<ButtonType> action = alert.showAndWait();
 
         if (action.get() == ButtonType.OK) {
-          tout.setSelected(false);
+             if(txtlistusers.getSelectionModel().getSelectedItem()!=null){  
+             tout.setSelected(false);
          activepane.setVisible(true);
            coachaactives.setSelected(false);
             descactivepane.setVisible(false);
               coachdesactives.setSelected(true);
         rs.desactiveruncompte(txtlistusers.getSelectionModel().getSelectedItem().getId());
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
+          
          ObservableList<Utilisateur> items =FXCollections.observableArrayList();
         List<Utilisateur> listuser = rs.affichesimpleutilisateursdesactiver();
         for(Utilisateur r : listuser) {
@@ -210,12 +228,21 @@ public class AfficheuserController implements Initializable {
         Optional<ButtonType> action = alert.showAndWait();
 
         if (action.get() == ButtonType.OK) {
-        coachdesactives.setSelected(false);
+               if(txtlistusers.getSelectionModel().getSelectedItem()!=null){  
+           coachdesactives.setSelected(false);
         coachaactives.setSelected(true);
              tout.setSelected(false);
              descactivepane.setVisible(true);
            activepane.setVisible(false);
           rs.activeruncompte(txtlistusers.getSelectionModel().getSelectedItem().getId());
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
+        
          ObservableList<Utilisateur> items =FXCollections.observableArrayList();
         List<Utilisateur> listuser = rs.affichesimpleutilisateursactiver();
         for(Utilisateur r : listuser) {

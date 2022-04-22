@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.URL?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="545.0" prefWidth="1155.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Tournoi.CreerJeuController">
+   <children>
+      <AnchorPane id="AnchorPane" fx:id="mainPane" layoutX="20.0" layoutY="5.0" prefHeight="535.0" prefWidth="1002.0" styleClass="mainFxmlClass">
+         <stylesheets>
+            <URL value="@ajoutercoach.css" />
+         </stylesheets>
+         <children>
+            <AnchorPane id="AnchorPane" layoutX="66.0" layoutY="36.0" prefHeight="463.0" prefWidth="770.0" styleClass="mainFxmlClass">
+               <stylesheets>
+                  <URL value="@menuuser.css" />
+               </stylesheets>
+               <children>
+                  <Label id="titreLabel" layoutX="64.0" layoutY="14.0" prefHeight="102.0" prefWidth="454.0" text="Créer votre Jeu" textFill="#c24400">
+                     <font>
+                        <Font name="System Bold Italic" size="46.0" />
+                     </font>
+                  </Label>
+                  <Button id="buttonM" fx:id="btnAjouter" layoutX="420.0" layoutY="389.0" mnemonicParsing="false" onAction="#addJeu" prefHeight="31.0" prefWidth="156.0" style="-fx-background-color: c24400;" text="Créer votre Jeu" textFill="WHITE" />
+                  <Label layoutX="40.0" layoutY="125.0" prefHeight="27.0" prefWidth="87.0" text="NOM">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="40.0" layoutY="264.0" text="Createur">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="40.0" layoutY="199.0" text="Description">
+                     <font>
+                        <Font name="System Bold Italic" size="24.0" />
+                     </font>
+                  </Label>
+                  <TextField fx:id="txtDescription" layoutX="326.0" layoutY="201.0" />
+                  <TextField fx:id="txtNOM" layoutX="326.0" layoutY="127.0" />
+                  <Button fx:id="btngetback" layoutX="581.0" layoutY="14.0" mnemonicParsing="false" onAction="#loadMenu" prefHeight="25.0" prefWidth="23.0" style="-fx-background-color: A9A9A9;" styleClass="mainFxmlClass" text="X" />
+                  <TextField fx:id="txtCreateur" layoutX="326.0" layoutY="266.0" />
+                  <Label fx:id="alertN" layoutX="326.0" layoutY="160.0" prefHeight="42.0" prefWidth="350.0" textFill="RED">
+                     <font>
+                        <Font name="Arial Narrow Bold Italic" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="alertD" layoutX="326.0" layoutY="234.0" prefHeight="21.0" prefWidth="240.0" textFill="RED">
+                     <font>
+                        <Font name="Arial Narrow Bold Italic" size="17.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="alerc" layoutX="326.0" layoutY="299.0" prefHeight="51.0" prefWidth="219.0" textFill="RED">
+                     <font>
+                        <Font name="Arial Narrow Bold Italic" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+            <Label fx:id="nomHebr" layoutX="227.0" layoutY="20.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>

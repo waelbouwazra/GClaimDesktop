@@ -18,14 +18,17 @@ public class Jeu {
     private String createur;
     private Date datec;
     private String image;
-    private Tournoi tournois;
 
-    public Jeu(Tournoi tournois) {
-        this.tournois = tournois;
-    }
+   
 
     public Jeu(int id) {
         this.id = id;
+    }
+
+    public Jeu(String nomjeu, String description, String createur) {
+        this.nomjeu = nomjeu;
+        this.description = description;
+        this.createur = createur;
     }
 
     public Jeu(int id, String nomjeu, String description, String createur, String image) {
@@ -44,22 +47,16 @@ public class Jeu {
         this.image = image;
     }
 
-    public Jeu(int id, String nomjeu, String description, String createur, Date datec, Tournoi tournois) {
+    public Jeu(int id, String nomjeu, String description, String createur, Date datec) {
         this.id = id;
         this.nomjeu = nomjeu;
         this.description = description;
         this.createur = createur;
         this.datec = datec;
-        this.tournois = tournois;
+       
     }
 
-    public Tournoi getTournois() {
-        return tournois;
-    }
-
-    public void setTournois(Tournoi tournois) {
-        this.tournois = tournois;
-    }
+   
 
     public Jeu(int id, String nomjeu, String description, String createur) {
         this.id = id;
@@ -68,13 +65,7 @@ public class Jeu {
         this.createur = createur;
     }
 
-    public Jeu(int id, String nomjeu, String description, String createur, Date datec) {
-        this.id = id;
-        this.nomjeu = nomjeu;
-        this.description = description;
-        this.createur = createur;
-        this.datec = datec;
-    }
+  
 
     public Jeu() {
     }
@@ -121,7 +112,7 @@ public class Jeu {
 
     @Override
     public String toString() {
-        return "Jeu{" + "id=" + id + ", nomjeu=" + nomjeu + ", description=" + description + ", createur=" + createur + ", datec=" + datec + ", image=" + image +  '}';
+        return  " Nom du jeu : " + nomjeu + ",  \n \n Description=" + description + ",  \n \n Createur=" + createur + ",  \n \n Date Creation  :" + datec  +",  \n \n \n";
     }
 
 

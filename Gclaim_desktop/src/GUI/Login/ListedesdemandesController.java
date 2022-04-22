@@ -10,6 +10,7 @@ import Services.ServiceUser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -17,7 +18,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
@@ -61,7 +64,16 @@ public class ListedesdemandesController implements Initializable {
     }
     @FXML
     private void deleteuser(ActionEvent event) {
+     
+            if(txtlistusers.getSelectionModel().getSelectedItem()!=null){                      
       rs.accepterdevenircoach(txtlistusers.getSelectionModel().getSelectedItem());
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
       ObservableList<Utilisateur> items =FXCollections.observableArrayList();
         List<Utilisateur> listuser = rs.affichelesdemandededevenircoach();
         for(Utilisateur r : listuser) {
@@ -89,7 +101,15 @@ public class ListedesdemandesController implements Initializable {
 
     @FXML
     private void refuserlademande(ActionEvent event) {
+             if(txtlistusers.getSelectionModel().getSelectedItem()!=null){                      
         rs.refuserdevenircoach(txtlistusers.getSelectionModel().getSelectedItem());
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
       ObservableList<Utilisateur> items =FXCollections.observableArrayList();
         List<Utilisateur> listuser = rs.affichelesdemandededevenircoach();
         for(Utilisateur r : listuser) {

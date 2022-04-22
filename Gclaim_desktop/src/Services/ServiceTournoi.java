@@ -4,9 +4,13 @@
  * and open the template in the editor.
  */
 package Services;
+import Entities.Equipe;
 import Entities.Jeu;
+import Entities.Produit;
+import Entities.SimpleUtilisateur;
 
 import Entities.Tournoi;
+import Entities.Utilisateur;
 import Tools.MaConnection;
 import java.sql.Connection;
 import java.sql.Date;
@@ -21,6 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.*;
 import java.sql.*;
+import java.util.stream.Collectors;
 
 /**
  *
@@ -91,6 +96,7 @@ public class ServiceTournoi {
         }
         
          public List<Tournoi> ShowTournoi(){
+             ServiceJeu sj=new ServiceJeu();
         List<Tournoi> tournoi = new ArrayList<>();
         String sql="select * from tournoi";
         Statement ste;
@@ -103,8 +109,10 @@ public class ServiceTournoi {
                  c.setId(rs.getInt("id"));
                  c.setNomtournoi(rs.getString("nomtournoi"));
                  c.setDescription(rs.getString("description"));
-                 c.setJeu(new Jeu(rs.getInt("jeu_id")));
-
+                 c.setDatec(rs.getDate("datec"));
+                 c.setDatev(rs.getString("dateev"));     
+                 c.setHeurev(rs.getString("heureev"));               
+                 c.setJeu(sj.ShowJeuById(new Jeu(rs.getInt("jeu_id"))));
                  tournoi.add(c);
                  
         }
@@ -114,7 +122,112 @@ public class ServiceTournoi {
         
         return tournoi;
     }
+        public void RejoindreTournoi(Equipe p,Tournoi t) {
+           
+
+        String req =  "insert into tournoi_equipe (tournoi_id,equipe_id) values (?,?)";
+      
+        try {
+
+            pst = cnx.prepareStatement(req);
+            pst.setInt(1, t.getId());
+            pst.setInt(2, p.getId());
+            pst.executeUpdate();
+           
+            System.out.println("rejoindre tournoi done");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
         
+ public void Rechercher( List<Tournoi> tournoi, String nomTournoi){
+       
+        
+         tournoi.stream().filter(cc->cc.getNomtournoi().equals(nomTournoi)).forEach((t) -> {System.out.println(t);
+        });
+    }
 
+ public void TriTournoi(List<Tournoi> tournoi){
+        
+        tournoi.stream().sorted((o1, o2)->o1.getNomtournoi().
+                                                                compareTo(o2.getNomtournoi())).
+                                                                collect(Collectors.toList()).forEach(t-> System.out.println(t));
+        
+    }
 
+ public void nbrtourn( List<Tournoi> tournoi){
+       
+         int nbr;
+         nbr = (int) tournoi.stream().count();
+         System.out.println(nbr);
+      
+        }
+       
+public void filtreidJ( List<Tournoi> tournoi, int idj){
+       
+        
+         tournoi.stream().filter(pp->pp.getJeu().getId()==idj).forEach((t) -> {System.out.println(t);
+        });
+    }
+ public List<Integer> getIdTournoi() {
+        List<Integer> tournoi = new ArrayList<>();
+        String query = "select * from tournoi";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(query);
+
+            while (rs.next()) {
+        tournoi.add(rs.getInt(1));
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+          return tournoi;
+    }
+   public List<Tournoi> cherchetournoi(Object o) {
+            String query="";
+            String ch="";
+            int i=0;
+            List<Tournoi> tournoi = new ArrayList<>();
+            if(o.getClass()==ch.getClass()){
+                ch=(String) o;
+                query="SELECT * FROM `tournoi` WHERE `nomtournoi` LIKE '%" + ch + "%' OR `description` LIKE '%" + ch +  "%'";
+            }
+            if(o instanceof Integer){
+                i=(Integer) o;
+                query="SELECT * FROM `tournoi` WHERE `datec` = " + i + " OR " + " `dateev` LIKE '%" + i +" OR " + " `heureev` LIKE '%" + i + "%' ";
+            }
+            try {
+                //System.out.println(query);
+                ServiceJeu sj=new ServiceJeu();
+                PreparedStatement ste = cnx.prepareStatement(query);
+                ResultSet rs= ste.executeQuery();
+                while(rs.next()){
+                   
+                  
+                 Tournoi c = new Tournoi();
+                 c.setId(rs.getInt("id"));
+                 c.setNomtournoi(rs.getString("nomtournoi"));
+                 c.setDescription(rs.getString("description"));
+                 c.setDatec(rs.getDate("datec"));
+                 c.setDatev(rs.getString("dateev"));     
+                 c.setHeurev(rs.getString("heureev"));               
+                 c.setJeu(sj.ShowJeuById(new Jeu(rs.getInt("jeu_id"))));
+                 tournoi.add(c);
+                 
+                }
+            } catch (SQLException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            return tournoi;   
+        }
+   public Set<Tournoi> tripardate( List<Tournoi> u){
+       
+        Set<Tournoi> ensEmp2 = u.stream().collect(Collectors.toCollection(()->new TreeSet<Tournoi>((e1,e2)->e1.getDatev().compareTo(e2.getDatev()))));
+        return ensEmp2;
+    }
 }

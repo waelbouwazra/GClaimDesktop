@@ -129,6 +129,8 @@ public class TopBarController implements Initializable {
     }
 
     @FXML
-    private void Tournoi(ActionEvent event) {
+    private void tournoi(ActionEvent event) {
+         goToLink(Constants.FXML_DISPLAY_TOURNOI);
+         tournoi.setTextFill(COLOR_BLUE);
     }
 }

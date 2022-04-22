@@ -13,6 +13,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 import javafx.collections.FXCollections;
@@ -21,7 +22,9 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
@@ -86,7 +89,24 @@ public class ShowProduitController implements Initializable{
     }    
 @FXML
     private void DeleteProduct(ActionEvent event) {
-        ps.DeleteProduit(txtListProd.getSelectionModel().getSelectedItem().getId_produit());
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmer votre demande");
+        alert.setHeaderText(null);
+        alert.setContentText("Etes vous sûr de vouloir modifier cette Categorie ?");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+            if(txtListProd.getSelectionModel().getSelectedItem()!=null){                      
+                ps.DeleteProduit(txtListProd.getSelectionModel().getSelectedItem().getId_produit());
+
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
+        }
       ObservableList<Produit> items =FXCollections.observableArrayList();
         List<Produit> listprod = ps.ShowProduit();
         for(Produit r : listprod) {
@@ -133,7 +153,15 @@ public class ShowProduitController implements Initializable{
          // a.setDescription(description);
           //a.setPrix_produit(Double.parseDouble(prix));
          // a.setQte_produit(Integer. parseInt(qte));
+          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmer votre demande");
+        alert.setHeaderText(null);
+        alert.setContentText("Etes vous sûr de vouloir modifier cette Categorie ?");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
        ps.UpdateProduit(a, id_prod);
+        }
     ObservableList<Produit> items =FXCollections.observableArrayList();
         List<Produit> listprod = ps.ShowProduit();
         for(Produit r : listprod) {
@@ -146,8 +174,8 @@ public class ShowProduitController implements Initializable{
     }
     @FXML
     private void ProduitSelect(MouseEvent event) {
-        
-          nomp.setText(txtListProd.getSelectionModel().getSelectedItem().getNom_produit());  
+        if(txtListProd.getSelectionModel().getSelectedItem()!=null){                      
+                nomp.setText(txtListProd.getSelectionModel().getSelectedItem().getNom_produit());  
           
             descp.setText(txtListProd.getSelectionModel().getSelectedItem().getDescription());
             prixp.setText(""+txtListProd.getSelectionModel().getSelectedItem().getPrix_produit());
@@ -160,6 +188,15 @@ public class ShowProduitController implements Initializable{
          ObservableList<Integer> langss = FXCollections.observableArrayList(cs.getIdcategorie());
           System.out.println(langss);
      EtatBox.setItems(langss);
+
+            }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
+          
         
     }
     

@@ -3,13 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI.Login;
+package GUI.Tournoi;
 
 import Entities.Equipe;
-import Entities.Utilisateur;
-import static GUI.Tournoi.ListejeuxController.currentAbo;
-import Services.ServiceEquipe;
-import Services.ServiceUser;
+import Entities.Tournoi;
+import Entities.Jeu;
+import Services.ServiceTournoi;
+import Services.ServiceJeu;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -38,18 +38,21 @@ import javafx.scene.paint.Color;
  *
  * @author souma
  */
-public class ListedesequipesController implements Initializable {
+public class ListetournoisController implements Initializable {
+    public static Tournoi currentAbo;
 
     @FXML
-    private ListView<Equipe> txtlistusers;
+    private ListView<Tournoi> txtlistusers;
     @FXML
     private Button btngetback;
-   
+    
     @FXML
     private AnchorPane mainPane;
-     private ServiceEquipe rs = new ServiceEquipe();
+     private ServiceTournoi rs = new ServiceTournoi();
     @FXML
     private TextField rechrche;
+    @FXML
+    private Button editButton;
 
     /**
      * Initializes the controller class.
@@ -57,15 +60,16 @@ public class ListedesequipesController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         
-        ObservableList<Equipe> items =FXCollections.observableArrayList();
-        List<Equipe> listuser = rs.afficheEquipe();
-        for(Equipe r : listuser) {
+        
+        
+        ObservableList<Tournoi> items =FXCollections.observableArrayList();
+        List<Tournoi> listuser = rs.ShowTournoi();
+        for(Tournoi r : listuser) {
             String ch = r.toString();
             items.add(r);
         }
        
     txtlistusers.setItems(items);
-    
     }    
 
     @FXML
@@ -77,7 +81,7 @@ public class ListedesequipesController implements Initializable {
         
         AnchorPane pane;
         try {
-            pane = FXMLLoader.load(getClass().getResource("menuuser.fxml"));
+            pane = FXMLLoader.load(getClass().getResource("MenuTournoi.fxml"));
             mainPane.getChildren().setAll(pane);
             //defaultStateButtons();
             btngetback.setTextFill(Color.WHITE);
@@ -88,28 +92,19 @@ public class ListedesequipesController implements Initializable {
     }
 
     @FXML
-    private void deleteequipe(ActionEvent event) {
-        
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+    private void deletetournoi(ActionEvent event) {
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmer votre demande");
         alert.setHeaderText(null);
-        alert.setContentText("Etes vous sûr de vouloir modifier cette Equipe ?");
+        alert.setContentText("Etes vous sûr de vouloir supprimer ce Tournoi ?");
         Optional<ButtonType> action = alert.showAndWait();
 
         if (action.get() == ButtonType.OK) {
-            if(txtlistusers.getSelectionModel().getSelectedItem()!=null){                      
-            rs.DeleteEquipe(txtlistusers.getSelectionModel().getSelectedItem().getId());
-            }else 
-            {
-            Alert alertt = new Alert(Alert.AlertType.WARNING);
-            alertt.setTitle("Champs Vide");
-            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
-            alertt.show();  
-            }
+        rs.DeleteTournoi(txtlistusers.getSelectionModel().getSelectedItem().getId());
         }
-      ObservableList<Equipe> items =FXCollections.observableArrayList();
-        List<Equipe> listuser = rs.afficheEquipe();
-        for(Equipe r : listuser) {
+      ObservableList<Tournoi> items =FXCollections.observableArrayList();
+        List<Tournoi> listT = rs.ShowTournoi();
+        for(Tournoi r : listT) {
             String ch = r.toString();
             items.add(r);
         }
@@ -117,21 +112,20 @@ public class ListedesequipesController implements Initializable {
     txtlistusers.setItems(items);
     
     }
-
-    @FXML
+     @FXML
     private void chercherUser(KeyEvent event) {
        
        
-      List<Equipe> listuser;
+      List<Tournoi> listuser;
         String tchoix=rechrche.getText();
         try{
             int nchoix = Integer.parseInt(tchoix);
-            listuser = rs.chercheequipe(nchoix);
+            listuser = rs.cherchetournoi(nchoix);
         } catch (NumberFormatException e) {
-            listuser = rs.chercheequipe(tchoix);
+            listuser = rs.cherchetournoi(tchoix);
         }
-          ObservableList<Equipe> items =FXCollections.observableArrayList();
-       for(Equipe r : listuser) {
+          ObservableList<Tournoi> items =FXCollections.observableArrayList();
+       for(Tournoi r : listuser) {
             String ch = r.toString();
             items.add(r);
         }
@@ -140,14 +134,37 @@ public class ListedesequipesController implements Initializable {
 
     @FXML
     private void triee(ActionEvent event) {
-         ObservableList<Equipe> items =FXCollections.observableArrayList();
-        List<Equipe> listuser = rs.afficheEquipe();
-       Set<Equipe> liste= rs.tripardate(listuser);
-       for(Equipe r : liste) {
+         ObservableList<Tournoi> items =FXCollections.observableArrayList();
+        List<Tournoi> listuser = rs.ShowTournoi();
+       Set<Tournoi> liste= rs.tripardate(listuser);
+       for(Tournoi r : liste) {
             String ch = r.toString();
             items.add(r);
         }
         txtlistusers.setItems(items);
+    }
+
+    @FXML
+    private void modifierT(ActionEvent event) {
+        currentAbo=txtlistusers.getSelectionModel().getSelectedItem();
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmer votre demande");
+        alert.setHeaderText(null);
+        alert.setContentText("Etes vous sûr de vouloir modifier ce Tournoi ?");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+         AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("ModifierTournoi.fxml"));
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+            btngetback.setTextFill(Color.WHITE);
+            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
     }
 
     

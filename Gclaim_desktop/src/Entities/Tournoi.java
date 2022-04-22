@@ -31,7 +31,14 @@ public class Tournoi {
         this.jeu = jeu;
     }
 
-  
+    public Tournoi( String nomtournoi, String description, String datev, String heurev, Jeu jeu) {
+        this.nomtournoi = nomtournoi;
+        this.description = description;
+        this.datev = datev;
+        this.heurev = heurev;
+        this.jeu = jeu;
+    }
+
     public Tournoi(Jeu jeu) {
         this.jeu = jeu;
     }
@@ -120,7 +127,7 @@ public class Tournoi {
 
     @Override
     public String toString() {
-        return "Tournoi{" + "id=" + id + ", nomtournoi=" + nomtournoi + ", description=" + description + ", datec=" + datec + ", datev=" + datev + ", heurev=" + heurev + ", image=" + image + ", jeu=" + jeu + '}';
+        return "nom du tournoi:   " + nomtournoi + ",  \n \n Description:    " + description + ",  \n \n Date de Creation:   " + datec + ",  \n \n Date Evenement    :" + datev + ",  \n \n Heurev :   " + heurev +   ",  \n \n jeu    : " + jeu.getNomjeu() +",  \n \n \n";
     }
 
   
