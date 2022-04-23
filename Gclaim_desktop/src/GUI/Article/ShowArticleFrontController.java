@@ -105,7 +105,7 @@ public class ShowArticleFrontController implements Initializable {
          private void AfficheCom(Article abo) {
         currentAbo = abo;
        // rs.updateEquipe(abo);
-        MainWindowController.getInstance().loadInterface("ShowCommentaireController.fxml");
+        MainWindowController.getInstance().loadInterface("ShowCommentaire.fxml");
     }
     
 }

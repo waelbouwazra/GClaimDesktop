@@ -61,8 +61,7 @@ public class ModifierprofilController implements Initializable {
 
     @FXML
     private TextField TelText;
-    @FXML
-    private TextField AdresseTxt;
+    
     @FXML
     private TextField CinTxt;
     @FXML
@@ -110,6 +109,14 @@ public class ModifierprofilController implements Initializable {
     private Pane supppane;
     @FXML
     private Pane creercoach;
+     int generatedCode;
+       private SendEmail sendEmail;
+    @FXML
+    private Pane code;
+    @FXML
+    private Button confirmer;
+    @FXML
+    private TextField codeInput;
 
     /**
      * Initializes the controller class.
@@ -118,24 +125,27 @@ public class ModifierprofilController implements Initializable {
     public void initialize(URL url, ResourceBundle rb) {
         US = new ServiceUser();
         devenircoachPane.setVisible(false);
-                
+                 generatedCode = 0;
+                 code.setVisible(false);
         try {
             localStorage = new LocalStorage();
         } catch (IOException ex) {
             System.out.println("error init localstorage");
         }
         TelText.setText(currentUser.getUsername());
-        AdresseTxt.setText(currentUser.getPassword());
         username.setText(currentUser.getUsername());
         EmailTxt.setText(currentUser.getEmail());
         if (currentUser.getRoles().equals("[\"ROLE_USER\"]")&& currentUser.isRole() == false) {
             UserRole.setText("simpleUtilisateur");
             devenircoachPane.setVisible(true);
             creercoach.setVisible(false);
+            CinTxt.setText(((SimpleUtilisateur)currentUser).getFullname());
+            
         } else if (currentUser.getRoles().equals("[\"ROLE_COACH\"]")) {
             UserRole.setText("Coach");
             devenircoachPane.setVisible(false);
             creercoach.setVisible(true);
+                        CinTxt.setText(((Coach)currentUser).getSpecialite());
         }
 
         ModalPane.setVisible(false);
@@ -144,14 +154,13 @@ public class ModifierprofilController implements Initializable {
 
     @FXML
     private void ModifierInfromations(ActionEvent event) {
-        if (!TelText.getText().isEmpty() && !AdresseTxt.getText().isEmpty() && !CinTxt.getText().isEmpty() && !EmailTxt.getText().isEmpty()) {
+        if (!TelText.getText().isEmpty() && !CinTxt.getText().isEmpty() && !EmailTxt.getText().isEmpty()) {
             if (US.currentUser.getRoles().equals("[\"ROLE_USER\"]")) {
                 SimpleUtilisateur newUser = new SimpleUtilisateur();
                 newUser.setId(US.currentUser.getId());
                 newUser.setUsername(US.currentUser.getUsername());
                 newUser.setEmail(US.currentUser.getEmail());
-                newUser.setVerifpassword(AdresseTxt.getText());
-                newUser.setPassword(AdresseTxt.getText());
+   
                 newUser.setFullname(CinTxt.getText());
 
                 US.UpdatePersonne(newUser, newUser.getId());
@@ -168,8 +177,7 @@ public class ModifierprofilController implements Initializable {
                 newUser.setId(US.currentUser.getId());
                 newUser.setUsername(US.currentUser.getUsername());
                 newUser.setEmail(US.currentUser.getEmail());
-                newUser.setVerifpassword(AdresseTxt.getText());
-                newUser.setPassword(AdresseTxt.getText());
+              
                 newUser.setSpecialite(CinTxt.getText());
 
                 US.UpdatePersonne(newUser, newUser.getId());
@@ -221,18 +229,17 @@ public class ModifierprofilController implements Initializable {
 
     @FXML
     private void desactivervotrecompte(ActionEvent event) {
-        US.desactiveruncompte(currentUser.getId());
-        US.logOut();
-        AnchorPane pane;
+     
         try {
-            pane = FXMLLoader.load(getClass().getResource("Login.fxml"));
-            mainPane.getChildren().setAll(pane);
-            //defaultStateButtons();
-            desactivercompte.setTextFill(Color.WHITE);
-            desactivercompte.setStyle("-fx-background-color :#5b4ebd");
-        } catch (IOException ex) {
-            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                int min = 10000;
+                int max = 99999;
+
+                generatedCode = (int) Math.floor(Math.random() * (max - min + 1) + min);
+                sendEmail = new SendEmail("gclaimpidev@gmail.com", "Gclaim2022", US.currentUser.getEmail(), "Desactiver votre compte ", "<div style=\"color: #c24400\"> <h1>Bonjour! " + US.currentUser.getUsername() +" </h1> </div> <h3> Voici un CODE pour desactiver votre compte : " + generatedCode + "\n </h3> <div style=\"color: #c24400\"> <p>Cordialement </p> <p>	Gclaim by BITS&BAYTES</p> <img src=\"C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/src_image/Logo.png \"> </div>");
+               code.setVisible(true);
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
 
     }
 
@@ -248,19 +255,13 @@ public class ModifierprofilController implements Initializable {
     }
 
     @FXML
-    private void logout(ActionEvent event) {
-        US.logOut();
-        AnchorPane pane;
-        try {
-            pane = FXMLLoader.load(getClass().getResource("Login.fxml"));
-            mainPain.getChildren().setAll(pane);
-            //defaultStateButtons();
-            LOG_OUT.setTextFill(Color.WHITE);
-            LOG_OUT.setStyle("-fx-background-color :#5b4ebd");
-        } catch (IOException ex) {
-            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
+    private void logout(ActionEvent event) throws IOException {
+       US.logOut();
+        FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("Login.fxml"));
+            Parent root = loader.load();
+           
+            LOG_OUT.getScene().setRoot(root);
     }
 
     @FXML
@@ -300,6 +301,24 @@ public class ModifierprofilController implements Initializable {
             //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
         } catch (IOException ex) {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    @FXML
+    private void confirmercode(ActionEvent event) throws IOException {
+        if (Integer.toString(generatedCode).equals(codeInput.getText())) {
+            System.out.println("code correct");
+            US.desactiveruncompte(currentUser.getId());
+            US.logOut();
+         US.logOut();
+        FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("Login.fxml"));
+            Parent root = loader.load();
+           
+            LOG_OUT.getScene().setRoot(root);
+       
+        } else {
+            addNotifications("erreur", "code incorrect");
         }
     }
 }

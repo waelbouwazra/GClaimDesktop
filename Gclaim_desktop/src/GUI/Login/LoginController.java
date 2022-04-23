@@ -53,8 +53,8 @@ public class LoginController implements Initializable {
     @FXML
     private Label mdpoublie;
     private Label erreur;
-private SendEmail sendEmail;
-    
+    private SendEmail sendEmail;
+
     @FXML
     private TextField emailverif;
     @FXML
@@ -87,10 +87,10 @@ private SendEmail sendEmail;
         VerifyCodePane.setVisible(false);
         ChangePasswordPane.setVisible(false);
         US = new ServiceUser();
-        
+
         // juste pour yussef
-         txtmail.setText("yuss@esprit.tn");
-                     txtpassword.setText("azerazer");
+        txtmail.setText("soumaya.bensassi@esprit.tn");
+        txtpassword.setText("10101010");
     }
 
     @FXML
@@ -100,7 +100,7 @@ private SendEmail sendEmail;
         String pwd = txtpassword.getText();
         if (email.isEmpty() || pwd.isEmpty()) {
             addNotifications("erreur", "Les champs sont vides ou incorrects");
-           //JOptionPane.showMessageDialog(null, "Les champs sont vides ou incorrects");
+            //JOptionPane.showMessageDialog(null, "Les champs sont vides ou incorrects");
         } else {
             ServiceUser us = new ServiceUser();
 
@@ -127,10 +127,9 @@ private SendEmail sendEmail;
                     } catch (IOException ex) {
                         System.out.println(ex.getMessage());
                     }
-                } 
-                else if (currentUser.getRoles().equals("[\"ROLE_COACH\"]") && currentUser.isIsVerfied()) {
+                } else if (currentUser.getRoles().equals("[\"ROLE_COACH\"]") && currentUser.isIsVerfied()) {
                     System.out.println(currentUser.isIsVerfied());
-                    
+
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../MenuFront.fxml"));
 
                     try {
@@ -139,13 +138,12 @@ private SendEmail sendEmail;
                     } catch (IOException ex) {
                         System.out.println(ex.getMessage());
                     }
-                } 
-                else {
-                     addNotifications("erreur", "L'UTILISATEUR EST INVALIDE");
-                   // JOptionPane.showMessageDialog(null, "L'UTILISATEUR EST INVALIDE");
+                } else {
+                    addNotifications("erreur", "L'UTILISATEUR EST INVALIDE");
+                    // JOptionPane.showMessageDialog(null, "L'UTILISATEUR EST INVALIDE");
                 }
             } else {
-               addNotifications("erreur", "Mot de passe ou email invalide");
+                addNotifications("erreur", "Mot de passe ou email invalide");
                 //JOptionPane.showMessageDialog(null, "Mot de passe ou email invalide");
             }
 
@@ -178,12 +176,12 @@ private SendEmail sendEmail;
         forgetPasswordPane.setVisible(true);
     }
 
-   /*
+    /*
     
 
     @FXML
     private void ChangePassword(ActionEvent event) 
-*/
+     */
     private void addNotifications(String title, String content) {
 
         if (null != content) {
@@ -200,7 +198,6 @@ private SendEmail sendEmail;
         notificationBuilder.showInformation();
     }
 
-
     @FXML
     private void VerifyCode(ActionEvent event) {
         if (Integer.toString(generatedCode).equals(codeInput.getText())) {
@@ -216,13 +213,15 @@ private SendEmail sendEmail;
     @FXML
     private void sendForgetPasswordCode(ActionEvent event) {
         boolean exist = US.getUtilisateurByEmail(emailverif.getText());
+
         if (exist) {
+
             try {
                 int min = 10000;
                 int max = 99999;
 
                 generatedCode = (int) Math.floor(Math.random() * (max - min + 1) + min);
-                sendEmail = new SendEmail("gclaimpidev@gmail.com", "Gclaim2022", emailverif.getText(), "Mot de passe oublié", "<h3> Voici un CODE pour modifier votre mot de passe : " + generatedCode + "\n </h3>");
+                sendEmail = new SendEmail("gclaimpidev@gmail.com", "Gclaim2022", emailverif.getText(), "Mot de passe oublié", "<div style=\"color: #c24400\"> <h1>Bonjour! " + US.getUtilisateurByEmail1(emailverif.getText()) +" </h1> </div> <h3> Voici un CODE pour modifier votre mot de passe : " + generatedCode + "\n </h3> <div style=\"color: #c24400\"> <p>Cordialement </p> <p>	Gclaim by BITS&BAYTES</p> <img src=\"C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/src_image/Logo.png \"> </div>");
                 forgetPasswordPane.setVisible(false);
                 VerifyCodePane.setVisible(true);
             } catch (Exception ex) {
@@ -244,6 +243,5 @@ private SendEmail sendEmail;
         }
 
     }
-
 
 }

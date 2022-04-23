@@ -1,5 +1,3 @@
-
-
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -28,7 +26,6 @@ import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
 
-
 /**
  *
  * @author souma
@@ -40,7 +37,7 @@ public class ServiceUser {
     public ServiceUser() {
         ct = MaConnection.getInstance().getConnection();
     }
-    public static Utilisateur currentUser = new Utilisateur();
+    public static Utilisateur currentUser;
 
 //jdbc native
     public int ajouterPersonne(Utilisateur p) {
@@ -49,7 +46,7 @@ public class ServiceUser {
             String query = "insert into utilisateur(password,email,type,fullname,specialite,username,verifpassword,is_verified,roles,role) values(?,?,?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement ste = ct.prepareStatement(query);
-                ste.setString(1,  mdpconvert(p.getPassword()));
+                ste.setString(1, mdpconvert(p.getPassword()));
                 ste.setString(2, p.getEmail());
                 ste.setString(3, "simpleutilisateur");
                 ste.setString(4, ((SimpleUtilisateur) p).getFullname());
@@ -89,7 +86,8 @@ public class ServiceUser {
         }
         return resultat;
     }
- public String mdpconvert(String p) {
+
+    public String mdpconvert(String p) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] messageDigest = md.digest(p.getBytes());
@@ -101,6 +99,7 @@ public class ServiceUser {
             throw new RuntimeException(ex);
         }
     }
+
     public List<Utilisateur> afficheSimpleUser() {
         List<Utilisateur> personnes = new ArrayList<>();
         String query = "select * from utilisateur";
@@ -157,7 +156,8 @@ public class ServiceUser {
 
         return personnes;
     }
-public List<Integer> getIDUSER() {
+
+    public List<Integer> getIDUSER() {
         List<Integer> personnes = new ArrayList<>();
         String query = "select * from utilisateur";
         Statement ste;
@@ -166,17 +166,19 @@ public List<Integer> getIDUSER() {
             ResultSet rs = ste.executeQuery(query);
 
             while (rs.next()) {
-if (rs.getString(4).equals("simpleutilisateur")) {
+                if (rs.getString(4).equals("simpleutilisateur")) {
                     personnes.add(rs.getInt(1));
-                
-            }}
+
+                }
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
         return personnes;
     }
-public List<Integer> getIDCOACH() {
+
+    public List<Integer> getIDCOACH() {
         List<Integer> personnes = new ArrayList<>();
         String query = "select * from utilisateur";
         Statement ste;
@@ -185,16 +187,18 @@ public List<Integer> getIDCOACH() {
             ResultSet rs = ste.executeQuery(query);
 
             while (rs.next()) {
-if (rs.getString(4).equals("coach")) {
+                if (rs.getString(4).equals("coach")) {
                     personnes.add(rs.getInt(1));
-                
-            }}
+
+                }
+            }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
 
         return personnes;
     }
+
     public void DeleteUser(int p) {
 
         String req = "DELETE from utilisateur  WHERE id =" + p + " ";
@@ -213,19 +217,19 @@ if (rs.getString(4).equals("coach")) {
 
     public void UpdatePersonne(Utilisateur p, int pu) {
         if (p instanceof SimpleUtilisateur) {
-            String query = "UPDATE utilisateur set password=?,email=?,type=?,fullname=?,specialite=?,username=?,verifpassword=?,is_verified=?,roles=?,role=? WHERE id =" + pu + "";
+            String query = "UPDATE utilisateur set email=?,type=?,fullname=?,specialite=?,username=?,is_verified=?,roles=?,role=? WHERE id =" + pu + "";
             try {
                 PreparedStatement ste = ct.prepareStatement(query);
-                ste.setString(1, mdpconvert(p.getPassword()));
-                ste.setString(2, p.getEmail());
-                ste.setString(3, "simpleutilisateur");
-                ste.setString(4, ((SimpleUtilisateur) p).getFullname());
-                ste.setString(5, "NULL");
-                ste.setString(6, p.getUsername());
-                ste.setString(7, mdpconvert(p.getVerifpassword()));
-                ste.setInt(8, 1);
-                ste.setString(9, "[\"ROLE_USER\"]");
-                ste.setInt(10, 0);
+
+                ste.setString(1, p.getEmail());
+                ste.setString(2, "simpleutilisateur");
+                ste.setString(3, ((SimpleUtilisateur) p).getFullname());
+                ste.setString(4, "NULL");
+                ste.setString(5, p.getUsername());
+
+                ste.setInt(6, 1);
+                ste.setString(7, "[\"ROLE_USER\"]");
+                ste.setInt(8, 0);
                 ste.executeUpdate();
                 System.out.println("SimpleUtilisateur modifie");
             } catch (SQLException ex) {
@@ -233,19 +237,19 @@ if (rs.getString(4).equals("coach")) {
             }
         }
         if (p instanceof Coach) {
-            String query = "UPDATE utilisateur set password=?,email=?,type=?,fullname=?,specialite=?,username=?,verifpassword=?,is_verified=?,roles=?,role=? WHERE id =" + pu + "";
+            String query = "UPDATE utilisateur set email=?,type=?,fullname=?,specialite=?,username=?,is_verified=?,roles=?,role=? WHERE id =" + pu + "";
             try {
                 PreparedStatement ste = ct.prepareStatement(query);
-                ste.setString(1, mdpconvert(p.getPassword()));
-                ste.setString(2, p.getEmail());
-                ste.setString(3, "coach");
-                ste.setString(4, "NULL");
-                ste.setString(5, ((Coach) p).getSpecialite());
-                ste.setString(6, p.getUsername());
-                ste.setString(7, mdpconvert(p.getVerifpassword()));
-                ste.setInt(8, 1);
-                ste.setString(9, "[\"ROLE_COACH\"]");
-                ste.setInt(10, 0);
+
+                ste.setString(1, p.getEmail());
+                ste.setString(2, "coach");
+                ste.setString(3, "NULL");
+                ste.setString(4, ((Coach) p).getSpecialite());
+                ste.setString(5, p.getUsername());
+
+                ste.setInt(6, 1);
+                ste.setString(7, "[\"ROLE_COACH\"]");
+                ste.setInt(8, 0);
                 ste.executeUpdate();
 
                 System.out.println("coach modifie");
@@ -276,7 +280,7 @@ if (rs.getString(4).equals("coach")) {
         String query = "insert into utilisateur(password,email,type,fullname,specialite,username,verifpassword,is_verified,roles,role) values(?,?,?,?,?,?,?,?,?,?)";
         try {
             PreparedStatement ste1 = ct.prepareStatement(query);
-            ste1.setString(1,p.getPassword());
+            ste1.setString(1, p.getPassword());
             ste1.setString(2, p.getEmail());
             ste1.setString(3, "coach");
             ste1.setString(4, "NULL");
@@ -463,141 +467,59 @@ if (rs.getString(4).equals("coach")) {
 
         return personnes;
     }
- public List<Integer> getIdcoachsactiver() {
-        List<Integer> personnes = new ArrayList<>();
-        String query = "select * from utilisateur u where u.is_verified=1";
+
+    public Utilisateur getuserbyID(int id) {
+        String sql = "SELECT * FROM utilisateur where id=" + id + "";
+
+        Utilisateur p = new Utilisateur();
         Statement ste;
-        try {
-            ste = ct.createStatement();
-            ResultSet rs = ste.executeQuery(query);
-
-            while (rs.next()) {
-
-                if (rs.getString(4).equals("coach")) {
-                   
-                    personnes.add(rs.getInt(1));
-
-                }
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        return personnes;
-    }
- public List<Integer> getIdusersactiver() {
-        List<Integer> personnes = new ArrayList<>();
-        String query = "select * from utilisateur u where u.is_verified=1";
-        Statement ste;
-        try {
-            ste = ct.createStatement();
-            ResultSet rs = ste.executeQuery(query);
-
-            while (rs.next()) {
-
-                if (rs.getString(4).equals("simpleutilisateur")) {
-                   
-                    personnes.add(rs.getInt(1));
-
-                }
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        return personnes;
-    }
- public List<Integer> getIdcoachsdesactiver() {
-        List<Integer> personnes = new ArrayList<>();
-        String query = "select * from utilisateur u where u.is_verified=0";
-        Statement ste;
-        try {
-            ste = ct.createStatement();
-            ResultSet rs = ste.executeQuery(query);
-
-            while (rs.next()) {
-
-                if (rs.getString(4).equals("coach")) {
-                   
-                    personnes.add(rs.getInt(1));
-
-                }
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        return personnes;
-    }
- public List<Integer> getIdusersdesactiver() {
-        List<Integer> personnes = new ArrayList<>();
-        String query = "select * from utilisateur u where u.is_verified=0";
-        Statement ste;
-        try {
-            ste = ct.createStatement();
-            ResultSet rs = ste.executeQuery(query);
-
-            while (rs.next()) {
-
-                if (rs.getString(4).equals("simpleutilisateur")) {
-                   
-                    personnes.add(rs.getInt(1));
-
-                }
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        return personnes;
-    }
- public List<Integer> getIdDESDEMANDES() {
-        List<Integer> personnes = new ArrayList<>();
-        String query = "select * from utilisateur u where u.role=1";
-        Statement ste;
-        try {
-            ste = ct.createStatement();
-            ResultSet rs = ste.executeQuery(query);
-
-            while (rs.next()) {
-
-                if (rs.getString(4).equals("simpleutilisateur")) {
-                   
-                    personnes.add(rs.getInt(1));
-
-                }
-            }
-        } catch (SQLException ex) {
-            System.out.println(ex.getMessage());
-        }
-
-        return personnes;
-    }
-public Utilisateur getuserbyID(int id) {
-         String sql = "SELECT * FROM utilisateur where id=" + id + "";
-         
-          Utilisateur p =new Utilisateur();
-         Statement ste;
         try {
             ste = ct.createStatement();
             ResultSet rs = ste.executeQuery(sql);
 
             while (rs.first()) {
-                    p.setId(rs.getInt(1));
-                    p.setPassword(rs.getString(2));
-                    p.setEmail(rs.getString(3));
-                    p.setUsername(rs.getString(7));
-                    p.setVerifpassword(rs.getString(8));
-                    //System.out.println(p);
-                    return p;
- 
+                p.setId(rs.getInt(1));
+                p.setPassword(rs.getString(2));
+                p.setEmail(rs.getString(3));
+                p.setUsername(rs.getString(7));
+                p.setVerifpassword(rs.getString(8));
+                //System.out.println(p);
+                return p;
+
             }
         } catch (SQLException ex) {
             System.out.println(ex.getMessage());
         }
         System.out.println(p);
         return p;
-}
+    }
+
+    public Utilisateur getuserbyEmail(String email) {
+        String sql = "SELECT * FROM utilisateur where email=" + email + "";
+
+        Utilisateur p = new Utilisateur();
+        Statement ste;
+        try {
+            ste = ct.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+
+            while (rs.first()) {
+                p.setId(rs.getInt(1));
+                p.setPassword(rs.getString(2));
+                p.setEmail(rs.getString(3));
+                p.setUsername(rs.getString(7));
+                p.setVerifpassword(rs.getString(8));
+                //System.out.println(p);
+                return p;
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        System.out.println(p);
+        return p;
+    }
+
     public List<Utilisateur> affichecoachdesactiver() {
         List<Utilisateur> personnes = new ArrayList<>();
         String query = "select * from utilisateur u where u.is_verified=0";
@@ -665,6 +587,26 @@ public Utilisateur getuserbyID(int id) {
 
     }
 
+    public String getUtilisateurByEmail1(String email) {
+
+        try {
+            String sql = "SELECT * FROM utilisateur where email=?";
+            PreparedStatement ste = ct.prepareStatement(sql);
+            ste.setString(1, email);
+
+            ResultSet rs = ste.executeQuery();//resultat requete sql
+            if (rs.first()) {
+
+                return rs.getString("username");
+            }
+
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return "";
+
+    }
+
     public String Seconnecter(String email, String motdepasse) {
         String sql = "Select * from utilisateur where email =?";
         String result = "failed";
@@ -674,11 +616,11 @@ public Utilisateur getuserbyID(int id) {
             ste.setString(1, email);
             ResultSet rs = ste.executeQuery();
             if (rs.next()) {
-               String pwd = rs.getString("password");
-                if (mdpconvert(motdepasse).equals(pwd))  {
+                String pwd = rs.getString("password");
+                if (mdpconvert(motdepasse).equals(pwd)) {
                     result = "success";
-
-                    Utilisateur user = new Utilisateur();
+if(rs.getString(4).equals("simpleutilisateur")){
+                    Utilisateur user = new SimpleUtilisateur();
 
                     user.setId(rs.getInt("id"));
                     user.setEmail(rs.getString("email"));
@@ -687,9 +629,22 @@ public Utilisateur getuserbyID(int id) {
                     user.setVerifpassword(rs.getString("verifpassword"));
                     user.setRoles(rs.getString("roles"));
                     user.setIsVerfied(rs.getBoolean("is_verified"));
-
+((SimpleUtilisateur) user).setFullname(rs.getString("fullname"));
                     updateCurrentUser(user);
+}
+else {
+    Utilisateur user = new Coach();
 
+                    user.setId(rs.getInt("id"));
+                    user.setEmail(rs.getString("email"));
+                    user.setUsername(rs.getString("username"));
+                    user.setPassword(rs.getString("password"));
+                    user.setVerifpassword(rs.getString("verifpassword"));
+                    user.setRoles(rs.getString("roles"));
+                    user.setIsVerfied(rs.getBoolean("is_verified"));
+((Coach) user).setSpecialite(rs.getString("specialite"));
+                    updateCurrentUser(user);
+}
                 } else {
                     System.out.println("mdp incorrecte");
                 }
@@ -701,13 +656,19 @@ public Utilisateur getuserbyID(int id) {
             }
 
         } catch (SQLException ex) {
-            System.out.println(ex.getMessage());       }
+            System.out.println(ex.getMessage());
+        }
         return result;
 
     }
 
     public void updateCurrentUser(Utilisateur user) {
-        currentUser.setId(user.getId());
+
+       
+     
+        if (user.getRoles().equals("[\"ROLE_USER\"]")) {
+           currentUser = new SimpleUtilisateur();
+             currentUser.setId(user.getId());
         currentUser.setUsername(user.getUsername());
         currentUser.setPassword(user.getPassword());
         currentUser.setVerifpassword(user.getVerifpassword());
@@ -715,10 +676,24 @@ public Utilisateur getuserbyID(int id) {
         currentUser.setIsVerfied(user.isIsVerfied());
         currentUser.setRole(user.isRole());
         currentUser.setRoles(user.getRoles());
-        
-       
-    }
+            ((SimpleUtilisateur) currentUser).setFullname(((SimpleUtilisateur) user).getFullname());
+           
 
+        } else {
+currentUser = new Coach();
+             currentUser.setId(user.getId());
+        currentUser.setUsername(user.getUsername());
+        currentUser.setPassword(user.getPassword());
+        currentUser.setVerifpassword(user.getVerifpassword());
+        currentUser.setEmail(user.getEmail());
+        currentUser.setIsVerfied(user.isIsVerfied());
+        currentUser.setRole(user.isRole());
+        currentUser.setRoles(user.getRoles());
+           ((Coach) currentUser).setSpecialite(((Coach) user).getSpecialite());
+
+        }
+
+    }
 
     public String getRoleByCin(String email) throws SQLException {
 
@@ -749,37 +724,38 @@ public Utilisateur getuserbyID(int id) {
         CurrentCoach.setPassword("");*/
         return true;
     }
-     public String nbrprod( List<Utilisateur> u){
-       
-         int nbr;
-         nbr = (int) u.stream().count();
-         String s=Integer.toString(nbr);
-         return  s;
-      
-        }
-     public Set<Utilisateur> tri( List<Utilisateur> u){
-       
-        Set<Utilisateur> ensEmp2 = u.stream().collect(Collectors.toCollection(()->new TreeSet<Utilisateur>((e1,e2)->e1.getUsername().compareTo(e2.getUsername()))));
+
+    public String nbrprod(List<Utilisateur> u) {
+
+        int nbr;
+        nbr = (int) u.stream().count();
+        String s = Integer.toString(nbr);
+        return s;
+
+    }
+
+    public Set<Utilisateur> tri(List<Utilisateur> u) {
+
+        Set<Utilisateur> ensEmp2 = u.stream().collect(Collectors.toCollection(() -> new TreeSet<Utilisateur>((e1, e2) -> e1.getUsername().compareTo(e2.getUsername()))));
         return ensEmp2;
     }
-     
-     
-     public List<Utilisateur> chercheUtilisateur(Object o) {
-            String query="";
-            String ch="";
-            int i=0;
-            List<Utilisateur> user = new ArrayList<>();
-            if(o.getClass()==ch.getClass()){
-                ch=(String) o;
-                query="SELECT * FROM `utilisateur` WHERE `username` LIKE '%" + ch + "%' OR `email` LIKE '%" + ch + "%' OR `fullname` LIKE '%" + ch + "%' OR `specialite` LIKE '%" + ch + "%'";
-            }
-            
-            try {
-                //System.out.println(query);
-                PreparedStatement ste = ct.prepareStatement(query);
-                ResultSet rs= ste.executeQuery();
-                while(rs.next()){
-                    if (rs.getString(4).equals("simpleutilisateur")) {
+
+    public List<Utilisateur> chercheUtilisateur(Object o) {
+        String query = "";
+        String ch = "";
+        int i = 0;
+        List<Utilisateur> user = new ArrayList<>();
+        if (o.getClass() == ch.getClass()) {
+            ch = (String) o;
+            query = "SELECT * FROM `utilisateur` WHERE `username` LIKE '%" + ch + "%' OR `email` LIKE '%" + ch + "%' OR `fullname` LIKE '%" + ch + "%' OR `specialite` LIKE '%" + ch + "%'";
+        }
+
+        try {
+            //System.out.println(query);
+            PreparedStatement ste = ct.prepareStatement(query);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+                if (rs.getString(4).equals("simpleutilisateur")) {
                     SimpleUtilisateur p = new SimpleUtilisateur();
                     p.setId(rs.getInt(1));
                     p.setPassword(rs.getString(2));
@@ -788,33 +764,33 @@ public Utilisateur getuserbyID(int id) {
                     p.setUsername(rs.getString(7));
                     p.setVerifpassword(rs.getString(8));
                     user.add(p);
-                    }
-                   
                 }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
 
-            return user;   
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
 
-public List<Utilisateur> chercheCpoch(Object o) {
-            String query="";
-            String ch="";
-            int i=0;
-            List<Utilisateur> user = new ArrayList<>();
-            if(o.getClass()==ch.getClass()){
-                ch=(String) o;
-                query="SELECT * FROM `utilisateur` WHERE `username` LIKE '%" + ch + "%' OR `email` LIKE '%" + ch + "%' OR `fullname` LIKE '%" + ch + "%' OR `specialite` LIKE '%" + ch + "%'";
-            }
-            
-            try {
-                //System.out.println(query);
-                PreparedStatement ste = ct.prepareStatement(query);
-                ResultSet rs= ste.executeQuery();
-                while(rs.next()){
-                   
-                    if (rs.getString(4).equals("coach")) {
+        return user;
+    }
+
+    public List<Utilisateur> chercheCpoch(Object o) {
+        String query = "";
+        String ch = "";
+        int i = 0;
+        List<Utilisateur> user = new ArrayList<>();
+        if (o.getClass() == ch.getClass()) {
+            ch = (String) o;
+            query = "SELECT * FROM `utilisateur` WHERE `username` LIKE '%" + ch + "%' OR `email` LIKE '%" + ch + "%' OR `fullname` LIKE '%" + ch + "%' OR `specialite` LIKE '%" + ch + "%'";
+        }
+
+        try {
+            //System.out.println(query);
+            PreparedStatement ste = ct.prepareStatement(query);
+            ResultSet rs = ste.executeQuery();
+            while (rs.next()) {
+
+                if (rs.getString(4).equals("coach")) {
                     Coach p = new Coach();
                     p.setId(rs.getInt(1));
                     p.setPassword(rs.getString(2));
@@ -824,15 +800,16 @@ public List<Utilisateur> chercheCpoch(Object o) {
                     p.setVerifpassword(rs.getString(8));
                     user.add(p);
                 }
-                   
-                }
-            } catch (SQLException ex) {
-                System.out.println(ex.getMessage());
-            }
 
-            return user;   
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
         }
- public void ChangePasswordWithEmail(String email, String newPassword) {//autoincrement
+
+        return user;
+    }
+
+    public void ChangePasswordWithEmail(String email, String newPassword) {//autoincrement
         String sql = "UPDATE utilisateur SET password = ? ,verifpassword=? WHERE email = ?";
         try {
             PreparedStatement ste = ct.prepareStatement(sql);
@@ -850,11 +827,12 @@ public List<Utilisateur> chercheCpoch(Object o) {
         }
 
     }
- public Set<Utilisateur> Rechercher( List<Utilisateur> destination, String username){
-       
-        Set<Utilisateur> u=destination.stream().filter(cc->cc.getUsername().equals(username)).collect(Collectors.toCollection(()->new TreeSet<Utilisateur>((e1,e2)->e1.getUsername().compareTo(e2.getUsername()))));
-        
-         return u;
+
+    public Set<Utilisateur> Rechercher(List<Utilisateur> destination, String username) {
+
+        Set<Utilisateur> u = destination.stream().filter(cc -> cc.getUsername().equals(username)).collect(Collectors.toCollection(() -> new TreeSet<Utilisateur>((e1, e2) -> e1.getUsername().compareTo(e2.getUsername()))));
+
+        return u;
     }
 
 }

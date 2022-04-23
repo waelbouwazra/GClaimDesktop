@@ -91,6 +91,7 @@ public class AfficheuserController implements Initializable {
 
     @FXML
     private void deleteuser(ActionEvent event) {
+        if(txtlistusers.getSelectionModel().getSelectedItem()!=null){ 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmer votre demande");
         alert.setHeaderText(null);
@@ -115,7 +116,15 @@ public class AfficheuserController implements Initializable {
         }
        
     txtlistusers.setItems(items);
-    }}
+    }
+        }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
+    }
 
     @FXML
     private void loadMenu(ActionEvent event) {

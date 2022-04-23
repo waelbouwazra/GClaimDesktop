@@ -122,6 +122,7 @@ public class AfficheCoachsController implements Initializable {
 
     @FXML
     private void deleteuser(ActionEvent event) {
+        if(txtlistusers.getSelectionModel().getSelectedItem()!=null){ 
          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmer votre demande");
         alert.setHeaderText(null);
@@ -148,7 +149,13 @@ public class AfficheCoachsController implements Initializable {
         txtlistusers.setItems(items);
             
             }
-        
+         }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
        
     }
 
@@ -234,6 +241,7 @@ public class AfficheCoachsController implements Initializable {
 
     @FXML
     private void desactiveruncoach(ActionEvent event) {
+        if(txtlistusers.getSelectionModel().getSelectedItem()!=null){ 
         tout.setSelected(false);
         activepane.setVisible(true);
         coachaactives.setSelected(false);
@@ -255,11 +263,18 @@ public class AfficheCoachsController implements Initializable {
             items.add(r);
         }
 
-        txtlistusers.setItems(items);
+        txtlistusers.setItems(items);}else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
     }
 
     @FXML
     private void activeuncoach(ActionEvent event) {
+        if(txtlistusers.getSelectionModel().getSelectedItem()!=null){ 
         coachdesactives.setSelected(false);
         tout.setSelected(false);
         descactivepane.setVisible(true);
@@ -282,6 +297,13 @@ public class AfficheCoachsController implements Initializable {
         }
 
         txtlistusers.setItems(items);
+        }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
     }
 
     @FXML
@@ -309,6 +331,7 @@ public class AfficheCoachsController implements Initializable {
 
     @FXML
     private void modifiercozch(ActionEvent event) {
+         if(txtlistusers.getSelectionModel().getSelectedItem()!=null){ 
  Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmer votre demande");
         alert.setHeaderText(null);
@@ -336,6 +359,13 @@ public class AfficheCoachsController implements Initializable {
         
             
             }
+         }else 
+            {
+            Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("Champs Vide");
+            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
+            alertt.show();  
+            }
         
 
     }
@@ -346,19 +376,12 @@ public class AfficheCoachsController implements Initializable {
                 && email.getText().isEmpty() == false
                 && mdp.getText().isEmpty() == false && specialite.getText().isEmpty() == false && email.getText().matches("(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)*\\@(?:\\w|[\\-_])+(?:\\.(?:\\w|[\\-_])+)+")
                 && mdp.getText().equals(mdp1.getText())) {
-            if(txtlistusers.getSelectionModel().getSelectedItem()!=null){  
+           
                 Coach u = new Coach(txtlistusers.getSelectionModel().getSelectedItem().getId(), username.getText(), mdp.getText(), mdp1.getText(), email.getText(), specialite.getText());
 
             
                 US.UpdatePersonne(u,u.getId());
-            }else 
-            {
-            Alert alertt = new Alert(Alert.AlertType.WARNING);
-            alertt.setTitle("Champs Vide");
-            alertt.setContentText("Veuiller selectionner l'un des Champs disponible");
-            alertt.show();  
-            }
-            
+         
 
                 System.out.println("ajout");
                 JOptionPane.showMessageDialog(null, "update DONE");
