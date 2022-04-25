@@ -18,6 +18,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import Tools.*;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.security.MessageDigest;
@@ -25,6 +26,17 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 
 /**
  *
@@ -619,32 +631,31 @@ public class ServiceUser {
                 String pwd = rs.getString("password");
                 if (mdpconvert(motdepasse).equals(pwd)) {
                     result = "success";
-if(rs.getString(4).equals("simpleutilisateur")){
-                    Utilisateur user = new SimpleUtilisateur();
+                    if (rs.getString(4).equals("simpleutilisateur")) {
+                        Utilisateur user = new SimpleUtilisateur();
 
-                    user.setId(rs.getInt("id"));
-                    user.setEmail(rs.getString("email"));
-                    user.setUsername(rs.getString("username"));
-                    user.setPassword(rs.getString("password"));
-                    user.setVerifpassword(rs.getString("verifpassword"));
-                    user.setRoles(rs.getString("roles"));
-                    user.setIsVerfied(rs.getBoolean("is_verified"));
-((SimpleUtilisateur) user).setFullname(rs.getString("fullname"));
-                    updateCurrentUser(user);
-}
-else {
-    Utilisateur user = new Coach();
+                        user.setId(rs.getInt("id"));
+                        user.setEmail(rs.getString("email"));
+                        user.setUsername(rs.getString("username"));
+                        user.setPassword(rs.getString("password"));
+                        user.setVerifpassword(rs.getString("verifpassword"));
+                        user.setRoles(rs.getString("roles"));
+                        user.setIsVerfied(rs.getBoolean("is_verified"));
+                        ((SimpleUtilisateur) user).setFullname(rs.getString("fullname"));
+                        updateCurrentUser(user);
+                    } else {
+                        Utilisateur user = new Coach();
 
-                    user.setId(rs.getInt("id"));
-                    user.setEmail(rs.getString("email"));
-                    user.setUsername(rs.getString("username"));
-                    user.setPassword(rs.getString("password"));
-                    user.setVerifpassword(rs.getString("verifpassword"));
-                    user.setRoles(rs.getString("roles"));
-                    user.setIsVerfied(rs.getBoolean("is_verified"));
-((Coach) user).setSpecialite(rs.getString("specialite"));
-                    updateCurrentUser(user);
-}
+                        user.setId(rs.getInt("id"));
+                        user.setEmail(rs.getString("email"));
+                        user.setUsername(rs.getString("username"));
+                        user.setPassword(rs.getString("password"));
+                        user.setVerifpassword(rs.getString("verifpassword"));
+                        user.setRoles(rs.getString("roles"));
+                        user.setIsVerfied(rs.getBoolean("is_verified"));
+                        ((Coach) user).setSpecialite(rs.getString("specialite"));
+                        updateCurrentUser(user);
+                    }
                 } else {
                     System.out.println("mdp incorrecte");
                 }
@@ -664,32 +675,29 @@ else {
 
     public void updateCurrentUser(Utilisateur user) {
 
-       
-     
         if (user.getRoles().equals("[\"ROLE_USER\"]")) {
-           currentUser = new SimpleUtilisateur();
-             currentUser.setId(user.getId());
-        currentUser.setUsername(user.getUsername());
-        currentUser.setPassword(user.getPassword());
-        currentUser.setVerifpassword(user.getVerifpassword());
-        currentUser.setEmail(user.getEmail());
-        currentUser.setIsVerfied(user.isIsVerfied());
-        currentUser.setRole(user.isRole());
-        currentUser.setRoles(user.getRoles());
+            currentUser = new SimpleUtilisateur();
+            currentUser.setId(user.getId());
+            currentUser.setUsername(user.getUsername());
+            currentUser.setPassword(user.getPassword());
+            currentUser.setVerifpassword(user.getVerifpassword());
+            currentUser.setEmail(user.getEmail());
+            currentUser.setIsVerfied(user.isIsVerfied());
+            currentUser.setRole(user.isRole());
+            currentUser.setRoles(user.getRoles());
             ((SimpleUtilisateur) currentUser).setFullname(((SimpleUtilisateur) user).getFullname());
-           
 
         } else {
-currentUser = new Coach();
-             currentUser.setId(user.getId());
-        currentUser.setUsername(user.getUsername());
-        currentUser.setPassword(user.getPassword());
-        currentUser.setVerifpassword(user.getVerifpassword());
-        currentUser.setEmail(user.getEmail());
-        currentUser.setIsVerfied(user.isIsVerfied());
-        currentUser.setRole(user.isRole());
-        currentUser.setRoles(user.getRoles());
-           ((Coach) currentUser).setSpecialite(((Coach) user).getSpecialite());
+            currentUser = new Coach();
+            currentUser.setId(user.getId());
+            currentUser.setUsername(user.getUsername());
+            currentUser.setPassword(user.getPassword());
+            currentUser.setVerifpassword(user.getVerifpassword());
+            currentUser.setEmail(user.getEmail());
+            currentUser.setIsVerfied(user.isIsVerfied());
+            currentUser.setRole(user.isRole());
+            currentUser.setRoles(user.getRoles());
+            ((Coach) currentUser).setSpecialite(((Coach) user).getSpecialite());
 
         }
 
@@ -835,4 +843,83 @@ currentUser = new Coach();
         return u;
     }
 
+    private static HSSFCellStyle createStyleForTitle(HSSFWorkbook workbook) {
+        HSSFFont font = workbook.createFont();
+        font.setBold(true);
+
+        HSSFCellStyle style = workbook.createCellStyle();
+        style.setFont(font);
+        return style;
+    }
+
+    public void generateExcel() {
+        String sql = "select * from utilisateur";
+        Statement ste;
+        try {
+
+            ste = ct.prepareStatement(sql);
+            ResultSet rs = ste.executeQuery(sql);
+            HSSFWorkbook wb = new HSSFWorkbook();
+            HSSFCellStyle csCouleur = wb.createCellStyle();
+            csCouleur.setFillForegroundColor((short) 45);
+            HSSFFont font = wb.createFont();
+            font.setBold(true);
+            font.setColor((short) 13);
+
+            csCouleur.setFont(font);
+
+            csCouleur.setFillPattern(csCouleur.SOLID_FOREGROUND);
+
+            HSSFSheet sheet = wb.createSheet("abonnement details ");
+            HSSFCellStyle style = createStyleForTitle(wb);
+            HSSFRow header = sheet.createRow(0);
+
+            header.createCell(0).setCellValue("ID");
+            header.createCell(1).setCellValue("Email");
+            header.createCell(2).setCellValue("Type ");
+            header.createCell(3).setCellValue("Fullname");
+            header.createCell(4).setCellValue("Specialite");
+            header.createCell(5).setCellValue("Username");
+
+            header.getCell(0).setCellStyle(csCouleur);
+            header.getCell(1).setCellStyle(csCouleur);
+            header.getCell(2).setCellStyle(csCouleur);
+            header.getCell(3).setCellStyle(csCouleur);
+            header.getCell(4).setCellStyle(csCouleur);
+            header.getCell(5).setCellStyle(csCouleur);
+
+            
+            int index = 1;
+            while (rs.next()) {
+                HSSFCellStyle cs1Couleur = wb.createCellStyle();
+                cs1Couleur.setFillForegroundColor((short) 45);
+                HSSFRow row = sheet.createRow(index);
+                
+                
+                row.createCell(0).setCellValue(rs.getString("id"));
+                row.createCell(1).setCellValue(rs.getString("email"));
+                row.createCell(2).setCellValue(rs.getString("type"));
+                row.createCell(3).setCellValue(rs.getString("fullname"));
+                row.createCell(4).setCellValue(rs.getString("specialite"));
+                row.createCell(5).setCellValue(rs.getString("username"));
+            row.getCell(0).setCellStyle(cs1Couleur);
+                row.getCell(1).setCellStyle(cs1Couleur);
+                row.getCell(2).setCellStyle(cs1Couleur);
+                row.getCell(3).setCellStyle(cs1Couleur);
+                row.getCell(4).setCellStyle(cs1Couleur);
+                row.getCell(5).setCellStyle(cs1Couleur);
+                index++;
+            }
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\souma\\Desktop\\utilisateurs.Xls");
+            wb.write(fileOut);
+            fileOut.close();
+            ste.close();
+            rs.close();
+
+        } catch (SQLException e) {
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
 }

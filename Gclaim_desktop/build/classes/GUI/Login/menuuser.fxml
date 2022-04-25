@@ -22,6 +22,7 @@
             <Button fx:id="btncoachT" layoutX="223.0" layoutY="250.0" mnemonicParsing="false" onAction="#showcoach" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #c24400;" text="LES COACHS" />
             <Button fx:id="btndemande" layoutX="223.0" layoutY="317.0" mnemonicParsing="false" onAction="#listeddesdemandes" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #c24400;" text="LES DEMANDE DE DEVENIR COACH" />
             <Button fx:id="btnequipe" layoutX="223.0" layoutY="388.0" mnemonicParsing="false" onAction="#listedesequipes" prefHeight="52.0" prefWidth="318.0" style="-fx-background-color: #c24400;" text="LES EQUIPES" />
+            <Button fx:id="excel" layoutX="575.0" layoutY="136.0" mnemonicParsing="false" onAction="#excel" prefHeight="26.0" prefWidth="54.0" style="-fx-background-color: #c24400;" text="Excel" />
          </children>
       </AnchorPane>
    </children>

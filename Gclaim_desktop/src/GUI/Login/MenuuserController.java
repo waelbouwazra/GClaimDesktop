@@ -5,6 +5,7 @@
  */
 package GUI.Login;
 
+import Services.ServiceUser;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -12,6 +13,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
@@ -35,7 +37,9 @@ public class MenuuserController implements Initializable {
     private Button btndemande;
     @FXML
     private Button btnequipe;
-
+    @FXML
+    private Button excel;
+   ServiceUser RS =new ServiceUser();
     /**
      * Initializes the controller class.
      */
@@ -98,5 +102,14 @@ public class MenuuserController implements Initializable {
         } catch (IOException ex) {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @FXML
+    private void excel(ActionEvent event) {
+        RS.generateExcel();
+         Alert alertt = new Alert(Alert.AlertType.WARNING);
+            alertt.setTitle("excel generer ");
+            alertt.setContentText("voir le fichier utilisateur.Xls");
+            alertt.show();  
     }
 }
