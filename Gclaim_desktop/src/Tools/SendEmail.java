@@ -50,6 +50,7 @@ public class SendEmail {
         properties.put("mail.smtp.starttls.enable", "true");
         properties.put("mail.user", userName);
         properties.put("mail.password", password);
+        properties.put("mail.debug","true");
         
 
         Authenticator auth = new Authenticator() {
