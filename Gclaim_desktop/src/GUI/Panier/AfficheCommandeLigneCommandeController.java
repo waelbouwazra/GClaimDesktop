@@ -14,12 +14,25 @@ import static GUI.Panier.showCommandesController.comm;
 import Services.CommandeService;
 import Services.LigneCommandeService;
 import Tools.Constants;
+import Tools.PDFCart;
+import Tools.PDFProd;
+import Tools.SendEmail;
+import com.itextpdf.text.DocumentException;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -36,6 +49,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
+import javax.swing.JOptionPane;
 
 /**
  * FXML Controller class
@@ -68,7 +84,12 @@ public class AfficheCommandeLigneCommandeController implements Initializable {
     private Button retour;
     @FXML
     private AnchorPane mainPane;
-
+    @FXML
+    private Button sendMail;
+    private SendEmail sendEmail;
+    @FXML
+    private Button exportPdf;
+    String msg = "";
     /**
      * Initializes the controller class.
      */
@@ -149,6 +170,69 @@ public class AfficheCommandeLigneCommandeController implements Initializable {
         } catch (IOException ex) {
             System.out.println(ex.getMessage());    
         }
+    }
+
+    @FXML
+    private void sendMail(ActionEvent event) {
+        
+        LigneCommandeService sc = new LigneCommandeService();
+        List<LigneCommande> l =sc.getLigneCommandeByCommandeID(comm.getId());
+        msg+= "<div style=\"color: #c24400\"> <h1>Bonjour! " + comm.getUser().getUsername() +" </h1> </div> <h3> Voici Votre commande</h3>"
+                                    +"<div>Username ="+comm.getUser().getUsername()+"</div> <div>Total ="+comm.getTotal()+"</div> <div>Date ="+comm.getDate_achat()+"</div>"
+                                    ;
+        for (LigneCommande c : l){
+            msg = msg +"<div>Produit = "+c.getProduit().getNom_produit()+"</div><div>Prix ="
+                    +c.getProduit().getPrix_produit()+"</div><div>Quantite ="+c.getQuantite()+"</div>";
+        }
+        msg+=                    " : \n </h3> <div style=\"color: #c24400\"> <p>Cordialement </p> <p>	"
+                                    + "Gclaim by BITS&BAYTES</p> <img src=\"C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/src_image/Logo.png \"> </div>";
+             ;
+        System.out.println(msg);
+           
+        ExecutorService emailExecutor = Executors.newSingleThreadExecutor();
+        emailExecutor.execute(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                   
+                    sendEmail = new SendEmail("gclaimpidev@gmail.com",
+                            "Gclaim2022",
+                            "mohamedbouwazra2@gmail.com",
+                            "Détaile commande",
+                           msg);
+             } catch (AddressException e) {
+                    e.printStackTrace ();
+                } catch (MessagingException e) {
+                    e.printStackTrace ();
+                } catch (Exception ex) {
+                    System.out.println(ex.getMessage());}
+//        try {
+//            sm.sendMail(email, "ajout confirmé", msg);
+//        } catch (MessagingException ex) {
+//            Logger.getLogger(AddReservationController.class.getName()).log(Level.SEVERE, null, ex);
+//        }
+//
+
+            }});
+        emailExecutor.shutdown();
+    }
+
+    @FXML
+    private void exportPdf(ActionEvent event) throws DocumentException, MalformedURLException, IOException, FileNotFoundException, URISyntaxException {
+        PDFCart pdf=new PDFCart ();
+        pdf.pdfGeneration ();
+     
+        if (Desktop.isDesktopSupported()) {
+            try {
+               
+                File myFile = new File("commande.pdf");
+                 
+                Desktop.getDesktop().open(myFile);
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
+        
     }
     
 }
