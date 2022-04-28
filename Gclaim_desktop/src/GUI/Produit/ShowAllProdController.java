@@ -14,6 +14,14 @@ import static GUI.Login.ShowAllController.currentAbo;
 import Services.ProduitService;
 import Services.ServiceUser;
 import Tools.Constants;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
@@ -22,6 +30,9 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -30,12 +41,16 @@ import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx_qrcodewriter.JavaFX_QRCodeWriter;
 
 /**
  * FXML Controller class
@@ -44,17 +59,25 @@ import javafx.scene.text.Text;
  */
 public class ShowAllProdController implements Initializable {
 
-    @FXML
     public static Produit currentProd;
+    @FXML
     private AnchorPane mainPain;
     @FXML
     private Text topText;
     @FXML
     private VBox mainVBox;
+
     ProduitService ps=new ProduitService();
     private ServiceUser US;
     Panier pan = new Panier().getInstance();
     private static HashMap< Produit,Integer> panier = new HashMap< Produit,Integer>();
+    @FXML
+    private TextField min;
+    @FXML
+    private TextField max;
+    @FXML
+    private Button btnprix;
+    
     /**
      * Initializes the controller class.
      */
@@ -76,11 +99,19 @@ public class ShowAllProdController implements Initializable {
             mainVBox.getChildren().add(stackPane);
         }
     }
-public Parent makeProdModel( Produit abo )  {
+public Parent makeProdModel( Produit abo  )  {
         Parent parent = null;
+        
         try {
-            parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Constants.FXML_MODEL_PROD)));
-
+            
+             System.out.println(abo.getImage());
+             abo.setImage( ps.getImage(abo.getId_produit()));
+             System.out.println(abo.getImage());
+             File file= new File(abo.getImage());
+             parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Constants.FXML_MODEL_PROD)));
+             System.out.println(abo.getImage());
+         
+              
             HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
             
             ((Text) innerContainer.lookup("#createdAtText")).setText("Nom Produit : " + abo.getNom_produit());
@@ -90,13 +121,57 @@ public Parent makeProdModel( Produit abo )  {
             ((Text) innerContainer.lookup("#nbrvu")).setText("nombre de vu : " + abo.getNbr_vu());
             ((Text) innerContainer.lookup("#dateajouttxt")).setText("Date ajout : " + abo.getDateAjout_produit());
             
+            ((ImageView) innerContainer.lookup("#imgView")).setImage(new Image(file.toURI().toString()));
             ((Pane) innerContainer.lookup("#supppane")).setVisible(false);
-             ((Button) innerContainer.lookup("#editButton")).setOnAction((event) -> modifierProd(abo));
+             ((Button) innerContainer.lookup("#editButton")).setOnAction((event) -> {
+                 QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        String myWeb = abo.toString();
+        int width = 300;
+        int height = 300;
+        String fileType = "png";
+        ps.updatevu(abo);
+        BufferedImage bufferedImage = null;
+        try {
+            BitMatrix byteMatrix = qrCodeWriter.encode(myWeb, BarcodeFormat.QR_CODE, width, height);
+            bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            bufferedImage.createGraphics();
+            
+            Graphics2D graphics = (Graphics2D) bufferedImage.getGraphics();
+            graphics.setColor(Color.WHITE);
+            graphics.fillRect(0, 0, width, height);
+            graphics.setColor(Color.BLACK);
+            
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) {
+                    if (byteMatrix.get(i, j)) {
+                        graphics.fillRect(i, j, 1, 1);
+                    }
+                }
+            }
+            
+            System.out.println("Success...");
+            
+        } catch (WriterException ex) {
+            Logger.getLogger(JavaFX_QRCodeWriter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ImageView qrView = new ImageView();
+        qrView.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
+          
+       StackPane stackPane = new StackPane();
+            stackPane.setAlignment(Pos.CENTER);
+            stackPane.setPrefHeight(200);
+            stackPane.getChildren().add(qrView);
+            
+            innerContainer.getChildren().add(stackPane); 
+                 
+             }
+             
+             );
              ((Button) innerContainer.lookup("#deleteButton")).setOnAction((event) -> supprimerProd(abo));
              
              ((Button) innerContainer.lookup("#btnajoutpanier")).setOnAction((event) -> addToCartProd(abo));
-             
-              
+           
            
             
 
@@ -104,7 +179,7 @@ public Parent makeProdModel( Produit abo )  {
             System.out.println(ex.getMessage());
         }
         return parent;
-    }
+    } 
     private void modifierProd(Produit abo) {
         currentProd = abo;
        // rs.updateEquipe(abo);
@@ -144,5 +219,74 @@ public Parent makeProdModel( Produit abo )  {
             
             }
         }
-    
+    @FXML
+     private void filtrepri() {
+         //System.out.println("test");
+        double min1=Double.valueOf(min.getText());
+        double max1=Double.valueOf(max.getText());
+        ProduitService ps = new ProduitService();
+        List<Produit> list = ps.ShowProduit();
+        List<Produit> listProd = ps.filtreprix(list, min1, max1);
+        listProd.stream().forEach(p->System.out.println(p.toString()));
+   
+         if (!listProd.isEmpty()) {
+                   mainVBox.getChildren().clear();
+            for (Produit abo : listProd) {
+                mainVBox.getChildren().add(makeProdModel(abo));
+                
+               // System.out.println("aaaa");
+            }
+        } else {
+            
+            StackPane stackPane = new StackPane();
+            stackPane.setAlignment(Pos.CENTER);
+            stackPane.setPrefHeight(200);
+            stackPane.getChildren().add(new Text("Aucune donnée"));
+            mainVBox.getChildren().add(stackPane);
+        }
+        }
+     public void Qr() {
+     QRCodeWriter qrCodeWriter = new QRCodeWriter();
+        String myWeb = "qr code";
+        int width = 300;
+        int height = 300;
+        String fileType = "png";
+        
+        BufferedImage bufferedImage = null;
+        try {
+            BitMatrix byteMatrix = qrCodeWriter.encode(myWeb, BarcodeFormat.QR_CODE, width, height);
+            bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            bufferedImage.createGraphics();
+            
+            Graphics2D graphics = (Graphics2D) bufferedImage.getGraphics();
+            graphics.setColor(Color.WHITE);
+            graphics.fillRect(0, 0, width, height);
+            graphics.setColor(Color.BLACK);
+            
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) {
+                    if (byteMatrix.get(i, j)) {
+                        graphics.fillRect(i, j, 1, 1);
+                    }
+                }
+            }
+            
+            System.out.println("Success...");
+            
+        } catch (WriterException ex) {
+            Logger.getLogger(JavaFX_QRCodeWriter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ImageView qrView = new ImageView();
+        qrView.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
+          
+       StackPane stackPane = new StackPane();
+            stackPane.setAlignment(Pos.CENTER);
+            stackPane.setPrefHeight(200);
+            stackPane.getChildren().add(qrView);
+            mainVBox.getChildren().add(stackPane); 
+     
+    }
+     
+       
 }

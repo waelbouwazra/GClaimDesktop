@@ -34,10 +34,11 @@
          <image>
             <Image url="@../../../../../../../Desktop/1200px-Icons8_flat_add_image.svg.png" />
          </image></ImageView>
-      <Button fx:id="btnImage" layoutX="71.0" layoutY="436.0" mnemonicParsing="false" style="-fx-background-color: C24400;" text="Importer image" textFill="WHITE" />
+      <Button fx:id="btnImage" layoutX="71.0" layoutY="436.0" mnemonicParsing="false" onAction="#Addimage" style="-fx-background-color: C24400;" text="Importer image" textFill="WHITE" />
       <Text fx:id="alertnom" fill="RED" layoutX="362.0" layoutY="265.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="304.0" />
       <Text fx:id="alertdesc" fill="RED" layoutX="362.0" layoutY="329.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="304.0" />
       <Text fx:id="alertprix" fill="RED" layoutX="364.0" layoutY="396.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="304.0" />
       <Text fx:id="alertqte" fill="RED" layoutX="362.0" layoutY="466.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="304.0" />
+      <Label fx:id="imgpath" layoutX="71.0" layoutY="469.0" />
    </children> 
 </AnchorPane>

@@ -36,7 +36,7 @@ public class ProduitService {
          cnx = MaConnection.getInstance().getConnection();
     }
     
-       public void AddProduitPst(Produit p, Image i) {
+       public void AddProduitPst(Produit p, String i) {
          
               String req = "insert into produit (nom_produit,description,prix_produit,date_ajout_produit,Qte_produit,categorie,nbr_vu) values (?,?,?,?,?,?,?)";
               try { 
@@ -74,7 +74,7 @@ public class ProduitService {
               pst = cnx.prepareStatement(req1);
               
               pst.setInt(1, x);
-              pst.setString(2, i.getUrl_image());
+              pst.setString(2, i);
               
              
               pst.executeUpdate();
@@ -134,6 +134,7 @@ public class ProduitService {
                  p.setQte_produit(rs.getInt("Qte_produit"));
                  p.setNbr_vu(rs.getInt("nbr_vu"));
                  p.setCategorie(new Categorie (rs.getInt("categorie")));
+                 
                  produit.add(p);
                 
         }
@@ -176,11 +177,11 @@ public List<Produit> Rechercher(String nom_produit)
         return produit;
     }  
 
-public void filtreprix( List<Produit> produit, double min, double max){
+public List<Produit> filtreprix( List<Produit> produit, double min, double max){
        
+        return
+         produit.stream().filter(pp->pp.getPrix_produit()>min && pp.getPrix_produit()<max).collect(Collectors.toList());
         
-         produit.stream().filter(pp->pp.getPrix_produit()>min && pp.getPrix_produit()<max).forEach((t) -> {System.out.println(t);
-        });
     }
 
 public void filtrecateg( List<Produit> produit, int categ){
@@ -191,21 +192,49 @@ public void filtrecateg( List<Produit> produit, int categ){
     }
 
 
-public void plusvu( List<Produit> produit){
+public List<Produit> plusvu( List<Produit> produit){
        
-         
+         return
          produit.stream()
-        .filter(e -> e.getNbr_vu() != 0).forEach((t) -> {System.out.println(t);});
+        .filter(e -> e.getNbr_vu() != 0).collect(Collectors.toList());
       
         }
+    /* public Set<Produit> plusvu( List<Produit> produit){
+       
+        
+        Set<Produit> p= (Set<Produit>) produit.stream()
+        .filter(e -> e.getNbr_vu() != 0);
+       return p;
+        }*/
 
-    public void nbrprod( List<Produit> produit){
+    public String nbrprod( List<Produit> produit){
        
          int nbr;
          nbr = (int) produit.stream().count();
-         System.out.println(nbr);
+           String s=Integer.toString(nbr);
+         return  s;
+         
       
         }
+    
+public String getImage(int id) {
+       String image="";
+        String query = "select * from images where produit='"+id+"'";
+        Statement ste;
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(query);
+
+            while (rs.next()) {
+       image=rs.getString("url_image");
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return image;
+    }
     
     
         public List<Integer> getIdproduit() {
@@ -278,5 +307,22 @@ Produit a =new Produit();
         return -1;
     
 }
+         
+         public void updatevu(Produit p)
+        { String req ="UPDATE produit set nbr_vu=? WHERE id_produit =" +p.getId_produit()+ " ";
+        try {
+              pst = cnx.prepareStatement(req);
+              pst.setInt(1, p.getNbr_vu()+1);
+             System.out.println(p.getNbr_vu());
+              pst.executeUpdate();
+             System.out.println("doneeee");
+            
+        } catch (SQLException ex) {
+            System.out.println("Probléme");
+            System.out.println(ex.getMessage());
+            
+        } 
+        }
+        
    
 }

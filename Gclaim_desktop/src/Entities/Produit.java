@@ -20,7 +20,7 @@ public class Produit {
     private int Qte_produit;
     private int nbr_vu;
     private Categorie categorie;
-    private Image image;
+    private String image;
     public Produit() {
     }
 
@@ -54,7 +54,7 @@ public class Produit {
         this.categorie = categorie;
     }
 
-    public Produit(String nom_produit, String description, double prix_produit, int Qte_produit, Categorie categorie, Image image) {
+    public Produit(String nom_produit, String description, double prix_produit, int Qte_produit, Categorie categorie, String image) {
         this.nom_produit = nom_produit;
         this.description = description;
         this.prix_produit = prix_produit;
@@ -154,11 +154,11 @@ public class Produit {
         return true;
     }
 
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

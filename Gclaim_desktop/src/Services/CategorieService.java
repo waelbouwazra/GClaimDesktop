@@ -170,4 +170,26 @@ Categorie a =new Categorie();
         return -1;
     
 }
+ 
+  public int getIdCategnom(String nom ){
+      String req = "SELECT * FROM categorie WHERE nom_categorie=? ";
+Categorie a =new Categorie();
+        try {
+            pst = cnx.prepareStatement(req);
+            pst.setString(1, nom);
+            
+
+            ResultSet as = pst.executeQuery();
+            if (as.next()) {
+             return as.getInt(1);
+         
+            }
+
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return -1;
+    
+}
+ 
 }

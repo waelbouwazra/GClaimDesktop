@@ -22,6 +22,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -34,6 +35,8 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -98,6 +101,7 @@ ResultSet rs= null;
         if (action.get() == ButtonType.OK) {
             if(listviewcateg.getSelectionModel().getSelectedItem()!=null){                      
         c = listviewcateg.getSelectionModel().getSelectedItem();
+        addNotifications("categorie suprimée avec succes", "categorie supprimée");
             }else 
             {
             Alert alertt = new Alert(Alert.AlertType.WARNING);
@@ -144,7 +148,7 @@ ResultSet rs= null;
         Optional<ButtonType> action = alert.showAndWait();
 
         if (action.get() == ButtonType.OK) {
-            
+            addNotifications("categorie modifiée avec succes", "categorie modifiée");
        cs.UpdateCategorie(a, id_categ);
         alerteajout1.setText("modification avec succes!");
           alerteajout.setText("");
@@ -222,5 +226,19 @@ ResultSet rs= null;
         }
         listviewcateg.setItems(items);
     }
-    
+    private void addNotifications(String title, String content) {
+
+        if (null != content) {
+            if (content.length() > 50) {
+                content = content.substring(0, 49) + "......";
+            }
+        }
+        Notifications notificationBuilder = Notifications.create()
+                .title(title)
+                .text(content)
+                .hideAfter(Duration.seconds(360))
+                .position(Pos.BOTTOM_RIGHT);
+
+        notificationBuilder.showInformation();
+    }
 }

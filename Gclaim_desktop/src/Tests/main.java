@@ -35,7 +35,7 @@ public class main {
         
       // System.out.println(ps.ShowProduit());
        Image i=new Image("aaaaa");
-        ps.AddProduitPst(p, i);
+      //  ps.AddProduitPst(p, i);
       // ps.DeleteProduit(p.getId_produit());
       
         //-------------------------------------------------------recherche

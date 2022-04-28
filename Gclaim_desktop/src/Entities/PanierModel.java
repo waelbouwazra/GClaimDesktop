@@ -49,7 +49,7 @@ public class PanierModel extends Produit{
         this.quantite = quantite;
     }
 
-    public PanierModel(int quantite, String nom_produit, String description, double prix_produit, int Qte_produit, Categorie categorie, Image image) {
+    public PanierModel(int quantite, String nom_produit, String description, double prix_produit, int Qte_produit, Categorie categorie, String image) {
         super(nom_produit, description, prix_produit, Qte_produit, categorie, image);
         this.quantite = quantite;
     }

@@ -93,7 +93,7 @@ private void addCateg(ActionEvent event) {
             }
         }
       if(verif==true) {
-          
+          addNotifications("categorie ajoutée avec succes", "categorie ajoutée");
           cs.AddCategoriePst(c);
           alerteajout1.setText("Ajout avec succes!");
           alerteajout.setText("");
@@ -117,5 +117,21 @@ private void addCateg(ActionEvent event) {
         } catch (IOException ex) {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    private void addNotifications(String title, String content) {
+
+        if (null != content) {
+            if (content.length() > 50) {
+                content = content.substring(0, 49) + "......";
+            }
+        }
+        Notifications notificationBuilder = Notifications.create()
+                .title(title)
+                .text(content)
+                .hideAfter(Duration.seconds(360))
+                .position(Pos.BOTTOM_RIGHT);
+
+        notificationBuilder.showInformation();
     }
 }
