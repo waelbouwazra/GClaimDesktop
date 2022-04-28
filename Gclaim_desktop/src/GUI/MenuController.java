@@ -141,14 +141,13 @@ public class MenuController implements Initializable {
     
    @FXML
     private void logout(ActionEvent event) throws IOException {
-        US.logOut();
+//        US.logOut();
         FXMLLoader loader = new FXMLLoader(getClass()
                     .getResource("../GUI/login/Login.fxml"));
             Parent root = loader.load();
            
             logoutButton.getScene().setRoot(root);
        
-      
 
     }
     @FXML

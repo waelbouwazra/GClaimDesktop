@@ -42,6 +42,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -197,7 +198,7 @@ public class AfficheCommandeLigneCommandeController implements Initializable {
                    
                     sendEmail = new SendEmail("gclaimpidev@gmail.com",
                             "Gclaim2022",
-                            "mohamedbouwazra2@gmail.com",
+                           comm.getUser().getEmail(),
                             "Détaile commande",
                            msg);
              } catch (AddressException e) {
@@ -219,6 +220,7 @@ public class AfficheCommandeLigneCommandeController implements Initializable {
 
     @FXML
     private void exportPdf(ActionEvent event) throws DocumentException, MalformedURLException, IOException, FileNotFoundException, URISyntaxException {
+     
         PDFCart pdf=new PDFCart ();
         pdf.pdfGeneration ();
      
@@ -232,7 +234,6 @@ public class AfficheCommandeLigneCommandeController implements Initializable {
                 System.out.println(ex.getMessage());
             }
         }
-        
     }
     
 }

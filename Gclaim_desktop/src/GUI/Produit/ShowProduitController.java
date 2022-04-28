@@ -296,7 +296,7 @@ addNotifications("suppression avec succes", "produit supprimé");
                 row.createCell(5).setCellValue(rs.getString("categorie"));
                 index++;
             }
-            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\azizk\\Desktop\\excell\\produitsDetails.xlsm");
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\souma\\Desktop\\produitsDetails.Xls");
             wb.write(fileOut);
             fileOut.close();
            ste.close();

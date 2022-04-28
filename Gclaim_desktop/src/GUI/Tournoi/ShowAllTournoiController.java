@@ -84,7 +84,7 @@ public class ShowAllTournoiController implements Initializable {
 
         if (!listAbo.isEmpty()) {
             for (Tournoi abo : listAbo) {
-                if(java.sql.Date.valueOf(abo.getDatev()).compareTo(java.sql.Date.valueOf(LocalDate.now()))==1)
+                if(java.sql.Date.valueOf(abo.getDatev()).compareTo(java.sql.Date.valueOf(LocalDate.now()))== 1)
                              {
                 mainVBox.getChildren().add(makeAboModel(abo));
                              }
