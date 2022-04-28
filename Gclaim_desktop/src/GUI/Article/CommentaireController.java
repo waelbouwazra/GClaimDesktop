@@ -11,6 +11,7 @@ import Front.MainWindowController;
 import static GUI.Article.ShowArticleFrontController.currentAbo;
 import Services.ArticleService;
 import Services.CommentaireService;
+import Services.ServiceUser;
 import Tools.Constants;
 import java.net.URL;
 import java.sql.Date;
@@ -37,17 +38,20 @@ public class CommentaireController implements Initializable {
     private TextField txtusr;
     @FXML
     private TextArea txtCom;
-
+private ServiceUser US=new ServiceUser();
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        txtusr.setText(US.currentUser.getUsername());
     }    
 
     @FXML
     private void AddCommentaire(ActionEvent event) {
+                    System.out.println(currentAbo);
+
        CommentaireService ps = new CommentaireService();
        if (txtusr.getText().isEmpty() == false
                 && txtCom.getText().isEmpty() == false) {
@@ -59,11 +63,12 @@ public class CommentaireController implements Initializable {
        p.setCreation(Date.valueOf(LocalDate.now()));
        Article c = new Article(currentAbo.getId());
        p.setArticle_id(c);
-           System.out.println(c);
+           
        ps.AddCommentairePst(p);
         System.out.println("ajout");
             JOptionPane.showMessageDialog(null, "AJOUT commentaire  DONE");
-              MainWindowController.getInstance().loadInterface(Constants.FXML_MODEL);
+            ps.envoyer(p.getArticle_id().getTitre());
+              MainWindowController.getInstance().loadInterface("../GUI/Article/ShowCommentaire.fxml");
        } else {
             JOptionPane.showMessageDialog(null, "erreur !!! remplir Correctement les champs");
         }

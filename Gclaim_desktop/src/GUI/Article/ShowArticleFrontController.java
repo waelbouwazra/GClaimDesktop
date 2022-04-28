@@ -6,11 +6,11 @@
 package GUI.Article;
 
 import Entities.Article;
-import Entities.Equipe;
 import Front.MainWindowController;
 import static GUI.Login.ShowAllController.currentAbo;
 import Services.ArticleService;
 import Tools.Constants;
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.Collections;
@@ -23,6 +23,7 @@ import javafx.fxml.Initializable;
 import javafx.geometry.Pos;
 import javafx.scene.Parent;
 import javafx.scene.control.Button;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -42,18 +43,9 @@ public class ShowArticleFrontController implements Initializable {
     private Text topText;
     @FXML
     private VBox mainVBox;
+    @FXML
+    private AnchorPane mainPane;
     ArticleService rs=new ArticleService();
-    @FXML
-    private AnchorPane mainPain;
-    @FXML
-    private Pane commentaire;
-    @FXML
-    private AnchorPane mainPain1;
-    @FXML
-    private Text topText1;
-    @FXML
-    private VBox mainVbox;
-
     /**
      * Initializes the controller class.
      */
@@ -78,29 +70,30 @@ public class ShowArticleFrontController implements Initializable {
     }    
     public Parent makeAboModel(Article abo) {
         Parent parent = null;
+
         try {
             parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("ModelA.fxml")));
 
             HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
-            
+           // ((ImageView) innerContainer.lookup("#myimageview")).setImage(file.toString());
             ((Text) innerContainer.lookup("#createdAtText")).setText("Titre : " + abo.getTitre());
             ((Text) innerContainer.lookup("#sdpIdText")).setText("Description : " + abo.getDescription());
             ((Text) innerContainer.lookup("#datetext")).setText("Date de création : " + abo.getCreate_at());
             ((Text) innerContainer.lookup("#etatText")).setText("nombre de vu : " + abo.getNbr_vu());
-                        ((Text) innerContainer.lookup("#categtext")).setText("categorie : " + abo.getCat_id());
-
+            ((Text) innerContainer.lookup("#categtext")).setText("categorie : " + abo.getCat_id().getNom());
+System.out.println(abo.getCat_id());
 
             
          //((Pane) innerContainer.lookup("#ajouCommentaire")).setVisible(true);
-        ((Button) innerContainer.lookup("#ajouterCom")).setOnAction((event) -> ajoutComAbo(abo));
-        ((Button) innerContainer.lookup("#btnAfficheCom")).setOnAction((event) -> AfficheCom(abo));
+      ((Button) innerContainer.lookup("#ajouterCom")).setOnAction((event) -> ajoutComAbo(abo));
+     
+     //   if (setOnAction(event)==true){ abo.setNbr_vu(abo.getNbr_vu()+1);}
+       //  ((Button) innerContainer.lookup("#btnAfficheCom")).setOnAction((event) -> AfficheCom(abo));
+                 
+        
+        }
 
-         //   ((Button) innerContainer.lookup("#ajouterCom")).setOnAction((event) ->ajouterComAbo());
-            
-       
-            
-
-        } catch (IOException ex) {
+        catch (IOException ex) {
             System.out.println(ex.getMessage());
         }
         return parent;
@@ -109,11 +102,13 @@ public class ShowArticleFrontController implements Initializable {
         currentAbo = abo;
        // rs.updateEquipe(abo);
         MainWindowController.getInstance().loadInterface(Constants.FXML_ADD_COM);
+         rs.increment(abo);
+        
     }
          private void AfficheCom(Article abo) {
         currentAbo = abo;
        // rs.updateEquipe(abo);
         MainWindowController.getInstance().loadInterface("ShowCommentaire.fxml");
     }
-    
+  
 }

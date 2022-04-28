@@ -33,6 +33,7 @@ public class ArticleService {
     private ResultSet rs;
     private Connection cnx;
 
+
     public ArticleService() {
         cnx = MaConnection.getInstance().getConnection();
     }
@@ -188,6 +189,7 @@ public void trinbrvu( List<Article> produit){
     }*/
 public List<Article> ShowArticleFront() {
         List<Article> article = new ArrayList<>();
+        CatService Catservice =new CatService();
         String sql = "select * from article";
         Statement ste;
         try {
@@ -201,10 +203,12 @@ public List<Article> ShowArticleFront() {
                 p.setDescription(rs.getString(3));
                 p.setImage(rs.getString(4));
                 p.setCreate_at(rs.getDate(5));
-                
-                cat c = new cat(rs.getInt(6));
-               
-                p.setCat_id(c);
+              /*  cat e =new cat (rs.getInt("cat_id"));
+                System.out.println(e);
+                p.setCat_id(e);*/
+           System.out.println(rs.getInt("cat_id"));
+           p.setCat_id(Catservice.getIdCat(rs.getInt("cat_id")));
+                System.out.println(p.getCat_id());
                 p.setNbr_vu(rs.getInt(7));
                   
                 article.add(p);
@@ -234,5 +238,57 @@ Article a =new Article();
         return -1;
     
 }
+public long Recherche1() {
+
+        List<Article> article = ShowArticle();
+        return article.stream().filter(b -> b.getNbr_vu()> 0).filter(b -> b.getNbr_vu()<4 ).count();
+
+      
+        }
+   
+      public long Recherche2() {
+
+        List<Article> article = ShowArticle();
+        return article.stream().filter(b -> b.getNbr_vu()> 4).filter(b -> b.getNbr_vu()< 8 ).count();
+
+}
+       public long Recherche3() {
+
+        List<Article> article = ShowArticle();
+        return article.stream().filter(b -> b.getNbr_vu()<10 ).count();
+
+}
+       public long Recherche4() {
+
+        List<Article> article = ShowArticle();
+ return article.stream().filter(b -> b.getNbr_vu()> 10).filter(b -> b.getNbr_vu()< 20 ).count();
+}
+     public Set<Article> Rechercher(List<Article> destination, String tit) {
+
+        Set<Article> u = destination.stream().filter(cc -> cc.getTitre().equals(tit)).collect(Collectors.toCollection(() -> new TreeSet<Article>((e1, e2) -> e1.getTitre().compareTo(e2.getTitre()))));
+
+        return u;
+    }
+     
+     
+      public void increment(Article p) {
+
+      String req1 = "UPDATE article set nbr_vu=? WHERE id =" +p.getId()+ "";
+        try {
+
+          
+           pst = cnx.prepareStatement(req1);
+            pst.setInt(1, p.getNbr_vu()+1);
+           
+            pst.executeUpdate();
+            System.out.println("nombre de vu incremente");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+     
+     
+     
+     
 }
 

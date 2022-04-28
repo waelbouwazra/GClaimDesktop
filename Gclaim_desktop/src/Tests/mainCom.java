@@ -18,12 +18,11 @@ import java.util.Date;
  */
 public class mainCom {
     public static void main(String[] args) {
-        Article c = new Article(23);
+        Article c = new Article(36);
         Commentaire p = new Commentaire(c,"test", "foulenaa");
         CommentaireService ps = new CommentaireService();
        // ps.AddCommentairePst(p);
-        System.out.println(ps.ShowCommentaire());
-        ps.DeleteCommentaire(22);
+        System.out.println(ps.ShowCommentaireArt(c));
        // System.out.println(ps.ShowProduit());
         
    //   MaConx m=MaConx.getInstance();

@@ -125,6 +125,7 @@ int idCat;
           cat a =new cat(idCat,nom,couleur);
                    System.out.println(a);
 
+       if (ps.Recherche(txtNom.getText())<0){
        cs.UpdateCategorie(a,idCat);
     ObservableList<cat> items =FXCollections.observableArrayList();
                 List<cat> listProduit = cs.ShowCategorie();
@@ -138,8 +139,10 @@ int idCat;
          
    
   
-    }
-        }}
+    } else {
+            JOptionPane.showMessageDialog(null, "erreur !!! le titre existe deja !");
+        }
+        }}}
     @FXML
     private void catSelect(MouseEvent event) {
         

@@ -5,8 +5,9 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
-<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
@@ -16,7 +17,7 @@
     </stylesheets>
    <children>
       <ListView fx:id="txtListArticle" layoutX="18.0" layoutY="109.0" onMouseClicked="#articleSelect" prefHeight="300.0" prefWidth="355.0" />
-      <Button fx:id="btnRetour" layoutX="18.0" layoutY="429.0" mnemonicParsing="false" onAction="#loadMenu" style="-fx-background-color: #c24400;" text="Retour" textFill="WHITE">
+      <Button fx:id="btnRetour" layoutX="712.0" layoutY="26.0" mnemonicParsing="false" onAction="#loadMenu" style="-fx-background-color: #c24400;" text="X" textFill="WHITE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font></Button>
@@ -52,7 +53,7 @@
          <font>
             <Font name="System Bold Italic" size="13.0" />
          </font></Button>
-      <TextField fx:id="inputRech" layoutX="170.0" layoutY="72.0" />
+      <TextField fx:id="inputRech" layoutX="170.0" layoutY="72.0" onAction="#recherchhhe" />
       <Label layoutX="33.0" layoutY="76.0" text="RECHERCHE">
          <font>
             <Font name="System Bold Italic" size="13.0" />
@@ -63,14 +64,12 @@
             <Font name="System Bold Italic" size="12.0" />
          </font>
       </Button>
-      <RadioButton layoutX="392.0" layoutY="330.0" mnemonicParsing="false" text="voir Tout" />
-      <RadioButton layoutX="392.0" layoutY="363.0" mnemonicParsing="false" text="jeux" />
-      <RadioButton layoutX="393.0" layoutY="391.0" mnemonicParsing="false" text="news" />
-      <Label layoutX="396.0" layoutY="292.0" text="Filtrer par categorie">
-         <font>
-            <Font name="System Bold Italic" size="14.0" />
-         </font>
-      </Label>
-      <RadioButton layoutX="392.0" layoutY="420.0" mnemonicParsing="false" text="test" />
+      <Button fx:id="affichStat" layoutX="385.0" layoutY="314.0" mnemonicParsing="false" onAction="#afficheStat" text="stat" />
+      <Button fx:id="btnImp" layoutX="440.0" layoutY="314.0" mnemonicParsing="false" onAction="#imprimer" text="imprimer" />
+      <ImageView fx:id="imgview" fitHeight="85.0" fitWidth="80.0" layoutX="381.0" layoutY="368.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../../../../../Pictures/20171205a-petr-kratochvil-publicdomainepictures-net.jpg" />
+         </image>
+      </ImageView>
    </children>
 </AnchorPane>

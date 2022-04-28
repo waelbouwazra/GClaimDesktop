@@ -79,14 +79,9 @@
                   </VBox>
                </children>
             </HBox>
-            <VBox layoutX="14.0" layoutY="24.0" prefHeight="94.0" prefWidth="178.0" spacing="10.0">
+            <VBox layoutY="12.0" prefHeight="94.0" prefWidth="178.0" spacing="10.0">
                <children>
-                  <Text fx:id="userIdText" text="Image" wrappingWidth="190">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Text>
-                  <ImageView fx:id="myimageview" fitHeight="150.0" fitWidth="229.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="myimageview" fitHeight="173.0" fitWidth="229.0" pickOnBounds="true" preserveRatio="true" />
                </children>
             </VBox>
          </children>

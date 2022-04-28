@@ -9,6 +9,7 @@ import Entities.cat;
 import Entities.Article;
 import Entities.Commentaire;
 import Tools.MaConnection;
+import static java.awt.SystemColor.text;
 import java.sql.Connection;
 import java.util.Date;
 import java.sql.PreparedStatement;
@@ -17,6 +18,14 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 
 /**
@@ -28,6 +37,8 @@ public class CommentaireService {
     private PreparedStatement pst;
     private ResultSet rs;
     private Connection cnx;
+private String username = "gclaimpidev@gmail.com";
+private String password = "Gclaim2022";
 
     public CommentaireService() {
          cnx = MaConnection.getInstance().getConnection();
@@ -116,8 +127,60 @@ public class CommentaireService {
         
         return commentaire;
     }
+            public List<Commentaire> ShowCommentaireArt( Article a ){
+        List<Commentaire> commentaire = new ArrayList<>();
+        String sql="select * from commentaire where article_id=" +a.getId()+ " ";;
+        Statement ste;
+       
+        try {
+            ste = cnx.createStatement();
+         
+            ResultSet rs = ste.executeQuery(sql);
+             while(rs.next()){
+                 Commentaire p = new Commentaire();
+                 Article c =new Article (rs.getInt("id"));
+                 p.setArticle_id(c);
+                 p.setCommentaire(rs.getString("commentaire"));
+                 p.setUser(rs.getString("user"));
+                
+                 commentaire.add(p);
+                 
+        }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
         
-
+        return commentaire;
+            }
+public void envoyer(String titre) {
+    
+// Etape 1 : Création de la session
+Properties props = new Properties();
+props.put("mail.smtp.auth", "true");
+props.put("mail.smtp.starttls.enable","true");
+props.put("mail.smtp.host","smtp.gmail.com");
+props.put("mail.smtp.port","25");
+Session session = Session.getInstance(props,
+new javax.mail.Authenticator() {
+protected PasswordAuthentication getPasswordAuthentication() {
+return new PasswordAuthentication(username, password);
+}
+});
+try {
+// Etape 2 : Création de l'objet Message
+Message message = new MimeMessage(session);
+message.setFrom(new InternetAddress("gclaimpidev@gmail.com"));
+message.setRecipients(Message.RecipientType.TO,
+InternetAddress.parse("zeineb.bouayed@esprit.tn"));
+message.setSubject("AJOUT COMMENTAIRE  "+titre+"");
+message.setText("un commentaire a ete ajouter du user ");
+// Etape 3 : Envoyer le message
+Transport.send(message);
+System.out.println("Message_envoye");
+} catch (MessagingException e) {
+throw new RuntimeException(e);
+} 
+}   
 
    
 }

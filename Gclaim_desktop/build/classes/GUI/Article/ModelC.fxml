@@ -15,31 +15,27 @@
             <DropShadow blurType="GAUSSIAN" color="#00000033" height="50.0" radius="24.5" width="50.0" />
          </effect>
          <children>
-            <VBox layoutX="14.0" layoutY="24.0" prefHeight="94.0" prefWidth="178.0" spacing="10.0">
+            <HBox>
                <children>
-                  <HBox>
+                  <VBox prefHeight="126.0" prefWidth="466.0" spacing="10.0">
+                     <HBox.margin>
+                        <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                     </HBox.margin>
                      <children>
-                        <VBox prefHeight="126.0" prefWidth="466.0" spacing="10.0">
-                           <HBox.margin>
-                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-                           </HBox.margin>
-                           <children>
-                              <Text fx:id="usertxt" strokeType="OUTSIDE" strokeWidth="0.0" text="User">
-                                 <font>
-                                    <Font name="System Bold Italic" size="21.0" />
-                                 </font>
-                              </Text>
-                              <Text fx:id="comtxt" text="Commentaire " wrappingWidth="458.8000030517578">
-                                 <font>
-                                    <Font name="System Bold Italic" size="22.0" />
-                                 </font>
-                              </Text>
-                           </children>
-                        </VBox>
+                        <Text fx:id="usertxt" strokeType="OUTSIDE" strokeWidth="0.0" text="User " wrappingWidth="348.69564056396484">
+                           <font>
+                              <Font name="System Bold Italic" size="21.0" />
+                           </font>
+                        </Text>
+                        <Text fx:id="comtxt" text="Commentaire " wrappingWidth="458.8000030517578">
+                           <font>
+                              <Font name="System Bold Italic" size="22.0" />
+                           </font>
+                        </Text>
                      </children>
-                  </HBox>
+                  </VBox>
                </children>
-            </VBox>
+            </HBox>
          </children>
       </AnchorPane>
    </children>

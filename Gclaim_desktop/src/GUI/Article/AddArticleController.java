@@ -29,6 +29,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -38,8 +39,10 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.stage.FileChooser;
+import javafx.util.Duration;
 import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
+import org.controlsfx.control.Notifications;
 
 /**
  * FXML Controller class
@@ -146,14 +149,17 @@ txtcat.setItems(items);
        p.setCreate_at(Date.valueOf(LocalDate.now()));
        cat c = new cat(1);
        p.setCat_id(c);
+       if (ps.Recherche(txtTitre.getText())<0){
        ps.AddArticle(p);
         System.out.println("ajout");
-            JOptionPane.showMessageDialog(null, "AJOUT Article  DONE");
-              MainWindowController.getInstance().loadInterface(Constants.FXML_DISPLAY_ALL_ABO);
+        JOptionPane.showMessageDialog(null, "AJOUT Article  DONE");
+              MainWindowController.getInstance().loadInterface("ShowArticle.fxml");
        } else {
-            JOptionPane.showMessageDialog(null, "erreur !!! remplir Correctement les champs");
-        }
-    }
+
+           addNotifications("erreur", "le titre existe deja !!!");        }
+    }else 
+           
+           addNotifications("erreur", "veuillez remplir correctement les champs");}
 
     @FXML
     private void loadMenu(ActionEvent event) {
@@ -168,6 +174,20 @@ txtcat.setItems(items);
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+  private void addNotifications(String title, String content) {
 
+        if (null != content) {
+            if (content.length() > 50) {
+                content = content.substring(0, 49) + "......";
+            }
+        }
+        Notifications notificationBuilder = Notifications.create()
+                .title(title)
+                .text(content)
+                .hideAfter(Duration.seconds(31536000))
+                .position(Pos.BOTTOM_RIGHT);
+
+        notificationBuilder.showInformation();
+    }
   
 }

@@ -38,29 +38,28 @@ public class ShowCommentaireController implements Initializable {
     private AnchorPane mainPain;
     @FXML
     private Text topText;
+   
     @FXML
-    private VBox mainVbox;
+    private VBox mainVBox;
 
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-          List<Commentaire> list = rs.ShowCommentaire();
+          List<Commentaire> list = rs.ShowCommentaireArt(currentAbo);
+          System.out.println(rs.ShowCommentaireArt(currentAbo));
         Collections.reverse(list);
 
         if (!list.isEmpty()) {
+           
             for (Commentaire abo1 : list) {
-               if( currentAbo.getId()== abo1.getId()){
-                mainVbox.getChildren().add(makeAboModel(abo1));
-                System.out.println(abo1);
-            }}}
+              
+                mainVBox.getChildren().add(makeAboModel(abo1));
+            }
+        }
         else {
-            StackPane stackPane = new StackPane();
-            stackPane.setAlignment(Pos.CENTER);
-            stackPane.setPrefHeight(200);
-            stackPane.getChildren().add(new Text("Aucune donnée"));
-            mainVbox.getChildren().add(stackPane);
+            
         }
         // TODO
     }

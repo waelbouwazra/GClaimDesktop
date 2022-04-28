@@ -7,6 +7,7 @@ package GUI.Article;
 
 import Entities.Article;
 import Entities.cat;
+import Front.MainWindowController;
 import Services.ArticleService;
 import Services.CatService;
 
@@ -28,6 +29,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.print.PageLayout;
+import javafx.print.PageOrientation;
+import javafx.print.Paper;
+import javafx.print.Printer;
+import javafx.print.PrinterJob;
 import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -35,9 +41,12 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Scale;
+import javafx.stage.Window;
 import javax.swing.JOptionPane;
 
 /**
@@ -70,6 +79,12 @@ public class ShowArticleController implements Initializable {
  CatService catservice = new CatService();
     @FXML
     private TextField inputRech;
+    @FXML
+    private Button affichStat;
+    @FXML
+    private Button btnImp;
+    @FXML
+    private ImageView imgview;
 
     /**
      * Initializes the controller class.
@@ -186,7 +201,9 @@ public class ShowArticleController implements Initializable {
        
          System.out.println("id="+id_article);
          System.out.println("id="+idCat);
+    
           Article a =new Article(id_article,titre,desc,image,c);
+                    if (ps.Recherche(txtModifTitre.getText())<0){
        ps.UpdateArticle(a, id_article);
     ObservableList<Article> items =FXCollections.observableArrayList();
                 List<Article> listProduit = ps.ShowArticle();
@@ -196,7 +213,9 @@ public class ShowArticleController implements Initializable {
                 txtListArticle.setItems(items);
 
       
-            
+                    }else {
+            JOptionPane.showMessageDialog(null, "erreur !!! le titre existe deja !");
+        }
             }
    
   
@@ -240,5 +259,53 @@ txtModifCat.getSelectionModel().select(ca.getNom());
         }
         txtListArticle.setItems(items);
     }
+
+    @FXML
+    private void afficheStat(ActionEvent event) {
+             AnchorPane pane;
+        try {
+            pane = FXMLLoader.load(getClass().getResource("Stat.fxml"));
+            mainPane.getChildren().setAll(pane);
+            //defaultStateButtons();
+           // mainPane.setTextFill(Color.WHITE);
+            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
+        } catch (IOException ex) {
+            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    @FXML
+    private void recherchhhe(ActionEvent event) {
+               ObservableList<Article> items =FXCollections.observableArrayList();
+         List<Article> listuser2 = ps.ShowArticle();
+         
+        Set <Article> listuser = ps.Rechercher(listuser2,inputRech.getText());
+       for(Article r : listuser) {
+            String ch = r.toString();
+            items.add(r);
+        }
+        txtListArticle.setItems(items);
+    }
+
+    @FXML
+    private void imprimer(ActionEvent event) {
+       ImageView imageView =new ImageView(imgview.getImage());
+            Printer printer = Printer.getDefaultPrinter();
+            PageLayout pageLayout = printer.createPageLayout(Paper.A4, PageOrientation.LANDSCAPE, Printer.MarginType.DEFAULT);
+            double scaleX = pageLayout.getPrintableWidth() / imageView.getBoundsInParent().getWidth();
+            double scaleY = pageLayout.getPrintableHeight() / imageView.getBoundsInParent().getHeight();
+            imageView.getTransforms().add(new Scale(scaleX, scaleY));
+
+            PrinterJob job = PrinterJob.createPrinterJob();
+          Window window=null; 
+                  if (job.showPageSetupDialog(window)) { 
+             boolean success = job.showPrintDialog(window);
+                    if (success) {
+                        job.endJob();
+                    }                
+      }
+    }
+    
     
 }

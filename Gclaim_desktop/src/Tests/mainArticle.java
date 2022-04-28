@@ -22,7 +22,7 @@ public class mainArticle {
         System.out.println(ps.ShowArticle());
          Article a1 = new Article("best", "test","image",c);
        ps.UpdateArticle(a1,22);
-       ps.DeleteArticle(22);
+       ps.ShowArticleFront();
 
         }
 }
