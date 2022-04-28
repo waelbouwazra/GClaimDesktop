@@ -57,10 +57,14 @@ import java.net.URLEncoder;
 import java.util.List;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.geometry.Pos;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.text.Text;
 import javafx.util.Duration;
+import nl.captcha.Captcha;
 import org.controlsfx.control.Notifications;
 
 /**
@@ -89,6 +93,11 @@ ResultSet rs= null;
     private ServiceUser US;
     @FXML
     private Text topText;
+    @FXML
+    private ImageView captchaIV;
+    @FXML
+    private TextField code;
+     Captcha captcha;
 
      /**
      * Initializes the controller class.
@@ -100,7 +109,7 @@ ResultSet rs= null;
         
 
  username.setText(US.currentUser.getUsername());
- 
+  captcha =setCaptcha();
    numero.setText("");
     description.setText("");
         this.ProfilService= new ProfilService();
@@ -119,7 +128,18 @@ items.add(p.getNomjeu());
                 }
                 game.setItems(items);
     }      
+public Captcha setCaptcha() {
+        Captcha captcha = new Captcha.Builder(450, 450)
+                .addText()
+                .build();
 
+        System.out.println(captcha.getImage());
+        Image image = SwingFXUtils.toFXImage(captcha.getImage(), null);
+
+        captchaIV.setImage(image);
+
+        return captcha;
+    }
 
     @FXML
      private void addProfil(ActionEvent event) throws UnsupportedEncodingException, MalformedURLException, IOException {
@@ -129,7 +149,15 @@ items.add(p.getNomjeu());
  if (numero.getText().equals("") || description.getText().equals("") || username.getText().equals("")) {
                                        addNotifications("erreur","Enter Full Details");
 
- }else if (!numero.getText().matches("[\\d\\.]+")){
+ }else if (!captcha.isCorrect(code.getText())) {
+           Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Captcha inncorrect ");
+            alert.show();
+            captcha = setCaptcha();
+            code.setText("");
+          
+        } else if (!numero.getText().matches("[\\d\\.]+")){
                                     addNotifications("erreur","Phone number cannot contain letters");
 
  }else{

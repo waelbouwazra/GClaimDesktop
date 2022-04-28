@@ -676,7 +676,7 @@ public class ServiceUser {
 
     public void updateCurrentUser(Utilisateur user) {
 
-        if (user.getRoles().equals("[\"ROLE_USER\"]")) {
+        if (user.getRoles().equals("[\"ROLE_USER\"]") || user.getRoles().equals("[\"ROLE_ADMIN\"]")) {
             currentUser = new SimpleUtilisateur();
             currentUser.setId(user.getId());
             currentUser.setUsername(user.getUsername());

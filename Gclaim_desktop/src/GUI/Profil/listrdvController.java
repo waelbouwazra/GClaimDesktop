@@ -25,6 +25,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -89,26 +90,22 @@ public class listrdvController implements Initializable {
 
 
     @FXML
-    private void loadMenu(ActionEvent event) {
+    private void loadMenu(ActionEvent event) throws IOException {
           
-        AnchorPane pane;
-        try {
-            pane = FXMLLoader.load(getClass().getResource("menuuser.fxml"));
-            mainPane.getChildren().setAll(pane);
-            //defaultStateButtons();
-            btngetback.setTextFill(Color.WHITE);
-            //gestionUserButton.setStyle("-fx-background-color :#5b4ebd");
-        } catch (IOException ex) {
-            //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       FXMLLoader loader = new FXMLLoader(getClass()
+                    .getResource("../Menu.fxml"));
+            Parent root = loader.load();
+           
+            rechrche.getScene().setRoot(root);
     }
 
   
 
     @FXML
     private void coachaactives(MouseEvent event) {
-        coachdesactives.setSelected(false);
+       coachdesactives.setSelected(false);
              tout.setSelected(false);
+                 coachaactives.setSelected(true);
              
           ObservableList<Rdv> items =FXCollections.observableArrayList();
         List<Rdv> listuser = rs.ShowRdvVerified();
@@ -122,8 +119,9 @@ public class listrdvController implements Initializable {
 
     @FXML
     private void coachdesactives(MouseEvent event) {
-           coachdesactives.setSelected(false);
+          coachdesactives.setSelected(true);
              tout.setSelected(false);
+                 coachaactives.setSelected(false);
              
           ObservableList<Rdv> items =FXCollections.observableArrayList();
         List<Rdv> listuser = rs.ShowRdvNotVerified();
