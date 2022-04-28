@@ -22,6 +22,7 @@ public static final String FXML_DISPLAY_PRODUIT = "../GUI/Produit/ShowAllProd.fx
      public static final String FXML_UPDATE_PROFIL = "../GUI/Profil/modifierProfil.fxml"; 
      public static final String FXML_RDV_COACH = "../GUI/Profil/AjoutRdv.fxml"; 
          public static final String FXML_MODEL_TOUR = "../Tournoi/Model.fxml";
+    public static final String FXML_CALENDAR = "GUI/Profil/fullCalendar.fxml";
 
     public static final String FXML_MAIN_WINDOW = "../Front/MainWindow.fxml";
     public static final String FXML_TOP_BAR = "../Front/TopBar.fxml";

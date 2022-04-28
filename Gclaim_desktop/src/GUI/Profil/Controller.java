@@ -13,7 +13,8 @@ import javafx.scene.layout.Pane;
 public class Controller implements Initializable{
 
     // Get the pane to put the calendar on
-    @FXML Pane calendarPane;
+    @FXML 
+   public Pane calendarPane;
     
  
     @Override

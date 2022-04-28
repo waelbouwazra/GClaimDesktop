@@ -77,6 +77,21 @@ public class RdvService {
             System.out.println(ex.getMessage());
         }
     }
+    
+    public void verify(Profil p, Utilisateur u) {
+        
+ String req = "UPDATE rdv set is_verified=? WHERE (user_id =" + u + " AND coach_id="+p +") ";
+        try {
+             pst = cnx.prepareStatement(req);             
+             
+                pst.setInt(1, 1);
+              pst.executeUpdate();
+              System.out.println("Rdv modifié");
+        } catch (SQLException ex) {
+            System.out.println("Probléme");
+            System.out.println(ex.getMessage());
+        }
+    }
 
     /* public void UpdateRdv(Rdv c,int cu)
         { String req ="UPDATE rdv set date=?  WHERE id =" +cu+ " ";

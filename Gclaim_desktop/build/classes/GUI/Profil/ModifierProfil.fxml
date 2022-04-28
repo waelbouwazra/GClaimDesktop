@@ -2,6 +2,7 @@
 
 <?import java.net.URL?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -35,11 +36,6 @@
             <Font name="Algerian" size="18.0" />
          </font>
       </TextField>
-      <TextField fx:id="game" layoutX="406.0" layoutY="166.0" promptText="jeu">
-         <font>
-            <Font name="Algerian" size="18.0" />
-         </font>
-      </TextField>
       <TextField fx:id="numero" layoutX="406.0" layoutY="211.0" onKeyTyped="#key" promptText="numero">
          <font>
             <Font name="Algerian" size="18.0" />
@@ -69,5 +65,6 @@
             </Text>
          </children>
       </StackPane>
+      <ComboBox fx:id="game" layoutX="406.0" layoutY="173.0" prefWidth="150.0" />
    </children>
 </AnchorPane>

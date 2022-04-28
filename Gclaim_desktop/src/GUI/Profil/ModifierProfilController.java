@@ -5,13 +5,16 @@
  */
 package GUI.Profil;
 
+import Entities.Jeu;
 import Entities.Profil;
 import Front.MainWindowController;
 import Services.ProfilService;
+import Services.ServiceJeu;
 import Services.ServiceUser;
 import static Services.ServiceUser.currentUser;
 import Tools.Constants;
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -20,6 +23,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.AnchorPane;
@@ -45,17 +49,15 @@ ProfilService rs=new ProfilService();
     @FXML
     private TextField username;
     @FXML
-    private TextField game;
+    private ComboBox<String> game;
     @FXML
     private TextField numero;
     @FXML
     private Button btnSubmit;
     @FXML
-    private Button listh;
-    @FXML
     private TextField description;
     @FXML
-    private Button btnSubmit1;
+    private Text topText;
     /**
      * Initializes the controller class.
      */
@@ -66,19 +68,32 @@ ProfilService rs=new ProfilService();
        
         username.setText(currentAbo.getUsername());
         description.setText(currentAbo.getDescription());
-        game.setText(currentAbo.getGame());
+        
         numero.setText(String.valueOf(currentAbo.getNumero()));
         
+ServiceJeu ServiceJeu =new ServiceJeu();
+         ObservableList<String> items = FXCollections.observableArrayList();
 
+// Set the ComboBox to use the items list
+ List<Jeu> listProfil =ServiceJeu.ShowJeu();
+ // System.out.println(catservice.ShowCategorie());
+       //profilService.TriProfil(listProfil);
+                for(Jeu p : listProfil) {
+// Allow the user to update the items in the list
+items.add(p.getNomjeu());
+
+
+                }
+                game.setItems(items);
         
         
     }    
 
     @FXML
     private void Modifier_votre_Equipe(ActionEvent event) {
-        if (!description.getText().isEmpty() || !game.getText().isEmpty() || !numero.getText().isEmpty())
+        if (!description.getText().isEmpty() || !game.getValue().isEmpty() || !numero.getText().isEmpty())
         {
-            Profil e=new Profil(currentAbo.getId(),username.getText(),description.getText(),game.getText(),Integer.parseInt(numero.getText()),US.currentUser);
+            Profil e=new Profil(currentAbo.getId(),username.getText(),description.getText(),game.getValue(),Integer.parseInt(numero.getText()),US.currentUser);
            
             System.out.println(e);
             rs.UpdateProfil(e);
@@ -103,12 +118,5 @@ ProfilService rs=new ProfilService();
     }
 
 
-    @FXML
-    private void GotoHotelList(ActionEvent event) {
-    }
-
-    @FXML
-    private void handleRetour(ActionEvent event) {
-    }
     
 }
