@@ -103,8 +103,8 @@ public class LoginController implements Initializable {
         US = new ServiceUser();
 
         // juste pour yussef
-        txtmail.setText("soumaya.bensassi@esprit.tn");
-        txtpassword.setText("10101010");
+        txtmail.setText("yuss@esprit.tn");
+        txtpassword.setText("azerazer");
         captcha =setCaptcha();
     }
 public Captcha setCaptcha() {

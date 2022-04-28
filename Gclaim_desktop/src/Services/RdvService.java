@@ -10,6 +10,7 @@ import Entities.Profil;
 import Entities.Rdv;
 import Tools.MaConnection;
 import Entities.Utilisateur;
+import com.twilio.Twilio;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -80,15 +81,17 @@ public class RdvService {
     
     public void verify(Profil p, Utilisateur u) {
         
- String req = "UPDATE rdv set is_verified=? WHERE (user_id =" + u + " AND coach_id="+p +") ";
+ String req = "UPDATE rdv set is_verified=? WHERE username =? AND coachname=? ";
         try {
              pst = cnx.prepareStatement(req);             
              
                 pst.setInt(1, 1);
+                 pst.setString(2, u.getUsername());
+                  pst.setString(3, p.getUsername());
               pst.executeUpdate();
               System.out.println("Rdv modifié");
         } catch (SQLException ex) {
-            System.out.println("Probléme");
+            System.out.println("Probléme dans la verification");
             System.out.println(ex.getMessage());
         }
     }
@@ -231,5 +234,22 @@ public class RdvService {
         return ensEmp2;
     }
 
+    public void sensSMS(String name)
+    {
+    
+     String ACCOUNT_SID = System.getenv("AC1bfc52d30073068147b27bcfeae02c20");
+    String AUTH_TOKEN = System.getenv("626f9f30ef57e99f0239c2c46bff15e8");
 
+   
+       Twilio.init("AC1bfc52d30073068147b27bcfeae02c20", "626f9f30ef57e99f0239c2c46bff15e8");
+        com.twilio.rest.api.v2010.account.Message message = com.twilio.rest.api.v2010.account.Message.creator(
+                new com.twilio.type.PhoneNumber("+21623251728"),
+                new com.twilio.type.PhoneNumber("++17579095719 "),
+          
+  "Welcome " +name+", You are now a coach!")
+            .create();
+
+        System.out.println(message.getSid());
+    
+    }
 }
