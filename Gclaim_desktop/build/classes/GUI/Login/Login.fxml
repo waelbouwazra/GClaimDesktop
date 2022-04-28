@@ -73,32 +73,34 @@
         </AnchorPane>
       <Pane layoutX="720.0" layoutY="-2.0" prefHeight="768.0" prefWidth="645.0" style="-fx-background-color: #ffffff;">
          <children>
-              <TextField fx:id="txtmail" layoutX="114.0" layoutY="419.0" prefHeight="45.0" prefWidth="466.0" promptText="Email">
+            <ImageView fx:id="captchaIV" fitHeight="361.0" fitWidth="393.0" layoutX="227.0" layoutY="191.0" pickOnBounds="true" preserveRatio="true" />
+              <TextField fx:id="txtmail" layoutX="113.0" layoutY="259.0" prefHeight="45.0" prefWidth="466.0" promptText="Email">
                <font>
                   <Font size="20.0" />
                </font>
             </TextField>
-              <Button fx:id="seconnecter" layoutX="237.0" layoutY="573.0" mnemonicParsing="false" onAction="#SeConnecter" prefHeight="51.0" prefWidth="218.0" style="-fx-background-color: c24400;" text="Se connecter">
+              <Button fx:id="seconnecter" layoutX="237.0" layoutY="536.0" mnemonicParsing="false" onAction="#SeConnecter" prefHeight="51.0" prefWidth="218.0" style="-fx-background-color: c24400;" text="Se connecter">
                   <font>
                       <Font size="17.0" />
                   </font>
               </Button>
-              <Label fx:id="mdpoublie" layoutX="254.0" layoutY="637.0" onMouseClicked="#mdpoublieAction" prefHeight="29.0" prefWidth="185.0" text="Mot de passe oublié ?">
+              <Label fx:id="mdpoublie" layoutX="254.0" layoutY="600.0" onMouseClicked="#mdpoublieAction" prefHeight="29.0" prefWidth="185.0" text="Mot de passe oublié ?">
                   <font>
                       <Font size="18.0" />
                   </font>
               </Label>
-              <PasswordField fx:id="txtpassword" layoutX="113.0" layoutY="479.0" prefHeight="45.0" prefWidth="466.0" promptText="Mot de passe">
+              <PasswordField fx:id="txtpassword" layoutX="113.0" layoutY="314.0" prefHeight="45.0" prefWidth="466.0" promptText="Mot de passe">
                <font>
                   <Font size="20.0" />
                </font>
             </PasswordField>
             
-             <ImageView fitHeight="188.0" fitWidth="185.0" layoutX="257.0" layoutY="133.0" pickOnBounds="true" preserveRatio="true">
+             <ImageView fitHeight="188.0" fitWidth="185.0" layoutX="257.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../../../../../../xampp/htdocs/PIDEV/Gclaim/src/Entity/Logo.png" />
          </image>
       </ImageView>
+            <TextField fx:id="code" layoutX="114.0" layoutY="476.0" prefHeight="51.0" prefWidth="465.0" promptText="code" />
          </children>
       </Pane>
     </children>

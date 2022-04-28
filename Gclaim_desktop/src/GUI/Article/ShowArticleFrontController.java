@@ -42,9 +42,17 @@ public class ShowArticleFrontController implements Initializable {
     private Text topText;
     @FXML
     private VBox mainVBox;
-    @FXML
-    private AnchorPane mainPane;
     ArticleService rs=new ArticleService();
+    @FXML
+    private AnchorPane mainPain;
+    @FXML
+    private Pane commentaire;
+    @FXML
+    private AnchorPane mainPain1;
+    @FXML
+    private Text topText1;
+    @FXML
+    private VBox mainVbox;
 
     /**
      * Initializes the controller class.

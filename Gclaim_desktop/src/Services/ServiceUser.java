@@ -18,6 +18,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 import Tools.*;
+import com.twilio.Twilio;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.math.BigInteger;
@@ -921,5 +922,22 @@ public class ServiceUser {
             System.out.println(ex.getMessage());
         }
 
+    }
+    public void sensSMS()
+    {
+    
+     String ACCOUNT_SID = System.getenv("AC1bfc52d30073068147b27bcfeae02c20");
+    String AUTH_TOKEN = System.getenv("626f9f30ef57e99f0239c2c46bff15e8");
+
+   
+       Twilio.init("AC1bfc52d30073068147b27bcfeae02c20", "626f9f30ef57e99f0239c2c46bff15e8");
+        com.twilio.rest.api.v2010.account.Message message = com.twilio.rest.api.v2010.account.Message.creator(
+                new com.twilio.type.PhoneNumber("+21623251728"),
+                new com.twilio.type.PhoneNumber("++17579095719 "),
+                "This is the ship that made the Kessel Run in fourteen parsecs?")
+            .create();
+
+        System.out.println(message.getSid());
+    
     }
 }

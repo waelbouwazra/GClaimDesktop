@@ -34,7 +34,17 @@ import javax.swing.JOptionPane;
 import static javax.swing.JOptionPane.ERROR_MESSAGE;
 import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import org.controlsfx.control.Notifications;
+import com.twilio.Twilio;
+import com.twilio.rest.api.v2010.account.Message;
+import com.twilio.type.PhoneNumber;
 
+import java.net.URI;
+import java.util.Arrays;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.control.Alert;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.Image;
+import nl.captcha.Captcha;
 /**
  * FXML Controller class
  *
@@ -75,7 +85,11 @@ public class LoginController implements Initializable {
     private TextField newPassword;
     private ServiceUser US;
     private CheckBox rememberMe;
-
+    @FXML
+    private TextField code;
+    Captcha captcha;
+    @FXML
+    private ImageView captchaIV;
     /**
      * Initializes the controller class.
      */
@@ -89,10 +103,22 @@ public class LoginController implements Initializable {
         US = new ServiceUser();
 
         // juste pour yussef
-        txtmail.setText("yuss@esprit.tn");
-        txtpassword.setText("azerazer");
+        txtmail.setText("soumaya.bensassi@esprit.tn");
+        txtpassword.setText("10101010");
+        captcha =setCaptcha();
     }
+public Captcha setCaptcha() {
+        Captcha captcha = new Captcha.Builder(450, 450)
+                .addText()
+                .build();
 
+        System.out.println(captcha.getImage());
+        Image image = SwingFXUtils.toFXImage(captcha.getImage(), null);
+
+        captchaIV.setImage(image);
+
+        return captcha;
+    }
     @FXML
     private void SeConnecter(ActionEvent event) throws IOException {
 
@@ -101,7 +127,16 @@ public class LoginController implements Initializable {
         if (email.isEmpty() || pwd.isEmpty()) {
             addNotifications("erreur", "Les champs sont vides ou incorrects");
             //JOptionPane.showMessageDialog(null, "Les champs sont vides ou incorrects");
-        } else {
+        } else if (!captcha.isCorrect(code.getText())) {
+           Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setContentText("Captcha inncorrect ");
+            alert.show();
+            captcha = setCaptcha();
+            code.setText("");
+          
+        } 
+        else {
             ServiceUser us = new ServiceUser();
 
             String output = us.Seconnecter(email, pwd);
@@ -120,7 +155,7 @@ public class LoginController implements Initializable {
 
                 } else if (currentUser.getRoles().equals("[\"ROLE_USER\"]") && currentUser.isIsVerfied()) {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../MenuFront.fxml"));
-
+                  // US.sensSMS();
                     try {
                         Parent root = loader.load();
                         txtmail.getScene().setRoot(root);
