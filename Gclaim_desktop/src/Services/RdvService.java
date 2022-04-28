@@ -10,6 +10,7 @@ import Entities.Profil;
 import Entities.Rdv;
 import Tools.MaConnection;
 import Entities.Utilisateur;
+import com.twilio.Twilio;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -80,15 +81,17 @@ public class RdvService {
     
     public void verify(Profil p, Utilisateur u) {
         
- String req = "UPDATE rdv set is_verified=? WHERE (user_id =" + u + " AND coach_id="+p +") ";
+ String req = "UPDATE rdv set is_verified=? WHERE username =? AND coachname=? ";
         try {
              pst = cnx.prepareStatement(req);             
              
                 pst.setInt(1, 1);
+                 pst.setString(2, u.getUsername());
+                  pst.setString(3, p.getUsername());
               pst.executeUpdate();
               System.out.println("Rdv modifié");
         } catch (SQLException ex) {
-            System.out.println("Probléme");
+            System.out.println("Probléme dans la verification");
             System.out.println(ex.getMessage());
         }
     }
@@ -198,11 +201,11 @@ public class RdvService {
             List<Rdv> e = new ArrayList<>();
             if(o.getClass()==ch.getClass()){
                 ch=(String) o;
-                query="SELECT * FROM `rdv` WHERE `username` LIKE '%" + ch + "%' OR `coachname` LIKE '%" + ch + "%' ";
+                query="SELECT * FROM rdv WHERE username LIKE '%" + ch + "%' OR coachname LIKE '%" + ch + "%' ";
             }
             if(o instanceof Integer){
                 i=(Integer) o;
-                query="SELECT * FROM `rdv` WHERE  `date` LIKE '%" + i + "%' ";
+                query="SELECT * FROM rdv WHERE  date LIKE '%" + i + "%' ";
             }
             try {
                 //System.out.println(query);
@@ -230,6 +233,5 @@ public class RdvService {
         Set<Rdv> ensEmp2 = u.stream().collect(Collectors.toCollection(()->new TreeSet<Rdv>((e1,e2)->e1.getDate().compareTo(e2.getDate()))));
         return ensEmp2;
     }
-
 
 }

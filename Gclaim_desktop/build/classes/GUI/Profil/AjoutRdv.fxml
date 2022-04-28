@@ -16,13 +16,22 @@
         <URL value="@ajouterprofil.css" />
     </stylesheets>
    <children>
+      <Pane fx:id="choixdate" layoutX="257.0" layoutY="138.0" prefHeight="200.0" prefWidth="522.0">
+         <children>
+            <Button fx:id="btnSubmit" layoutX="183.0" layoutY="115.0" mnemonicParsing="false" onAction="#addRdv" prefHeight="69.0" prefWidth="234.0" style="-fx-background-color: c24400;" text="Ajouter RDV" textFill="#4b2f66b5">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Button>
+            <DatePicker fx:id="dateP" layoutX="246.0" layoutY="35.0" onMouseClicked="#test" prefHeight="34.0" prefWidth="254.0" />
+            <Label layoutX="43.0" layoutY="39.0" text="Choisir la date">
+               <font>
+                  <Font name="System Bold Italic" size="20.0" />
+               </font>
+            </Label>
+         </children>
+      </Pane>
       <Label layoutX="97.0" layoutY="53.0" />
-      <Button fx:id="btnSubmit" layoutX="490.0" layoutY="226.0" mnemonicParsing="false" onAction="#addRdv" prefHeight="69.0" prefWidth="234.0" style="-fx-background-color: c24400;" text="Ajouter RDV" textFill="#4b2f66b5">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Button>
-      <DatePicker fx:id="dateP" layoutX="480.0" layoutY="147.0" onMouseClicked="#test" prefHeight="34.0" prefWidth="254.0" />
       <StackPane prefHeight="70.0" prefWidth="1389.0" style="-fx-background-color: c24400;">
          <children>
             <Text fx:id="topText" boundsType="LOGICAL_VERTICAL_CENTER" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Prendre un Rendez-vous" textAlignment="JUSTIFY" textOrigin="CENTER">
@@ -32,19 +41,14 @@
             </Text>
          </children>
       </StackPane>
-      <Label layoutX="320.0" layoutY="149.0" text="Choisir la date">
-         <font>
-            <Font name="System Bold Italic" size="20.0" />
-         </font>
-      </Label>
-      <Pane fx:id="code" layoutX="803.0" layoutY="138.0" prefHeight="122.0" prefWidth="176.0">
+      <Pane fx:id="code" layoutX="541.0" layoutY="123.0" prefHeight="177.0" prefWidth="306.0">
          <children>
-            <Button fx:id="confirmer" layoutX="19.0" layoutY="81.0" mnemonicParsing="false" onAction="#confirmercode" prefHeight="36.0" prefWidth="138.0" style="-fx-background-color: c24400;" text="Confirmer" textFill="WHITE">
+            <Button fx:id="confirmer" layoutX="21.0" layoutY="106.0" mnemonicParsing="false" onAction="#confirmercode" prefHeight="58.0" prefWidth="264.0" style="-fx-background-color: c24400;" text="Confirmer" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <TextField fx:id="codeInput" layoutX="12.0" layoutY="39.0" prefHeight="30.0" prefWidth="149.0" />
+            <TextField fx:id="codeInput" layoutX="19.0" layoutY="39.0" prefHeight="40.0" prefWidth="264.0" />
             <Label layoutX="17.0" layoutY="3.0" prefHeight="21.0" prefWidth="66.0" text="Le code" textFill="#d1cdcd">
                <font>
                   <Font name="System Bold" size="15.0" />

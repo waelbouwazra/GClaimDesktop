@@ -7,10 +7,12 @@ package GUI.Profil;
 
 import Entities.Profil;
 import Entities.Rdv;
+import Front.MainWindowController;
 import Services.ProfilService;
 import Services.RdvService;
 import Services.ServiceUser;
 import static Services.ServiceUser.currentUser;
+import Tools.Constants;
 import Tools.MaConnection;
 import Tools.SendEmail;
 import java.net.URL;
@@ -65,6 +67,8 @@ RdvService rs=new RdvService();
     private Button confirmer;
     @FXML
     private TextField codeInput;
+    @FXML
+    private Pane choixdate;
     /**
      * Initializes the controller class.
      */
@@ -133,7 +137,7 @@ RdvService rs=new RdvService();
            try {
                 int min = 10000;
                 int max = 99999;
- code.setVisible(true);
+ 
                 generatedCode = (int) Math.floor(Math.random() * (max - min + 1) + min);
                 sendEmail = new SendEmail("gclaimpidev@gmail.com", "Gclaim2022", US.currentUser.getEmail(), "Confirmer le rendez-vous ", "<center style=\"width: 100%; background-color: #f1f1f1;\"><div style=\"display: none; font-size: 1px;max-height: 0px; max-width: 0px; opacity: 0; overflow: hidden; mso-hide: all; font-family: sans-serif;\"></div><div style=\"max-width: 600px; margin: 0 auto;\" class=\"email-container\">"
                 + "  <table align=\"center\" role=\"presentation\" cellspacing=\"0\" cellpadding=\"0\"border=\"0\" width=\"100% \" style=\"margin: auto;\"><tr>"
@@ -150,7 +154,8 @@ RdvService rs=new RdvService();
                 + "<p><a  style=\"margin-left:150px;color: #c24400;\" +\">" + generatedCode + "</a></p></div></td></tr></table> </td></tr>"
                 + " </center>"); 
                 
-              
+ code.setVisible(true);
+ choixdate.setVisible(false);
             } catch (Exception ex) {
                 System.out.println(ex.getMessage());
             }
@@ -181,7 +186,7 @@ RdvService rs=new RdvService();
       
      
             rs.verify(currentAbo,US.currentUser);
-      
+            MainWindowController.getInstance().loadInterface(Constants.FXML_DISPLAY_PROFIL);
        
         } else {
             addNotifications("erreur", "code incorrect");
