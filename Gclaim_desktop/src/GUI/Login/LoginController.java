@@ -39,7 +39,10 @@ import com.twilio.rest.api.v2010.account.Message;
 import com.twilio.type.PhoneNumber;
 
 import java.net.URI;
+import java.time.LocalDate;
+import java.time.temporal.ChronoUnit;
 import java.util.Arrays;
+import java.util.List;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.control.Alert;
 import javafx.scene.image.ImageView;
@@ -90,6 +93,8 @@ public class LoginController implements Initializable {
     Captcha captcha;
     @FXML
     private ImageView captchaIV;
+    private ServiceTournoi ts = new ServiceTournoi();
+    ServiceEquipe es=new ServiceEquipe();
     /**
      * Initializes the controller class.
      */
@@ -157,6 +162,49 @@ public Captcha setCaptcha() {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../MenuFront.fxml"));
                   // US.sensSMS();
                     try {
+                         List<Tournoi> listuser = ts.ShowTournoi();
+                         for(Tournoi r : listuser) {
+                             
+                              System.out.println(ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev())));
+                             if((ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev()))<7)&&(ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev()))>0))
+                             {
+                                 if(!ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).isEmpty())
+                                 {
+                                     if((ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi()!="")&&(r.getId()==ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getId()))
+                                     {
+                                addNotifications("Coming Soon !",ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi());
+                                     }
+                                 }
+                             }
+                              if(ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev()))==0)
+                             {
+                                 if(!ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).isEmpty())
+                                 {
+                                     
+                                     for(int s : ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0))){
+                                         System.out.println(s+"dddddddddddd");
+                                     if(r.getId()==ts.ShowTournoiById(s).getId())
+                                     {
+                                addNotifications("Votre tournoi est programmé pour aujourdhui à !",ts.ShowTournoiById(s).getHeurev());
+                                     }
+                                     }
+                                 }
+                             }
+                             if(java.sql.Date.valueOf(r.getDatev()).compareTo(java.sql.Date.valueOf(LocalDate.now()))==-1)
+                             {
+                                 
+                                 if(!ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).isEmpty())
+                                 {
+                                     if((ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi()!="")&&(r.getId()==ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getId()))
+                                     {
+                                addNotifications("Les tournois ci-dessous ont ete annulé",ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi());
+                                ts.quitterTournoi(new Equipe(es.afficheEquipeUt(US.currentUser.getId()).get(0)),r);    
+                                     }
+                                 }
+                                 
+                                 
+                             }
+                           }
                         Parent root = loader.load();
                         txtmail.getScene().setRoot(root);
                     } catch (IOException ex) {
@@ -168,6 +216,49 @@ public Captcha setCaptcha() {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../MenuFront.fxml"));
 
                     try {
+                         List<Tournoi> listuser = ts.ShowTournoi();
+                         for(Tournoi r : listuser) {
+                             
+                              System.out.println(ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev())));
+                             if((ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev()))<7)&&(ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev()))>0))
+                             {
+                                 if(!ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).isEmpty())
+                                 {
+                                     if((ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi()!="")&&(r.getId()==ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getId()))
+                                     {
+                                addNotifications("Coming Soon !",ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi());
+                                     }
+                                 }
+                             }
+                              if(ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev()))==0)
+                             {
+                                 if(!ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).isEmpty())
+                                 {
+                                     
+                                     for(int s : ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0))){
+                                         System.out.println(s+"dddddddddddd");
+                                     if(r.getId()==ts.ShowTournoiById(s).getId())
+                                     {
+                                addNotifications("Votre tournoi est programmé pour aujourdhui à !",ts.ShowTournoiById(s).getHeurev());
+                                     }
+                                     }
+                                 }
+                             }
+                             if(java.sql.Date.valueOf(r.getDatev()).compareTo(java.sql.Date.valueOf(LocalDate.now()))==-1)
+                             {
+                                 
+                                 if(!ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).isEmpty())
+                                 {
+                                     if((ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi()!="")&&(r.getId()==ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getId()))
+                                     {
+                                addNotifications("Les tournois ci-dessous ont ete annulé",ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi());
+                                ts.quitterTournoi(new Equipe(es.afficheEquipeUt(US.currentUser.getId()).get(0)),r);    
+                                     }
+                                 }
+                                 
+                                 
+                             }
+                           }
                         Parent root = loader.load();
                         txtmail.getScene().setRoot(root);
                     } catch (IOException ex) {

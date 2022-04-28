@@ -31,6 +31,10 @@ public class Tournoi {
         this.jeu = jeu;
     }
 
+    public Tournoi(int id) {
+        this.id = id;
+    }
+
     public Tournoi( String nomtournoi, String description, String datev, String heurev, Jeu jeu) {
         this.nomtournoi = nomtournoi;
         this.description = description;

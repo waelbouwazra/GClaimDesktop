@@ -139,7 +139,99 @@ public class ServiceTournoi {
             System.out.println(ex.getMessage());
         }
     }
+           public void quitterTournoi(Equipe p,Tournoi t) {
+           
 
+        String req =  "DELETE FROM `tournoi_equipe` WHERE `tournoi_equipe`.`tournoi_id` = ? AND `tournoi_equipe`.`equipe_id`=? ";
+      
+        try {
+
+            pst = cnx.prepareStatement(req);
+            pst.setInt(1, t.getId());
+            pst.setInt(2, p.getId());
+            pst.executeUpdate();
+           
+            System.out.println("quitter tournoi done");
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+ public Tournoi ShowTournoiById(int id){
+        ServiceJeu sj=new ServiceJeu();
+        Tournoi tournoi = new Tournoi();
+        String sql="select * from tournoi where id="+id;
+        Statement ste;
+       
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+             while(rs.next()){
+                 Tournoi c = new Tournoi();
+                 c.setId(rs.getInt("id"));
+                 c.setNomtournoi(rs.getString("nomtournoi"));
+                 c.setDescription(rs.getString("description"));
+                 c.setDatec(rs.getDate("datec"));
+                 c.setDatev(rs.getString("dateev"));     
+                 c.setHeurev(rs.getString("heureev"));               
+                 c.setJeu(sj.ShowJeuById(new Jeu(rs.getInt("jeu_id"))));
+                 tournoi=c;
+                 
+        }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return tournoi;
+    }
+  public List<Tournoi> ShowTournoiByIds(int id){
+        ServiceJeu sj=new ServiceJeu();
+        List<Tournoi> tournoi = new ArrayList<>();
+        String sql="select * from tournoi where id="+id;
+        Statement ste;
+       
+        try {
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(sql);
+             while(rs.next()){
+                 Tournoi c = new Tournoi();
+                 c.setId(rs.getInt("id"));
+                 c.setNomtournoi(rs.getString("nomtournoi"));
+                 c.setDescription(rs.getString("description"));
+                 c.setDatec(rs.getDate("datec"));
+                 c.setDatev(rs.getString("dateev"));     
+                 c.setHeurev(rs.getString("heureev"));               
+                 c.setJeu(sj.ShowJeuById(new Jeu(rs.getInt("jeu_id"))));
+                 tournoi.add(c);
+                 
+        }
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+        }
+        
+        return tournoi;
+    }
+           
+
+     public List<Integer> afficheTourEq(int id) {
+        List<Integer> nom = new ArrayList<>();
+        String query = " select * from tournoi u , tournoi_equipe e WHERE u.id = e.tournoi_id and e.equipe_id = "+id+"";
+        Statement ste;
+        try {
+           
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(query);
+
+            while (rs.next()) {
+
+               
+                nom.add(rs.getInt(1));
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return nom;
+    }
         
  public void Rechercher( List<Tournoi> tournoi, String nomTournoi){
        
@@ -230,4 +322,6 @@ public void filtreidJ( List<Tournoi> tournoi, int idj){
         Set<Tournoi> ensEmp2 = u.stream().collect(Collectors.toCollection(()->new TreeSet<Tournoi>((e1,e2)->e1.getDatev().compareTo(e2.getDatev()))));
         return ensEmp2;
     }
+   
+   
 }

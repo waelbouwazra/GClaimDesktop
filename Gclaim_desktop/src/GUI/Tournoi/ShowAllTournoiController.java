@@ -13,6 +13,13 @@ import Front.*;
 import GUI.MenuFrontController;
 import Services.ServiceEquipe;
 import Tools.Constants;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
+import com.google.zxing.qrcode.QRCodeWriter;
+import java.awt.Color;
+import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -31,9 +38,16 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
+import javafx.scene.Scene;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
-
+import javafx.stage.Stage;
+import javafx_qrcodewriter.JavaFX_QRCodeWriter;
 
 /**
  * FXML Controller class
@@ -50,13 +64,19 @@ public class ShowAllTournoiController implements Initializable {
     public VBox mainVBox;
     ServiceTournoi rs=new ServiceTournoi();
     ServiceEquipe es=new ServiceEquipe();
+            StackPane stackPane = new StackPane();
+            
 
     private ServiceUser US;
     @FXML
     private AnchorPane mainPain;
+    @FXML
+    private Button ButtF;
    
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        stackPane.setAlignment(Pos.CENTER);
+            stackPane.setPrefHeight(200);
          US = new ServiceUser();
 
         List<Tournoi> listAbo = rs.ShowTournoi();
@@ -64,14 +84,18 @@ public class ShowAllTournoiController implements Initializable {
 
         if (!listAbo.isEmpty()) {
             for (Tournoi abo : listAbo) {
+                if(java.sql.Date.valueOf(abo.getDatev()).compareTo(java.sql.Date.valueOf(LocalDate.now()))==1)
+                             {
                 mainVBox.getChildren().add(makeAboModel(abo));
+                             }
+                         
+
             }
         } else {
-            StackPane stackPane = new StackPane();
-            stackPane.setAlignment(Pos.CENTER);
-            stackPane.setPrefHeight(200);
+            
             stackPane.getChildren().add(new Text("Aucune donnée"));
             mainVBox.getChildren().add(stackPane);
+            mainVBox.getChildren().clear();
         }
     }
 
@@ -82,7 +106,7 @@ public class ShowAllTournoiController implements Initializable {
 
             HBox innerContainer = ((HBox) ((AnchorPane) ((AnchorPane) parent).getChildren().get(0)).getChildren().get(0));
             ((Pane) innerContainer.lookup("#btnmodif")).setVisible(false);
-           ((Pane) innerContainer.lookup("#rejoindre")).setVisible(true);
+           ((Pane) innerContainer.lookup("#rejoindre")).setVisible(false);
             ((Text) innerContainer.lookup("#nomtournoi")).setText("Nom Tournoi : " + abo.getNomtournoi());
             ((Text) innerContainer.lookup("#description")).setText("Description : " + abo.getDescription());
             ((Text) innerContainer.lookup("#Jeu")).setText("Jeu : " + abo.getJeu().getNomjeu());
@@ -92,10 +116,11 @@ public class ShowAllTournoiController implements Initializable {
             System.out.println(abo.getJeu());
        
             ((Pane) innerContainer.lookup("#rejoindre")).setVisible(true);
-            ((Button) innerContainer.lookup("#editButton")).setOnAction((event) -> modifierAbo(abo));
+            ((Button) innerContainer.lookup("#editButton")).setOnAction((event) -> Qr(abo.toString()));
             ((Button) innerContainer.lookup("#btnrj")).setOnAction((event) -> supprimerAbo(abo));
-
-            ((Pane) innerContainer.lookup("#btnmodif")).setVisible(false);
+            //((Button) innerContainer.lookup("#ButtF")).setOnAction((event) -> affT());
+   
+            ((Pane) innerContainer.lookup("#btnmodif")).setVisible(true);
            ((Button) innerContainer.lookup("#deleteButton")).setOnAction((event) -> supprimerT(abo));
             
             
@@ -109,17 +134,43 @@ public class ShowAllTournoiController implements Initializable {
         currentAbo = abo;
         MainWindowController.getInstance().loadInterface(Constants.FXML_UPDATE_TOURNOI);
     }
+    @FXML
+    private void affT() {
+        mainVBox.getChildren().clear();
+        List<Integer> t =es.afficheEquipeUt(US.currentUser.getId());
+                for(Integer r : t) {
+            for(Integer s : rs.afficheTourEq(r)){
+                for(Tournoi f :rs.ShowTournoiByIds(s))
+                {
+                                    mainVBox.getChildren().add(makeAboModel(f));
+
+                }
+                }
+                
+            }
+        
+
+    }
      private void supprimerT(Tournoi abo) {
         currentAbo = null;
 
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmer votre demande");
         alert.setHeaderText(null);
-        alert.setContentText("Etes vous sûr de vouloir supprimer ce tournoi ?");
+        alert.setContentText("Etes vous sûr de vouloir rejoindre ce Tournoi ?");
         Optional<ButtonType> action = alert.showAndWait();
 
         if (action.get() == ButtonType.OK) {
-           rs.DeleteTournoi(abo.getId());
+                                  System.out.println(es.afficheEquipeUt(US.currentUser.getId()));
+                  if(!es.afficheEquipeUt(US.currentUser.getId()).isEmpty()){
+                  rs.quitterTournoi(new Equipe(es.afficheEquipeUt(US.currentUser.getId()).get(0)),abo);
+                  }
+                  else 
+                  {
+                  es.Rejoindreuneequipe(es.Equipdispo().get(0), US.currentUser);
+                  rs.RejoindreTournoi(es.Equipdispo().get(0),abo);
+
+                  }
                 MainWindowController.getInstance().loadInterface(Constants.FXML_DISPLAY_ALL_TOUR);
             
             }
@@ -149,6 +200,46 @@ public class ShowAllTournoiController implements Initializable {
             
             }
         }
+    public void Qr(String myWeb) {
+     QRCodeWriter qrCodeWriter = new QRCodeWriter();
+       
+        int width = 300;
+        int height = 300;
+        String fileType = "png";
+        
+        BufferedImage bufferedImage = null;
+        try {
+            BitMatrix byteMatrix = qrCodeWriter.encode(myWeb, BarcodeFormat.QR_CODE, width, height);
+            bufferedImage = new BufferedImage(width, height, BufferedImage.TYPE_INT_RGB);
+            bufferedImage.createGraphics();
+            
+            Graphics2D graphics = (Graphics2D) bufferedImage.getGraphics();
+            graphics.setColor(Color.WHITE);
+            graphics.fillRect(0, 0, width, height);
+            graphics.setColor(Color.BLACK);
+            
+            for (int i = 0; i < height; i++) {
+                for (int j = 0; j < width; j++) {
+                    if (byteMatrix.get(i, j)) {
+                        graphics.fillRect(i, j, 1, 1);
+                    }
+                }
+            }
+            
+            System.out.println("Success...");
+            
+        } catch (WriterException ex) {
+            Logger.getLogger(JavaFX_QRCodeWriter.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        ImageView qrView = new ImageView();
+        qrView.setImage(SwingFXUtils.toFXImage(bufferedImage, null));
+          
+            stackPane.getChildren().clear();
+            
+            stackPane.getChildren().add(qrView);
+            mainVBox.getChildren().add(stackPane);
+    }
 
     
-}
+}   
