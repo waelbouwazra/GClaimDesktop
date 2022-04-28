@@ -3,15 +3,12 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Login/FXMain.java</file>
+            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Produit/ShowProduitController.java</file>
+            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Tools/SendEmail.java</file>
+            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Panier/AfficheCommandeLigneCommandeController.java</file>
             <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Services/ServiceUser.java</file>
-            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Article/ShowCommentaireController.java</file>
-            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Login/Inscription.fxml</file>
-            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Login/AfficheuserController.java</file>
-            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Login/MenuuserController.java</file>
+            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Tournoi/ShowAllTournoiController.java</file>
             <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Login/LoginController.java</file>
-            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Services/ServiceEquipe.java</file>
-            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Login/ModifierprofilController.java</file>
         </group>
     </open-files>
 </project-private>
