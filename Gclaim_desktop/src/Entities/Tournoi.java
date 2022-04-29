@@ -43,6 +43,15 @@ public class Tournoi {
         this.jeu = jeu;
     }
 
+    public Tournoi(String nomtournoi, String description, String datev, String heurev, String image, Jeu jeu) {
+        this.nomtournoi = nomtournoi;
+        this.description = description;
+        this.datev = datev;
+        this.heurev = heurev;
+        this.image = image;
+        this.jeu = jeu;
+    }
+
     public Tournoi(Jeu jeu) {
         this.jeu = jeu;
     }

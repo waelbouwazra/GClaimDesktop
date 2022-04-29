@@ -3,12 +3,13 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Produit/ShowProduitController.java</file>
-            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Tools/SendEmail.java</file>
-            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Panier/AfficheCommandeLigneCommandeController.java</file>
-            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/Services/ServiceUser.java</file>
-            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Tournoi/ShowAllTournoiController.java</file>
-            <file>file:/C:/xampp/htdocs/GClaimDesktop/Gclaim_desktop/src/GUI/Login/LoginController.java</file>
+            <file>file:/C:/Users/elyes/Downloads/GClaimDesktop-main%20(9)/GClaimDesktop-main/Gclaim_desktop/src/Services/ServiceJeu.java</file>
+            <file>file:/C:/Users/elyes/Downloads/GClaimDesktop-main%20(9)/GClaimDesktop-main/Gclaim_desktop/src/GUI/Login/LoginController.java</file>
+            <file>file:/C:/Users/elyes/Downloads/GClaimDesktop-main%20(9)/GClaimDesktop-main/Gclaim_desktop/src/Entities/Tournoi.java</file>
+            <file>file:/C:/Users/elyes/Downloads/GClaimDesktop-main%20(9)/GClaimDesktop-main/Gclaim_desktop/src/Entities/Jeu.java</file>
+            <file>file:/C:/Users/elyes/Downloads/GClaimDesktop-main%20(9)/GClaimDesktop-main/Gclaim_desktop/src/Services/ServiceTournoi.java</file>
+            <file>file:/C:/Users/elyes/Downloads/GClaimDesktop-main%20(9)/GClaimDesktop-main/Gclaim_desktop/src/Services/ServiceEquipe.java</file>
+            <file>file:/C:/Users/elyes/Downloads/GClaimDesktop-main%20(9)/GClaimDesktop-main/Gclaim_desktop/src/Tools/PDFTourn.java</file>
         </group>
     </open-files>
 </project-private>
