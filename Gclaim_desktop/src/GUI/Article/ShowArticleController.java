@@ -13,7 +13,6 @@ import Services.CatService;
 import Services.ProduitService;
 import Tools.MaConnection;
 import Tools.PDFActualite;
-import Tools.PDFProd;
 import com.gtranslate.Audio;
 import com.gtranslate.Language;
 import com.itextpdf.text.DocumentException;
@@ -411,7 +410,7 @@ txtModifCat.getSelectionModel().select(ca.getNom());
                 row.createCell(5).setCellValue(rs.getString("cat_id"));
                 index++;
             }
-            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\User\\Desktop\\excell\\ActualitesDetails.Xls");
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\souma\\Desktop\\ActualitesDetails.Xls");
             wb.write(fileOut);
             fileOut.close();
            ste.close();
