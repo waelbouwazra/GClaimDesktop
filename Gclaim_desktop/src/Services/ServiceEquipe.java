@@ -335,4 +335,47 @@ public class ServiceEquipe {
 
         return equipes;
     }
+             public List<Integer> afficheEqTour(int id) {
+        List<Integer> nom = new ArrayList<>();
+        String query = " select * from equipe u , tournoi_equipe e WHERE u.id = e.equipe_id and e.tournoi_id = "+id+"";
+        Statement ste;
+        try {
+           
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(query);
+
+            while (rs.next()) {
+
+               
+                nom.add(rs.getInt(1));
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+        return nom;
+    }
+            public List<Utilisateur> afficheUtilisateursduneEqu(int id) {
+        List<Utilisateur> emails = new ArrayList<>();
+        String query = " select * from utilisateur u , equipe_utilisateur e WHERE u.id = e.utilisateur_id and e.equipe_id = "+id+"";
+        Statement ste;
+        try {
+           
+            ste = cnx.createStatement();
+            ResultSet rs = ste.executeQuery(query);
+
+            while (rs.next()) {
+                  Utilisateur u = new Utilisateur();
+               u.setEmail(rs.getString("email"));
+               u.setUsername(rs.getString("username"));
+               
+                emails.add(u);
+
+            }
+        } catch (SQLException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        return emails;
+    }
 }

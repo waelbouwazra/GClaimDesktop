@@ -10,22 +10,45 @@ import Entities.cat;
 import Front.MainWindowController;
 import Services.ArticleService;
 import Services.CatService;
+import Services.ProduitService;
+import Tools.MaConnection;
+import Tools.PDFActualite;
+import Tools.PDFProd;
+import com.gtranslate.Audio;
+import com.gtranslate.Language;
+import com.itextpdf.text.DocumentException;
+import java.awt.Desktop;
+import static java.awt.SystemColor.text;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
 import java.net.URL;
 import static java.nio.file.Files.list;
 import static java.rmi.Naming.list;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import static java.util.Collections.list;
 import java.util.List;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.Set;
 import java.util.function.Predicate;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.transformation.FilteredList;
 import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -47,7 +70,13 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Scale;
 import javafx.stage.Window;
+import static javax.management.Query.gt;
+import static javax.management.Query.lt;
 import javax.swing.JOptionPane;
+import javazoom.jl.decoder.JavaLayerException;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 /**
  * FXML Controller class
@@ -57,7 +86,10 @@ import javax.swing.JOptionPane;
 public class ShowArticleController implements Initializable {
     @FXML
     private ListView<Article> txtListArticle;
-
+    PreparedStatement pst= null;
+ResultSet rs= null;
+   MaConnection con = new MaConnection();
+  private Connection cnx = MaConnection.getInstance().getConnection();
     ArticleService ps = new ArticleService();
     @FXML
     private AnchorPane mainPane;
@@ -81,10 +113,17 @@ public class ShowArticleController implements Initializable {
     private TextField inputRech;
     @FXML
     private Button affichStat;
-    @FXML
-    private Button btnImp;
-    @FXML
     private ImageView imgview;
+    @FXML
+    private Button btn;
+    @FXML
+    private Button btnpdf;
+    @FXML
+    private Button excell;
+    @FXML
+    private Button triVu;
+    @FXML
+    private Button triDate;
 
     /**
      * Initializes the controller class.
@@ -287,8 +326,7 @@ txtModifCat.getSelectionModel().select(ca.getNom());
         }
         txtListArticle.setItems(items);
     }
-
-    @FXML
+/*
     private void imprimer(ActionEvent event) {
        ImageView imageView =new ImageView(imgview.getImage());
             Printer printer = Printer.getDefaultPrinter();
@@ -306,6 +344,113 @@ txtModifCat.getSelectionModel().select(ca.getNom());
                     }                
       }
     }
-    
-    
+*/
+    @FXML
+    private void soundOn(ActionEvent event) {
+        btn.setOnAction(new EventHandler <ActionEvent>() {
+ 
+     public void handle(ActionEvent event) {
+        Audio audio = Audio.getInstance();
+        InputStream sound = null;
+        try {
+        sound = audio.getAudio(txtModifTitre.getText(), Language.ENGLISH);
+                    System.out.println(txtModifTitre.getText());  
+
+        } catch (IOException ex) {
+        try {
+        audio.play(sound);
+        } catch (JavaLayerException ex1) {
+            System.out.println(ex1.getMessage()); 
+                    System.out.println("iciii222");        }
 }
+        }
+    
+});
+       
+    }
+
+    @FXML
+    private void pdfA(ActionEvent event) throws DocumentException, MalformedURLException, IOException, FileNotFoundException, URISyntaxException {
+                PDFActualite pdf=new PDFActualite ();
+        pdf.pdfGeneration ();
+        if (Desktop.isDesktopSupported()) {
+            try {
+                File myFile = new File("Actualite.pdf");
+                Desktop.getDesktop().open(myFile);
+            } catch (IOException ex) {
+                // no application registered for PDFs
+            }
+        }
+    }
+
+    @FXML
+    private void excellA(ActionEvent event) {
+           {
+           String sql = "select * from article";
+        Statement ste;
+        try {
+       
+          ste=cnx.prepareStatement(sql);
+               ResultSet rs = ste.executeQuery(sql);
+            HSSFWorkbook wb = new HSSFWorkbook();
+            HSSFSheet sheet = wb.createSheet("Article details ");
+            HSSFRow header = sheet.createRow(0);
+            header.createCell(0).setCellValue("id");
+            header.createCell(1).setCellValue("titre");
+            header.createCell(2).setCellValue("description");
+            header.createCell(3).setCellValue("nbr_vu");
+            header.createCell(7).setCellValue("categorie");
+            int index = 1;
+            while (rs.next()) {
+                System.out.println(rs.getString("id"));
+                HSSFRow row = sheet.createRow(index);
+                row.createCell(0).setCellValue(rs.getString("id"));
+                row.createCell(1).setCellValue(rs.getString("titre"));
+                row.createCell(2).setCellValue(rs.getString("description"));
+                row.createCell(5).setCellValue(rs.getString("nbr_vu"));
+                row.createCell(5).setCellValue(rs.getString("cat_id"));
+                index++;
+            }
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\User\\Desktop\\excell\\ActualitesDetails.Xls");
+            wb.write(fileOut);
+            fileOut.close();
+           ste.close();
+           rs.close();
+
+        } catch (SQLException e) {
+        } catch (IOException ex) {
+            Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+       
+
+    }}
+
+    @FXML
+    private void triNVu(ActionEvent event) {
+              
+ ObservableList<Article> items =FXCollections.observableArrayList();
+        List<Article> listarticle = ps.ShowArticle();
+       List<Article> liste= ps.plusvu(listarticle);
+       for(Article r : liste) {
+            String ch = r.toString();
+            items.add(r);
+        }
+        txtListArticle.setItems(items);
+    }
+
+    @FXML
+    private void triDate(ActionEvent event) {
+         ObservableList<Article> items =FXCollections.observableArrayList();
+        List<Article> listarticle = ps.ShowArticle();
+       Set<Article> liste= ps.tripardate(listarticle);
+       for(Article r : liste) {
+            String ch = r.toString();
+            items.add(r);
+        }
+        txtListArticle.setItems(items);
+    }
+}
+    
+    
+

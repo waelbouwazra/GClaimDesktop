@@ -77,6 +77,8 @@ public class AddArticleController implements Initializable {
     private ImageView imgajoutincours;
     @FXML
     private Label imgpathttt;
+    @FXML
+    private Button btn;
 
     /**
      * Initializes the controller class.
@@ -188,6 +190,10 @@ txtcat.setItems(items);
                 .position(Pos.BOTTOM_RIGHT);
 
         notificationBuilder.showInformation();
+    }
+
+    @FXML
+    private void traduction(ActionEvent event) {
     }
   
 }

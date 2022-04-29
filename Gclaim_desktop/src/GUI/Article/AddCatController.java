@@ -27,6 +27,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -56,12 +57,18 @@ public class AddCatController implements Initializable {
     @FXML
     private Button suppCat;
 int idCat;
+    @FXML
+    private ColorPicker colorPick;
+    @FXML
+    private Button tri;
+    
     /**
      * Initializes the controller class.
      */
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         // TODO
+        txtCouleur.setVisible(false);
                   ObservableList<cat> items =FXCollections.observableArrayList();
                 List<cat> listProduit = ps.ShowCategorie();
                 for(cat p : listProduit) {
@@ -74,7 +81,9 @@ int idCat;
     private void AddCategorie(ActionEvent event) {
        
                 CatService ps = new CatService();
-            
+          String a=ps.toHexString(colorPick.getValue()) ;
+          System.out.println(a);
+          txtCouleur.setText(a);
        if (txtNom.getText().isEmpty() == false
                 && txtCouleur.getText().isEmpty() == false ) {
  
@@ -197,5 +206,17 @@ int idCat;
                 listCategorie.setItems(items);
 
     }}}
+
+    @FXML
+    private void trierC(ActionEvent event) {
+           ObservableList<cat> items =FXCollections.observableArrayList();
+        List<cat> listarticle = ps.ShowCategorie();
+       Set<cat> liste= ps.tri(listarticle);
+       for(cat r : liste) {
+            String ch = r.toString();
+            items.add(r);
+        }
+        listCategorie.setItems(items);
+    }
     
 }

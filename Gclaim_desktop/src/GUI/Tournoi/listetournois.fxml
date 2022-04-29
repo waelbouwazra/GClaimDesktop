@@ -24,5 +24,6 @@
       <TextField fx:id="rechrche" layoutX="210.0" layoutY="97.0" onKeyReleased="#chercherUser" prefHeight="26.0" prefWidth="390.0" promptText="Recherche" />
       <Button layoutX="88.0" layoutY="97.0" mnemonicParsing="false" onAction="#triee" style="-fx-background-color: A9A9A9;" text="Trié Par Date" />
       <Button fx:id="editButton" layoutX="501.0" layoutY="607.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#modifierT" prefHeight="39.0" prefWidth="181.0" style="-fx-background-color: c24400;" styleClass="light-button" text="MODIFIER LE TOURNOI" />
+      <Button fx:id="generer" layoutX="292.0" layoutY="605.0" mnemonicParsing="false" onAction="#genererExcel" prefHeight="42.0" prefWidth="181.0" style="-fx-background-color: #c24400;" text="LISTE PARTICIPANT" />
    </children>
 </AnchorPane>

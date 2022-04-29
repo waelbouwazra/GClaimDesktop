@@ -5,6 +5,7 @@
  */
 package Services;
 
+import Entities.Article;
 import Entities.cat;
 import Tools.MaConnection;
 import java.sql.Connection;
@@ -14,6 +15,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.TreeSet;
+import java.util.stream.Collectors;
+import javafx.scene.paint.Color;
 
 /**
  *
@@ -160,5 +165,16 @@ cat a =new cat();
         return -1;
     
 }
-
+public static String toHexString(Color color) {
+  int r = ((int) Math.round(color.getRed()     * 255)) << 24;
+  int g = ((int) Math.round(color.getGreen()   * 255)) << 16;
+  int b = ((int) Math.round(color.getBlue()    * 255)) << 8;
+  int a = ((int) Math.round(color.getOpacity() * 255));
+  return String.format("#%08X", (r + g + b + a));
+}
+public Set<cat> tri( List<cat> u){
+       
+        Set<cat> ensEmp2 = u.stream().collect(Collectors.toCollection(()->new TreeSet<cat>((e1,e2)->e1.getNom().compareTo(e2.getNom()))));
+        return ensEmp2;
+    }
 }

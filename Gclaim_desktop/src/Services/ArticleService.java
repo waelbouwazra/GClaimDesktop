@@ -159,6 +159,18 @@ public void trinbrvu( List<Article> produit){
         .filter(e -> e.getNbr_vu() != 0).forEach((t) -> {System.out.println(t);});
       
         }
+public List<Article> plusvu( List<Article> produit){
+       
+         return
+         produit.stream()
+        .filter(e -> e.getNbr_vu() != 0).collect(Collectors.toList());
+      
+        }
+   public Set<Article> tripardate( List<Article> u){
+       
+        Set<Article> ensEmp2 = u.stream().collect(Collectors.toCollection(()->new TreeSet<Article>((e1,e2)->e1.getCreate_at().compareTo(e2.getCreate_at()))));
+        return ensEmp2;
+    }
 /** public List<Article> affichecoachdesactiver() {
         List<Utilisateur> personnes = new ArrayList<>();
         String query = "select * from utilisateur u where u.is_verified=0";

@@ -10,13 +10,19 @@ import Entities.Jeu;
 import Services.ServiceJeu;
 import Services.ServiceTournoi;
 import Tools.Constants;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,9 +33,13 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -70,6 +80,12 @@ public class CreerTournoiController implements Initializable {
     private Label alertH;
     @FXML
     private Label nomHebr;
+    @FXML
+    private ImageView ImageviewID;
+    @FXML
+    private Button btnImage;
+    @FXML
+    private Label imgpath;
 
     /**
      * Initializes the controller class.
@@ -138,7 +154,7 @@ public class CreerTournoiController implements Initializable {
         if (verif == true) {
       if (!txtNOM.getText().isEmpty() && !txtDescription.getText().isEmpty() && !EtatBox.getValue().isEmpty())
         {
-            Tournoi e=new Tournoi(txtNOM.getText(),txtDescription.getText(),dateE.getValue().toString(),txtHeure.getText(),rs2.ShowJeuByNom(EtatBox.getValue()));
+            Tournoi e=new Tournoi(txtNOM.getText(),txtDescription.getText(),dateE.getValue().toString(),txtHeure.getText(),imgpath.getText(),rs2.ShowJeuByNom(EtatBox.getValue()));
             rs.AddTournoiPst(e);
             alertN.setText("");
             alertD.setText("");
@@ -174,6 +190,42 @@ public class CreerTournoiController implements Initializable {
             //Logger.getLogger(TemplateController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    @FXML
+    private void Addimage(ActionEvent event) {
+        
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilterJPG
+                = new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterjpg
+                = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
+        FileChooser.ExtensionFilter extFilterPNG
+                = new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
+        FileChooser.ExtensionFilter extFilterpng
+                = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+        fileChooser.getExtensionFilters()
+                .addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
+        File file = fileChooser.showOpenDialog(null);
+        try {
+            BufferedImage bufferedImage = ImageIO.read(file);
+            WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
+            ImageviewID.setImage(image);
+            ImageviewID.setFitWidth(200);
+            ImageviewID.setFitHeight(200);
+            ImageviewID.scaleXProperty();
+            ImageviewID.scaleYProperty();
+            ImageviewID.setSmooth(true);
+            ImageviewID.setCache(true);
+            FileInputStream fin = new FileInputStream(file);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            for (int readNum; (readNum = fin.read(buf)) != -1;) {
+                bos.write(buf, 0, readNum);
+            }
+            byte[] person_image = bos.toByteArray();
+        } catch (IOException ex) {
+            Logger.getLogger("ss");
+        }
+      imgpath.setText(file.getAbsolutePath());
+    }
     
 }

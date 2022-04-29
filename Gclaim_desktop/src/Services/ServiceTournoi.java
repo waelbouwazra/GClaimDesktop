@@ -12,6 +12,8 @@ import Entities.SimpleUtilisateur;
 import Entities.Tournoi;
 import Entities.Utilisateur;
 import Tools.MaConnection;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -26,7 +28,17 @@ import java.util.logging.Logger;
 import java.util.*;
 import java.sql.*;
 import java.util.stream.Collectors;
-
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.IndexedColors;
+import org.apache.poi.xssf.usermodel.XSSFCellStyle;
+import org.apache.poi.xssf.usermodel.XSSFColor;
 /**
  *
  * @author ElyesM
@@ -111,7 +123,8 @@ public class ServiceTournoi {
                  c.setDescription(rs.getString("description"));
                  c.setDatec(rs.getDate("datec"));
                  c.setDatev(rs.getString("dateev"));     
-                 c.setHeurev(rs.getString("heureev"));               
+                 c.setHeurev(rs.getString("heureev"));   
+                 c.setImage(rs.getString("image"));
                  c.setJeu(sj.ShowJeuById(new Jeu(rs.getInt("jeu_id"))));
                  tournoi.add(c);
                  
@@ -199,7 +212,8 @@ public class ServiceTournoi {
                  c.setDescription(rs.getString("description"));
                  c.setDatec(rs.getDate("datec"));
                  c.setDatev(rs.getString("dateev"));     
-                 c.setHeurev(rs.getString("heureev"));               
+                 c.setHeurev(rs.getString("heureev"));   
+                 c.setImage(rs.getString("image"));
                  c.setJeu(sj.ShowJeuById(new Jeu(rs.getInt("jeu_id"))));
                  tournoi.add(c);
                  
@@ -322,6 +336,76 @@ public void filtreidJ( List<Tournoi> tournoi, int idj){
         Set<Tournoi> ensEmp2 = u.stream().collect(Collectors.toCollection(()->new TreeSet<Tournoi>((e1,e2)->e1.getDatev().compareTo(e2.getDatev()))));
         return ensEmp2;
     }
-   
+    public void generateExcel(int id ) {
+            ServiceEquipe es=new ServiceEquipe();
+            List<Integer> listE =es.afficheEqTour(id);
+            
+        
+        try
+        {
+           
+            HSSFWorkbook wb = new HSSFWorkbook();
+            HSSFCellStyle csCouleur = wb.createCellStyle();
+            csCouleur.setFillForegroundColor((short) 45);
+            HSSFFont font = wb.createFont();
+            font.setBold(true);
+            font.setColor((short) 13);
+
+            csCouleur.setFont(font);
+
+            csCouleur.setFillPattern(csCouleur.SOLID_FOREGROUND);
+
+            HSSFSheet sheet = wb.createSheet("abonnement details ");
+            HSSFCellStyle style = createStyleForTitle(wb);
+            HSSFRow header = sheet.createRow(0);
+
+            header.createCell(0).setCellValue("Username");
+            header.createCell(1).setCellValue("Email");
+  
+          
+
+            header.getCell(0).setCellStyle(csCouleur);
+            header.getCell(1).setCellStyle(csCouleur);
+        
+
+            
+            int index = 1;
+            for(Integer Eq : listE ){
+                for(Utilisateur Ut : es.afficheUtilisateursduneEqu(Eq))
+                {
+                HSSFCellStyle cs1Couleur = wb.createCellStyle();
+                cs1Couleur.setFillForegroundColor((short) 45);
+                HSSFRow row = sheet.createRow(index);
+                
+                
+                
+                row.createCell(1).setCellValue(Ut.getUsername());
+                row.createCell(0).setCellValue(Ut.getEmail());
+                row.getCell(0).setCellStyle(cs1Couleur);
+                row.getCell(1).setCellStyle(cs1Couleur);
+               
+                index++;
+            }
+            }
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\elyes\\Desktop\\participant.Xls");
+            wb.write(fileOut);
+            fileOut.close();
+            
+            }catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+        }
+
+    
+      private static HSSFCellStyle createStyleForTitle(HSSFWorkbook workbook) {
+        HSSFFont font = workbook.createFont();
+        font.setBold(true);
+
+        HSSFCellStyle style = workbook.createCellStyle();
+        style.setFont(font);
+        return style;
+    }
    
 }
+

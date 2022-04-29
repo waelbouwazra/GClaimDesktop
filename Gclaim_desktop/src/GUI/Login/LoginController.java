@@ -108,8 +108,8 @@ public class LoginController implements Initializable {
         US = new ServiceUser();
 
         // juste pour yussef
-        txtmail.setText("soumaya.bensassi@esprit.tn");
-        txtpassword.setText("10101010");
+         txtmail.setText("yuss@esprit.tn");
+        txtpassword.setText("azerazer");
         captcha =setCaptcha();
     }
 public Captcha setCaptcha() {
@@ -167,17 +167,21 @@ public Captcha setCaptcha() {
                              
                               System.out.println(ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev())));
                              if((ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev()))<7)&&(ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev()))>0))
-                             {
+                             {if(es.afficheEquipeUt(US.currentUser.getId()).size()>0)
+                                 {
                                  if(!ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).isEmpty())
                                  {
-                                     if((ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi()!="")&&(r.getId()==ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getId()))
+                                     if((ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi()!=""))
                                      {
                                 addNotifications("Coming Soon !",ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi());
                                      }
                                  }
+                                 }
                              }
                               if(ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev()))==0)
                              {
+                                 if(es.afficheEquipeUt(US.currentUser.getId()).size()>0)
+                                 {
                                  if(!ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).isEmpty())
                                  {
                                      
@@ -189,10 +193,12 @@ public Captcha setCaptcha() {
                                      }
                                      }
                                  }
+                                 }
                              }
                              if(java.sql.Date.valueOf(r.getDatev()).compareTo(java.sql.Date.valueOf(LocalDate.now()))==-1)
                              {
-                                 
+                                 if(es.afficheEquipeUt(US.currentUser.getId()).size()>0)
+                                 {
                                  if(!ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).isEmpty())
                                  {
                                      if((ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi()!="")&&(r.getId()==ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getId()))
@@ -202,8 +208,9 @@ public Captcha setCaptcha() {
                                      }
                                  }
                                  
-                                 
+                                 }
                              }
+                             
                            }
                         Parent root = loader.load();
                         txtmail.getScene().setRoot(root);
@@ -216,22 +223,27 @@ public Captcha setCaptcha() {
                     FXMLLoader loader = new FXMLLoader(getClass().getResource("../MenuFront.fxml"));
 
                     try {
-                         List<Tournoi> listuser = ts.ShowTournoi();
+                        List<Tournoi> listuser = ts.ShowTournoi();
                          for(Tournoi r : listuser) {
                              
                               System.out.println(ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev())));
                              if((ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev()))<7)&&(ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev()))>0))
                              {
+                                 if(es.afficheEquipeUt(US.currentUser.getId()).size()>0)
+                                 {
                                  if(!ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).isEmpty())
                                  {
-                                     if((ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi()!="")&&(r.getId()==ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getId()))
+                                     if((ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi()!=""))
                                      {
                                 addNotifications("Coming Soon !",ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi());
                                      }
                                  }
+                                 }
                              }
                               if(ChronoUnit.DAYS.between(LocalDate.parse(java.sql.Date.valueOf(LocalDate.now()).toString()),LocalDate.parse(r.getDatev()))==0)
                              {
+                                 if(es.afficheEquipeUt(US.currentUser.getId()).size()>0)
+                                 {
                                  if(!ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).isEmpty())
                                  {
                                      
@@ -243,18 +255,23 @@ public Captcha setCaptcha() {
                                      }
                                      }
                                  }
+                                 }
                              }
                              if(java.sql.Date.valueOf(r.getDatev()).compareTo(java.sql.Date.valueOf(LocalDate.now()))==-1)
                              {
-                                 
+                                 if(es.afficheEquipeUt(US.currentUser.getId()).size()>0)
+                                 {
                                  if(!ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).isEmpty())
                                  {
                                      if((ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi()!="")&&(r.getId()==ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getId()))
                                      {
                                 addNotifications("Les tournois ci-dessous ont ete annulé",ts.ShowTournoiById(ts.afficheTourEq(es.afficheEquipeUt(US.currentUser.getId()).get(0)).get(0)).getNomtournoi());
-                                ts.quitterTournoi(new Equipe(es.afficheEquipeUt(US.currentUser.getId()).get(0)),r);    
+                                ts.quitterTournoi(new Equipe(es.afficheEquipeUt(US.currentUser.getId()).get(0)),r);  
+
                                      }
                                  }
+                                 }
+                                 
                                  
                                  
                              }

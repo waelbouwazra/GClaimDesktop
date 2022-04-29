@@ -7,10 +7,16 @@ package GUI.Tournoi;
 
 import Entities.Jeu;
 import Services.ServiceJeu;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
+import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -19,8 +25,12 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.ImageView;
+import javafx.scene.image.WritableImage;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.paint.Color;
+import javafx.stage.FileChooser;
+import javax.imageio.ImageIO;
 import javax.swing.JOptionPane;
 
 /**
@@ -51,6 +61,12 @@ public class CreerJeuController implements Initializable {
     private Label alertD;
     @FXML
     private Label alerc;
+    @FXML
+    private ImageView ImageviewID;
+    @FXML
+    private Button btnImage;
+    @FXML
+    private Label imgpath;
 
     /**
      * Initializes the controller class.
@@ -115,7 +131,8 @@ public class CreerJeuController implements Initializable {
         if (verif == true) {
         if (!txtNOM.getText().isEmpty() && !txtDescription.getText().isEmpty() && !txtCreateur.getText().isEmpty())
         {
-            Jeu e= new Jeu( txtNOM.getText(), txtDescription.getText(), txtCreateur.getText());   
+            Jeu e= new Jeu( txtNOM.getText(), txtDescription.getText(), txtCreateur.getText());  
+            e.setImage(imgpath.getText());
             rs.AddJeuPst(e);
             alertN.setText("");
             alertD.setText("");
@@ -134,6 +151,43 @@ public class CreerJeuController implements Initializable {
         else
              JOptionPane.showMessageDialog(null, "Le JEU EST INVALIDE");
     }
+    }
+      @FXML
+    private void Addimage(ActionEvent event) {
+        
+        FileChooser fileChooser = new FileChooser();
+        FileChooser.ExtensionFilter extFilterJPG
+                = new FileChooser.ExtensionFilter("JPG files (*.JPG)", "*.JPG");
+        FileChooser.ExtensionFilter extFilterjpg
+                = new FileChooser.ExtensionFilter("jpg files (*.jpg)", "*.jpg");
+        FileChooser.ExtensionFilter extFilterPNG
+                = new FileChooser.ExtensionFilter("PNG files (*.PNG)", "*.PNG");
+        FileChooser.ExtensionFilter extFilterpng
+                = new FileChooser.ExtensionFilter("png files (*.png)", "*.png");
+        fileChooser.getExtensionFilters()
+                .addAll(extFilterJPG, extFilterjpg, extFilterPNG, extFilterpng);
+        File file = fileChooser.showOpenDialog(null);
+        try {
+            BufferedImage bufferedImage = ImageIO.read(file);
+            WritableImage image = SwingFXUtils.toFXImage(bufferedImage, null);
+            ImageviewID.setImage(image);
+            ImageviewID.setFitWidth(200);
+            ImageviewID.setFitHeight(200);
+            ImageviewID.scaleXProperty();
+            ImageviewID.scaleYProperty();
+            ImageviewID.setSmooth(true);
+            ImageviewID.setCache(true);
+            FileInputStream fin = new FileInputStream(file);
+            ByteArrayOutputStream bos = new ByteArrayOutputStream();
+            byte[] buf = new byte[1024];
+            for (int readNum; (readNum = fin.read(buf)) != -1;) {
+                bos.write(buf, 0, readNum);
+            }
+            byte[] person_image = bos.toByteArray();
+        } catch (IOException ex) {
+            Logger.getLogger("ss");
+        }
+      imgpath.setText(file.getAbsolutePath());
     }
     
 }

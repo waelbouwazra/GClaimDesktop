@@ -166,6 +166,21 @@ public class ListetournoisController implements Initializable {
         }
         }
     }
+    @FXML
+    private void genererExcel(ActionEvent event) {
+         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Confirmer votre demande");
+        alert.setHeaderText(null);
+        alert.setContentText("Etes vous sûr de vouloir supprimer ce Tournoi ?");
+        Optional<ButtonType> action = alert.showAndWait();
+
+        if (action.get() == ButtonType.OK) {
+        rs.generateExcel(txtlistusers.getSelectionModel().getSelectedItem().getId());
+        }
+      
+    
+    }
+    
 
     
 
