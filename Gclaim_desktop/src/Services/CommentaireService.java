@@ -9,6 +9,7 @@ import Entities.cat;
 import Entities.Article;
 import Entities.Commentaire;
 import Tools.MaConnection;
+import Tools.SendEmail;
 import static java.awt.SystemColor.text;
 import java.sql.Connection;
 import java.util.Date;
@@ -18,6 +19,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
+import static java.util.Locale.US;
 import java.util.Properties;
 import javax.mail.Message;
 import javax.mail.MessagingException;
@@ -153,7 +155,6 @@ private String password = "Gclaim2022";
         return commentaire;
             }
 public void envoyer(String titre) {
-    
 // Etape 1 : Création de la session
 Properties props = new Properties();
 props.put("mail.smtp.auth", "true");

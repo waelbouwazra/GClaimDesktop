@@ -57,6 +57,11 @@ public class cat {
         return "cat :" + " \t| nom=" + nom + ",  \t| couleur=" + couleur +"" ;
     }
 
+    public cat(int id, String nom) {
+        this.id = id;
+        this.nom = nom;
+    }
+
     
 
     public cat(int id) {

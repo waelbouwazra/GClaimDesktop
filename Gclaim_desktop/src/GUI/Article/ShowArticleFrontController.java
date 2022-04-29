@@ -88,8 +88,9 @@ System.out.println(abo.getCat_id());
       ((Button) innerContainer.lookup("#ajouterCom")).setOnAction((event) -> ajoutComAbo(abo));
      
      //   if (setOnAction(event)==true){ abo.setNbr_vu(abo.getNbr_vu()+1);}
-       //  ((Button) innerContainer.lookup("#btnAfficheCom")).setOnAction((event) -> AfficheCom(abo));
-                 
+      ((Button) innerContainer.lookup("#btnAfficheCom")).setOnAction((event) -> AfficheCom(abo));
+       
+
         
         }
 
@@ -108,7 +109,7 @@ System.out.println(abo.getCat_id());
          private void AfficheCom(Article abo) {
         currentAbo = abo;
        // rs.updateEquipe(abo);
-        MainWindowController.getInstance().loadInterface("ShowCommentaire.fxml");
+        MainWindowController.getInstance().loadInterface("../GUI/Article/ShowCommentaire.fxml");
     }
   
 }
