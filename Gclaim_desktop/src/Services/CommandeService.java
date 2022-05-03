@@ -10,6 +10,8 @@ import Entities.Commande;
 import Entities.Produit;
 import Entities.Utilisateur;
 import Tools.MaConnection;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.PreparedStatement;
@@ -23,6 +25,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import org.apache.poi.hssf.usermodel.HSSFCellStyle;
+import org.apache.poi.hssf.usermodel.HSSFFont;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 /**
  *
@@ -193,4 +200,80 @@ public class CommandeService {
             }
             return x;
         }
+         private static HSSFCellStyle createStyleForTitle(HSSFWorkbook workbook) {
+        HSSFFont font = workbook.createFont();
+        font.setBold(true);
+
+        HSSFCellStyle style = workbook.createCellStyle();
+        style.setFont(font);
+        return style;
+    }
+
+    public void generateExcel() {
+        String sql = "select * from commande";
+        Statement ste;
+        try {
+
+            ste = cnx.prepareStatement(sql);
+            ResultSet rs = ste.executeQuery(sql);
+            HSSFWorkbook wb = new HSSFWorkbook();
+            HSSFCellStyle csCouleur = wb.createCellStyle();
+            csCouleur.setFillForegroundColor((short) 45);
+            HSSFFont font = wb.createFont();
+            font.setBold(true);
+            font.setColor((short) 13);
+
+            csCouleur.setFont(font);
+
+            csCouleur.setFillPattern(csCouleur.SOLID_FOREGROUND);
+
+            HSSFSheet sheet = wb.createSheet("Commande details ");
+            HSSFCellStyle style = createStyleForTitle(wb);
+            HSSFRow header = sheet.createRow(0);
+
+            header.createCell(0).setCellValue("ID");
+            header.createCell(1).setCellValue("total");
+            header.createCell(2).setCellValue("livrer ");
+            header.createCell(3).setCellValue("date Achat");
+            
+
+            header.getCell(0).setCellStyle(csCouleur);
+            header.getCell(1).setCellStyle(csCouleur);
+            header.getCell(2).setCellStyle(csCouleur);
+            header.getCell(3).setCellStyle(csCouleur);
+         
+
+            
+            int index = 1;
+            while (rs.next()) {
+                HSSFCellStyle cs1Couleur = wb.createCellStyle();
+                cs1Couleur.setFillForegroundColor((short) 45);
+                HSSFRow row = sheet.createRow(index);
+                
+                
+                row.createCell(0).setCellValue(rs.getString("id"));
+                row.createCell(1).setCellValue(rs.getString("total"));
+                row.createCell(2).setCellValue(rs.getString("livrer"));
+                row.createCell(3).setCellValue(rs.getString("date_achat"));
+              
+            row.getCell(0).setCellStyle(cs1Couleur);
+                row.getCell(1).setCellStyle(cs1Couleur);
+                row.getCell(2).setCellStyle(cs1Couleur);
+                row.getCell(3).setCellStyle(cs1Couleur);
+               
+                index++;
+            }
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\souma\\Desktop\\commandes.Xls");
+            wb.write(fileOut);
+            fileOut.close();
+            ste.close();
+            rs.close();
+
+        } catch (SQLException e) {
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+    }
+
 }

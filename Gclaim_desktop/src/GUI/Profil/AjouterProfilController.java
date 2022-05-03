@@ -201,7 +201,7 @@ public Captcha setCaptcha() {
        
       ps.AddProfil(p);
        MainWindowController.getInstance().loadInterface(Constants.FXML_DISPLAY_PROFIL);
-        //     ps.sensSMS(p.getUsername());
+           ps.sensSMS(p.getUsername());
                
                }
                                    System.out.println("message 2");

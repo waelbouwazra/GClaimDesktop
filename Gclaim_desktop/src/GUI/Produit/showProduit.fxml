@@ -32,12 +32,12 @@
       <Label layoutX="297.0" layoutY="448.0" text="prix" />
       <Label layoutX="297.0" layoutY="497.0" text="quantité" />
       <ChoiceBox fx:id="EtatBox" layoutX="587.0" layoutY="444.0" prefWidth="150.0" />
-      <Button fx:id="btnplusvu" layoutX="365.0" layoutY="70.0" mnemonicParsing="false" onAction="#plusvues" style="-fx-background-color: c24400;" text="plus vu" />
+      <Button fx:id="btnplusvu" layoutX="587.0" layoutY="69.0" mnemonicParsing="false" onAction="#plusvues" prefHeight="26.0" prefWidth="61.0" style="-fx-background-color: c24400;" text="plus vu" />
       <Text fx:id="nbr" layoutX="444.0" layoutY="88.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="95.73675537109375" />
       <TextField fx:id="nbrproduit" editable="false" layoutX="193.0" layoutY="69.0" prefHeight="26.0" prefWidth="37.0" />
       <Label layoutX="16.0" layoutY="74.0" text="Nombre total des produits :" />
-      <Button fx:id="btnExcel" layoutX="450.0" layoutY="69.0" mnemonicParsing="false" onAction="#generateExcel" style="-fx-background-color: c24400;" text="Export Excell" />
-      <Button fx:id="btnpdf" layoutX="561.0" layoutY="71.0" mnemonicParsing="false" onAction="#PDFprod" text="PDF" />
+      <Button fx:id="btnExcel" layoutX="662.0" layoutY="70.0" mnemonicParsing="false" onAction="#generateExcel" prefHeight="26.0" prefWidth="96.0" style="-fx-background-color: #1a862a;" text="Export Excell" />
+      <Button fx:id="btnpdf" layoutX="776.0" layoutY="69.0" mnemonicParsing="false" onAction="#PDFprod" prefHeight="26.0" prefWidth="45.0" style="-fx-background-color: red;" text="PDF" />
     
    </children>
 </AnchorPane>

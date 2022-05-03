@@ -46,7 +46,7 @@ import org.controlsfx.control.Notifications;
 public class ShowCategorieController implements Initializable {
 PreparedStatement pst= null;
 ResultSet rs= null;
-   MaConnection con = new MaConnection();
+
     @FXML
     private Button btnretour;
     CategorieService cs = new CategorieService();

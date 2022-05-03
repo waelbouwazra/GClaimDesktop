@@ -292,8 +292,8 @@ addNotifications("suppression avec succes", "produit supprimé");
                 row.createCell(3).setCellValue(rs.getString("prix_produit"));
                 row.createCell(4).setCellValue(rs.getString("date_ajout_produit"));
                 row.createCell(5).setCellValue(rs.getString("Qte_produit"));
-                row.createCell(5).setCellValue(rs.getString("nbr_vu"));
-                row.createCell(5).setCellValue(rs.getString("categorie"));
+                row.createCell(6).setCellValue(rs.getString("nbr_vu"));
+                row.createCell(7).setCellValue(rs.getString("categorie"));
                 index++;
             }
             FileOutputStream fileOut = new FileOutputStream("C:\\Users\\souma\\Desktop\\produitsDetails.Xls");

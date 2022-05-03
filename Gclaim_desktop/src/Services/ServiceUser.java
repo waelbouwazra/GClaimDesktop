@@ -59,13 +59,13 @@ public class ServiceUser {
             String query = "insert into utilisateur(password,email,type,fullname,specialite,username,verifpassword,is_verified,roles,role) values(?,?,?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement ste = ct.prepareStatement(query);
-                ste.setString(1, mdpconvert(p.getPassword()));
+                ste.setString(1, p.getPassword());
                 ste.setString(2, p.getEmail());
                 ste.setString(3, "simpleutilisateur");
                 ste.setString(4, ((SimpleUtilisateur) p).getFullname());
                 ste.setString(5, "NULL");
                 ste.setString(6, p.getUsername());
-                ste.setString(7, mdpconvert(p.getVerifpassword()));
+                ste.setString(7, p.getVerifpassword());
                 ste.setInt(8, 1);
                 ste.setString(9, "[\"ROLE_USER\"]");
                 ste.setInt(10, 0);
@@ -80,13 +80,13 @@ public class ServiceUser {
             String query = "insert into utilisateur(password,email,type,fullname,specialite,username,verifpassword,is_verified,roles,role) values(?,?,?,?,?,?,?,?,?,?)";
             try {
                 PreparedStatement ste = ct.prepareStatement(query);
-                ste.setString(1, mdpconvert(p.getPassword()));
+                ste.setString(1, p.getPassword());
                 ste.setString(2, p.getEmail());
                 ste.setString(3, "coach");
                 ste.setString(4, "NULL");
                 ste.setString(5, ((Coach) p).getSpecialite());
                 ste.setString(6, p.getUsername());
-                ste.setString(7, mdpconvert(p.getVerifpassword()));
+                ste.setString(7, p.getVerifpassword());
                 ste.setInt(8, 1);
                 ste.setString(9, "[\"ROLE_COACH\"]");
                 ste.setInt(10, 0);
@@ -100,7 +100,7 @@ public class ServiceUser {
         return resultat;
     }
 
-    public String mdpconvert(String p) {
+   /* public String mdpconvert(String p) {
         try {
             MessageDigest md = MessageDigest.getInstance("MD5");
             byte[] messageDigest = md.digest(p.getBytes());
@@ -112,7 +112,7 @@ public class ServiceUser {
             throw new RuntimeException(ex);
         }
     }
-
+*/
     public List<Utilisateur> afficheSimpleUser() {
         List<Utilisateur> personnes = new ArrayList<>();
         String query = "select * from utilisateur";
@@ -630,7 +630,7 @@ public class ServiceUser {
             ResultSet rs = ste.executeQuery();
             if (rs.next()) {
                 String pwd = rs.getString("password");
-                if (mdpconvert(motdepasse).equals(pwd)) {
+                if (motdepasse.equals(pwd)) {
                     result = "success";
                     if (rs.getString(4).equals("simpleutilisateur")) {
                         Utilisateur user = new SimpleUtilisateur();
@@ -818,14 +818,13 @@ public class ServiceUser {
         return user;
     }
 
-    public void ChangePasswordWithEmail(String email, String newPassword) {//autoincrement
+   public void ChangePasswordWithEmail(String email, String newPassword) {//autoincrement
         String sql = "UPDATE utilisateur SET password = ? ,verifpassword=? WHERE email = ?";
         try {
             PreparedStatement ste = ct.prepareStatement(sql);
-            String hash = this.mdpconvert(newPassword);
-            System.out.println(hash);
-            ste.setString(1, hash);
-            ste.setString(2, hash);
+           
+            ste.setString(1, newPassword);
+            ste.setString(2, newPassword);
             ste.setString(3, email);
 
             ste.executeUpdate();
@@ -836,7 +835,6 @@ public class ServiceUser {
         }
 
     }
-
     public Set<Utilisateur> Rechercher(List<Utilisateur> destination, String username) {
 
         Set<Utilisateur> u = destination.stream().filter(cc -> cc.getUsername().equals(username)).collect(Collectors.toCollection(() -> new TreeSet<Utilisateur>((e1, e2) -> e1.getUsername().compareTo(e2.getUsername()))));

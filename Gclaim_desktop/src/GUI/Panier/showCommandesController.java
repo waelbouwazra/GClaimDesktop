@@ -48,6 +48,8 @@ public class showCommandesController implements Initializable {
       public static Commande comm;
     @FXML
     private Button tri;
+    @FXML
+    private Button excel;
     /**
      * Initializes the controller class.
      */
@@ -144,5 +146,11 @@ public class showCommandesController implements Initializable {
        
     txtListCommandes.setItems(items);
         
+    }
+
+    @FXML
+    private void excelAction(ActionEvent event) {
+        CommandeService cs = new CommandeService();
+        cs.generateExcel();
     }
 }
