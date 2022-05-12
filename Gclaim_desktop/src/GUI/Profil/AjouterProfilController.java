@@ -75,7 +75,7 @@ import org.controlsfx.control.Notifications;
 public class AjouterProfilController implements Initializable {
 PreparedStatement pst= null;
 ResultSet rs= null;
-   MaConnection con = new MaConnection();
+  // MaConnection con = new MaConnection();
     private TextField txtmail;
     @FXML
     private TextField username;
@@ -178,7 +178,7 @@ public Captcha setCaptcha() {
          
            
        
-                pst = con.MaConnection().prepareStatement(query);
+                pst = MaConnection.getInstance().getConnection().prepareStatement(query);
                 pst.setString(1,US.currentUser.getUsername());
                 rs = pst.executeQuery();
 

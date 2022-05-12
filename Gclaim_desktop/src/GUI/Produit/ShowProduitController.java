@@ -72,7 +72,7 @@ import org.controlsfx.control.Notifications;
 public class ShowProduitController implements Initializable{
     PreparedStatement pst= null;
 ResultSet rs= null;
-   MaConnection con = new MaConnection();
+  
   private Connection cnx = MaConnection.getInstance().getConnection();
      @FXML
     private ListView<Produit> txtListProd;
@@ -264,51 +264,9 @@ addNotifications("suppression avec succes", "produit supprimé");
      
     @FXML
      public void generateExcel() 
-         {
-           String sql = "select * from produit";
-        Statement ste;
-        try {
-       
-          ste=cnx.prepareStatement(sql);
-               ResultSet rs = ste.executeQuery(sql);
-            HSSFWorkbook wb = new HSSFWorkbook();
-            HSSFSheet sheet = wb.createSheet("Produit details ");
-            HSSFRow header = sheet.createRow(0);
-            header.createCell(0).setCellValue("id_produit");
-            header.createCell(1).setCellValue("nom_produit");
-            header.createCell(2).setCellValue("description");
-            header.createCell(3).setCellValue("prix_produit");
-            header.createCell(4).setCellValue("date_ajout_produit");
-            header.createCell(5).setCellValue("Qte_produit");
-            header.createCell(6).setCellValue("nbr_vu");
-            header.createCell(7).setCellValue("categorie");
-            int index = 1;
-            while (rs.next()) {
-                System.out.println(rs.getString("id_produit"));
-                HSSFRow row = sheet.createRow(index);
-                row.createCell(0).setCellValue(rs.getString("id_produit"));
-                row.createCell(1).setCellValue(rs.getString("nom_produit"));
-                row.createCell(2).setCellValue(rs.getString("description"));
-                row.createCell(3).setCellValue(rs.getString("prix_produit"));
-                row.createCell(4).setCellValue(rs.getString("date_ajout_produit"));
-                row.createCell(5).setCellValue(rs.getString("Qte_produit"));
-                row.createCell(6).setCellValue(rs.getString("nbr_vu"));
-                row.createCell(7).setCellValue(rs.getString("categorie"));
-                index++;
-            }
-            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\souma\\Desktop\\produitsDetails.Xls");
-            wb.write(fileOut);
-            fileOut.close();
-           ste.close();
-           rs.close();
-
-        } catch (SQLException e) {
-        } catch (IOException ex) {
-            Logger.getLogger(ProduitService.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-       
-
+     {  
+      ps.generateExcel();
+    
     }
      
      private void addNotifications(String title, String content) {

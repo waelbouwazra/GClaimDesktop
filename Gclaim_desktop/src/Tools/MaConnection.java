@@ -15,7 +15,7 @@ public class MaConnection {
     public final String pwd ="";
    private Connection cnx;
    public static MaConnection ct;
-   public MaConnection(){ 
+   private MaConnection(){ 
         try{
             cnx=DriverManager.getConnection(url, user, pwd);
         }catch (SQLException ex){

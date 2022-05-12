@@ -869,18 +869,18 @@ public class ServiceUser {
 
             csCouleur.setFillPattern(csCouleur.SOLID_FOREGROUND);
 
-            HSSFSheet sheet = wb.createSheet("abonnement details ");
+            HSSFSheet sheet = wb.createSheet("user details ");
             HSSFCellStyle style = createStyleForTitle(wb);
             HSSFRow header = sheet.createRow(0);
 
-            header.createCell(0).setCellValue("ID");
+          
             header.createCell(1).setCellValue("Email");
             header.createCell(2).setCellValue("Type ");
             header.createCell(3).setCellValue("Fullname");
             header.createCell(4).setCellValue("Specialite");
             header.createCell(5).setCellValue("Username");
 
-            header.getCell(0).setCellStyle(csCouleur);
+          
             header.getCell(1).setCellStyle(csCouleur);
             header.getCell(2).setCellStyle(csCouleur);
             header.getCell(3).setCellStyle(csCouleur);
@@ -895,13 +895,13 @@ public class ServiceUser {
                 HSSFRow row = sheet.createRow(index);
                 
                 
-                row.createCell(0).setCellValue(rs.getString("id"));
+                
                 row.createCell(1).setCellValue(rs.getString("email"));
                 row.createCell(2).setCellValue(rs.getString("type"));
                 row.createCell(3).setCellValue(rs.getString("fullname"));
                 row.createCell(4).setCellValue(rs.getString("specialite"));
                 row.createCell(5).setCellValue(rs.getString("username"));
-            row.getCell(0).setCellStyle(cs1Couleur);
+          
                 row.getCell(1).setCellStyle(cs1Couleur);
                 row.getCell(2).setCellStyle(cs1Couleur);
                 row.getCell(3).setCellStyle(cs1Couleur);
@@ -921,21 +921,5 @@ public class ServiceUser {
         }
 
     }
-    public void sensSMS()
-    {
-    
-     String ACCOUNT_SID = System.getenv("AC1bfc52d30073068147b27bcfeae02c20");
-    String AUTH_TOKEN = System.getenv("626f9f30ef57e99f0239c2c46bff15e8");
-
    
-       Twilio.init("AC1bfc52d30073068147b27bcfeae02c20", "626f9f30ef57e99f0239c2c46bff15e8");
-        com.twilio.rest.api.v2010.account.Message message = com.twilio.rest.api.v2010.account.Message.creator(
-                new com.twilio.type.PhoneNumber("+21623251728"),
-                new com.twilio.type.PhoneNumber("++17579095719 "),
-                "This is the ship that made the Kessel Run in fourteen parsecs?")
-            .create();
-
-        System.out.println(message.getSid());
-    
-    }
 }

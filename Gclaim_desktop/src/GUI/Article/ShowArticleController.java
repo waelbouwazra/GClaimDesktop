@@ -87,7 +87,7 @@ public class ShowArticleController implements Initializable {
     private ListView<Article> txtListArticle;
     PreparedStatement pst= null;
 ResultSet rs= null;
-   MaConnection con = new MaConnection();
+  
   private Connection cnx = MaConnection.getInstance().getConnection();
     ArticleService ps = new ArticleService();
     @FXML

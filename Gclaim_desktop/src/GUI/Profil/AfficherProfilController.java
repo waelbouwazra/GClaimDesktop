@@ -53,7 +53,7 @@ public class AfficherProfilController implements Initializable {
 
 PreparedStatement pst= null;
 ResultSet rs= null;
-   MaConnection con = new MaConnection();
+ 
     @FXML
     TableView profilTable = new TableView();
     @FXML
@@ -113,7 +113,7 @@ profilTable.getItems().add(person);
         TableColumn tableColumn=tablePosition.getTableColumn();
         String data= (String) tableColumn.getCellObservableValue(item).getValue();
         System.out.println(data);
-                pst = con.MaConnection().prepareStatement(query);
+                pst = MaConnection.getInstance().getConnection().prepareStatement(query);
                 pst.setString(1,data);
                 rs = pst.executeQuery();
                 while(rs.next())
@@ -139,6 +139,8 @@ profilTable.getItems().add(person);
  */
 @FXML
 private void handleDeleteProfil() {
+    
+    
     int selectedIndex = profilTable.getSelectionModel().getSelectedIndex();
     profilTable.getItems().remove(selectedIndex);
       try {
@@ -149,7 +151,7 @@ private void handleDeleteProfil() {
         Object item=profilTable.getItems().get(row);
         TableColumn tableColumn=tablePosition.getTableColumn();
         String data= (String) tableColumn.getCellObservableValue(item).getValue();
-                pst = con.MaConnection().prepareStatement(query);
+                pst = MaConnection.getInstance().getConnection().prepareStatement(query);
                 pst.setString(1,data);
                 rs = pst.executeQuery();
                 while(rs.next())
@@ -185,7 +187,7 @@ private void handleDeleteProfil() {
         Object item=profilTable.getItems().get(row);
         TableColumn tableColumn=tablePosition.getTableColumn();
         String data= (String) tableColumn.getCellObservableValue(item).getValue();
-                pst = con.MaConnection().prepareStatement(query);
+                pst = MaConnection.getInstance().getConnection().prepareStatement(query);
                 pst.setString(1,data);
                 rs = pst.executeQuery();
                 

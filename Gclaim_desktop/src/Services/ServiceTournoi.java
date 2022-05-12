@@ -387,7 +387,7 @@ public void filtreidJ( List<Tournoi> tournoi, int idj){
                 index++;
             }
             }
-            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\elyes\\Desktop\\participant.Xls");
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\souma\\Desktop\\participant.Xls");
             wb.write(fileOut);
             fileOut.close();
             

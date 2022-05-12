@@ -48,7 +48,7 @@ public class AjoutRdvController implements Initializable {
 private ServiceUser US=new ServiceUser();
 PreparedStatement pst= null;
 ResultSet rst= null;
-   MaConnection con = new MaConnection();
+//   MaConnection con = new MaConnection();
 RdvService rs=new RdvService();
  public static Profil currentAbo;
     @FXML
@@ -98,7 +98,7 @@ RdvService rs=new RdvService();
          
            
        
-                pst = con.MaConnection().prepareStatement(query);
+                pst = MaConnection.getInstance().getConnection().prepareStatement(query);
                 pst.setString(1,currentAbo.getUsername());
                 rst = pst.executeQuery();
 

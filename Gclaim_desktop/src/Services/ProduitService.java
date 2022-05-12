@@ -9,6 +9,8 @@ import Entities.Categorie;
 import Entities.Image;
 import Entities.Produit;
 import Tools.MaConnection;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.sql.Connection;
 import java.util.Date;
 import java.sql.PreparedStatement;
@@ -21,6 +23,9 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import org.apache.poi.hssf.usermodel.HSSFRow;
+import org.apache.poi.hssf.usermodel.HSSFSheet;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 
 /**
  *
@@ -323,6 +328,52 @@ Produit a =new Produit();
             
         } 
         }
-        
+            public void generateExcel() 
+         {
+           String sql = "select * from produit";
+        Statement ste;
+        try {
+       
+          ste=cnx.prepareStatement(sql);
+               ResultSet rs = ste.executeQuery(sql);
+            HSSFWorkbook wb = new HSSFWorkbook();
+            HSSFSheet sheet = wb.createSheet("Produit details ");
+            HSSFRow header = sheet.createRow(0);
+            header.createCell(0).setCellValue("id_produit");
+            header.createCell(1).setCellValue("nom_produit");
+            header.createCell(2).setCellValue("description");
+            header.createCell(3).setCellValue("prix_produit");
+            header.createCell(4).setCellValue("date_ajout_produit");
+            header.createCell(5).setCellValue("Qte_produit");
+            header.createCell(6).setCellValue("nbr_vu");
+            header.createCell(7).setCellValue("categorie");
+            int index = 1;
+            while (rs.next()) {
+                System.out.println(rs.getString("id_produit"));
+                HSSFRow row = sheet.createRow(index);
+                row.createCell(0).setCellValue(rs.getString("id_produit"));
+                row.createCell(1).setCellValue(rs.getString("nom_produit"));
+                row.createCell(2).setCellValue(rs.getString("description"));
+                row.createCell(3).setCellValue(rs.getString("prix_produit"));
+                row.createCell(4).setCellValue(rs.getString("date_ajout_produit"));
+                row.createCell(5).setCellValue(rs.getString("Qte_produit"));
+                row.createCell(6).setCellValue(rs.getString("nbr_vu"));
+                row.createCell(7).setCellValue(rs.getString("categorie"));
+                index++;
+            }
+            FileOutputStream fileOut = new FileOutputStream("C:\\Users\\souma\\Desktop\\produitsDetails.Xls");
+            wb.write(fileOut);
+            fileOut.close();
+           ste.close();
+           rs.close();
+
+        } catch (SQLException e) {
+        } catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+
+       
+
+    }
    
 }
