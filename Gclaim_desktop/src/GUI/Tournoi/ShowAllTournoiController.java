@@ -109,12 +109,23 @@ public class ShowAllTournoiController implements Initializable {
     }
 
     public Parent makeAboModel(Tournoi abo) {
-       
+         File file= new File(abo.getImage());
+         
         Parent parent = null;
         try {
             System.out.println(abo.getImage());
-            File file= new File(abo.getImage());
-                         
+            System.out.println(abo.getImage().substring(0,4));
+            System.out.println(!(abo.getImage().substring(0,2).equals("C:")));
+          if(!(abo.getImage().substring(0,2).equals("C:")))
+                    {
+                        String s="C:\\xampp\\htdocs\\PIDEV\\Gclaim\\public\\"+abo.getImage();
+                        file = new File(s);
+                    }
+            else
+            {
+            file= new File(abo.getImage());
+            }
+              System.out.println(file.toURI().toString());           
 
             parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Constants.FXML_MODEL_TOUR)));
 
@@ -249,7 +260,7 @@ public class ShowAllTournoiController implements Initializable {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmer votre demande");
         alert.setHeaderText(null);
-        alert.setContentText("Etes vous sûr de vouloir rejoindre ce Tournoi ?");
+        alert.setContentText("Etes vous sûr de vouloir quitter ce Tournoi ?");
         Optional<ButtonType> action = alert.showAndWait();
 
         if (action.get() == ButtonType.OK) {

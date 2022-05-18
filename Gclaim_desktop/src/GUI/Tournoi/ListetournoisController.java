@@ -171,7 +171,7 @@ public class ListetournoisController implements Initializable {
          Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
         alert.setTitle("Confirmer votre demande");
         alert.setHeaderText(null);
-        alert.setContentText("Etes vous sûr de vouloir supprimer ce Tournoi ?");
+        alert.setContentText("Etes vous sûr de vouloir télécharger la liste des participant ?");
         Optional<ButtonType> action = alert.showAndWait();
 
         if (action.get() == ButtonType.OK) {

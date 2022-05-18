@@ -77,6 +77,8 @@ public class ShowAllProdController implements Initializable {
     private TextField max;
     @FXML
     private Button btnprix;
+    @FXML
+    private Text alertmnx;
     
     /**
      * Initializes the controller class.
@@ -103,11 +105,18 @@ public Parent makeProdModel( Produit abo  )  {
         Parent parent = null;
         
         try {
-            
-             System.out.println(abo.getImage());
              abo.setImage( ps.getImage(abo.getId_produit()));
-             System.out.println(abo.getImage());
              File file= new File(abo.getImage());
+            System.out.println(abo.getImage().substring(0,2));
+             if(!(abo.getImage().substring(0,2).equals("C:")))
+                    {
+                        String s="C:\\xampp\\htdocs\\PIDEV\\Gclaim\\public\\"+abo.getImage();
+                        file = new File(s);
+                    }
+            else
+            {
+            file= new File(abo.getImage());
+            }
              parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource(Constants.FXML_MODEL_PROD)));
              System.out.println(abo.getImage());
          
@@ -221,6 +230,8 @@ public Parent makeProdModel( Produit abo  )  {
         }
     @FXML
      private void filtrepri() {
+        Boolean verif = true;
+
          //System.out.println("test");
         double min1=Double.valueOf(min.getText());
         double max1=Double.valueOf(max.getText());
@@ -228,7 +239,13 @@ public Parent makeProdModel( Produit abo  )  {
         List<Produit> list = ps.ShowProduit();
         List<Produit> listProd = ps.filtreprix(list, min1, max1);
         listProd.stream().forEach(p->System.out.println(p.toString()));
-   
+            if (Integer.parseInt(max.getText())<Integer.parseInt(min.getText())) {
+            alertmnx.setText("Prix max doit etre supérieur au prix min");
+            verif = false;
+        }
+            if (verif==true)
+            {
+                alertmnx.setText("");
          if (!listProd.isEmpty()) {
                    mainVBox.getChildren().clear();
             for (Produit abo : listProd) {
@@ -244,6 +261,7 @@ public Parent makeProdModel( Produit abo  )  {
             stackPane.getChildren().add(new Text("Aucune donnée"));
             mainVBox.getChildren().add(stackPane);
         }
+            }
         }
      public void Qr() {
      QRCodeWriter qrCodeWriter = new QRCodeWriter();

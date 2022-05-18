@@ -54,6 +54,5 @@
       </Button>
       <ImageView fx:id="imgajoutincours" fitHeight="92.0" fitWidth="130.0" layoutX="62.0" layoutY="327.0" pickOnBounds="true" preserveRatio="true" />
       <Label fx:id="imgpathttt" layoutX="386.0" layoutY="327.0" />
-      <Button fx:id="btn" layoutX="557.0" layoutY="461.0" mnemonicParsing="false" onAction="#traduction" text="traduction" />
    </children>
 </AnchorPane>

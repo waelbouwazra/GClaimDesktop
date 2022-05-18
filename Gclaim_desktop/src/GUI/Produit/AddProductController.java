@@ -135,6 +135,10 @@ public class AddProductController implements Initializable {
             alertnom.setText("Remplir le champs !!");
             verif = false;
         }
+         if (Integer.parseInt(txtprix.getText())<0) {
+            alertprix.setText("Le prix doit obligatoirement etre positive");
+            verif = false;
+        }
        if (txtdesc.getText().equals("")) {
             alertdesc.setText("Remplir le champs !!");
             verif = false;
@@ -157,7 +161,8 @@ public class AddProductController implements Initializable {
          ObservableList<Integer> langs = FXCollections.observableArrayList(cs.getIdcategorie() );
        // comboBoxID.setItems(langs);
      
-       
+       int index = imgpath.getText().lastIndexOf("\\");
+       String fileName = imgpath.getText().substring(index + 1);
        ps.AddProduitPst(p, imgpath.getText());
           //alerteajout1.setText("Ajout avec succes!");
           alertnom.setText("");
